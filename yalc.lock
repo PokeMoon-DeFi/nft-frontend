@@ -1,0 +1,9 @@
+{
+  "version": "v1",
+  "packages": {
+    "nft-uikit": {
+      "signature": "ee85441fc402f7034c63504210c17ea1",
+      "file": true
+    }
+  }
+}
