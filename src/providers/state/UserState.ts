@@ -1,4 +1,8 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import contracts from "constants/contracts";
+import { getBep20Contract } from "utils/contractHelper";
+import { useWeb3React } from "@web3-react/core";
+import BigNumber from "bignumber.js";
 
 interface Balance {
   [key: string]: number;
@@ -14,10 +18,23 @@ const initialState: State = {
   },
 };
 
+interface ThunkAction {
+  symbol: string;
+  account?: string;
+}
+
 export const asyncFetchBalance = createAsyncThunk(
   "user/asyncFetchBalance",
-  async () => {
-    return { symbol: "kbn", balance: 10 };
+  async ({ symbol, account }: ThunkAction, thunkAPI) => {
+    //TODO: Wrap this with a getAddress utility
+    const address = contracts[symbol][56];
+    const contract = getBep20Contract(address);
+
+    if (account) {
+      const res = await contract.methods.balanceOf(account).call();
+      return { symbol: "koban", balance: new BigNumber(res).toNumber() };
+    }
+    return { symbol: "koban", balance: 0 };
   }
 );
 

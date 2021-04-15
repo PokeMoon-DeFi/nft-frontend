@@ -7,14 +7,19 @@ import { ConnectorNames } from "utils/types";
 import { useWeb3React } from "@web3-react/core";
 import { useAppSelector } from "providers";
 import { asyncFetchBalance } from "providers/state/UserState";
+import { useEffect } from "react";
 
 function App() {
   const { login, logout } = useAuth();
-  const { kbn } = useAppSelector((state) => state.user?.balance);
+  const { koban } = useAppSelector((state) => state.user?.balance);
   const { account } = useWeb3React();
   const dispatch = useDispatch();
 
-  dispatch(asyncFetchBalance());
+  useEffect(() => {
+    if (account) {
+      dispatch(asyncFetchBalance({ symbol: "koban", account }));
+    }
+  }, [dispatch, account]);
 
   return (
     <div className="App">
@@ -24,7 +29,7 @@ function App() {
           Edit <code>src/App.tsx</code> and save to reload.
         </p>
         <p>{account}</p>
-        <p>{kbn}</p>
+        <p>{koban}</p>
         <Button
           label="Buy"
           icon="Buy"

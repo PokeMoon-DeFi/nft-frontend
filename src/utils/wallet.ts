@@ -27,7 +27,6 @@ export const setupNetwork = async () => {
           },
         ],
       });
-      console.log("connected");
       return true;
     } catch (error) {
       console.error(error);
