@@ -8,7 +8,7 @@ export interface ArtistInfo {
  * PokeMoon Card: number, name, type, set, description/blurb, and artist info
  */
 export interface PokemoonCard {
-  number: Number;
+  number: number;
   name: string;
   type: string;
   set: string;

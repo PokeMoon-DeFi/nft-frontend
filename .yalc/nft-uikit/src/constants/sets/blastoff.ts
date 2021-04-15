@@ -1,4 +1,9 @@
-import { ARTISTS, CARDS_SETS, POKEMOON_RARITY, POKEMOON_TYPES } from "../nftData";
+import {
+  ARTISTS,
+  CARDS_SETS,
+  POKEMOON_RARITY,
+  POKEMOON_TYPES,
+} from "../nftData";
 import { PokemoonCard, PokemoonNft } from "../types";
 
 export const BLAST_OFF_CARD_INFO: PokemoonCard[] = [
@@ -139,315 +144,315 @@ export const BLAST_OFF_CARD_INFO: PokemoonCard[] = [
 ];
 
 export const NFT_LIST: PokemoonNft[] = [
-  { 
-    tokenId: '100001',
-    imageUrl: '001meownautC.png',
+  {
+    tokenId: "11000000",
+    imageUrl: "001meownautC.png",
     card: BLAST_OFF_CARD_INFO.find((card) => card.number === 1),
     rarity: POKEMOON_RARITY.COMMON,
   },
-  { 
-    tokenId: '100002',
-    imageUrl: '001meownautUC.png',
+  {
+    tokenId: "12000000",
+    imageUrl: "001meownautUC.png",
     card: BLAST_OFF_CARD_INFO.find((card) => card.number === 1),
     rarity: POKEMOON_RARITY.UNCOMMON,
   },
-  { 
-    tokenId: '100003',
-    imageUrl: '001meownautR.png',
+  {
+    tokenId: "13000000",
+    imageUrl: "001meownautR.png",
     card: BLAST_OFF_CARD_INFO.find((card) => card.number === 1),
     rarity: POKEMOON_RARITY.RARE,
   },
-  { 
-    tokenId: '100004',
-    imageUrl: '001meownautL.png',
+  {
+    tokenId: "14000000",
+    imageUrl: "001meownautL.png",
     card: BLAST_OFF_CARD_INFO.find((card) => card.number === 1),
     rarity: POKEMOON_RARITY.LEGENDARY,
   },
-  { 
-    tokenId: '100005',
-    imageUrl: '002pikapuffC.png',
+  {
+    tokenId: "15000000",
+    imageUrl: "002pikapuffC.png",
     card: BLAST_OFF_CARD_INFO.find((card) => card.number === 2),
     rarity: POKEMOON_RARITY.COMMON,
   },
-  { 
-    tokenId: '100006',
-    imageUrl: '002pikapuffUC.png',
+  {
+    tokenId: "16000000",
+    imageUrl: "002pikapuffUC.png",
     card: BLAST_OFF_CARD_INFO.find((card) => card.number === 2),
     rarity: POKEMOON_RARITY.UNCOMMON,
   },
-  { 
-    tokenId: '100007',
-    imageUrl: '002pikapuffR.png',
+  {
+    tokenId: "17000000",
+    imageUrl: "002pikapuffR.png",
     card: BLAST_OFF_CARD_INFO.find((card) => card.number === 2),
     rarity: POKEMOON_RARITY.RARE,
   },
-  { 
-    tokenId: '100008',
-    imageUrl: '003pikapuffC.png',
+  {
+    tokenId: "18000000",
+    imageUrl: "003pikapuffC.png",
     card: BLAST_OFF_CARD_INFO.find((card) => card.number === 3),
     rarity: POKEMOON_RARITY.COMMON,
   },
-  { 
-    tokenId: '100009',
-    imageUrl: '003pikapuffUC.png',
+  {
+    tokenId: "19000000",
+    imageUrl: "003pikapuffUC.png",
     card: BLAST_OFF_CARD_INFO.find((card) => card.number === 3),
     rarity: POKEMOON_RARITY.UNCOMMON,
   },
-  { 
-    tokenId: '100010',
-    imageUrl: '003pikapuffR.png',
+  {
+    tokenId: "20000000",
+    imageUrl: "003pikapuffR.png",
     card: BLAST_OFF_CARD_INFO.find((card) => card.number === 3),
     rarity: POKEMOON_RARITY.RARE,
   },
-  { 
-    tokenId: '100011',
-    imageUrl: '003pikapuffL.png',
+  {
+    tokenId: "21000000",
+    imageUrl: "003pikapuffL.png",
     card: BLAST_OFF_CARD_INFO.find((card) => card.number === 3),
     rarity: POKEMOON_RARITY.LEGENDARY,
   },
-  { 
-    tokenId: '100012',
-    imageUrl: '004rattishC.png',
+  {
+    tokenId: "22000000",
+    imageUrl: "004rattishC.png",
     card: BLAST_OFF_CARD_INFO.find((card) => card.number === 4),
     rarity: POKEMOON_RARITY.COMMON,
   },
-  { 
-    tokenId: '100013',
-    imageUrl: '004rattishUC.png',
+  {
+    tokenId: "23000000",
+    imageUrl: "004rattishUC.png",
     card: BLAST_OFF_CARD_INFO.find((card) => card.number === 4),
     rarity: POKEMOON_RARITY.UNCOMMON,
   },
-  { 
-    tokenId: '100014',
-    imageUrl: '004rattishR.png',
+  {
+    tokenId: "24000000",
+    imageUrl: "004rattishR.png",
     card: BLAST_OFF_CARD_INFO.find((card) => card.number === 4),
     rarity: POKEMOON_RARITY.RARE,
   },
-  { 
-    tokenId: '100015',
-    imageUrl: '005squirderC.png',
+  {
+    tokenId: "25000000",
+    imageUrl: "005squirderC.png",
     card: BLAST_OFF_CARD_INFO.find((card) => card.number === 5),
     rarity: POKEMOON_RARITY.COMMON,
   },
-  { 
-    tokenId: '100016',
-    imageUrl: '005squirderUC.png',
+  {
+    tokenId: "26000000",
+    imageUrl: "005squirderUC.png",
     card: BLAST_OFF_CARD_INFO.find((card) => card.number === 5),
     rarity: POKEMOON_RARITY.UNCOMMON,
   },
-  { 
-    tokenId: '100017',
-    imageUrl: '005squirderR.png',
+  {
+    tokenId: "27000000",
+    imageUrl: "005squirderR.png",
     card: BLAST_OFF_CARD_INFO.find((card) => card.number === 5),
     rarity: POKEMOON_RARITY.RARE,
   },
-  { 
-    tokenId: '100018',
-    imageUrl: '006chartortleC.png',
+  {
+    tokenId: "28000000",
+    imageUrl: "006chartortleC.png",
     card: BLAST_OFF_CARD_INFO.find((card) => card.number === 6),
     rarity: POKEMOON_RARITY.COMMON,
   },
-  { 
-    tokenId: '100019',
-    imageUrl: '006chartortleUC.png',
+  {
+    tokenId: "29000000",
+    imageUrl: "006chartortleUC.png",
     card: BLAST_OFF_CARD_INFO.find((card) => card.number === 6),
     rarity: POKEMOON_RARITY.UNCOMMON,
   },
-  { 
-    tokenId: '100020',
-    imageUrl: '006chartortleR.png',
+  {
+    tokenId: "30000000",
+    imageUrl: "006chartortleR.png",
     card: BLAST_OFF_CARD_INFO.find((card) => card.number === 6),
     rarity: POKEMOON_RARITY.RARE,
   },
-  { 
-    tokenId: '100021',
-    imageUrl: '007blastardC.png',
+  {
+    tokenId: "31000000",
+    imageUrl: "007blastardC.png",
     card: BLAST_OFF_CARD_INFO.find((card) => card.number === 7),
     rarity: POKEMOON_RARITY.COMMON,
   },
-  { 
-    tokenId: '100022',
-    imageUrl: '007blastardUC.png',
+  {
+    tokenId: "32000000",
+    imageUrl: "007blastardUC.png",
     card: BLAST_OFF_CARD_INFO.find((card) => card.number === 7),
     rarity: POKEMOON_RARITY.UNCOMMON,
   },
-  { 
-    tokenId: '100023',
-    imageUrl: '007blastardR.png',
+  {
+    tokenId: "33000000",
+    imageUrl: "007blastardR.png",
     card: BLAST_OFF_CARD_INFO.find((card) => card.number === 7),
     rarity: POKEMOON_RARITY.RARE,
   },
-  { 
-    tokenId: '100024',
-    imageUrl: '008blastardC.png',
+  {
+    tokenId: "34000000",
+    imageUrl: "008blastardC.png",
     card: BLAST_OFF_CARD_INFO.find((card) => card.number === 8),
     rarity: POKEMOON_RARITY.COMMON,
   },
-  { 
-    tokenId: '100025',
-    imageUrl: '008blastardUC.png',
+  {
+    tokenId: "35000000",
+    imageUrl: "008blastardUC.png",
     card: BLAST_OFF_CARD_INFO.find((card) => card.number === 8),
     rarity: POKEMOON_RARITY.UNCOMMON,
   },
-  { 
-    tokenId: '100026',
-    imageUrl: '008blastardR.png',
+  {
+    tokenId: "36000000",
+    imageUrl: "008blastardR.png",
     card: BLAST_OFF_CARD_INFO.find((card) => card.number === 8),
     rarity: POKEMOON_RARITY.RARE,
   },
-  { 
-    tokenId: '100027',
-    imageUrl: '008blastardL.png',
+  {
+    tokenId: "37000000",
+    imageUrl: "008blastardL.png",
     card: BLAST_OFF_CARD_INFO.find((card) => card.number === 8),
     rarity: POKEMOON_RARITY.LEGENDARY,
   },
-  { 
-    tokenId: '100028',
-    imageUrl: '009kadalaxC.png',
+  {
+    tokenId: "38000000",
+    imageUrl: "009kadalaxC.png",
     card: BLAST_OFF_CARD_INFO.find((card) => card.number === 9),
     rarity: POKEMOON_RARITY.COMMON,
   },
-  { 
-    tokenId: '100029',
-    imageUrl: '009kadalaxUC.png',
+  {
+    tokenId: "39000000",
+    imageUrl: "009kadalaxUC.png",
     card: BLAST_OFF_CARD_INFO.find((card) => card.number === 9),
     rarity: POKEMOON_RARITY.UNCOMMON,
   },
-  { 
-    tokenId: '100030',
-    imageUrl: '009kadalaxR.png',
+  {
+    tokenId: "40000000",
+    imageUrl: "009kadalaxR.png",
     card: BLAST_OFF_CARD_INFO.find((card) => card.number === 9),
     rarity: POKEMOON_RARITY.RARE,
   },
-  { 
-    tokenId: '100031',
-    imageUrl: '010kadalaxslimC.png',
+  {
+    tokenId: "41000000",
+    imageUrl: "010kadalaxslimC.png",
     card: BLAST_OFF_CARD_INFO.find((card) => card.number === 10),
     rarity: POKEMOON_RARITY.COMMON,
   },
-  { 
-    tokenId: '100032',
-    imageUrl: '010kadalaxslimUC.png',
+  {
+    tokenId: "42000000",
+    imageUrl: "010kadalaxslimUC.png",
     card: BLAST_OFF_CARD_INFO.find((card) => card.number === 10),
     rarity: POKEMOON_RARITY.UNCOMMON,
   },
-  { 
-    tokenId: '100033',
-    imageUrl: '010kadalaxslimR.png',
+  {
+    tokenId: "43000000",
+    imageUrl: "010kadalaxslimR.png",
     card: BLAST_OFF_CARD_INFO.find((card) => card.number === 10),
     rarity: POKEMOON_RARITY.RARE,
   },
-  { 
-    tokenId: '100034',
-    imageUrl: '011zapduckC.png',
+  {
+    tokenId: "44000000",
+    imageUrl: "011zapduckC.png",
     card: BLAST_OFF_CARD_INFO.find((card) => card.number === 11),
     rarity: POKEMOON_RARITY.COMMON,
   },
-  { 
-    tokenId: '100035',
-    imageUrl: '011zapduckUC.png',
+  {
+    tokenId: "45000000",
+    imageUrl: "011zapduckUC.png",
     card: BLAST_OFF_CARD_INFO.find((card) => card.number === 11),
     rarity: POKEMOON_RARITY.UNCOMMON,
   },
-  { 
-    tokenId: '100036',
-    imageUrl: '011zapduckR.png',
+  {
+    tokenId: "46000000",
+    imageUrl: "011zapduckR.png",
     card: BLAST_OFF_CARD_INFO.find((card) => card.number === 11),
     rarity: POKEMOON_RARITY.RARE,
   },
-  { 
-    tokenId: '100037',
-    imageUrl: '011zapduckL.png',
+  {
+    tokenId: "47000000",
+    imageUrl: "011zapduckL.png",
     card: BLAST_OFF_CARD_INFO.find((card) => card.number === 11),
     rarity: POKEMOON_RARITY.LEGENDARY,
   },
-  { 
-    tokenId: '100038',
-    imageUrl: '012goldenkobanC.png',
+  {
+    tokenId: "48000000",
+    imageUrl: "012goldenkobanC.png",
     card: BLAST_OFF_CARD_INFO.find((card) => card.number === 12),
     rarity: POKEMOON_RARITY.COMMON,
   },
-  { 
-    tokenId: '100039',
-    imageUrl: '012goldenkobanUC.png',
+  {
+    tokenId: "49000000",
+    imageUrl: "012goldenkobanUC.png",
     card: BLAST_OFF_CARD_INFO.find((card) => card.number === 12),
     rarity: POKEMOON_RARITY.UNCOMMON,
   },
-  { 
-    tokenId: '100040',
-    imageUrl: '012goldenkobanR.png',
+  {
+    tokenId: "50000000",
+    imageUrl: "012goldenkobanR.png",
     card: BLAST_OFF_CARD_INFO.find((card) => card.number === 12),
     rarity: POKEMOON_RARITY.RARE,
   },
-  { 
-    tokenId: '100041',
-    imageUrl: '013goldenkobanC.png',
+  {
+    tokenId: "51000000",
+    imageUrl: "013goldenkobanC.png",
     card: BLAST_OFF_CARD_INFO.find((card) => card.number === 13),
     rarity: POKEMOON_RARITY.COMMON,
   },
-  { 
-    tokenId: '100042',
-    imageUrl: '013goldenkobanUC.png',
+  {
+    tokenId: "52000000",
+    imageUrl: "013goldenkobanUC.png",
     card: BLAST_OFF_CARD_INFO.find((card) => card.number === 13),
     rarity: POKEMOON_RARITY.UNCOMMON,
   },
-  { 
-    tokenId: '100043',
-    imageUrl: '013goldenkobanR.png',
+  {
+    tokenId: "53000000",
+    imageUrl: "013goldenkobanR.png",
     card: BLAST_OFF_CARD_INFO.find((card) => card.number === 13),
     rarity: POKEMOON_RARITY.RARE,
   },
-  { 
-    tokenId: '100044',
-    imageUrl: '014changeteamsC.png',
+  {
+    tokenId: "54000000",
+    imageUrl: "014changeteamsC.png",
     card: BLAST_OFF_CARD_INFO.find((card) => card.number === 14),
     rarity: POKEMOON_RARITY.COMMON,
   },
-  { 
-    tokenId: '100045',
-    imageUrl: '014changeteamsUC.png',
+  {
+    tokenId: "55000000",
+    imageUrl: "014changeteamsUC.png",
     card: BLAST_OFF_CARD_INFO.find((card) => card.number === 14),
     rarity: POKEMOON_RARITY.COMMON,
   },
-  { 
-    tokenId: '100046',
-    imageUrl: '014changeteamsR.png',
+  {
+    tokenId: "56000000",
+    imageUrl: "014changeteamsR.png",
     card: BLAST_OFF_CARD_INFO.find((card) => card.number === 14),
     rarity: POKEMOON_RARITY.RARE,
   },
-  { 
-    tokenId: '100047',
-    imageUrl: '014changeteamsL.png',
+  {
+    tokenId: "57000000",
+    imageUrl: "014changeteamsL.png",
     card: BLAST_OFF_CARD_INFO.find((card) => card.number === 14),
     rarity: POKEMOON_RARITY.LEGENDARY,
   },
-  { 
-    tokenId: '100048',
-    imageUrl: '015rashscratchumC.png',
+  {
+    tokenId: "58000000",
+    imageUrl: "015rashscratchumC.png",
     card: BLAST_OFF_CARD_INFO.find((card) => card.number === 15),
     rarity: POKEMOON_RARITY.COMMON,
   },
-  { 
-    tokenId: '100049',
-    imageUrl: '015rashscratchumUC.png',
+  {
+    tokenId: "59000000",
+    imageUrl: "015rashscratchumUC.png",
     card: BLAST_OFF_CARD_INFO.find((card) => card.number === 15),
     rarity: POKEMOON_RARITY.UNCOMMON,
   },
-  { 
-    tokenId: '100050',
-    imageUrl: '015rashscratchumR.png',
+  {
+    tokenId: "60000000",
+    imageUrl: "015rashscratchumR.png",
     card: BLAST_OFF_CARD_INFO.find((card) => card.number === 15),
     rarity: POKEMOON_RARITY.RARE,
   },
-  { 
-    tokenId: '100051',
-    imageUrl: '015rashscratchumL.png',
+  {
+    tokenId: "61000000",
+    imageUrl: "015rashscratchumL.png",
     card: BLAST_OFF_CARD_INFO.find((card) => card.number === 15),
     rarity: POKEMOON_RARITY.LEGENDARY,
   },
-  { 
-    tokenId: '100052',
-    imageUrl: '016babymeownautML.png',
+  {
+    tokenId: "62000000",
+    imageUrl: "016babymeownautML.png",
     card: BLAST_OFF_CARD_INFO.find((card) => card.number === 16),
     rarity: POKEMOON_RARITY.MOONLIKE,
   },
