@@ -22,7 +22,7 @@ function App() {
         <Button
           label="Buy"
           icon="Buy"
-          onClick={() => login(ConnectorNames.Injected)}
+          onClick={() => (!account ? login(ConnectorNames.Injected) : logout())}
           style={{ minWidth: 200, maxHeight: 30, backgroundColor: "red" }}
         />
         <a
