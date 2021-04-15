@@ -1,11 +1,11 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import contracts from "constants/contracts";
-import { getBep20Contract } from "utils/contractHelper";
-import { useWeb3React } from "@web3-react/core";
+import { createSlice, createAsyncThunk, Action } from "@reduxjs/toolkit";
+import { getBep20Contract } from "utils/contractHelpers";
 import BigNumber from "bignumber.js";
+import { getAddressFromSymbol } from "utils/contractHelpers";
+import Web3 from "web3";
 
 interface Balance {
-  [key: string]: number;
+  [key: string]: BigNumber;
 }
 
 interface State {
@@ -14,27 +14,46 @@ interface State {
 
 const initialState: State = {
   balance: {
-    pb2114: 0,
+    pb2114: new BigNumber(0),
+    kbn: new BigNumber(0),
+    mnt: new BigNumber(0),
   },
 };
 
 interface ThunkAction {
-  symbol: string;
-  account?: string;
+  account: string;
 }
-
 export const asyncFetchBalance = createAsyncThunk(
   "user/asyncFetchBalance",
-  async ({ symbol, account }: ThunkAction, thunkAPI) => {
-    //TODO: Wrap this with a getAddress utility
-    const address = contracts[symbol][56];
-    const contract = getBep20Contract(address);
+  async ({ account }: ThunkAction, thunkAPI) => {
+    const contracts = {
+      mnt: getBep20Contract(getAddressFromSymbol("mnt")),
+      kbn: getBep20Contract(getAddressFromSymbol("kbn")),
+      pb2114: getBep20Contract(getAddressFromSymbol("pb2114")),
+    };
 
+    // TODO: Convert to multicall
     if (account) {
-      const res = await contract.methods.balanceOf(account).call();
-      return { symbol: "koban", balance: new BigNumber(res).toNumber() };
+      const mntRes = await contracts.mnt.methods.balanceOf(account).call();
+      const kbnRes = await contracts.kbn.methods.balanceOf(account).call();
+      const pb2114Res = await contracts.pb2114.methods
+        .balanceOf(account)
+        .call();
+      return {
+        balance: {
+          mnt: new BigNumber(Web3.utils.fromWei(mntRes)),
+          kbn: new BigNumber(Web3.utils.fromWei(kbnRes)),
+          pb2114: new BigNumber(Web3.utils.fromWei(pb2114Res)),
+        },
+      };
     }
-    return { symbol: "koban", balance: 0 };
+    return {
+      balance: {
+        kbn: new BigNumber(0),
+        mnt: new BigNumber(0),
+        pb2114: new BigNumber(0),
+      },
+    };
   }
 );
 
@@ -43,14 +62,14 @@ export const userState = createSlice({
   initialState,
   reducers: {
     setBalance: (state, action) => {
-      const { symbol, balance } = action.payload;
-      state.balance[symbol] = balance;
+      const { balance } = action.payload;
+      state.balance = balance;
     },
   },
   extraReducers: (builder) => {
     builder.addCase(asyncFetchBalance.fulfilled, (state, action) => {
-      const { symbol, balance } = action.payload;
-      state.balance[symbol] = balance;
+      const { balance }: any = action.payload;
+      state.balance = balance;
     });
   },
 });
