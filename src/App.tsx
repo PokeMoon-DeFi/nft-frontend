@@ -11,6 +11,7 @@ import SuspenseWithChunkError from "components/SuspenseWithChunkError";
 import PageLoader from "components/PageLoader";
 import Particles, { ISourceOptions } from "react-tsparticles";
 import particleOptions from "./config/particlesOptions.json";
+
 // Lazy loading
 const Landing = lazy(() => import("./views/Landing"));
 const BuyPacks = lazy(() => import("./views/BuyPacks"));

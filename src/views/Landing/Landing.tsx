@@ -19,7 +19,6 @@ const Landing: React.FC = () => {
             onClick={() =>
               !account ? login(ConnectorNames.Injected) : logout()
             }
-            style={{ minWidth: 200, maxHeight: 30, backgroundColor: "red" }}
           />
 
           <a href="/buy">BUY</a>
