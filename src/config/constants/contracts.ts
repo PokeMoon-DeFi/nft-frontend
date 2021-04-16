@@ -16,6 +16,9 @@ const contracts = {
     97: "0xd7aC26A8125E0AD80049AD59f72d7ffE67D4117b",
     56: "0xcf39DEC43eAB07D70C3D32776F3ae255ADF69f22",
   },
+  pokemoonNft: {
+    56: "0x168C95D07606b316Ab281eAC9798124925D2eC57",
+  },
   // Banks
   brindletonBay: {
     56: "0xa3448A6D8862cc5F481655D65fcAAAD206BD5964",
