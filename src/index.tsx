@@ -6,13 +6,16 @@ import { Web3ReactProvider } from "@web3-react/core";
 import { getLibrary } from "utils/web3React";
 import { Provider } from "react-redux";
 import store from "providers";
+import { RefreshContextProvider } from "contexts/RefreshContext";
 
 ReactDOM.render(
   <Web3ReactProvider getLibrary={getLibrary}>
     <Provider store={store}>
-      <React.StrictMode>
-        <App />
-      </React.StrictMode>
+      <RefreshContextProvider>
+        <React.StrictMode>
+          <App />
+        </React.StrictMode>
+      </RefreshContextProvider>
     </Provider>
   </Web3ReactProvider>,
   document.getElementById("root")
