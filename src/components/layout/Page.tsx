@@ -8,16 +8,6 @@ const Page = styled(Container)`
   padding-bottom: 16px;
   padding-left: 0px;
   padding-right: 0px;
-
-  ${({ theme }) => theme.mediaQueries.sm} {
-    /* padding-top: 24px; */
-    padding-bottom: 24px;
-  }
-
-  ${({ theme }) => theme.mediaQueries.lg} {
-    /* padding-top: 32px; */
-    padding-bottom: 32px;
-  }
 `;
 
 export default Page;
