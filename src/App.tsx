@@ -1,5 +1,5 @@
 import { useEffect, lazy } from "react";
-import { Router, Switch, Route } from "react-router";
+import { Router, Switch, Route } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import useAuth, { useEagerConnect } from "hooks/useAuth";
 import { useWeb3React } from "@web3-react/core";
@@ -13,6 +13,7 @@ import Particles, { ISourceOptions } from "react-tsparticles";
 import particleOptions from "./config/particlesOptions.json";
 // Lazy loading
 const Landing = lazy(() => import("./views/Landing"));
+const BuyPacks = lazy(() => import("./views/BuyPacks"));
 
 const App: React.FC = () => {
   // https://github.com/ChainSafe/web3.js/issues/3898
@@ -28,14 +29,14 @@ const App: React.FC = () => {
   // SAVING AS EXAMPLE
   // const { login, logout } = useAuth();
   // const balance = useAppSelector((state) => state.user?.balance);
-  // const { account } = useWeb3React();
-  // const dispatch = useDispatch();
+  const { account } = useWeb3React();
+  const dispatch = useDispatch();
 
-  // useEffect(() => {
-  //   if (account) {
-  //     dispatch(asyncFetchBalance({ account }));
-  //   }
-  // }, [dispatch, account]);
+  useEffect(() => {
+    if (account) {
+      dispatch(asyncFetchBalance({ account }));
+    }
+  }, [dispatch, account]);
 
   return (
     <Router history={history}>
@@ -47,6 +48,9 @@ const App: React.FC = () => {
         <Switch>
           <Route path="/" exact>
             <Landing />
+          </Route>
+          <Route path="/buy" exact>
+            <BuyPacks />
           </Route>
         </Switch>
       </SuspenseWithChunkError>

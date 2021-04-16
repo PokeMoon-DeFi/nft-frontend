@@ -17,6 +17,7 @@
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-router": "^5.2.0",
+    "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.3",
     "react-tsparticles": "^1.26.3",
     "typescript": "^4.1.2"
@@ -49,10 +50,12 @@
   },
   "devDependencies": {
     "@reduxjs/toolkit": "^1.5.1",
+    "@types/history": "^4.7.8",
     "@types/lodash": "^4.14.168",
     "@types/styled-components": "^5.1.9",
     "@web3-react/core": "^6.1.9",
     "@web3-react/walletconnect-connector": "^6.1.9",
+    "history": "^5.0.0",
     "react-redux": "^7.2.3",
     "redux-logger": "^3.0.6",
     "styled-components": "^5.2.3",
