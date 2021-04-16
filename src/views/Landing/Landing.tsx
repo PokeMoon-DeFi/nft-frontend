@@ -1,5 +1,5 @@
 const Landing: React.FC = () => {
-  return <>hahaha</>;
+  return <></>;
 };
 
 export default Landing;

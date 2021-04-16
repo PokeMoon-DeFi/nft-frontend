@@ -9,7 +9,8 @@ import history from "./routerHistory";
 import "./App.css";
 import SuspenseWithChunkError from "components/SuspenseWithChunkError";
 import PageLoader from "components/PageLoader";
-
+import Particles, { ISourceOptions } from "react-tsparticles";
+import particleOptions from "./config/particlesOptions.json";
 // Lazy loading
 const Landing = lazy(() => import("./views/Landing"));
 
@@ -41,6 +42,7 @@ const App: React.FC = () => {
       {/* <ResetCSS /> */}
       {/* <GlobalStyle /> */}
       {/* <Menu> */}
+      <Particles options={particleOptions as ISourceOptions} />
       <SuspenseWithChunkError fallback={<PageLoader />}>
         <Switch>
           <Route path="/" exact>

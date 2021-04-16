@@ -1,5 +1,6 @@
-import { FC } from "react";
-import { SvgProps } from "nft-uikit";
+import { FC, SVGAttributes } from "react";
+
+interface SvgProps extends SVGAttributes<HTMLOrSVGElement> {}
 
 export interface Config {
   title: string;
