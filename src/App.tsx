@@ -14,6 +14,7 @@ import particleOptions from "./config/particlesOptions.json";
 // Lazy loading
 const Landing = lazy(() => import("./views/Landing"));
 const BuyPacks = lazy(() => import("./views/BuyPacks"));
+const Gallery = lazy(() => import("./views/Gallery"));
 
 const App: React.FC = () => {
   // https://github.com/ChainSafe/web3.js/issues/3898
@@ -51,6 +52,9 @@ const App: React.FC = () => {
           </Route>
           <Route path="/buy" exact>
             <BuyPacks />
+          </Route>
+          <Route path="/gallery" exact>
+            <Gallery />
           </Route>
         </Switch>
       </SuspenseWithChunkError>
