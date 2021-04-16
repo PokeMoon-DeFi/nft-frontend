@@ -1,8 +1,20 @@
-import { useCallback } from "react";
+import { useCallback, useEffect } from "react";
 import { useWeb3React, UnsupportedChainIdError } from "@web3-react/core";
 import { connectorsByName } from "utils/web3React";
 import { setupNetwork } from "utils/wallet";
 import { ConnectorNames } from "utils/types";
+import { connectorLocalStorageKey } from "config/connectors";
+
+export const useEagerConnect = () => {
+  const { login } = useAuth();
+
+  useEffect(() => {
+    const connectorId = window.localStorage.getItem(
+      connectorLocalStorageKey
+    ) as ConnectorNames;
+    if (connectorId) login(connectorId);
+  }, [login]);
+};
 
 const useAuth = () => {
   const { activate, deactivate } = useWeb3React();
