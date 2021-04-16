@@ -16,11 +16,11 @@ export const getBep20Contract = (address: string, web3?: Web3) => {
 export const getAddressFromSymbol = (symbol: string) => {
   switch (symbol) {
     case "kbn":
-      return contracts.koban[56];
+      return contracts.koban[process.env.REACT_APP_CHAIN_ID];
     case "mnt":
-      return contracts.meownaut[56];
+      return contracts.meownaut[process.env.REACT_APP_CHAIN_ID];
     case "pb2114":
-      return contracts.pb2114[56];
+      return contracts.pb2114[process.env.REACT_APP_CHAIN_ID];
     default:
       throw console.error("invalid symbol");
   }
