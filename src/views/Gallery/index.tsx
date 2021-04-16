@@ -6,7 +6,7 @@ const Gallery = () => {
     <>
       <Page>
         <Content>
-          <Carousel nfts={Blastoff.NFT_LIST}></Carousel>
+          <Carousel nfts={Blastoff.default}></Carousel>
         </Content>
       </Page>
     </>
