@@ -17,7 +17,7 @@ export interface PokemoonCard {
 }
 
 /**
- * PokeMoon NFT with unique pair tokenId and rarity. PokeMoon card info is
+ * PokeMoon NFT with unique tokenId and asset for each card number + rarity. PokeMoon card info is
  * shared across multiple tokenIds
  */
 export interface PokemoonNft {

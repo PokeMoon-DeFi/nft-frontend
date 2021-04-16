@@ -1,6 +1,6 @@
 {
   "name": "nft-uikit",
-  "version": "0.1.0+2878f3d9",
+  "version": "0.1.0+cc5c2e79",
   "private": true,
   "main": "build/index.cjs.js",
   "module": "build/index.esm.js",
@@ -61,5 +61,5 @@
     ]
   },
   "peerDependencies": {},
-  "yalcSig": "2878f3d9743d7b2596c8ea3131de187a"
+  "yalcSig": "cc5c2e79e0cb089aa823f42521cb9faa"
 }
