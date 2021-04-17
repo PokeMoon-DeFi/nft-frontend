@@ -1,5 +1,5 @@
 import { useEffect, lazy } from "react";
-import { Router, Switch, Route } from "react-router-dom";
+import { Router, Switch, Route, Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import useAuth, { useEagerConnect } from "hooks/useAuth";
 import { useWeb3React } from "@web3-react/core";
@@ -11,7 +11,8 @@ import SuspenseWithChunkError from "components/SuspenseWithChunkError";
 import PageLoader from "components/PageLoader";
 import Particles, { ISourceOptions } from "react-tsparticles";
 import particleOptions from "./config/particlesOptions.json";
-
+import { GlobalStyle, Theme } from "nft-uikit";
+import { ThemeProvider } from "styled-components";
 // Lazy loading
 const Landing = lazy(() => import("./views/Landing"));
 const BuyPacks = lazy(() => import("./views/BuyPacks"));
@@ -41,26 +42,30 @@ const App: React.FC = () => {
   }, [dispatch, account]);
 
   return (
-    <Router history={history}>
-      {/* <ResetCSS /> */}
-      {/* <GlobalStyle /> */}
-      {/* <Menu> */}
-      <Particles options={particleOptions as ISourceOptions} />
-      <SuspenseWithChunkError fallback={<PageLoader />}>
-        <Switch>
-          <Route path="/" exact>
-            <Landing />
-          </Route>
-          <Route path="/buy" exact>
-            <BuyPacks />
-          </Route>
-          <Route path="/gallery" exact>
-            <Gallery />
-          </Route>
-        </Switch>
-      </SuspenseWithChunkError>
-      {/* </Menu> */}
-    </Router>
+    <ThemeProvider theme={Theme}>
+      <Router history={history}>
+        {/* <ResetCSS /> */}
+
+        <GlobalStyle />
+        {/* <Menu> */}
+        <Particles options={particleOptions as ISourceOptions} />
+        <SuspenseWithChunkError fallback={<PageLoader />}>
+          <Switch>
+            <Route path="/" exact>
+              <Landing />
+              <Link to="/buy">BUY</Link>
+            </Route>
+            <Route path="/buy" exact>
+              <BuyPacks />
+            </Route>
+            <Route path="/gallery" exact>
+              <Gallery />
+            </Route>
+          </Switch>
+        </SuspenseWithChunkError>
+        {/* </Menu> */}
+      </Router>
+    </ThemeProvider>
 
     // <div className="App">
     //   <header className="App-header">

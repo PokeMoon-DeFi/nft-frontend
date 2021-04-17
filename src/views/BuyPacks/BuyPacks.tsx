@@ -1,7 +1,11 @@
-import React from "react";
+import React, { useCallback, useMemo } from "react";
 import styled from "styled-components";
 import { Button, BalanceCounter } from "nft-uikit";
 import { useAppSelector } from "providers";
+import { useNftAllowance } from "hooks/useAllowance";
+import { useWeb3React } from "@web3-react/core";
+import { approve } from "utils/callHelpers";
+import { getContractFromSymbol, getNftContract } from "utils/contractHelpers";
 
 const Page = styled.div`
   display: flex;
@@ -33,6 +37,19 @@ const StyledImage = styled.img`
 
 const BuyPage = () => {
   const { pb2114 } = useAppSelector((state) => state.user.balance);
+  const allowance = useNftAllowance("pb2114");
+  const { account } = useWeb3React();
+
+  const handleApprove = useCallback(async () => {
+    const nftContract = getNftContract();
+    console.log(nftContract.options.address);
+    console.log(account);
+    const pballContract = getContractFromSymbol("pb2114");
+    const result = await pballContract.methods
+      .approve(nftContract.options.address, 100)
+      .send({ from: account });
+    console.log(result);
+  }, [account]);
 
   return (
     <Page>
@@ -44,7 +61,11 @@ const BuyPage = () => {
       </Header>
       <Content>
         <StyledImage src={"images/packs/blastoff.png"} />
-        <Button label="Buy" icon="Buy" />
+        {allowance?.toNumber() <= 0 ? (
+          <Button label="Approve" icon="Buy" onClick={handleApprove} />
+        ) : (
+          <Button label="Buy" icon="Buy" />
+        )}
       </Content>
     </Page>
   );

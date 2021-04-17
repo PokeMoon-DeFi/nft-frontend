@@ -3,6 +3,7 @@ import useAuth from "hooks/useAuth";
 import { Button } from "nft-uikit";
 import { ConnectorNames } from "utils/types";
 import { Content, Page } from "components/layout";
+import { Link } from "react-router-dom";
 
 const Landing: React.FC = () => {
   const { account } = useWeb3React();
