@@ -4,6 +4,7 @@ import web3NoAccount from "./web3";
 import bep20Abi from "config/constants/abi/bep20.json";
 import pokemoonNft from "config/constants/abi/pokemoonnft.json";
 import contracts from "config/constants/contracts";
+import useWeb3 from "hooks/useWeb3";
 
 const getContract = (abi: any, address: string, web3?: Web3) => {
   const _web3 = web3 ?? web3NoAccount;
@@ -22,9 +23,10 @@ export const getBep20Contract = (address: string, web3?: Web3) => {
   return getContract(bep20Abi, address, web3);
 };
 
-export const getContractFromSymbol = (symbol: string) => {
+export const useContractFromSymbol = (symbol: string) => {
   const address = getAddressFromSymbol(symbol);
-  return getBep20Contract(address);
+  const web3 = useWeb3();
+  return getBep20Contract(address, web3);
 };
 
 export const getAddressFromSymbol = (symbol: string) => {

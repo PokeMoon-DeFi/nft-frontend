@@ -1,13 +1,13 @@
 import { useState, useEffect, useCallback } from "react";
 import { useWeb3React } from "@web3-react/core";
 import BigNumber from "bignumber.js";
-import { getAddress, getContractFromSymbol } from "utils/contractHelpers";
+import { getAddress, useContractFromSymbol } from "utils/contractHelpers";
 import useRefresh from "./useRefresh";
 
 export const useNftAllowance = (symbol: string) => {
   const [allowance, setAllowance] = useState(new BigNumber(0));
   const { account } = useWeb3React();
-  const contract = getContractFromSymbol(symbol);
+  const contract = useContractFromSymbol(symbol);
   const nftAddress = getAddress("pokemoonNft");
   const { fastRefresh } = useRefresh();
 

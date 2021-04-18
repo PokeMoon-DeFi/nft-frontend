@@ -5,7 +5,7 @@ import { useAppSelector } from "providers";
 import { useNftAllowance } from "hooks/useAllowance";
 import { useWeb3React } from "@web3-react/core";
 import { approve } from "utils/callHelpers";
-import { getContractFromSymbol, getNftContract } from "utils/contractHelpers";
+import { useContractFromSymbol, getNftContract } from "utils/contractHelpers";
 
 const Page = styled.div`
   display: flex;
@@ -39,17 +39,17 @@ const BuyPage = () => {
   const { pb2114 } = useAppSelector((state) => state.user.balance);
   const allowance = useNftAllowance("pb2114");
   const { account } = useWeb3React();
+  const pballContract = useContractFromSymbol("pb2114");
 
   const handleApprove = useCallback(async () => {
     const nftContract = getNftContract();
     console.log(nftContract.options.address);
     console.log(account);
-    const pballContract = getContractFromSymbol("pb2114");
     const result = await pballContract.methods
       .approve(nftContract.options.address, 100)
       .send({ from: account });
     console.log(result);
-  }, [account]);
+  }, [account, pballContract]);
 
   return (
     <Page>

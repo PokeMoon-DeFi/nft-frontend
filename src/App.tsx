@@ -1,4 +1,4 @@
-import { useEffect, lazy } from "react";
+import React, { useEffect, lazy } from "react";
 import { Router, Switch, Route, Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import useAuth, { useEagerConnect } from "hooks/useAuth";
@@ -13,10 +13,19 @@ import Particles, { ISourceOptions } from "react-tsparticles";
 import particleOptions from "./config/particlesOptions.json";
 import { GlobalStyle, Theme } from "nft-uikit";
 import { ThemeProvider } from "styled-components";
+import { Page, Header, Content } from "components/layout";
+import { Button } from "nft-uikit";
+import { ConnectorNames } from "utils/types";
+import BigNumber from "bignumber.js";
+
 // Lazy loading
 const Landing = lazy(() => import("./views/Landing"));
 const BuyPacks = lazy(() => import("./views/BuyPacks"));
 const Gallery = lazy(() => import("./views/Gallery"));
+BigNumber.config({
+  EXPONENTIAL_AT: 1000,
+  DECIMAL_PLACES: 80,
+});
 
 const App: React.FC = () => {
   // https://github.com/ChainSafe/web3.js/issues/3898
@@ -30,7 +39,7 @@ const App: React.FC = () => {
   // useFetchPriceData();
 
   // SAVING AS EXAMPLE
-  // const { login, logout } = useAuth();
+  const { login, logout } = useAuth();
   // const balance = useAppSelector((state) => state.user?.balance);
   const { account } = useWeb3React();
   const dispatch = useDispatch();
@@ -42,30 +51,38 @@ const App: React.FC = () => {
   }, [dispatch, account]);
 
   return (
-    <ThemeProvider theme={Theme}>
-      <Router history={history}>
-        {/* <ResetCSS /> */}
+    // <ThemeProvider theme={Theme}>
+    <Router history={history}>
+      {/* <ResetCSS /> */}
 
-        <GlobalStyle />
-        {/* <Menu> */}
-        <Particles options={particleOptions as ISourceOptions} />
-        <SuspenseWithChunkError fallback={<PageLoader />}>
-          <Switch>
-            <Route path="/" exact>
-              <Landing />
-              <Link to="/buy">BUY</Link>
-            </Route>
-            <Route path="/buy" exact>
-              <BuyPacks />
-            </Route>
-            <Route path="/gallery" exact>
-              <Gallery />
-            </Route>
-          </Switch>
-        </SuspenseWithChunkError>
-        {/* </Menu> */}
-      </Router>
-    </ThemeProvider>
+      <GlobalStyle />
+      {/* <Menu> */}
+      <Particles options={particleOptions as ISourceOptions} />
+
+      <SuspenseWithChunkError fallback={<PageLoader />}>
+        <Page>
+          <Header>
+            {/* <Button
+              label="Connect"
+              onClick={() => login(ConnectorNames.Injected)}
+            /> */}
+          </Header>
+          <Content>
+            <Switch>
+              <Route path="/" exact>
+                <Landing />
+              </Route>
+              <Route path="/buy" exact>
+                <BuyPacks />
+              </Route>
+            </Switch>
+          </Content>
+        </Page>
+      </SuspenseWithChunkError>
+
+      {/* </Menu> */}
+    </Router>
+    // </ThemeProvider>
 
     // <div className="App">
     //   <header className="App-header">
@@ -84,4 +101,4 @@ const App: React.FC = () => {
   );
 };
 
-export default App;
+export default React.memo(App);
