@@ -6,6 +6,7 @@ import { useNftAllowance } from "hooks/useAllowance";
 import { useWeb3React } from "@web3-react/core";
 import { approve } from "utils/callHelpers";
 import { useContractFromSymbol, getNftContract } from "utils/contractHelpers";
+import { Modal } from "nft-uikit";
 
 const Page = styled.div`
   display: flex;
@@ -41,14 +42,13 @@ const BuyPage = () => {
   const { account } = useWeb3React();
   const pballContract = useContractFromSymbol("pb2114");
 
+  const [openConfirm, setOpenConfirm] = React.useState(false);
+
   const handleApprove = useCallback(async () => {
     const nftContract = getNftContract();
-    console.log(nftContract.options.address);
-    console.log(account);
-    const result = await pballContract.methods
-      .approve(nftContract.options.address, 100)
-      .send({ from: account });
-    console.log(result);
+    if (account) {
+      const result = await approve(pballContract, nftContract, account);
+    }
   }, [account, pballContract]);
 
   return (
@@ -57,7 +57,27 @@ const BuyPage = () => {
       {allowance?.toNumber() <= 0 ? (
         <Button label="Approve" icon="Buy" onClick={handleApprove} />
       ) : (
-        <Button label="Buy" icon="Buy" />
+        <>
+          <Button
+            label="Buy"
+            icon="Buy"
+            onClick={() => {
+              setOpenConfirm(true);
+            }}
+          />
+          <Modal
+            title="you sure?"
+            content="ur about to buy cool shit y/n"
+            open={openConfirm}
+            handleClose={() => {
+              setOpenConfirm(false);
+            }}
+            handleConfirm={() => {
+              console.log("clicked");
+              setOpenConfirm(false);
+            }}
+          />
+        </>
       )}
     </>
   );
