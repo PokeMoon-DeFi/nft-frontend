@@ -52,22 +52,14 @@ const BuyPage = () => {
   }, [account, pballContract]);
 
   return (
-    <Page>
-      <Header>
-        <BalanceCounter
-          imgUrl={"images/packs/blastoff.png"}
-          balance={pb2114 ? pb2114.toNumber() : 0}
-        />
-      </Header>
-      <Content>
-        <StyledImage src={"images/packs/blastoff.png"} />
-        {allowance?.toNumber() <= 0 ? (
-          <Button label="Approve" icon="Buy" onClick={handleApprove} />
-        ) : (
-          <Button label="Buy" icon="Buy" />
-        )}
-      </Content>
-    </Page>
+    <>
+      <StyledImage src={"images/packs/blastoff.png"} />
+      {allowance?.toNumber() <= 0 ? (
+        <Button label="Approve" icon="Buy" onClick={handleApprove} />
+      ) : (
+        <Button label="Buy" icon="Buy" />
+      )}
+    </>
   );
 };
 
