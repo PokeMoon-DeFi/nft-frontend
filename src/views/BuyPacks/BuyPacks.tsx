@@ -44,6 +44,7 @@ const BuyPage = () => {
 
   const [openConfirm, setOpenConfirm] = React.useState(false);
   const [openNotty, setOpenNotty] = React.useState(false);
+  const [openPackNotty, setOpenPackNotty] = React.useState(false);
 
   const handleApprove = useCallback(async () => {
     const nftContract = getNftContract();
@@ -51,6 +52,11 @@ const BuyPage = () => {
       const result = await approve(pballContract, nftContract, account);
     }
   }, [account, pballContract]);
+
+  const handlePending = useCallback(async () => {
+    await new Promise((res) => setTimeout(res, 1000));
+    setOpenPackNotty(true);
+  }, [setOpenPackNotty]);
 
   return (
     <>
@@ -74,9 +80,9 @@ const BuyPage = () => {
               setOpenConfirm(false);
             }}
             handleConfirm={() => {
-              console.log("clicked");
               setOpenConfirm(false);
               setOpenNotty(true);
+              handlePending();
             }}
           />
         </>
@@ -85,6 +91,11 @@ const BuyPage = () => {
         message={"gassin' it!"}
         open={openNotty}
         handleClose={() => setOpenNotty(false)}
+      />
+      <Notification
+        message={"pack secured 😎"}
+        open={openPackNotty}
+        handleClose={() => setOpenPackNotty(false)}
       />
     </>
   );
