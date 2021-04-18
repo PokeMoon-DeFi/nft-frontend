@@ -4,6 +4,8 @@ import BigNumber from "bignumber.js";
 import { getAddressFromSymbol } from "utils/contractHelpers";
 import Web3 from "web3";
 import contracts, { test_address } from "config/constants/contracts";
+import { PokemoonNft } from "nft-uikit/constants/types";
+import { getNftFromUriRes } from "utils/nftHelpers";
 
 interface Balance {
   [key: string]: BigNumber;
@@ -12,7 +14,7 @@ interface Balance {
 interface State {
   balance: Balance;
   // this might be wrong or we can actually sanitize the returns to pokemoonNft objects because we need to get the card data from the tokenUri.
-  nfts: string[];
+  nfts: PokemoonNft[];
 }
 
 const initialState: State = {
@@ -51,7 +53,7 @@ export const asyncFetchBalance = createAsyncThunk(
         },
       };
     }
-    console.error("Web3 account fail. Using initialState.")
+    console.error("Web3 account fail. Using initialState.", account, contracts)
     return {
       balance: initialState.balance
     };
@@ -62,23 +64,41 @@ export const asyncFetchBalance = createAsyncThunk(
 // Also, data tying tokenId->tokenUri data should only be called cached in the future since it will not change. (Not necessary for now)
 export const asyncFetchNfts = createAsyncThunk(
   "user/asyncFetchNfts",
-  async ({ account }: ThunkAction, thunkAPI) => {
+  async ({ account } : ThunkAction, thunkAPI) => {
     const contract = getNftContract();
     // Test address (Deployer)
     const address = test_address;
     // TODO: Convert to multicall
     if (account) {
-      const res = await contract.methods.tokensOwned(account).call();
-      console.log(`PokeMoonCollectibles:TokensOwned(${account})`, res)
-      return {
-        nfts: res
-      };
+      const res = await contract.methods.tokensOwned(address).call();
+      console.log(`PokeMoonCollectibles:TokensOwned(${address})`, res)
+      if (res) {
+        let nfts : PokemoonNft[] = []
+        let jankLogCount = 0;
+        res?.forEach(tokenId => {
+          console.log(jankLogCount, tokenId)
+          const uriRes = asyncFetchUri(tokenId);
+          nfts.push(getNftFromUriRes(uriRes))
+          jankLogCount++;
+        });
+        return {
+          nfts: nfts
+        };
+      }
+      console.error("if (res) === False for tokensOwned")
     }
+    console.error("Web3 account fail. Using initialState.", account, contract, address)
     return {
       nfts: []
     };
   }
 );
+
+export const asyncFetchUri = async (tokenId: string) => {
+  const contract = getNftContract();
+  const res = await contract.methods.tokenUri(tokenId).call();
+  return res;
+}
 
 export const userState = createSlice({
   name: "user",
