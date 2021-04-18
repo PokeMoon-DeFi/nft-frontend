@@ -1,4 +1,4 @@
-import { createSlice, createAsyncThunk, Action } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
 import BigNumber from "bignumber.js";
 
 interface Balance {
