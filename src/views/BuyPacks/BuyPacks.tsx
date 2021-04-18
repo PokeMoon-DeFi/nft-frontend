@@ -6,7 +6,7 @@ import { useNftAllowance } from "hooks/useAllowance";
 import { useWeb3React } from "@web3-react/core";
 import { approve } from "utils/callHelpers";
 import { useContractFromSymbol, getNftContract } from "utils/contractHelpers";
-import { Modal } from "nft-uikit";
+import { Modal, Notification } from "nft-uikit";
 
 const Page = styled.div`
   display: flex;
@@ -43,6 +43,7 @@ const BuyPage = () => {
   const pballContract = useContractFromSymbol("pb2114");
 
   const [openConfirm, setOpenConfirm] = React.useState(false);
+  const [openNotty, setOpenNotty] = React.useState(false);
 
   const handleApprove = useCallback(async () => {
     const nftContract = getNftContract();
@@ -75,10 +76,16 @@ const BuyPage = () => {
             handleConfirm={() => {
               console.log("clicked");
               setOpenConfirm(false);
+              setOpenNotty(true);
             }}
           />
         </>
       )}
+      <Notification
+        message={"gassin' it!"}
+        open={openNotty}
+        handleClose={() => setOpenNotty(false)}
+      />
     </>
   );
 };
