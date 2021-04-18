@@ -4,8 +4,8 @@ import BigNumber from "bignumber.js";
 import { getAddressFromSymbol } from "utils/contractHelpers";
 import Web3 from "web3";
 import contracts, { test_address } from "config/constants/contracts";
-import { PokemoonNft } from "nft-uikit/constants/types";
-import { getNftFromUriRes } from "utils/nftHelpers";
+import { getNftFromMasterTokenId, getNftFromUriRes } from "utils/nftHelpers";
+import { PokemoonNft } from "nft-uikit";
 
 interface Balance {
   [key: string]: BigNumber;
@@ -53,52 +53,104 @@ export const asyncFetchBalance = createAsyncThunk(
         },
       };
     }
-    console.error("Web3 account fail. Using initialState.", account, contracts)
+    console.error("Web3 account fail. Using initialState.", account, contracts);
     return {
-      balance: initialState.balance
+      balance: initialState.balance,
     };
   }
 );
+
+export const asyncFetchPacks = createAsyncThunk(
+  "user/asyncFetchPacks",
+  async ({ account }: ThunkAction, thunkAPI) => {
+    const contract = getNftContract();
+    const address = test_address;
+    if (account) {
+      const res = await contract.methods.packedOwned(address).call();
+      console.log(`PokeMoonCollectibles:packedOwned(${address})`, res);
+      if (res) {
+        let nfts: PokemoonNft[] = [];
+        let jankLogCount = 0;
+        res.forEach((packId) => {
+          // packRes should return an array of 5 tokenIds
+          const packRes = asyncFetchPackInfo(packId);
+          if (packRes) {
+            // @ts-ignore I don't know how to typescript this
+            packRes.forEach((card) => {
+              console.log(jankLogCount, packId, card);
+              nfts.push(getNftFromMasterTokenId(card));
+              jankLogCount++;
+            });
+          }
+        });
+        return {
+          nfts: nfts,
+        };
+      }
+      console.error("if (res) === False for tokensOwned");
+    }
+    console.error(
+      "Web3 account fail. Using initialState.",
+      account,
+      contract,
+      address
+    );
+    return {
+      nfts: [],
+    };
+  }
+);
+
+const asyncFetchPackInfo = async (packId) => {
+  const contract = getNftContract();
+  const res = await contract.methods.packedInfo(packId).call();
+  return res;
+};
 
 // TODO: Sanitize response by getting nested tokenUri calls for each tokenId
 // Also, data tying tokenId->tokenUri data should only be called cached in the future since it will not change. (Not necessary for now)
 export const asyncFetchNfts = createAsyncThunk(
   "user/asyncFetchNfts",
-  async ({ account } : ThunkAction, thunkAPI) => {
+  async ({ account }: ThunkAction, thunkAPI) => {
     const contract = getNftContract();
     // Test address (Deployer)
     const address = test_address;
     // TODO: Convert to multicall
     if (account) {
       const res = await contract.methods.tokensOwned(address).call();
-      console.log(`PokeMoonCollectibles:TokensOwned(${address})`, res)
+      console.log(`PokeMoonCollectibles:TokensOwned(${address})`, res);
       if (res) {
-        let nfts : PokemoonNft[] = []
+        let nfts: PokemoonNft[] = [];
         let jankLogCount = 0;
-        res?.forEach(tokenId => {
-          console.log(jankLogCount, tokenId)
+        res?.forEach((tokenId) => {
+          console.log(jankLogCount, tokenId);
           const uriRes = asyncFetchUri(tokenId);
-          nfts.push(getNftFromUriRes(uriRes))
+          nfts.push(getNftFromUriRes(uriRes));
           jankLogCount++;
         });
         return {
-          nfts: nfts
+          nfts: nfts,
         };
       }
-      console.error("if (res) === False for tokensOwned")
+      console.error("if (res) === False for tokensOwned");
     }
-    console.error("Web3 account fail. Using initialState.", account, contract, address)
+    console.error(
+      "Web3 account fail. Using initialState.",
+      account,
+      contract,
+      address
+    );
     return {
-      nfts: []
+      nfts: [],
     };
   }
 );
 
-export const asyncFetchUri = async (tokenId: string) => {
+export const asyncFetchUri = async (tokenId) => {
   const contract = getNftContract();
   const res = await contract.methods.tokenUri(tokenId).call();
   return res;
-}
+};
 
 export const userState = createSlice({
   name: "user",
@@ -111,7 +163,7 @@ export const userState = createSlice({
     setNfts: (state, action) => {
       const { nfts } = action.payload;
       state.nfts = nfts;
-    }
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(asyncFetchBalance.fulfilled, (state, action) => {
