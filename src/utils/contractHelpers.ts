@@ -3,7 +3,7 @@ import { AbiItem } from "web3-utils";
 import web3NoAccount from "./web3";
 import bep20Abi from "config/constants/abi/bep20.json";
 import pokemoonNft from "config/constants/abi/pokemoonnft.json";
-import contracts from "config/constants/contracts";
+import contracts, { test_pb } from "config/constants/contracts";
 import useWeb3 from "hooks/useWeb3";
 
 const getContract = (abi: any, address: string, web3?: Web3) => {
@@ -37,6 +37,8 @@ export const getAddressFromSymbol = (symbol: string) => {
       return contracts.meownaut[process.env.REACT_APP_CHAIN_ID];
     case "pb2114":
       return contracts.pb2114[process.env.REACT_APP_CHAIN_ID];
+    case "testPb":
+      return test_pb;
     default:
       throw console.error("invalid symbol");
   }

@@ -1,7 +1,7 @@
 // 97 = BSC test
 // 56 = BSC main
 // 777 = cTH :P
-export const test_address = "0x2D0a5ef7A00574ab8c9F9784F09EE06f1705e377";
+export const test_pb = "0x58556c103590c0cb20bbd261618fe87a13b6e2bc";
 
 const contracts = {
   // Infrastructure
@@ -18,7 +18,7 @@ const contracts = {
     56: "0xcf39DEC43eAB07D70C3D32776F3ae255ADF69f22",
   },
   pokemoonNft: {
-    56: "0x2e17F28A12624a38d6d6f5e2b50A6408F9129f77",
+    56: "0xd1fc7bf649b128d49656dfe8dbbeb4e1ec8c8317",
   },
   // Banks
   brindletonBay: {

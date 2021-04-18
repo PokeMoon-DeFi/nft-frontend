@@ -2,8 +2,8 @@ import ARTISTS from "./artists";
 import { PokemoonCard, PokemoonNft } from "./types";
 import { PM_RARITY, PM_TYPES } from ".";
 
-export const BLAST_OFF_CARDS: PokemoonCard[] = [
-  {
+export const BLAST_OFF_CARDS: { [key: number]: PokemoonCard } = {
+  1: {
     number: 1,
     name: "Meownaut",
     type: PM_TYPES.PSYCHIC,
@@ -11,14 +11,14 @@ export const BLAST_OFF_CARDS: PokemoonCard[] = [
       "Legend says that the bioluminescent coin in a Meownaut's chest is the source of its resilience and good fortune.",
     artist: ARTISTS.Armilo,
   },
-  {
+  2: {
     number: 2,
     name: "Pikapuff",
     type: PM_TYPES.LIGHTNING,
     description: "That's gonna be a hit.",
     artist: ARTISTS.LilyPonto,
   },
-  {
+  3: {
     number: 3,
     name: "Pikapuff",
     type: PM_TYPES.LIGHTNING,
@@ -26,7 +26,7 @@ export const BLAST_OFF_CARDS: PokemoonCard[] = [
       "I woke up under the table with a splitting headache, smoke coming out of my ears... and an unconquerable urge to buy a ticket to her next show.",
     artist: ARTISTS.LilyPonto,
   },
-  {
+  4: {
     number: 4,
     name: "Rattish",
     type: PM_TYPES.GRASS,
@@ -34,14 +34,14 @@ export const BLAST_OFF_CARDS: PokemoonCard[] = [
       "There are rodents who can cook, and those who teach Kung Fu. But some of them just wish to sit and contemplate the view.",
     artist: ARTISTS.Ilya,
   },
-  {
+  5: {
     number: 5,
     name: "Squirder",
     type: PM_TYPES.FIRE,
     description: "Favorite start Pokemoon of the nicotine addicted trainer.",
     artist: ARTISTS.Armilo,
   },
-  {
+  6: {
     number: 6,
     name: "Chartortle",
     type: PM_TYPES.FIRE,
@@ -49,21 +49,21 @@ export const BLAST_OFF_CARDS: PokemoonCard[] = [
       "Chartortles are known to reheat banana and anchovy pizza with the flame from their firey tails.",
     artist: ARTISTS.Armilo,
   },
-  {
+  7: {
     number: 7,
     name: "Blastard",
     type: PM_TYPES.FIRE,
     description: "Need a light?",
     artist: ARTISTS.Armilo,
   },
-  {
+  8: {
     number: 8,
     name: "Blastard",
     type: PM_TYPES.FIRE,
     description: "All Gas, Some brakes.",
     artist: ARTISTS.LilyPonto,
   },
-  {
+  9: {
     number: 9,
     name: "Kadalax",
     type: PM_TYPES.PSYCHIC,
@@ -71,7 +71,7 @@ export const BLAST_OFF_CARDS: PokemoonCard[] = [
       "Contrary to popular belief, it's not alway pleasant getting big spooned.",
     artist: ARTISTS.Ilya,
   },
-  {
+  10: {
     number: 10,
     name: "Kadalax Slim",
     type: PM_TYPES.PSYCHIC,
@@ -79,695 +79,366 @@ export const BLAST_OFF_CARDS: PokemoonCard[] = [
       "Some Kadalax, having conquered their material vices, are able to sustain themselves off air and thought alone.",
     artist: ARTISTS.Ilya,
   },
-  {
+  11: {
     number: 11,
     name: "Zapduck",
     type: PM_TYPES.LIGHTNING,
     description: "Strike one, you're out.",
     artist: ARTISTS.Morlux,
   },
-  {
+  12: {
     number: 12,
     name: "Golden Koban",
     type: PM_TYPES.ITEM,
     description: "",
     artist: ARTISTS.LilyPonto,
   },
-  {
+  13: {
     number: 13,
     name: "Golden Koban",
     type: PM_TYPES.ITEM,
     description: "",
     artist: ARTISTS.LilyPonto,
   },
-  {
+  14: {
     number: 14,
     name: "Change Teams",
     type: PM_TYPES.SUPPORTER,
     description: "",
     artist: ARTISTS.NinjaGuy,
   },
-  {
+  15: {
     number: 15,
     name: "Rash Scratchum",
     type: PM_TYPES.SUPPORTER,
     description: "",
     artist: ARTISTS.NinjaGuy,
   },
-  {
+  16: {
     number: 16,
     name: "Baby Meownaut",
     type: PM_TYPES.PSYCHIC,
     description: "It's too adorable for words.",
     artist: ARTISTS.Mathijs,
   },
-];
+};
 
-const BLAST_OFF_COLLECTION: PokemoonNft[] = [
-  {
-    tokenId: "11000000",
+/**
+ * Maps nft keys (first 2 numbers from tokenId) to nft info
+ */
+const BLAST_OFF_COLLECTION: { [key: number]: PokemoonNft } = {
+  11: {
+    tokenId: "11",
     imageUrl: "001meownautC.png",
-    card: {
-      number: 1,
-      name: "Meownaut",
-      type: PM_TYPES.PSYCHIC,
-      description:
-        "Legend says that the bioluminescent coin in a Meownaut's chest is the source of its resilience and good fortune.",
-      artist: ARTISTS.Armilo,
-    },
+    card: BLAST_OFF_CARDS[1],
     rarity: PM_RARITY.C,
   },
-  {
-    tokenId: "12000000",
+  31: {
+    tokenId: "31",
     imageUrl: "001meownautUC.png",
-    card: {
-      number: 1,
-      name: "Meownaut",
-      type: PM_TYPES.PSYCHIC,
-      description:
-        "Legend says that the bioluminescent coin in a Meownaut's chest is the source of its resilience and good fortune.",
-      artist: ARTISTS.Armilo,
-    },
+    card: BLAST_OFF_CARDS[1],
     rarity: PM_RARITY.U,
   },
-  {
-    tokenId: "13000000",
+  54: {
+    tokenId: "54",
     imageUrl: "001meownautR.png",
-    card: {
-      number: 1,
-      name: "Meownaut",
-      type: PM_TYPES.PSYCHIC,
-      description:
-        "Legend says that the bioluminescent coin in a Meownaut's chest is the source of its resilience and good fortune.",
-      artist: ARTISTS.Armilo,
-    },
+    card: BLAST_OFF_CARDS[1],
     rarity: PM_RARITY.R,
   },
-  {
-    tokenId: "14000000",
+  60: {
+    tokenId: "60",
     imageUrl: "001meownautL.png",
-    card: {
-      number: 1,
-      name: "Meownaut",
-      type: PM_TYPES.PSYCHIC,
-      description:
-        "Legend says that the bioluminescent coin in a Meownaut's chest is the source of its resilience and good fortune.",
-      artist: ARTISTS.Armilo,
-    },
+    card: BLAST_OFF_CARDS[1],
     rarity: PM_RARITY.L,
   },
-  {
-    tokenId: "15000000",
+  21: {
+    tokenId: "21",
     imageUrl: "002pikapuffC.png",
-    card: {
-      number: 2,
-      name: "Pikapuff",
-      type: PM_TYPES.LIGHTNING,
-      description: "That's gonna be a hit.",
-      artist: ARTISTS.LilyPonto,
-    },
+    card: BLAST_OFF_CARDS[2],
     rarity: PM_RARITY.C,
   },
-  {
-    tokenId: "16000000",
+  33: {
+    tokenId: "33",
     imageUrl: "002pikapuffUC.png",
-    card: {
-      number: 2,
-      name: "Pikapuff",
-      type: PM_TYPES.LIGHTNING,
-      description: "That's gonna be a hit.",
-      artist: ARTISTS.LilyPonto,
-    },
+    card: BLAST_OFF_CARDS[2],
     rarity: PM_RARITY.U,
   },
-  {
-    tokenId: "17000000",
+  53: {
+    tokenId: "53",
     imageUrl: "002pikapuffR.png",
-    card: {
-      number: 2,
-      name: "Pikapuff",
-      type: PM_TYPES.LIGHTNING,
-      description: "That's gonna be a hit.",
-      artist: ARTISTS.LilyPonto,
-    },
+    card: BLAST_OFF_CARDS[2],
     rarity: PM_RARITY.R,
   },
-  {
-    tokenId: "18000000",
+  25: {
+    tokenId: "25",
     imageUrl: "003pikapuffC.png",
-    card: {
-      number: 3,
-      name: "Pikapuff",
-      type: PM_TYPES.LIGHTNING,
-      description:
-        "I woke up under the table with a splitting headache, smoke coming out of my ears... and an unconquerable urge to buy a ticket to her next show.",
-      artist: ARTISTS.LilyPonto,
-    },
+    card: BLAST_OFF_CARDS[3],
     rarity: PM_RARITY.C,
   },
-  {
-    tokenId: "19000000",
+  39: {
+    tokenId: "39",
     imageUrl: "003pikapuffUC.png",
-    card: {
-      number: 3,
-      name: "Pikapuff",
-      type: PM_TYPES.LIGHTNING,
-      description:
-        "I woke up under the table with a splitting headache, smoke coming out of my ears... and an unconquerable urge to buy a ticket to her next show.",
-      artist: ARTISTS.LilyPonto,
-    },
+    card: BLAST_OFF_CARDS[3],
     rarity: PM_RARITY.U,
   },
-  {
-    tokenId: "20000000",
+  41: {
+    tokenId: "41",
     imageUrl: "003pikapuffR.png",
-    card: {
-      number: 3,
-      name: "Pikapuff",
-      type: PM_TYPES.LIGHTNING,
-      description:
-        "I woke up under the table with a splitting headache, smoke coming out of my ears... and an unconquerable urge to buy a ticket to her next show.",
-      artist: ARTISTS.LilyPonto,
-    },
+    card: BLAST_OFF_CARDS[3],
     rarity: PM_RARITY.R,
   },
-  {
-    tokenId: "21000000",
+  61: {
+    tokenId: "61",
     imageUrl: "003pikapuffL.png",
-    card: {
-      number: 3,
-      name: "Pikapuff",
-      type: PM_TYPES.LIGHTNING,
-      description:
-        "I woke up under the table with a splitting headache, smoke coming out of my ears... and an unconquerable urge to buy a ticket to her next show.",
-      artist: ARTISTS.LilyPonto,
-    },
+    card: BLAST_OFF_CARDS[3],
     rarity: PM_RARITY.L,
   },
-  {
-    tokenId: "22000000",
+  16: {
+    tokenId: "16",
     imageUrl: "004rattishC.png",
-    card: {
-      number: 4,
-      name: "Rattish",
-      type: PM_TYPES.GRASS,
-      description:
-        "There are rodents who can cook, and those who teach Kung Fu. But some of them just wish to sit and contemplate the view.",
-      artist: ARTISTS.Ilya,
-    },
+    card: BLAST_OFF_CARDS[4],
     rarity: PM_RARITY.C,
   },
-  {
-    tokenId: "23000000",
+  27: {
+    tokenId: "27",
     imageUrl: "004rattishUC.png",
-    card: {
-      number: 4,
-      name: "Rattish",
-      type: PM_TYPES.GRASS,
-      description:
-        "There are rodents who can cook, and those who teach Kung Fu. But some of them just wish to sit and contemplate the view.",
-      artist: ARTISTS.Ilya,
-    },
+    card: BLAST_OFF_CARDS[4],
     rarity: PM_RARITY.U,
   },
-  {
-    tokenId: "24000000",
+  47: {
+    tokenId: "47",
     imageUrl: "004rattishR.png",
-    card: {
-      number: 4,
-      name: "Rattish",
-      type: PM_TYPES.GRASS,
-      description:
-        "There are rodents who can cook, and those who teach Kung Fu. But some of them just wish to sit and contemplate the view.",
-      artist: ARTISTS.Ilya,
-    },
+    card: BLAST_OFF_CARDS[4],
     rarity: PM_RARITY.R,
   },
-  {
-    tokenId: "25000000",
+  22: {
+    tokenId: "22",
     imageUrl: "005squirderC.png",
-    card: {
-      number: 5,
-      name: "Squirder",
-      type: PM_TYPES.FIRE,
-      description: "Favorite start Pokemoon of the nicotine addicted trainer.",
-      artist: ARTISTS.Armilo,
-    },
+    card: BLAST_OFF_CARDS[5],
     rarity: PM_RARITY.C,
   },
-  {
-    tokenId: "26000000",
+  38: {
+    tokenId: "38",
     imageUrl: "005squirderUC.png",
-    card: {
-      number: 5,
-      name: "Squirder",
-      type: PM_TYPES.FIRE,
-      description: "Favorite start Pokemoon of the nicotine addicted trainer.",
-      artist: ARTISTS.Armilo,
-    },
+    card: BLAST_OFF_CARDS[5],
     rarity: PM_RARITY.U,
   },
-  {
-    tokenId: "27000000",
+  46: {
+    tokenId: "46",
     imageUrl: "005squirderR.png",
-    card: {
-      number: 5,
-      name: "Squirder",
-      type: PM_TYPES.FIRE,
-      description: "Favorite start Pokemoon of the nicotine addicted trainer.",
-      artist: ARTISTS.Armilo,
-    },
+    card: BLAST_OFF_CARDS[5],
     rarity: PM_RARITY.R,
   },
-  {
-    tokenId: "28000000",
+  24: {
+    tokenId: "24",
     imageUrl: "006chartortleC.png",
-    card: {
-      number: 6,
-      name: "Chartortle",
-      type: PM_TYPES.FIRE,
-      description:
-        "Chartortles are known to reheat banana and anchovy pizza with the flame from their firey tails.",
-      artist: ARTISTS.Armilo,
-    },
+    card: BLAST_OFF_CARDS[6],
     rarity: PM_RARITY.C,
   },
-  {
-    tokenId: "29000000",
+  30: {
+    tokenId: "30",
     imageUrl: "006chartortleUC.png",
-    card: {
-      number: 6,
-      name: "Chartortle",
-      type: PM_TYPES.FIRE,
-      description:
-        "Chartortles are known to reheat banana and anchovy pizza with the flame from their firey tails.",
-      artist: ARTISTS.Armilo,
-    },
+    card: BLAST_OFF_CARDS[6],
     rarity: PM_RARITY.U,
   },
-  {
-    tokenId: "30000000",
+  51: {
+    tokenId: "51",
     imageUrl: "006chartortleR.png",
-    card: {
-      number: 6,
-      name: "Chartortle",
-      type: PM_TYPES.FIRE,
-      description:
-        "Chartortles are known to reheat banana and anchovy pizza with the flame from their firey tails.",
-      artist: ARTISTS.Armilo,
-    },
+    card: BLAST_OFF_CARDS[6],
     rarity: PM_RARITY.R,
   },
-  {
-    tokenId: "31000000",
+  14: {
+    tokenId: "14",
     imageUrl: "007blastardC.png",
-    card: {
-      number: 7,
-      name: "Blastard",
-      type: PM_TYPES.FIRE,
-      description: "Need a light?",
-      artist: ARTISTS.Armilo,
-    },
+    card: BLAST_OFF_CARDS[7],
     rarity: PM_RARITY.C,
   },
-  {
-    tokenId: "32000000",
+  35: {
+    tokenId: "35",
     imageUrl: "007blastardUC.png",
-    card: {
-      number: 7,
-      name: "Blastard",
-      type: PM_TYPES.FIRE,
-      description: "Need a light?",
-      artist: ARTISTS.Armilo,
-    },
+    card: BLAST_OFF_CARDS[7],
     rarity: PM_RARITY.U,
   },
-  {
-    tokenId: "33000000",
+  49: {
+    tokenId: "49",
     imageUrl: "007blastardR.png",
-    card: {
-      number: 7,
-      name: "Blastard",
-      type: PM_TYPES.FIRE,
-      description: "Need a light?",
-      artist: ARTISTS.Armilo,
-    },
+    card: BLAST_OFF_CARDS[7],
     rarity: PM_RARITY.R,
   },
-  {
-    tokenId: "34000000",
+  23: {
+    tokenId: "23",
     imageUrl: "008blastardC.png",
-    card: {
-      number: 8,
-      name: "Blastard",
-      type: PM_TYPES.FIRE,
-      description: "All Gas, Some brakes.",
-      artist: ARTISTS.LilyPonto,
-    },
+    card: BLAST_OFF_CARDS[8],
     rarity: PM_RARITY.C,
   },
-  {
-    tokenId: "35000000",
+  40: {
+    tokenId: "40",
     imageUrl: "008blastardUC.png",
-    card: {
-      number: 8,
-      name: "Blastard",
-      type: PM_TYPES.FIRE,
-      description: "All Gas, Some brakes.",
-      artist: ARTISTS.LilyPonto,
-    },
+    card: BLAST_OFF_CARDS[8],
     rarity: PM_RARITY.U,
   },
-  {
-    tokenId: "36000000",
+  55: {
+    tokenId: "55",
     imageUrl: "008blastardR.png",
-    card: {
-      number: 8,
-      name: "Blastard",
-      type: PM_TYPES.FIRE,
-      description: "All Gas, Some brakes.",
-      artist: ARTISTS.LilyPonto,
-    },
+    card: BLAST_OFF_CARDS[8],
     rarity: PM_RARITY.R,
   },
-  {
-    tokenId: "37000000",
+  58: {
+    tokenId: "58",
     imageUrl: "008blastardL.png",
-    card: {
-      number: 8,
-      name: "Blastard",
-      type: PM_TYPES.FIRE,
-      description: "All Gas, Some brakes.",
-      artist: ARTISTS.LilyPonto,
-    },
+    card: BLAST_OFF_CARDS[8],
     rarity: PM_RARITY.L,
   },
-  {
-    tokenId: "38000000",
+  15: {
+    tokenId: "15",
     imageUrl: "009kadalaxC.png",
-    card: {
-      number: 9,
-      name: "Kadalax",
-      type: PM_TYPES.PSYCHIC,
-      description:
-        "Contrary to popular belief, it's not alway pleasant getting big spooned.",
-      artist: ARTISTS.Ilya,
-    },
+    card: BLAST_OFF_CARDS[9],
     rarity: PM_RARITY.C,
   },
-  {
-    tokenId: "39000000",
+  34: {
+    tokenId: "34",
     imageUrl: "009kadalaxUC.png",
-    card: {
-      number: 9,
-      name: "Kadalax",
-      type: PM_TYPES.PSYCHIC,
-      description:
-        "Contrary to popular belief, it's not alway pleasant getting big spooned.",
-      artist: ARTISTS.Ilya,
-    },
+    card: BLAST_OFF_CARDS[9],
     rarity: PM_RARITY.U,
   },
-  {
-    tokenId: "40000000",
+  48: {
+    tokenId: "48",
     imageUrl: "009kadalaxR.png",
-    card: {
-      number: 9,
-      name: "Kadalax",
-      type: PM_TYPES.PSYCHIC,
-      description:
-        "Contrary to popular belief, it's not alway pleasant getting big spooned.",
-      artist: ARTISTS.Ilya,
-    },
+    card: BLAST_OFF_CARDS[9],
     rarity: PM_RARITY.R,
   },
-  {
-    tokenId: "41000000",
+  12: {
+    tokenId: "12",
     imageUrl: "010kadalaxslimC.png",
-    card: {
-      number: 10,
-      name: "Kadalax Slim",
-      type: PM_TYPES.PSYCHIC,
-      description:
-        "Some Kadalax, having conquered their material vices, are able to sustain themselves off air and thought alone.",
-      artist: ARTISTS.Ilya,
-    },
+    card: BLAST_OFF_CARDS[10],
     rarity: PM_RARITY.C,
   },
-  {
-    tokenId: "42000000",
+  37: {
+    tokenId: "37",
     imageUrl: "010kadalaxslimUC.png",
-    card: {
-      number: 10,
-      name: "Kadalax Slim",
-      type: PM_TYPES.PSYCHIC,
-      description:
-        "Some Kadalax, having conquered their material vices, are able to sustain themselves off air and thought alone.",
-      artist: ARTISTS.Ilya,
-    },
+    card: BLAST_OFF_CARDS[10],
     rarity: PM_RARITY.U,
   },
-  {
-    tokenId: "43000000",
+  45: {
+    tokenId: "45",
     imageUrl: "010kadalaxslimR.png",
-    card: {
-      number: 10,
-      name: "Kadalax Slim",
-      type: PM_TYPES.PSYCHIC,
-      description:
-        "Some Kadalax, having conquered their material vices, are able to sustain themselves off air and thought alone.",
-      artist: ARTISTS.Ilya,
-    },
+    card: BLAST_OFF_CARDS[10],
     rarity: PM_RARITY.R,
   },
-  {
-    tokenId: "44000000",
+  18: {
+    tokenId: "18",
     imageUrl: "011zapduckC.png",
-    card: {
-      number: 11,
-      name: "Zapduck",
-      type: PM_TYPES.LIGHTNING,
-      description: "Strike one, you're out.",
-      artist: ARTISTS.Morlux,
-    },
+    card: BLAST_OFF_CARDS[11],
     rarity: PM_RARITY.C,
   },
-  {
-    tokenId: "45000000",
+  28: {
+    tokenId: "28",
     imageUrl: "011zapduckUC.png",
-    card: {
-      number: 11,
-      name: "Zapduck",
-      type: PM_TYPES.LIGHTNING,
-      description: "Strike one, you're out.",
-      artist: ARTISTS.Morlux,
-    },
+    card: BLAST_OFF_CARDS[11],
     rarity: PM_RARITY.U,
   },
-  {
-    tokenId: "46000000",
+  44: {
+    tokenId: "44",
     imageUrl: "011zapduckR.png",
-    card: {
-      number: 11,
-      name: "Zapduck",
-      type: PM_TYPES.LIGHTNING,
-      description: "Strike one, you're out.",
-      artist: ARTISTS.Morlux,
-    },
+    card: BLAST_OFF_CARDS[11],
     rarity: PM_RARITY.R,
   },
-  {
-    tokenId: "47000000",
+  57: {
+    tokenId: "57",
     imageUrl: "011zapduckL.png",
-    card: {
-      number: 11,
-      name: "Zapduck",
-      type: PM_TYPES.LIGHTNING,
-      description: "Strike one, you're out.",
-      artist: ARTISTS.Morlux,
-    },
+    card: BLAST_OFF_CARDS[11],
     rarity: PM_RARITY.L,
   },
-  {
-    tokenId: "48000000",
+  17: {
+    tokenId: "17",
     imageUrl: "012goldenkobanC.png",
-    card: {
-      number: 12,
-      name: "Golden Koban",
-      type: PM_TYPES.ITEM,
-      description: "",
-      artist: ARTISTS.LilyPonto,
-    },
+    card: BLAST_OFF_CARDS[12],
     rarity: PM_RARITY.C,
   },
-  {
-    tokenId: "49000000",
+  36: {
+    tokenId: "36",
     imageUrl: "012goldenkobanUC.png",
-    card: {
-      number: 12,
-      name: "Golden Koban",
-      type: PM_TYPES.ITEM,
-      description: "",
-      artist: ARTISTS.LilyPonto,
-    },
+    card: BLAST_OFF_CARDS[12],
     rarity: PM_RARITY.U,
   },
-  {
-    tokenId: "50000000",
+  50: {
+    tokenId: "50",
     imageUrl: "012goldenkobanR.png",
-    card: {
-      number: 12,
-      name: "Golden Koban",
-      type: PM_TYPES.ITEM,
-      description: "",
-      artist: ARTISTS.LilyPonto,
-    },
+    card: BLAST_OFF_CARDS[12],
     rarity: PM_RARITY.R,
   },
-  {
-    tokenId: "51000000",
+  20: {
+    tokenId: "20",
     imageUrl: "013goldenkobanC.png",
-    card: {
-      number: 13,
-      name: "Golden Koban",
-      type: PM_TYPES.ITEM,
-      description: "",
-      artist: ARTISTS.LilyPonto,
-    },
+    card: BLAST_OFF_CARDS[13],
     rarity: PM_RARITY.C,
   },
-  {
-    tokenId: "52000000",
+  32: {
+    tokenId: "32",
     imageUrl: "013goldenkobanUC.png",
-    card: {
-      number: 13,
-      name: "Golden Koban",
-      type: PM_TYPES.ITEM,
-      description: "",
-      artist: ARTISTS.LilyPonto,
-    },
+    card: BLAST_OFF_CARDS[13],
     rarity: PM_RARITY.U,
   },
-  {
-    tokenId: "53000000",
+  42: {
+    tokenId: "42",
     imageUrl: "013goldenkobanR.png",
-    card: {
-      number: 13,
-      name: "Golden Koban",
-      type: PM_TYPES.ITEM,
-      description: "",
-      artist: ARTISTS.LilyPonto,
-    },
+    card: BLAST_OFF_CARDS[13],
     rarity: PM_RARITY.R,
   },
-  {
-    tokenId: "54000000",
+  19: {
+    tokenId: "19",
     imageUrl: "014changeteamsC.png",
-    card: {
-      number: 14,
-      name: "Change Teams",
-      type: PM_TYPES.SUPPORTER,
-      description: "",
-      artist: ARTISTS.NinjaGuy,
-    },
+    card: BLAST_OFF_CARDS[14],
     rarity: PM_RARITY.C,
   },
-  {
-    tokenId: "55000000",
+  29: {
+    tokenId: "29",
     imageUrl: "014changeteamsUC.png",
-    card: {
-      number: 14,
-      name: "Change Teams",
-      type: PM_TYPES.SUPPORTER,
-      description: "",
-      artist: ARTISTS.NinjaGuy,
-    },
+    card: BLAST_OFF_CARDS[14],
     rarity: PM_RARITY.C,
   },
-  {
-    tokenId: "56000000",
+  52: {
+    tokenId: "52",
     imageUrl: "014changeteamsR.png",
-    card: {
-      number: 14,
-      name: "Change Teams",
-      type: PM_TYPES.SUPPORTER,
-      description: "",
-      artist: ARTISTS.NinjaGuy,
-    },
+    card: BLAST_OFF_CARDS[14],
     rarity: PM_RARITY.R,
   },
-  {
-    tokenId: "57000000",
+  59: {
+    tokenId: "59",
     imageUrl: "014changeteamsL.png",
-    card: {
-      number: 14,
-      name: "Change Teams",
-      type: PM_TYPES.SUPPORTER,
-      description: "",
-      artist: ARTISTS.NinjaGuy,
-    },
+    card: BLAST_OFF_CARDS[14],
     rarity: PM_RARITY.L,
   },
-  {
-    tokenId: "58000000",
+  13: {
+    tokenId: "13",
     imageUrl: "015rashscratchumC.png",
-    card: {
-      number: 15,
-      name: "Rash Scratchum",
-      type: PM_TYPES.SUPPORTER,
-      description: "",
-      artist: ARTISTS.NinjaGuy,
-    },
+    card: BLAST_OFF_CARDS[15],
     rarity: PM_RARITY.C,
   },
-  {
-    tokenId: "59000000",
+  26: {
+    tokenId: "26",
     imageUrl: "015rashscratchumUC.png",
-    card: {
-      number: 15,
-      name: "Rash Scratchum",
-      type: PM_TYPES.SUPPORTER,
-      description: "",
-      artist: ARTISTS.NinjaGuy,
-    },
+    card: BLAST_OFF_CARDS[15],
     rarity: PM_RARITY.U,
   },
-  {
-    tokenId: "60000000",
+  43: {
+    tokenId: "43",
     imageUrl: "015rashscratchumR.png",
-    card: {
-      number: 15,
-      name: "Rash Scratchum",
-      type: PM_TYPES.SUPPORTER,
-      description: "",
-      artist: ARTISTS.NinjaGuy,
-    },
+    card: BLAST_OFF_CARDS[15],
     rarity: PM_RARITY.R,
   },
-  {
-    tokenId: "61000000",
+  56: {
+    tokenId: "56",
     imageUrl: "015rashscratchumL.png",
-    card: {
-      number: 15,
-      name: "Rash Scratchum",
-      type: PM_TYPES.SUPPORTER,
-      description: "",
-      artist: ARTISTS.NinjaGuy,
-    },
+    card: BLAST_OFF_CARDS[15],
     rarity: PM_RARITY.L,
   },
-  {
-    tokenId: "62000000",
+  62: {
+    tokenId: "62",
     imageUrl: "016babymeownautML.png",
-    card: {
-      number: 16,
-      name: "Baby Meownaut",
-      type: PM_TYPES.PSYCHIC,
-      description: "It's too adorable for words.",
-      artist: ARTISTS.Mathijs,
-    },
+    card: BLAST_OFF_CARDS[16],
     rarity: PM_RARITY.M,
   },
-];
+};
 
 export default BLAST_OFF_COLLECTION;

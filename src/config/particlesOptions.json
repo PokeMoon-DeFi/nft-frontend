@@ -259,11 +259,11 @@
         "delay": {
           "random": {
             "enable": true,
-            "minimumValue": 0
+            "minimumValue": 0.1
           },
           "value": 1
         },
-        "enable": false
+        "enable": true
       },
       "outModes": {
         "default": "out",
@@ -273,12 +273,12 @@
         "top": "out"
       },
       "random": true,
-      "size": false,
-      "speed": 1,
+      "size": true,
+      "speed": 0.5,
       "straight": false,
       "trail": {
         "enable": true,
-        "length": 5,
+        "length": 1,
         "fillColor": {
           "value": "#000000"
         }

@@ -3,7 +3,7 @@ import { Router, Switch, Route } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import useAuth, { useEagerConnect } from "hooks/useAuth";
 import { useWeb3React } from "@web3-react/core";
-import { asyncFetchBalance } from "providers/state/UserState";
+import { asyncFetchBalance, asyncFetchNfts } from "providers/state/UserState";
 import history from "./routerHistory";
 import "./App.css";
 import SuspenseWithChunkError from "components/SuspenseWithChunkError";
@@ -45,6 +45,7 @@ const App: React.FC = () => {
   useEffect(() => {
     if (account) {
       dispatch(asyncFetchBalance({ account }));
+      dispatch(asyncFetchNfts({ account }));
     }
   }, [dispatch, account]);
 

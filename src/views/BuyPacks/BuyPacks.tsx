@@ -4,8 +4,13 @@ import { Button, BalanceCounter } from "nft-uikit";
 import { useAppSelector } from "providers";
 import { useNftAllowance } from "hooks/useAllowance";
 import { useWeb3React } from "@web3-react/core";
-import { approve } from "utils/callHelpers";
-import { useContractFromSymbol, getNftContract } from "utils/contractHelpers";
+import { sendApproveBep20 } from "utils/callHelpers";
+import {
+  useContractFromSymbol,
+  getNftContract,
+  getAddressFromSymbol,
+  getAddress,
+} from "utils/contractHelpers";
 import { Modal, Notification } from "nft-uikit";
 
 const Page = styled.div`
@@ -40,18 +45,23 @@ const BuyPage = () => {
   const { pb2114 } = useAppSelector((state) => state.user.balance);
   const allowance = useNftAllowance("pb2114");
   const { account } = useWeb3React();
-  const pballContract = useContractFromSymbol("pb2114");
+  const pballAddress = getAddressFromSymbol("testPb");
 
   const [openConfirm, setOpenConfirm] = React.useState(false);
   const [openNotty, setOpenNotty] = React.useState(false);
   const [openPackNotty, setOpenPackNotty] = React.useState(false);
 
   const handleApprove = useCallback(async () => {
-    const nftContract = getNftContract();
+    const contractAddress = getAddress("pokemoonNft");
     if (account) {
-      const result = await approve(pballContract, nftContract, account);
+      const res = await sendApproveBep20(
+        pballAddress,
+        contractAddress,
+        account
+      );
+      console.log(res);
     }
-  }, [account, pballContract]);
+  }, [account]);
 
   const handlePending = useCallback(async () => {
     await new Promise((res) => setTimeout(res, 1000));
@@ -62,7 +72,12 @@ const BuyPage = () => {
     <>
       <StyledImage src={"images/packs/blastoff.png"} />
       {allowance?.toNumber() <= 0 ? (
-        <Button label="Approve" icon="Buy" onClick={handleApprove} />
+        <Button
+          label="Approve"
+          icon="Buy"
+          onClick={handleApprove}
+          style={{ pointerEvents: "auto" }}
+        />
       ) : (
         <>
           <Button
@@ -71,10 +86,11 @@ const BuyPage = () => {
             onClick={() => {
               setOpenConfirm(true);
             }}
+            style={{ pointerEvents: "auto" }}
           />
           <Modal
-            title="you sure?"
-            content="ur about to buy cool shit y/n"
+            title="Are you sure?"
+            content="100 PBs will be burned in this transaction."
             open={openConfirm}
             handleClose={() => {
               setOpenConfirm(false);
@@ -84,6 +100,7 @@ const BuyPage = () => {
               setOpenNotty(true);
               handlePending();
             }}
+            style={{ pointerEvents: "auto" }}
           />
         </>
       )}
@@ -91,11 +108,13 @@ const BuyPage = () => {
         message={"gassin' it!"}
         open={openNotty}
         handleClose={() => setOpenNotty(false)}
+        style={{ pointerEvents: "auto" }}
       />
       <Notification
         message={"pack secured 😎"}
         open={openPackNotty}
         handleClose={() => setOpenPackNotty(false)}
+        style={{ pointerEvents: "auto" }}
       />
     </>
   );

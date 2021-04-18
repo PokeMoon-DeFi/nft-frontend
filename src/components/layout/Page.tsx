@@ -8,6 +8,7 @@ const Page = styled.div`
   right: 0;
   top: 0;
   flex-direction: column;
+  pointer-events: none;
 `;
 
 export default Page;
