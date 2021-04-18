@@ -1,6 +1,7 @@
 // 97 = BSC test
 // 56 = BSC main
 // 777 = cTH :P
+export const test_address = "0x2D0a5ef7A00574ab8c9F9784F09EE06f1705e377";
 
 const contracts = {
   // Infrastructure

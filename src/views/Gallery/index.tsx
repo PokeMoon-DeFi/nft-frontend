@@ -1,12 +1,13 @@
 import { Page, Content, Header } from "components/layout";
-import { Carousel, Blastoff } from "nft-uikit";
+import BLAST_OFF_COLLECTION from "config/constants/nfts/2114";
+import { Carousel } from "nft-uikit";
 
 const Gallery = () => {
   return (
     <>
       <Page>
         <Content>
-          <Carousel nfts={Blastoff.default}></Carousel>
+          <Carousel nfts={BLAST_OFF_COLLECTION}></Carousel>
         </Content>
       </Page>
     </>

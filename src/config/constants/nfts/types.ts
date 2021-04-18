@@ -1,3 +1,6 @@
+/**
+ * Artist data attached to cards
+ */
 export interface ArtistInfo {
   name: string;
   instagram?: string;
@@ -5,7 +8,7 @@ export interface ArtistInfo {
 }
 
 /**
- * PokeMoon Card: number, name, type, set, description/blurb, and artist info
+ * PokeMoon card data that is reused by similar NFTs with different rarities
  */
 export interface PokemoonCard {
   number: number;
@@ -16,8 +19,7 @@ export interface PokemoonCard {
 }
 
 /**
- * PokeMoon NFT with unique tokenId and asset for each card number + rarity. PokeMoon card info is
- * shared across multiple tokenIds
+ * PokeMoon NFT with unique tokenId and asset for each card number + rarity. PokeMoon card info is shared across multiple tokenIds
  */
 export interface PokemoonNft {
   tokenId: string;
@@ -25,4 +27,12 @@ export interface PokemoonNft {
   card?: PokemoonCard;
   set?: string;
   rarity?: string;
+}
+
+/**
+ * ERC-721 that can be evaluated back to master NFT data
+ */
+export interface BlastoffPack {
+  packId: string;
+  cards: PokemoonNft[];
 }

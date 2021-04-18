@@ -1,6 +1,6 @@
 import { ArtistInfo } from "./types";
 
-const artists: { [key: string]: ArtistInfo } = {
+const ARTISTS: { [key: string]: ArtistInfo } = {
   Armilo: {
     name: "Armilo Barrios",
   },
@@ -25,4 +25,4 @@ const artists: { [key: string]: ArtistInfo } = {
   },
 };
 
-export default artists;
+export default ARTISTS;
