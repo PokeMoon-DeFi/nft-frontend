@@ -4,7 +4,7 @@ import { Button } from "nft-uikit";
 import { useAppSelector } from "providers";
 import { useNftAllowance } from "hooks/useAllowance";
 import { useWeb3React } from "@web3-react/core";
-import { sendApproveBep20, sendBuyPack } from "utils/callHelpers";
+import { callPackInfo, sendApproveBep20, sendBuyPack } from "utils/callHelpers";
 import {
   getAddressFromSymbol,
   getAddress,
@@ -16,6 +16,27 @@ import { Modal, Notification } from "nft-uikit";
 const StyledImage = styled.img`
   width: clamp(7rem, 100%, 500px);
 `;
+
+const waitForPack = (packId) => {
+  return new Promise<void>((resolve, reject) => {
+    (async () => {
+      console.log("setting interval");
+      const interval = setInterval(() => checkPack(packId), 500);
+      async function checkPack(packId) {
+        try {
+          const res = await callPackInfo(packId);
+          console.log(res);
+          if (res[4].length === 8) {
+            clearInterval(interval);
+            resolve();
+          }
+        } catch (err) {
+          reject(err);
+        }
+      }
+    })();
+  });
+};
 
 const BuyPage = () => {
   const { pb2114 } = useAppSelector((state) => state.user.balance);
@@ -46,8 +67,10 @@ const BuyPage = () => {
 
   const handleConfirm = useCallback(async () => {
     const res = await sendBuyPack(nftContract, account);
-    const packId = res.OnElevation.returnValues.packId;
+    console.log(res);
+    const packId = res.events.OnElevation.returnValues.packId;
     console.log(packId);
+    await waitForPack(11);
     setOpenPackNotty(true);
   }, [account, nftContract]);
 
