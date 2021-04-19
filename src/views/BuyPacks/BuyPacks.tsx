@@ -1,41 +1,12 @@
-import React, { useCallback, useMemo } from "react";
+import React, { useCallback } from "react";
 import styled from "styled-components";
-import { Button, BalanceCounter } from "nft-uikit";
+import { Button } from "nft-uikit";
 import { useAppSelector } from "providers";
 import { useNftAllowance } from "hooks/useAllowance";
 import { useWeb3React } from "@web3-react/core";
 import { sendApproveBep20 } from "utils/callHelpers";
-import {
-  useContractFromSymbol,
-  getNftContract,
-  getAddressFromSymbol,
-  getAddress,
-} from "utils/contractHelpers";
+import { getAddressFromSymbol, getAddress } from "utils/contractHelpers";
 import { Modal, Notification } from "nft-uikit";
-
-const Page = styled.div`
-  display: flex;
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  right: 0;
-  top: 0;
-  flex-direction: column;
-`;
-
-const Header = styled.div`
-  flex-basis: 200px;
-  width: 100%;
-`;
-const Content = styled.div`
-  width: 100%;
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-`;
 
 const StyledImage = styled.img`
   width: clamp(7rem, 100%, 500px);
@@ -83,14 +54,31 @@ const BuyPage = () => {
         />
       ) : (
         <>
-          <Button
-            label="Buy"
-            icon="Buy"
-            onClick={() => {
-              setOpenConfirm(true);
-            }}
-            style={{ pointerEvents: "auto" }}
-          />
+          {pb2114.toNumber() >= 100 ? (
+            <>
+              <Button
+                label="Buy"
+                icon="Buy"
+                onClick={() => {
+                  setOpenConfirm(true);
+                }}
+                style={{ pointerEvents: "auto" }}
+              />
+            </>
+          ) : (
+            <>
+              <Button
+                label="Not enough pokeballs 😔"
+                icon="Buy"
+                onClick={() => {
+                  setOpenConfirm(true);
+                }}
+                style={{ pointerEvents: "auto" }}
+                disabled
+              />
+            </>
+          )}
+
           <Modal
             title="Are you sure?"
             content="100 PBs will be burned in this transaction."

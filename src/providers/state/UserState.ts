@@ -39,11 +39,8 @@ export const asyncFetchBalance = createAsyncThunk(
 
       return {
         balance: {
-          //@ts-ignore
           mnt: new BigNumber(Web3.utils.fromWei(mntRes)),
-          //@ts-ignore
           kbn: new BigNumber(Web3.utils.fromWei(kbnRes)),
-          //@ts-ignore
           pb2114: new BigNumber(Web3.utils.fromWei(pb2114Res)),
         },
       };
@@ -62,7 +59,7 @@ export const asyncFetchNfts = createAsyncThunk(
       const nfts: PokemoonNft[] = [];
       const res = await callNftsOwned(account);
       res.forEach((tokenId: string) => {
-        if (tokenId.length == 8) {
+        if (tokenId.length === 8) {
           nfts.push(BLAST_OFF_COLLECTION[tokenId.substr(0, 2)]);
         }
       });

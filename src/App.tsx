@@ -1,11 +1,10 @@
 import React, { useEffect, lazy } from "react";
 import { Router, Switch, Route } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import useAuth, { useEagerConnect } from "hooks/useAuth";
+import { useEagerConnect } from "hooks/useAuth";
 import { useWeb3React } from "@web3-react/core";
 import { asyncFetchBalance, asyncFetchNfts } from "providers/state/UserState";
 import history from "./routerHistory";
-import "./App.css";
 import SuspenseWithChunkError from "components/SuspenseWithChunkError";
 import PageLoader from "components/PageLoader";
 import Particles, { ISourceOptions } from "react-tsparticles";
