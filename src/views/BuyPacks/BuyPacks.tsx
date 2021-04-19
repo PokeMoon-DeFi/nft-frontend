@@ -4,8 +4,13 @@ import { Button } from "nft-uikit";
 import { useAppSelector } from "providers";
 import { useNftAllowance } from "hooks/useAllowance";
 import { useWeb3React } from "@web3-react/core";
-import { sendApproveBep20 } from "utils/callHelpers";
-import { getAddressFromSymbol, getAddress } from "utils/contractHelpers";
+import { sendApproveBep20, sendBuyPack } from "utils/callHelpers";
+import {
+  getAddressFromSymbol,
+  getAddress,
+  useContractFromSymbol,
+  useNftContract,
+} from "utils/contractHelpers";
 import { Modal, Notification } from "nft-uikit";
 
 const StyledImage = styled.img`
@@ -21,12 +26,14 @@ const BuyPage = () => {
   const [openConfirm, setOpenConfirm] = React.useState(false);
   const [openNotty, setOpenNotty] = React.useState(false);
   const [openPackNotty, setOpenPackNotty] = React.useState(false);
+  const pballContract = useContractFromSymbol("testPb");
+  const nftContract = useNftContract();
 
   const handleApprove = useCallback(async () => {
     const contractAddress = getAddress("pokemoonNft");
     if (account) {
       const res = await sendApproveBep20(
-        pballAddress,
+        pballContract,
         contractAddress,
         account
       );
@@ -35,12 +42,14 @@ const BuyPage = () => {
         res
       );
     }
-  }, [account, pballAddress]);
+  }, [account, pballAddress, pballContract]);
 
-  const handlePending = useCallback(async () => {
-    await new Promise((res) => setTimeout(res, 1000));
+  const handleConfirm = useCallback(async () => {
+    const res = await sendBuyPack(nftContract, account);
+    const packId = res.OnElevation.returnValues.packId;
+    console.log(packId);
     setOpenPackNotty(true);
-  }, [setOpenPackNotty]);
+  }, [account, nftContract]);
 
   return (
     <>
@@ -89,7 +98,7 @@ const BuyPage = () => {
             handleConfirm={() => {
               setOpenConfirm(false);
               setOpenNotty(true);
-              handlePending();
+              handleConfirm();
             }}
             style={{ pointerEvents: "auto" }}
           />

@@ -1,4 +1,7 @@
+import { useWeb3React } from "@web3-react/core";
 import { ethers } from "ethers";
+import useWeb3 from "hooks/useWeb3";
+import { useCallback } from "react";
 import { getBep20Contract, getNftContract } from "./contractHelpers";
 
 /**
@@ -9,11 +12,10 @@ import { getBep20Contract, getNftContract } from "./contractHelpers";
  * @returns contract response
  */
 export const sendApproveBep20 = async (
-  tokenAddress,
+  tokenContract,
   contractAddress,
   account
 ) => {
-  const tokenContract = getBep20Contract(tokenAddress);
   return tokenContract.methods
     .approve(contractAddress, ethers.constants.MaxUint256)
     .send({ from: account });
@@ -24,11 +26,12 @@ export const sendApproveBep20 = async (
  * @param account
  * @returns contract response
  */
-export const sendBuyPack = async (account) => {
-  const BUY_GAS_ESTIMATE = 700000;
+export const sendBuyPack = async (contract, account) => {
+  const BUY_GAS_ESTIMATE = 2000000;
+
   //TL;DR: web3.eth.estimateGas() incorrect which would make tx fail
   //BUG: MetaMask won't throw if gas is manually set, even there's an error.
-  const contract = getNftContract();
+  // const contract = getNftContract();
   return contract.methods
     .ElevationPacked()
     .send({ from: account, gas: BUY_GAS_ESTIMATE });
