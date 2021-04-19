@@ -9,11 +9,10 @@ import { getBep20Contract, getNftContract } from "./contractHelpers";
  * @returns contract response
  */
 export const sendApproveBep20 = async (
-  tokenAddress,
+  tokenContract,
   contractAddress,
   account
 ) => {
-  const tokenContract = getBep20Contract(tokenAddress);
   return tokenContract.methods
     .approve(contractAddress, ethers.constants.MaxUint256)
     .send({ from: account });
