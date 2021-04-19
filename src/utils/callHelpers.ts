@@ -46,6 +46,16 @@ export const callPackedOwned = async (account) => {
 };
 
 /**
+ * Calls packInfo(packId) abi method.
+ * @param packId
+ * @returns contract response
+ */
+export const callPackInfo = async (packId) => {
+  const contract = getNftContract();
+  return contract.methods.packedInfo(packId).call();
+};
+
+/**
  * Get Pokemoon Collectibles owned by given account.
  * @param account
  * @returns contract response
