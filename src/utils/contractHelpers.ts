@@ -15,8 +15,13 @@ export const getAddress = (name: string) => {
   return contracts[name][process.env.REACT_APP_CHAIN_ID];
 };
 
-export const getNftContract = () => {
-  return getContract(pokemoonNft, getAddress("pokemoonNft"));
+export const useNftContract = () => {
+  const web3 = useWeb3();
+  return getContract(pokemoonNft, getAddress("pokemoonNft"), web3);
+};
+
+export const getNftContract = (web3?: Web3) => {
+  return getContract(pokemoonNft, getAddress("pokemoonNft"), web3);
 };
 
 export const getBep20Contract = (address: string, web3?: Web3) => {
