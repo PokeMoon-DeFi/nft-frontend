@@ -4,7 +4,7 @@ import { Button } from "nft-uikit";
 import { useAppSelector } from "providers";
 import { useNftAllowance } from "hooks/useAllowance";
 import { useWeb3React } from "@web3-react/core";
-import { callPackInfo, sendApproveBep20, sendBuyPack } from "utils/callHelpers";
+import { getPackInfo, sendApproveBep20, sendBuyPack } from "utils/callHelpers";
 import {
   getAddressFromSymbol,
   getAddress,
@@ -24,7 +24,7 @@ const waitForPack = (packId) => {
       const interval = setInterval(() => checkPack(packId), 500);
       async function checkPack(packId) {
         try {
-          const res = await callPackInfo(packId);
+          const res = await getPackInfo(packId);
           console.log(res);
           if (res[4].length === 8) {
             clearInterval(interval);

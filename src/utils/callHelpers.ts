@@ -53,7 +53,7 @@ export const callPackedOwned = async (account) => {
  * @param packId
  * @returns contract response
  */
-export const callPackInfo = async (packId) => {
+export const getPackInfo = async (packId) => {
   const contract = getNftContract();
   return contract.methods.packedInfo(packId).call();
 };

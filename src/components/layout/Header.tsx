@@ -24,7 +24,7 @@ const Header: React.FC = () => {
         <Button label="connect" icon="Backpack" />
       )}
       <BalanceCounter
-        imgUrl={"images/balls/MAXRBALL.png"}
+        imgUrl={"/images/balls/MAXRBALL.png"}
         balance={pb2114 ? pb2114.toNumber() : 0}
       />
     </StyledHeader>
