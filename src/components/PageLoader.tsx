@@ -12,7 +12,7 @@ const Wrapper = styled(Page)`
 const PageLoader: React.FC = () => {
   return (
     <Wrapper>
-      <WiggleBall />
+      <WiggleBall src="/images/balls/MAXRBALL.png" />
     </Wrapper>
   );
 };
