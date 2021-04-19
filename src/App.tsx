@@ -18,7 +18,7 @@ import { ThemeProvider } from "styled-components";
 const Landing = lazy(() => import("./views/Landing"));
 const BuyPacks = lazy(() => import("./views/BuyPacks"));
 const Gallery = lazy(() => import("./views/Gallery"));
-
+const ViewPack = lazy(() => import("./views/ViewPack"));
 BigNumber.config({
   EXPONENTIAL_AT: 1000,
   DECIMAL_PLACES: 80,
@@ -65,6 +65,9 @@ const App: React.FC = () => {
                 </Route>
                 <Route path="/gallery" exact>
                   <Gallery />
+                </Route>
+                <Route path="/pack/:id">
+                  <ViewPack />
                 </Route>
               </Switch>
             </Content>
