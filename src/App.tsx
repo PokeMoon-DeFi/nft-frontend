@@ -36,9 +36,8 @@ const App: React.FC = () => {
   // useFetchPublicData();
   // useFetchPriceData();
 
-  // SAVING AS EXAMPLE
-  const { login, logout } = useAuth();
   // const balance = useAppSelector((state) => state.user?.balance);
+  // TODO: Move dispatches out
   const { account } = useWeb3React();
   const dispatch = useDispatch();
 

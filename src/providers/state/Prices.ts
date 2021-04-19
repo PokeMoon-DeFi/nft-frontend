@@ -1,5 +1,6 @@
-import { createSlice, createAsyncThunk, Action } from "@reduxjs/toolkit";
-import BigNumber from "bignumber.js";
+import { createSlice } from "@reduxjs/toolkit";
+
+// TODO: ALL
 
 interface Prices {
   [key: string]: number;

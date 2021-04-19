@@ -43,7 +43,7 @@ const StyledImage = styled.img`
 
 const BuyPage = () => {
   const { pb2114 } = useAppSelector((state) => state.user.balance);
-  const allowance = useNftAllowance("pb2114");
+  const allowance = useNftAllowance();
   const { account } = useWeb3React();
   const pballAddress = getAddressFromSymbol("testPb");
 
@@ -59,9 +59,12 @@ const BuyPage = () => {
         contractAddress,
         account
       );
-      console.log(res);
+      console.log(
+        `sendApproveBep20(${pballAddress}, ${contractAddress}, ${account})`,
+        res
+      );
     }
-  }, [account]);
+  }, [account, pballAddress]);
 
   const handlePending = useCallback(async () => {
     await new Promise((res) => setTimeout(res, 1000));

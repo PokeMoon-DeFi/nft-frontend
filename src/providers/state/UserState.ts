@@ -1,22 +1,14 @@
 import { createSlice, createAsyncThunk, Action } from "@reduxjs/toolkit";
-import { getBep20Contract, getNftContract } from "utils/contractHelpers";
 import BigNumber from "bignumber.js";
 import { getAddressFromSymbol } from "utils/contractHelpers";
 import Web3 from "web3";
-import { PokemoonNft } from "nft-uikit";
 import { callBep20Balance, callNftsOwned } from "utils/callHelpers";
 import { test_pb } from "config/constants/contracts";
+import { UserState } from "./types";
+import { PokemoonNft } from "config/constants/nfts/types";
+import BLAST_OFF_COLLECTION from "config/constants/nfts/2114";
 
-interface Balance {
-  [key: string]: BigNumber;
-}
-
-interface State {
-  balance: Balance;
-  nfts: PokemoonNft[];
-}
-
-const initialState: State = {
+const initialState: UserState = {
   balance: {
     pb2114: new BigNumber(0),
     kbn: new BigNumber(0),
@@ -35,6 +27,7 @@ export const asyncFetchBalance = createAsyncThunk(
     const tokens = {
       mnt: getAddressFromSymbol("mnt"),
       kbn: getAddressFromSymbol("kbn"),
+      // TODO: pb2114: getAddressFromSymbol("pb2114"),
       pb2114: test_pb,
     };
 
@@ -65,12 +58,16 @@ export const asyncFetchBalance = createAsyncThunk(
 export const asyncFetchNfts = createAsyncThunk(
   "user/asyncFetchNfts",
   async ({ account }: ThunkAction, thunkAPI) => {
-    const contract = getNftContract();
     if (account) {
+      const nfts: PokemoonNft[] = [];
       const res = await callNftsOwned(account);
-      console.log(res);
+      res.forEach((tokenId: string) => {
+        if (tokenId.length == 8) {
+          nfts.push(BLAST_OFF_COLLECTION[tokenId.substr(0, 2)]);
+        }
+      });
       return {
-        nfts: [],
+        nfts: nfts,
       };
     }
     console.error("Web3 failed to retrieve nfts.");

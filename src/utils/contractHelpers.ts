@@ -30,16 +30,6 @@ export const useContractFromSymbol = (symbol: string) => {
 };
 
 export const getAddressFromSymbol = (symbol: string) => {
-  switch (symbol) {
-    case "kbn":
-      return contracts.koban[process.env.REACT_APP_CHAIN_ID];
-    case "mnt":
-      return contracts.meownaut[process.env.REACT_APP_CHAIN_ID];
-    case "pb2114":
-      return contracts.pb2114[process.env.REACT_APP_CHAIN_ID];
-    case "testPb":
-      return test_pb;
-    default:
-      throw console.error("invalid symbol");
-  }
+  if (symbol === "testPb") return test_pb;
+  return getAddress(symbol);
 };

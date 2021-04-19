@@ -1,6 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
 import BigNumber from "bignumber.js";
 
+// TODO: ALL
+
 interface Balance {
   [key: string]: BigNumber;
 }

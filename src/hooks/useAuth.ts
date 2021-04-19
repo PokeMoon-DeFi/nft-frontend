@@ -29,11 +29,11 @@ const useAuth = () => {
             activate(connector);
           }
         } else {
-          console.log(error.name, error.message);
+          console.error(error.name, error.message);
         }
       });
     } else {
-      console.log("Can't find connector", "The connector config is wrong");
+      console.error("Can't find connector", "The connector config is wrong");
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
