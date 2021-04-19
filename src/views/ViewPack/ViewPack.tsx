@@ -1,6 +1,5 @@
 import { Page, Content } from "components/layout";
 import { Carousel } from "nft-uikit";
-import { useAppSelector } from "providers";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { getPackInfo } from "utils/callHelpers";

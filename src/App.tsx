@@ -7,9 +7,7 @@ import { asyncFetchBalance, asyncFetchNfts } from "providers/state/UserState";
 import history from "./routerHistory";
 import SuspenseWithChunkError from "components/SuspenseWithChunkError";
 import PageLoader from "components/PageLoader";
-import Particles, { ISourceOptions } from "react-tsparticles";
-import particleOptions from "./config/particlesOptions.json";
-import { GlobalStyle, Theme } from "nft-uikit";
+import { GlobalStyle, Theme, Particles } from "nft-uikit";
 import { Page, Header, Content } from "components/layout";
 import BigNumber from "bignumber.js";
 import { ThemeProvider } from "styled-components";
@@ -51,7 +49,7 @@ const App: React.FC = () => {
     <ThemeProvider theme={Theme}>
       <Router history={history}>
         <GlobalStyle />
-        <Particles options={particleOptions as ISourceOptions} />
+        <Particles />
         <SuspenseWithChunkError fallback={<PageLoader />}>
           <Page>
             <Header />

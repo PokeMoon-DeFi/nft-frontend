@@ -2,7 +2,7 @@ import { createSlice, createAsyncThunk, Action } from "@reduxjs/toolkit";
 import BigNumber from "bignumber.js";
 import { getAddressFromSymbol } from "utils/contractHelpers";
 import Web3 from "web3";
-import { callBep20Balance, callNftsOwned } from "utils/callHelpers";
+import { getBep20Balance, getNftsOwned } from "utils/callHelpers";
 import { test_pb } from "config/constants/contracts";
 import { UserState } from "./types";
 import { PokemoonNft } from "config/constants/nfts/types";
@@ -33,9 +33,9 @@ export const asyncFetchBalance = createAsyncThunk(
 
     // TODO: Convert to multicall
     if (account) {
-      const mntRes = await callBep20Balance(tokens.mnt, account);
-      const kbnRes = await callBep20Balance(tokens.kbn, account);
-      const pb2114Res = await callBep20Balance(tokens.pb2114, account);
+      const mntRes = await getBep20Balance(tokens.mnt, account);
+      const kbnRes = await getBep20Balance(tokens.kbn, account);
+      const pb2114Res = await getBep20Balance(tokens.pb2114, account);
 
       return {
         balance: {
@@ -57,7 +57,7 @@ export const asyncFetchNfts = createAsyncThunk(
   async ({ account }: ThunkAction, thunkAPI) => {
     if (account) {
       const nfts: PokemoonNft[] = [];
-      const res = await callNftsOwned(account);
+      const res = await getNftsOwned(account);
       res.forEach((tokenId: string) => {
         if (tokenId.length === 8) {
           nfts.push(BLAST_OFF_COLLECTION[tokenId.substr(0, 2)]);

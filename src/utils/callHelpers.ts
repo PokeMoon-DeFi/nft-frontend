@@ -1,7 +1,4 @@
-import { useWeb3React } from "@web3-react/core";
 import { ethers } from "ethers";
-import useWeb3 from "hooks/useWeb3";
-import { useCallback } from "react";
 import { getBep20Contract, getNftContract } from "./contractHelpers";
 
 /**
@@ -43,7 +40,7 @@ export const sendBuyPack = async (contract, account) => {
  * @param account
  * @returns contract response
  */
-export const callPackedOwned = async (account) => {
+export const getPackedOwned = async (account) => {
   const contract = getNftContract();
   return contract.methods.packedOwned(account).call();
 };
@@ -63,7 +60,7 @@ export const getPackInfo = async (packId) => {
  * @param account
  * @returns contract response
  */
-export const callNftsOwned = async (account) => {
+export const getNftsOwned = async (account) => {
   const contract = getNftContract();
   return contract.methods.tokensOwned(account).call();
 };
@@ -74,7 +71,7 @@ export const callNftsOwned = async (account) => {
  * @param account
  * @returns contract response
  */
-export const callBep20Balance = async (tokenAddress, account) => {
+export const getBep20Balance = async (tokenAddress, account) => {
   const contract = getBep20Contract(tokenAddress);
   return contract.methods.balanceOf(account).call();
 };
