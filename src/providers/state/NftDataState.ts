@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { getTotalMinted } from "utils/callHelpers";
+import { getPacksMinted } from "utils/callHelpers";
 import { NftDataState, ThunkAction } from "./types";
 
 // TODO: ALL
@@ -15,11 +15,10 @@ export const asyncFetchNftData = createAsyncThunk(
   "user/asyncFetchNftData",
   async ({ account }: ThunkAction, thunkAPI) => {
     if (account) {
-      let packsMinted,
-        cardsMinted,
-        ballsBurned = 0;
-
-      const tmRes = await getTotalMinted();
+      const res = await getPacksMinted();
+      const packsMinted = Number(res);
+      const cardsMinted = packsMinted * 5;
+      const ballsBurned = packsMinted * 100;
 
       return {
         data: {
