@@ -48,7 +48,12 @@ const Gallery = () => {
       <Page>
         <Content style={{ pointerEvents: "auto" }}>
           <Carousel nfts={nfts} handleSubMenuCommand={handleSubMenuCommand} />
-          <Button label="Transfer Pack" onClick={() => {}} />
+          <Button
+            label="Transfer Pack"
+            onClick={() => {
+              console.log("transfer modal goes here");
+            }}
+          />
         </Content>
       </Page>
 
