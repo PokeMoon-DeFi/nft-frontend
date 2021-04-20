@@ -3,7 +3,7 @@ import logger from "redux-logger";
 import thunk from "redux-thunk";
 import User from "./state/UserState";
 import PriceData from "./state/Prices";
-import PublicNftData from "./state/PublicNftData";
+import PublicNftData from "./state/NftDataState";
 
 import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
 

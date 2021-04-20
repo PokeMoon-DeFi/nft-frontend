@@ -83,7 +83,13 @@ export const getBep20Balance = async (tokenAddress, account) => {
  * @param account
  * @returns
  */
-export const callAllowance = async (tokenAddress, targetAddress, account) => {
+export const getAllowance = async (tokenAddress, targetAddress, account) => {
   const contract = getBep20Contract(tokenAddress);
   return contract.methods.allowance(account, targetAddress).call();
+};
+
+export const getTotalMinted = async () => {
+  // Warn: When we add new nft contract we will need to make sure to extend this function to both contracts or try using getBep20Contract.
+  const contract = getNftContract();
+  return contract.methods.totalSupply().call();
 };

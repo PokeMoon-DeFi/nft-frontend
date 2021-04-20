@@ -8,7 +8,10 @@ const Gallery = () => {
     <>
       <Page>
         <Content style={{ pointerEvents: "auto" }}>
-          <Carousel nfts={nfts} handleSubMenuCommand={() => null}></Carousel>
+          <Carousel
+            nfts={nfts.cards}
+            handleSubMenuCommand={() => null}
+          ></Carousel>
         </Content>
       </Page>
     </>

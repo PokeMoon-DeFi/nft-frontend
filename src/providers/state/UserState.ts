@@ -4,7 +4,7 @@ import { getAddressFromSymbol } from "utils/contractHelpers";
 import Web3 from "web3";
 import { getBep20Balance, getNftsOwned } from "utils/callHelpers";
 import { test_pb } from "config/constants/contracts";
-import { UserState } from "./types";
+import { ThunkAction, UserState } from "./types";
 import { PokemoonNft } from "config/constants/nfts/types";
 import BLAST_OFF_COLLECTION from "config/constants/nfts/2114";
 
@@ -14,12 +14,11 @@ const initialState: UserState = {
     kbn: new BigNumber(0),
     mnt: new BigNumber(0),
   },
-  nfts: [],
+  nfts: {
+    cards: [],
+    packs: [],
+  },
 };
-
-interface ThunkAction {
-  account: string;
-}
 
 export const asyncFetchBalance = createAsyncThunk(
   "user/asyncFetchBalance",
@@ -56,20 +55,25 @@ export const asyncFetchNfts = createAsyncThunk(
   "user/asyncFetchNfts",
   async ({ account }: ThunkAction, thunkAPI) => {
     if (account) {
-      const nfts: PokemoonNft[] = [];
+      const cards: PokemoonNft[] = [];
+      const packs: string[] = [];
       const res = await getNftsOwned(account);
       res.forEach((tokenId: string) => {
         if (tokenId.length === 8) {
-          nfts.push(BLAST_OFF_COLLECTION[tokenId.substr(0, 2)]);
+          cards.push(BLAST_OFF_COLLECTION[tokenId.substr(0, 2)]);
+        } else {
+          packs.push(tokenId);
         }
       });
       return {
-        nfts: nfts,
+        cards: cards,
+        packs: packs,
       };
     }
     console.error("Web3 failed to retrieve nfts.");
     return {
-      nfts: [],
+      cards: [],
+      packs: [],
     };
   }
 );

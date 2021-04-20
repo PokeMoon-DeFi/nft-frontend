@@ -1,7 +1,7 @@
-import { PokemoonNft } from "config/constants/nfts/types";
 import { useAppSelector } from "providers";
+import { UserNftState } from "./types";
 
-export const useNfts = (): PokemoonNft[] => {
+export const useNfts = (): UserNftState => {
   const nfts = useAppSelector((state) => state.user.nfts);
   return nfts;
 };
