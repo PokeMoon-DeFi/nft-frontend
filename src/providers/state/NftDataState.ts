@@ -19,9 +19,9 @@ export const asyncFetchNftData = createAsyncThunk(
       const ballsBurned = packsMinted * 100;
 
       return {
-        packsMinted: packsMinted,
-        cardsMinted: cardsMinted,
-        ballsBurned: ballsBurned,
+        packsMinted,
+        cardsMinted,
+        ballsBurned,
       };
     }
     console.error("Web3 failed to retrieve NFT Data.");
