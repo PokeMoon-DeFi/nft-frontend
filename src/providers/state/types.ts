@@ -20,11 +20,9 @@ export interface UserState {
 }
 
 export interface NftDataState {
-  data: {
-    packsMinted: number;
-    cardsMinted: number;
-    ballsBurned: number;
-  };
+  packsMinted: number;
+  cardsMinted: number;
+  ballsBurned: number;
 }
 
 /**

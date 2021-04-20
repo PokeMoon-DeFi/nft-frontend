@@ -97,8 +97,9 @@ export const userState = createSlice({
       state.balance = balance;
     });
     builder.addCase(asyncFetchNfts.fulfilled, (state, action) => {
-      const { nfts }: any = action.payload;
-      state.nfts = nfts;
+      const { cards, packs }: any = action.payload;
+      state.nfts.cards = cards;
+      state.nfts.packs = packs;
     });
   },
 });
