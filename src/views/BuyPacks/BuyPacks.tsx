@@ -20,12 +20,10 @@ const StyledImage = styled.img`
 const waitForPack = (packId) => {
   return new Promise<void>((resolve, reject) => {
     (async () => {
-      console.log("setting interval");
       const interval = setInterval(() => checkPack(packId), 500);
       async function checkPack(packId) {
         try {
           const res = await getPackInfo(packId);
-          console.log(res);
           if (res[4].length === 8) {
             clearInterval(interval);
             resolve();
@@ -49,6 +47,7 @@ const BuyPage = () => {
   const [openPackNotty, setOpenPackNotty] = React.useState(false);
   const pballContract = useContractFromSymbol("testPb");
   const nftContract = useNftContract();
+  const [collectedPackId, setCollectedPackId] = React.useState<number>(-1);
 
   const handleApprove = useCallback(async () => {
     const contractAddress = getAddress("pokemoonNft");
@@ -67,10 +66,9 @@ const BuyPage = () => {
 
   const handleConfirm = useCallback(async () => {
     const res = await sendBuyPack(nftContract, account);
-    console.log(res);
     const packId = res.events.OnElevation.returnValues.packId;
-    console.log(packId);
-    await waitForPack(11);
+    await waitForPack(packId);
+    setCollectedPackId(packId);
     setOpenPackNotty(true);
   }, [account, nftContract]);
 
@@ -136,8 +134,12 @@ const BuyPage = () => {
       <Notification
         message={"pack secured 😎"}
         open={openPackNotty}
-        handleClose={() => setOpenPackNotty(false)}
-        style={{ pointerEvents: "auto" }}
+        linkLabel={"GO TO PACK"}
+        href={`/pack/${collectedPackId}`}
+        handleClose={() => {
+          setOpenPackNotty(false);
+          setCollectedPackId(-1);
+        }}
       />
     </>
   );

@@ -1,5 +1,5 @@
 import { Page, Content } from "components/layout";
-import { Carousel } from "nft-uikit";
+import { Carousel, InspectCard } from "nft-uikit";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { getPackInfo } from "utils/callHelpers";
@@ -9,6 +9,7 @@ import { PokemoonNft } from "config/constants/nfts/types";
 const Gallery = () => {
   let { id } = useParams();
   const [nfts, setNfts] = useState<PokemoonNft[]>();
+  const [activeNft, setActiveNft] = useState<PokemoonNft | null>(null);
 
   console.log(getPackInfo(id));
   useEffect(() => {
@@ -27,13 +28,39 @@ const Gallery = () => {
     fetch();
   }, [id]);
 
+  const handleSubMenuCommand = (command: string, idx: number) => {
+    if (!nfts || idx >= nfts?.length) {
+      return;
+    }
+
+    switch (command) {
+      case "info": {
+        const nft = nfts[idx];
+        console.log("inspecting", nft);
+        setActiveNft(nft);
+        break;
+      }
+    }
+  };
+
   return (
     <>
       <Page>
         <Content style={{ pointerEvents: "auto" }}>
-          <Carousel nfts={nfts}></Carousel>
+          <Carousel
+            nfts={nfts}
+            handleSubMenuCommand={handleSubMenuCommand}
+          ></Carousel>
         </Content>
       </Page>
+
+      <InspectCard
+        nft={activeNft}
+        handleClose={() => {
+          setActiveNft(null);
+        }}
+        open={!!activeNft}
+      />
     </>
   );
 };
