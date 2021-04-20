@@ -98,7 +98,7 @@ const BuyPage = () => {
           ) : (
             <>
               <Button
-                label="Not enough pokeballs 😔"
+                label="Not enough pokeballs 😕"
                 icon="Buy"
                 onClick={() => {
                   setOpenConfirm(true);
