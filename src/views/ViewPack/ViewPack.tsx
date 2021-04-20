@@ -1,5 +1,5 @@
 import { Page, Content } from "components/layout";
-import { Carousel, InspectCard } from "nft-uikit";
+import { Carousel, InspectCard, Button } from "nft-uikit";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { getPackInfo } from "utils/callHelpers";
@@ -47,10 +47,8 @@ const Gallery = () => {
     <>
       <Page>
         <Content style={{ pointerEvents: "auto" }}>
-          <Carousel
-            nfts={nfts}
-            handleSubMenuCommand={handleSubMenuCommand}
-          ></Carousel>
+          <Carousel nfts={nfts} handleSubMenuCommand={handleSubMenuCommand} />
+          <Button label="Transfer Pack" onClick={() => {}} />
         </Content>
       </Page>
 
