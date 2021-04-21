@@ -1,4 +1,5 @@
 import React, { useEffect, lazy } from "react";
+import { Redirect } from "react-router";
 import { Router, Switch, Route } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { useEagerConnect } from "hooks/useAuth";
@@ -7,10 +8,12 @@ import { asyncFetchBalance, asyncFetchNfts } from "providers/state/UserState";
 import history from "./routerHistory";
 import SuspenseWithChunkError from "components/SuspenseWithChunkError";
 import PageLoader from "components/PageLoader";
-import { GlobalStyle, Theme, Particles } from "nft-uikit";
-import { Page, Header, Content } from "components/layout";
 import BigNumber from "bignumber.js";
 import { ThemeProvider } from "styled-components";
+import Wen from "views/Wen";
+import useRefresh from "hooks/useRefresh";
+import { Page, Content, GlobalStyle, Theme, Particles } from "nft-uikit";
+import { Header } from "components/layout";
 
 // Lazy loading
 const Landing = lazy(() => import("./views/Landing"));
@@ -37,13 +40,15 @@ const App: React.FC = () => {
   // TODO: Move dispatches out
   const { account } = useWeb3React();
   const dispatch = useDispatch();
+  // If stuff keeps rerendering every 10 sec this is what caused that.
+  const { fastRefresh } = useRefresh();
 
   useEffect(() => {
     if (account) {
       dispatch(asyncFetchBalance({ account }));
       dispatch(asyncFetchNfts({ account }));
     }
-  }, [dispatch, account]);
+  }, [dispatch, account, fastRefresh]);
 
   return (
     <ThemeProvider theme={Theme}>
@@ -51,10 +56,13 @@ const App: React.FC = () => {
         <GlobalStyle />
         <Particles />
         <SuspenseWithChunkError fallback={<PageLoader />}>
-          <Page>
-            <Header />
-            <Content>
-              <Switch>
+          <Switch>
+            <Route path="/wen">
+              <Wen />
+            </Route>
+            <Page>
+              <Header />
+              <Content>
                 <Route path="/" exact>
                   <Landing />
                 </Route>
@@ -67,9 +75,12 @@ const App: React.FC = () => {
                 <Route path="/pack/:id">
                   <ViewPack />
                 </Route>
-              </Switch>
-            </Content>
-          </Page>
+                <Route>
+                  <Redirect to="/" />
+                </Route>
+              </Content>
+            </Page>
+          </Switch>
         </SuspenseWithChunkError>
       </Router>
     </ThemeProvider>
