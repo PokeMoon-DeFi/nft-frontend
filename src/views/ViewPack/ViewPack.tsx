@@ -36,7 +36,6 @@ const Gallery = () => {
     switch (command) {
       case "info": {
         const nft = nfts[idx];
-        console.log("inspecting", nft);
         setActiveNft(nft);
         break;
       }
