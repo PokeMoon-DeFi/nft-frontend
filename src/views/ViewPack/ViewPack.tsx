@@ -1,16 +1,27 @@
-import { Carousel, InspectCard, Button } from "nft-uikit";
-import { useEffect, useState } from "react";
+import { Carousel, InspectCard, Button, SendToAddress } from "nft-uikit";
+import { useCallback, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { getPackInfo } from "utils/callHelpers";
+import {
+  getPackedOwned,
+  getPackInfo,
+  sendTransferPack,
+} from "utils/callHelpers";
 import BLAST_OFF_COLLECTION from "config/constants/nfts/2114";
 import { PokemoonNft } from "config/constants/nfts/types";
+import { useNftContract } from "utils/contractHelpers";
+import { useWeb3React } from "@web3-react/core";
+import { useAppSelector } from "providers";
 
 const ViewPack = () => {
   let { id } = useParams();
+  const { packs } = useAppSelector((state) => state.user.nfts);
   const [nfts, setNfts] = useState<PokemoonNft[]>();
   const [activeNft, setActiveNft] = useState<PokemoonNft | null>(null);
+  const [openTransferModal, setOpenTransferModal] = useState(false);
+  const nftContract = useNftContract();
+  const { account } = useWeb3React();
+  const [accountOwnsPack, setAccountOwnsPack] = useState(false);
 
-  console.log(getPackInfo(id));
   useEffect(() => {
     const fetch = async () => {
       const res = await getPackInfo(id);
@@ -26,6 +37,23 @@ const ViewPack = () => {
     };
     fetch();
   }, [id]);
+
+  useEffect(() => {
+    const fetch = async () => {
+      if (!account) return;
+      const ownedPacks: number[] = await getPackedOwned(account);
+      setAccountOwnsPack(ownedPacks && ownedPacks.includes(id));
+    };
+    fetch();
+  }, [id, account]);
+
+  const confirmTransferCallback = useCallback(
+    async (destAddress) => {
+      const res = await sendTransferPack(nftContract, account, destAddress, id);
+      console.log(res);
+    },
+    [nftContract, account, id]
+  );
 
   const handleSubMenuCommand = (command: string, idx: number) => {
     if (!nfts || idx >= nfts?.length) {
@@ -43,23 +71,33 @@ const ViewPack = () => {
 
   return (
     <>
-      <div style={{ pointerEvents: "auto" }}>
-        <Carousel nfts={nfts} handleSubMenuCommand={handleSubMenuCommand} />
+      <Carousel nfts={nfts} handleSubMenuCommand={handleSubMenuCommand} />
+
+      {accountOwnsPack && (
         <Button
           label="Transfer Pack"
           onClick={() => {
-            console.log("transfer modal goes here");
+            setOpenTransferModal(true);
           }}
         />
+      )}
 
-        <InspectCard
-          nft={activeNft}
-          handleClose={() => {
-            setActiveNft(null);
-          }}
-          open={!!activeNft}
-        />
-      </div>
+      <InspectCard
+        nft={activeNft}
+        handleClose={() => {
+          setActiveNft(null);
+        }}
+        open={!!activeNft}
+      />
+
+      <SendToAddress
+        open={openTransferModal}
+        handleClose={() => setOpenTransferModal(false)}
+        handleConfirm={(destAddress) => {
+          setOpenTransferModal(false);
+          confirmTransferCallback(destAddress);
+        }}
+      />
     </>
   );
 };

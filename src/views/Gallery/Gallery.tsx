@@ -3,16 +3,12 @@ import { useAppSelector } from "providers";
 
 const Gallery = () => {
   const nfts = useAppSelector((state) => state.user.nfts);
-  console.log(nfts);
   return (
     <>
-      <div style={{ pointerEvents: "auto" }}>
-        {nfts.cards.length > 0 ? (
-          <Carousel nfts={nfts.cards} handleSubMenuCommand={() => null} />
-        ) : (
-          <></>
-        )}
-      </div>
+      <Carousel
+        nfts={nfts.cards.slice(0, 8)}
+        handleSubMenuCommand={() => null}
+      />
     </>
   );
 };

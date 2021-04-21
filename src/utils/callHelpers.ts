@@ -34,6 +34,10 @@ export const sendBuyPack = async (contract, account) => {
     .send({ from: account, gas: BUY_GAS_ESTIMATE });
 };
 
+export const sendTransferPack = async (contract, from, to, packId) => {
+  return contract.methods.transferPackedFrom(from, to, packId).send({ from });
+};
+
 /**
  * Get Pokemoon Collectible packs owned by given account.
  * Note: this does not guarantee that they currently own all tokenIds associated with the pack.
