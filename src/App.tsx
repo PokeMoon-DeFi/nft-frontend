@@ -56,13 +56,10 @@ const App: React.FC = () => {
         <GlobalStyle />
         <Particles />
         <SuspenseWithChunkError fallback={<PageLoader />}>
-          <Switch>
-            <Route path="/wen">
-              <Wen />
-            </Route>
-            <Page>
-              <Header />
-              <Content>
+          <Page>
+            <Header />
+            <Content>
+              <Switch>
                 <Route path="/" exact>
                   <Landing />
                 </Route>
@@ -75,12 +72,15 @@ const App: React.FC = () => {
                 <Route path="/pack/:id">
                   <ViewPack />
                 </Route>
+                <Route path="/wen">
+                  <Wen />
+                </Route>
                 <Route>
                   <Redirect to="/" />
                 </Route>
-              </Content>
-            </Page>
-          </Switch>
+              </Switch>
+            </Content>
+          </Page>
         </SuspenseWithChunkError>
       </Router>
     </ThemeProvider>
