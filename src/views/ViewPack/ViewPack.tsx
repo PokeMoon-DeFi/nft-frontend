@@ -1,4 +1,3 @@
-import { Page, Content } from "components/layout";
 import { Carousel, InspectCard, Button } from "nft-uikit";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
@@ -6,7 +5,7 @@ import { getPackInfo } from "utils/callHelpers";
 import BLAST_OFF_COLLECTION from "config/constants/nfts/2114";
 import { PokemoonNft } from "config/constants/nfts/types";
 
-const Gallery = () => {
+const ViewPack = () => {
   let { id } = useParams();
   const [nfts, setNfts] = useState<PokemoonNft[]>();
   const [activeNft, setActiveNft] = useState<PokemoonNft | null>(null);
@@ -44,27 +43,25 @@ const Gallery = () => {
 
   return (
     <>
-      <Page>
-        <Content style={{ pointerEvents: "auto" }}>
-          <Carousel nfts={nfts} handleSubMenuCommand={handleSubMenuCommand} />
-          <Button
-            label="Transfer Pack"
-            onClick={() => {
-              console.log("transfer modal goes here");
-            }}
-          />
-        </Content>
-      </Page>
+      <div style={{ pointerEvents: "auto" }}>
+        <Carousel nfts={nfts} handleSubMenuCommand={handleSubMenuCommand} />
+        <Button
+          label="Transfer Pack"
+          onClick={() => {
+            console.log("transfer modal goes here");
+          }}
+        />
 
-      <InspectCard
-        nft={activeNft}
-        handleClose={() => {
-          setActiveNft(null);
-        }}
-        open={!!activeNft}
-      />
+        <InspectCard
+          nft={activeNft}
+          handleClose={() => {
+            setActiveNft(null);
+          }}
+          open={!!activeNft}
+        />
+      </div>
     </>
   );
 };
 
-export default Gallery;
+export default ViewPack;

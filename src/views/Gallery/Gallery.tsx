@@ -1,4 +1,3 @@
-import { Page, Content } from "components/layout";
 import { Carousel } from "nft-uikit";
 import { useAppSelector } from "providers";
 
@@ -7,15 +6,13 @@ const Gallery = () => {
   console.log(nfts);
   return (
     <>
-      <Page>
-        <Content style={{ pointerEvents: "auto" }}>
-          {nfts.cards.length > 0 ? (
-            <Carousel nfts={nfts.cards} handleSubMenuCommand={() => null} />
-          ) : (
-            <></>
-          )}
-        </Content>
-      </Page>
+      <div style={{ pointerEvents: "auto" }}>
+        {nfts.cards.length > 0 ? (
+          <Carousel nfts={nfts.cards} handleSubMenuCommand={() => null} />
+        ) : (
+          <></>
+        )}
+      </div>
     </>
   );
 };
