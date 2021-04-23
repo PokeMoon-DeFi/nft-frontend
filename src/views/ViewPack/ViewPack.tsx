@@ -75,12 +75,13 @@ const ViewPack = () => {
       {!accountOwnsPack && (
         <Button
           label="Transfer Pack"
-          style={{ marginTop: 100, alignSelf: "center" }}
+          style={{ marginTop: 50, alignSelf: "center", marginBottom: 50 }}
           onClick={() => {
             setOpenTransferModal(true);
           }}
         />
       )}
+      <Gallery nfts={nfts} style={{ justifyContent: "center" }} />
 
       <SendToAddress
         open={openTransferModal}
