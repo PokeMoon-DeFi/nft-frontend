@@ -71,16 +71,21 @@ const ViewPack = () => {
 
   return (
     <>
-      <Gallery nfts={nfts} handleSubMenuCommand={handleSubMenuCommand} />
-
-      {accountOwnsPack && (
+      {!accountOwnsPack && (
         <Button
           label="Transfer Pack"
+          style={{ marginTop: 100, alignSelf: "center" }}
           onClick={() => {
             setOpenTransferModal(true);
           }}
         />
       )}
+
+      <Gallery
+        nfts={nfts}
+        style={{ justifyContent: "center" }}
+        handleSubMenuCommand={handleSubMenuCommand}
+      />
 
       <InspectCard
         nft={activeNft}

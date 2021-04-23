@@ -11,10 +11,16 @@ import {
   useContractFromSymbol,
   useNftContract,
 } from "utils/contractHelpers";
-import { Modal, Notification } from "nft-uikit";
+import { Modal, Notification, BuyInfoProps, BuyInfo } from "nft-uikit";
+import Grid from "@material-ui/core/Grid";
+import useMediaQuery from "@material-ui/core/useMediaQuery";
+import { useTheme } from "@material-ui/core/styles";
+import { Container } from "@material-ui/core";
+import BLAST_OFF_COLLECTION from "config/constants/nfts/2114";
 
 const StyledImage = styled.img`
   width: clamp(7rem, 100%, 500px);
+  // height: clamp(200px, 70%, 1200px);
 `;
 
 const waitForPack = (packId) => {
@@ -34,6 +40,25 @@ const waitForPack = (packId) => {
       }
     })();
   });
+};
+
+const p: BuyInfoProps = {
+  pack: { name: "Blast Off", pokeball: "PB-2114" },
+  price: 100,
+  lastPackId: 42,
+  pbPrice: 0.1,
+  allowance: 10,
+  balance: 200,
+  account: "",
+  onConnectClicked: () => {
+    console.log("on connect clicked");
+  },
+  onApproveClicked: () => {
+    console.log("approve clicked");
+  },
+  onBuyClicked: () => {
+    console.log("buy clicked ");
+  },
 };
 
 const BuyPage = () => {
@@ -72,77 +97,115 @@ const BuyPage = () => {
     setOpenPackNotty(true);
   }, [account, nftContract]);
 
-  return (
-    <>
-      <StyledImage src={"images/packs/blastoff.png"} />
-      {allowance?.toNumber() <= 0 ? (
-        <Button
-          label="Approve"
-          icon="Buy"
-          onClick={handleApprove}
-          style={{ pointerEvents: "auto" }}
-        />
-      ) : (
-        <>
-          {pb2114.toNumber() >= 100 ? (
-            <>
-              <Button
-                label="Buy"
-                icon="Buy"
-                onClick={() => {
-                  setOpenConfirm(true);
-                }}
-                style={{ pointerEvents: "auto" }}
-              />
-            </>
-          ) : (
-            <>
-              <Button
-                label="Not enough pokeballs 😕"
-                icon="Buy"
-                onClick={() => {
-                  setOpenConfirm(true);
-                }}
-                style={{ pointerEvents: "auto" }}
-                disabled
-              />
-            </>
-          )}
+  const theme = useTheme();
+  const matches = useMediaQuery(theme.breakpoints.down("sm"));
 
-          <Modal
-            title="Are you sure?"
-            content="100 PBs will be burned in this transaction."
-            open={openConfirm}
-            handleClose={() => {
-              setOpenConfirm(false);
-            }}
-            handleConfirm={() => {
-              setOpenConfirm(false);
-              setOpenNotty(true);
-              handleConfirm();
-            }}
-            style={{ pointerEvents: "auto" }}
-          />
-        </>
-      )}
-      <Notification
-        message={"gassin' it!"}
-        open={openNotty}
-        handleClose={() => setOpenNotty(false)}
-        style={{ pointerEvents: "auto" }}
-      />
-      <Notification
-        message={"pack secured 😎"}
-        open={openPackNotty}
-        linkLabel={"GO TO PACK"}
-        href={`/pack/${collectedPackId}`}
-        handleClose={() => {
-          setOpenPackNotty(false);
-          setCollectedPackId(-1);
+  return (
+    <Grid
+      container
+      justify="center"
+      alignItems="center"
+      spacing={0}
+      style={{ flex: matches ? 0 : 1 }}
+    >
+      <Grid
+        item
+        sm={6}
+        xs={12}
+        justify={matches ? "center" : "flex-end"}
+        style={{ display: "flex", alignItems: "center" }}
+      >
+        <StyledImage src="/images/packs/blastoff.png" alt="pack" />
+      </Grid>
+      <Grid
+        item
+        sm={6}
+        xs={12}
+        justify={matches ? "center" : "flex-start"}
+        alignItems={"flex-start"}
+        style={{
+          marginTop: matches ? 0 : 0,
+          display: "flex",
+          flex: 1,
         }}
-      />
-    </>
+      >
+        <BuyInfo {...p} />
+      </Grid>
+    </Grid>
   );
+
+  // return (
+  //   <>
+  //     <StyledImage src={"images/packs/blastoff.png"} />
+
+  //     {allowance?.toNumber() <= 0 ? (
+  //       <Button
+  //         label="Approve"
+  //         icon="Buy"
+  //         onClick={handleApprove}
+  //         style={{ pointerEvents: "auto" }}
+  //       />
+  //     ) : (
+  //       <>
+  //         {pb2114.toNumber() >= 100 ? (
+  //           <>
+  //             <Button
+  //               label="Buy"
+  //               icon="Buy"
+  //               onClick={() => {
+  //                 setOpenConfirm(true);
+  //               }}
+  //               style={{ pointerEvents: "auto" }}
+  //             />
+  //           </>
+  //         ) : (
+  //           <>
+  //             <Button
+  //               label="Not enough pokeballs 😕"
+  //               icon="Buy"
+  //               onClick={() => {
+  //                 setOpenConfirm(true);
+  //               }}
+  //               style={{ pointerEvents: "auto" }}
+  //               disabled
+  //             />
+  //           </>
+  //         )}
+
+  //         <Modal
+  //           title="Are you sure?"
+  //           content="100 PBs will be burned in this transaction."
+  //           open={openConfirm}
+  //           handleClose={() => {
+  //             setOpenConfirm(false);
+  //           }}
+  //           handleConfirm={() => {
+  //             setOpenConfirm(false);
+  //             setOpenNotty(true);
+  //             handleConfirm();
+  //           }}
+  //           style={{ pointerEvents: "auto" }}
+  //         />
+  //       </>
+  //     )}
+  //     <Notification
+  //       message={"gassin' it!"}
+  //       open={openNotty}
+  //       handleClose={() => setOpenNotty(false)}
+  //       style={{ pointerEvents: "auto" }}
+  //     />
+  //     <Notification
+  //       message={"pack secured 😎"}
+  //       open={openPackNotty}
+  //       linkLabel={"GO TO PACK"}
+  //       href={`/pack/${collectedPackId}`}
+  //       handleClose={() => {
+  //         setOpenPackNotty(false);
+  //         setCollectedPackId(-1);
+  //       }}
+  //     />
+  //   </>
+  // );
 };
 
 export default BuyPage;
