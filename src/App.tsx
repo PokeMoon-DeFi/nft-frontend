@@ -9,11 +9,10 @@ import history from "./routerHistory";
 import SuspenseWithChunkError from "components/SuspenseWithChunkError";
 import PageLoader from "components/PageLoader";
 import BigNumber from "bignumber.js";
-import { ThemeProvider } from "styled-components";
 import Wen from "views/Wen";
 import useRefresh from "hooks/useRefresh";
 import { Page, Content, GlobalStyle, Theme, Particles } from "nft-uikit";
-import { Header } from "components/layout";
+import { NavHeader, Fab } from "nft-uikit";
 
 // Lazy loading
 const Landing = lazy(() => import("./views/Landing"));
@@ -51,39 +50,37 @@ const App: React.FC = () => {
   }, [dispatch, account, fastRefresh]);
 
   return (
-    <ThemeProvider theme={Theme}>
-      <Router history={history}>
-        <GlobalStyle />
-        <Particles />
-        <SuspenseWithChunkError fallback={<PageLoader />}>
-          <Page>
-            <Header />
-            <Content>
-              <Switch>
-                <Route path="/" exact>
-                  <Landing />
-                </Route>
-                <Route path="/buy" exact>
-                  <BuyPacks />
-                </Route>
-                <Route path="/gallery" exact>
-                  <Gallery />
-                </Route>
-                <Route path="/pack/:id">
-                  <ViewPack />
-                </Route>
-                <Route path="/wen">
-                  <Wen />
-                </Route>
-                <Route>
-                  <Redirect to="/" />
-                </Route>
-              </Switch>
-            </Content>
-          </Page>
-        </SuspenseWithChunkError>
-      </Router>
-    </ThemeProvider>
+    <Router history={history}>
+      <Particles />
+      <SuspenseWithChunkError fallback={<PageLoader />}>
+        <Page>
+          <NavHeader account={"asdfasfdas"} />
+          <Fab />
+          <Content>
+            <Switch>
+              <Route path="/" exact>
+                <Landing />
+              </Route>
+              <Route path="/buy" exact>
+                <BuyPacks />
+              </Route>
+              <Route path="/gallery" exact>
+                <Gallery />
+              </Route>
+              <Route path="/pack/:id">
+                <ViewPack />
+              </Route>
+              <Route path="/wen">
+                <Wen />
+              </Route>
+              <Route>
+                <Redirect to="/" />
+              </Route>
+            </Switch>
+          </Content>
+        </Page>
+      </SuspenseWithChunkError>
+    </Router>
   );
 };
 

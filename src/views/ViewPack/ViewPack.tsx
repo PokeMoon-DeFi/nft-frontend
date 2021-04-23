@@ -1,4 +1,4 @@
-import { Carousel, InspectCard, Button, SendToAddress } from "nft-uikit";
+import { InspectCard, Button, SendToAddress, Gallery } from "nft-uikit";
 import { useCallback, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import {
@@ -71,7 +71,7 @@ const ViewPack = () => {
 
   return (
     <>
-      <Carousel nfts={nfts} handleSubMenuCommand={handleSubMenuCommand} />
+      <Gallery nfts={nfts} handleSubMenuCommand={handleSubMenuCommand} />
 
       {accountOwnsPack && (
         <Button

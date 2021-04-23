@@ -1,13 +1,9 @@
-import { Carousel } from "nft-uikit";
+import { Gallery } from "nft-uikit";
 import { useAppSelector } from "providers";
 
-const Gallery = () => {
+const GalleryView = () => {
   const nfts = useAppSelector((state) => state.user.nfts);
-  return (
-    <>
-      <Carousel nfts={nfts.cards} handleSubMenuCommand={() => null} />
-    </>
-  );
+  return <Gallery nfts={nfts.cards} handleSubMenuCommand={() => null} />;
 };
 
-export default Gallery;
+export default GalleryView;
