@@ -56,7 +56,14 @@ const App: React.FC = () => {
         <Page>
           <NavHeader account={"asdfasfdas"} />
           <Fab />
-          <Content>
+          <Content
+            style={{
+              flex: 1,
+              display: "flex",
+              paddingTop: "10vh",
+              flexDirection: "column",
+            }}
+          >
             <Switch>
               <Route path="/" exact>
                 <Landing />

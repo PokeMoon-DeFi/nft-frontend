@@ -72,11 +72,10 @@ const ViewPack = () => {
   const [open, setOpen] = React.useState(false);
   return (
     <>
-      <Gallery nfts={nfts} handleSubMenuCommand={handleSubMenuCommand} />
-
-      {accountOwnsPack && (
+      {!accountOwnsPack && (
         <Button
           label="Transfer Pack"
+          style={{ marginTop: 100, alignSelf: "center" }}
           onClick={() => {
             setOpenTransferModal(true);
           }}
