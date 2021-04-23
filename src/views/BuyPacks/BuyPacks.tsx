@@ -101,111 +101,70 @@ const BuyPage = () => {
   const matches = useMediaQuery(theme.breakpoints.down("sm"));
 
   return (
-    <Grid
-      container
-      justify="center"
-      alignItems="center"
-      spacing={0}
-      style={{ flex: matches ? 0 : 1 }}
-    >
+    <>
       <Grid
-        item
-        sm={6}
-        xs={12}
-        justify={matches ? "center" : "flex-end"}
-        style={{ display: "flex", alignItems: "center" }}
+        container
+        justify="center"
+        alignItems="center"
+        spacing={0}
+        style={{ flex: matches ? 0 : 1 }}
       >
-        <StyledImage src="/images/packs/blastoff.png" alt="pack" />
+        <Grid
+          item
+          sm={6}
+          xs={12}
+          justify={matches ? "center" : "flex-end"}
+          style={{ display: "flex", alignItems: "center" }}
+        >
+          <StyledImage src="/images/packs/blastoff.png" alt="pack" />
+        </Grid>
+        <Grid
+          item
+          sm={6}
+          xs={12}
+          justify={matches ? "center" : "flex-start"}
+          alignItems={"flex-start"}
+          style={{
+            marginTop: matches ? 0 : 0,
+            display: "flex",
+            flex: 1,
+          }}
+        >
+          <BuyInfo {...p} />
+        </Grid>
       </Grid>
-      <Grid
-        item
-        sm={6}
-        xs={12}
-        justify={matches ? "center" : "flex-start"}
-        alignItems={"flex-start"}
-        style={{
-          marginTop: matches ? 0 : 0,
-          display: "flex",
-          flex: 1,
+      <Modal
+        title="Are you sure?"
+        content="100 PBs will be burned in this transaction."
+        open={openConfirm}
+        handleClose={() => {
+          setOpenConfirm(false);
         }}
-      >
-        <BuyInfo {...p} />
-      </Grid>
-    </Grid>
+        handleConfirm={() => {
+          setOpenConfirm(false);
+          setOpenNotty(true);
+          handleConfirm();
+        }}
+        style={{ pointerEvents: "auto" }}
+      />
+      <Notification
+        message={"gassin' it!"}
+        open={openNotty}
+        handleClose={() => setOpenNotty(false)}
+        style={{ pointerEvents: "auto" }}
+      />
+      <Notification
+        message={"pack secured 😎"}
+        open={openPackNotty}
+        linkLabel={"GO TO PACK"}
+        href={`/pack/${collectedPackId}`}
+        handleClose={() => {
+          setOpenPackNotty(false);
+          setCollectedPackId(-1);
+        }}
+      />
+    </>
   );
-
-  // return (
-  //   <>
-  //     <StyledImage src={"images/packs/blastoff.png"} />
-
-  //     {allowance?.toNumber() <= 0 ? (
-  //       <Button
-  //         label="Approve"
-  //         icon="Buy"
-  //         onClick={handleApprove}
-  //         style={{ pointerEvents: "auto" }}
-  //       />
-  //     ) : (
-  //       <>
-  //         {pb2114.toNumber() >= 100 ? (
-  //           <>
-  //             <Button
-  //               label="Buy"
-  //               icon="Buy"
-  //               onClick={() => {
-  //                 setOpenConfirm(true);
-  //               }}
-  //               style={{ pointerEvents: "auto" }}
-  //             />
-  //           </>
-  //         ) : (
-  //           <>
-  //             <Button
-  //               label="Not enough pokeballs 😕"
-  //               icon="Buy"
-  //               onClick={() => {
-  //                 setOpenConfirm(true);
-  //               }}
-  //               style={{ pointerEvents: "auto" }}
-  //               disabled
-  //             />
-  //           </>
-  //         )}
-
-  //         <Modal
-  //           title="Are you sure?"
-  //           content="100 PBs will be burned in this transaction."
-  //           open={openConfirm}
-  //           handleClose={() => {
-  //             setOpenConfirm(false);
-  //           }}
-  //           handleConfirm={() => {
-  //             setOpenConfirm(false);
-  //             setOpenNotty(true);
-  //             handleConfirm();
-  //           }}
-  //           style={{ pointerEvents: "auto" }}
-  //         />
-  //       </>
-  //     )}
-  //     <Notification
-  //       message={"gassin' it!"}
-  //       open={openNotty}
-  //       handleClose={() => setOpenNotty(false)}
-  //       style={{ pointerEvents: "auto" }}
-  //     />
-  //     <Notification
-  //       message={"pack secured 😎"}
-  //       open={openPackNotty}
-  //       linkLabel={"GO TO PACK"}
-  //       href={`/pack/${collectedPackId}`}
-  //       handleClose={() => {
-  //         setOpenPackNotty(false);
-  //         setCollectedPackId(-1);
-  //       }}
-  //     />
-  //   </>
-  // );
 };
 
 export default BuyPage;
