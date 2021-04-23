@@ -69,10 +69,9 @@ const ViewPack = () => {
     }
   };
 
-  const [open, setOpen] = React.useState(false);
   return (
     <>
-      {!accountOwnsPack && (
+      {accountOwnsPack && (
         <Button
           label="Transfer Pack"
           style={{ marginTop: 50, alignSelf: "center", marginBottom: 50 }}

@@ -47,9 +47,9 @@ const p: BuyInfoProps = {
   price: 100,
   lastPackId: 42,
   pbPrice: 0.1,
-  allowance: 10,
+  allowance: 0, //override
   balance: 200,
-  account: "",
+  account: "", //override
   onConnectClicked: () => {
     console.log("on connect clicked");
   },
@@ -90,8 +90,9 @@ const BuyPage = () => {
   }, [account, pballAddress, pballContract]);
 
   const handleConfirm = useCallback(async () => {
-    const res = await sendBuyPack(nftContract, account);
-    const packId = res.events.OnElevation.returnValues.packId;
+    //const res = await sendBuyPack(nftContract, account);
+    // const packId = res.events.OnElevation.returnValues.packId;
+    const packId = 11;
     await waitForPack(packId);
     setCollectedPackId(packId);
     setOpenPackNotty(true);
@@ -130,7 +131,15 @@ const BuyPage = () => {
             flex: 1,
           }}
         >
-          <BuyInfo {...p} />
+          <BuyInfo
+            {...p}
+            allowance={allowance.toNumber()}
+            account={account ?? ""}
+            balance={pb2114.toNumber()}
+            onConnectClicked={handleConfirm}
+            onApproveClicked={handleApprove}
+            onBuyClicked={() => setOpenConfirm(true)}
+          />
         </Grid>
       </Grid>
       <Modal
