@@ -54,7 +54,7 @@ const App: React.FC = () => {
       <Particles />
       <SuspenseWithChunkError fallback={<PageLoader />}>
         <Page>
-          <NavHeader account={"asdfasfdas"} />
+          <NavHeader account={account ?? ""} />
           <Fab />
           <Content
             style={{
