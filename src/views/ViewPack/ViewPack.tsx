@@ -1,5 +1,5 @@
 import { InspectCard, Button, SendToAddress, Gallery } from "nft-uikit";
-import { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import {
   getPackedOwned,
@@ -69,6 +69,7 @@ const ViewPack = () => {
     }
   };
 
+  const [open, setOpen] = React.useState(false);
   return (
     <>
       <Gallery nfts={nfts} handleSubMenuCommand={handleSubMenuCommand} />
@@ -81,14 +82,6 @@ const ViewPack = () => {
           }}
         />
       )}
-
-      <InspectCard
-        nft={activeNft}
-        handleClose={() => {
-          setActiveNft(null);
-        }}
-        open={!!activeNft}
-      />
 
       <SendToAddress
         open={openTransferModal}
