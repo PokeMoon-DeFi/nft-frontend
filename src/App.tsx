@@ -56,14 +56,7 @@ const App: React.FC = () => {
         <Page>
           <NavHeader account={account ?? ""} />
           <Fab />
-          <Content
-            style={{
-              flex: 1,
-              display: "flex",
-              paddingTop: "10vh",
-              flexDirection: "column",
-            }}
-          >
+          <Content maxWidth="md" style={{ paddingTop: 40 }}>
             <Switch>
               <Route path="/" exact>
                 <Landing />

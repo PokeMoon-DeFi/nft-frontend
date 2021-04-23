@@ -20,8 +20,8 @@ ReactDOM.render(
       <MaterialThemeProvider theme={MaterialTheme}>
         <StylesProvider injectFirst>
           <ThemeProvider theme={Theme}>
-            <GlobalStyle />
             <RefreshContextProvider>
+              <GlobalStyle />
               <ModalProvider>
                 <App />
               </ModalProvider>
