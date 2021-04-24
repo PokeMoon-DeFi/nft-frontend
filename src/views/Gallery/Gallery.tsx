@@ -1,4 +1,4 @@
-import { Gallery, PackCard, Content } from "nft-uikit";
+import { Gallery, PackCard, Content, WiggleBall } from "nft-uikit";
 import { useAppSelector } from "providers";
 import Grid from "@material-ui/core/Grid";
 import { useEffect, useMemo, useState } from "react";
@@ -36,8 +36,15 @@ const GalleryView = () => {
 
   return (
     <Grid container spacing={2} justify="center">
+      {packs && packs.length === 0 && (
+        <WiggleBall src={"/images/balls/MAXRBALL.png"} />
+      )}
       {packs?.map((pack, index) => (
-        <Grid item key={index.toString()}>
+        <Grid
+          item
+          key={index.toString()}
+          style={{ display: "flex", justifyContent: "center" }}
+        >
           <PackCard
             pack={pack}
             onPackSelected={(id) => {
