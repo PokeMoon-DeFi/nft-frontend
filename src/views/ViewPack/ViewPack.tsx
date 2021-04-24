@@ -75,23 +75,35 @@ const ViewPack = () => {
 
   return (
     <>
-      <div style={{ display: "flex" }}>
-        {userInput}
-        <Button
-          label="View Pack"
-          onClick={() => (window.location.href = `/pack/${pId}`)}
-          style={{ marginLeft: "6px" }}
-        />
+      <div
+        style={{
+          display: "flex",
+          flex: 1,
+          alignItems: "center",
+          width: "100%",
+          justifyContent: "space-between",
+          flexDirection: accountOwnsPack ? "row" : "row-reverse",
+        }}
+      >
+        {accountOwnsPack && (
+          <Button
+            label="Transfer Pack"
+            style={{ marginTop: 50, alignSelf: "center", marginBottom: 50 }}
+            onClick={() => {
+              setOpenTransferModal(true);
+            }}
+          />
+        )}
+        <div style={{ display: "flex" }}>
+          {userInput}
+          <Button
+            label="View Pack"
+            onClick={() => (window.location.href = `/pack/${pId}`)}
+            style={{ marginLeft: "6px" }}
+          />
+        </div>
       </div>
-      {accountOwnsPack && (
-        <Button
-          label="Transfer Pack"
-          style={{ marginTop: 50, alignSelf: "center", marginBottom: 50 }}
-          onClick={() => {
-            setOpenTransferModal(true);
-          }}
-        />
-      )}
+
       <Gallery nfts={nfts} style={{ justifyContent: "center" }} />
       <SendToAddress
         open={openTransferModal}

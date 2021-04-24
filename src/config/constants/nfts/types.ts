@@ -23,6 +23,7 @@ export interface PokemoonCard {
  */
 export interface PokemoonNft {
   tokenId: string;
+  uniqueId?: string;
   imageUrl: string;
   card?: PokemoonCard;
   set?: string;

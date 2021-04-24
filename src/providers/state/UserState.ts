@@ -60,7 +60,9 @@ export const asyncFetchNfts = createAsyncThunk(
       const res = await getNftsOwned(account);
       res.forEach((tokenId: string) => {
         if (tokenId.length === 8) {
-          cards.push(BLAST_OFF_COLLECTION[tokenId.substr(0, 2)]);
+          const nft: PokemoonNft = BLAST_OFF_COLLECTION[tokenId.substr(0, 2)];
+          nft.uniqueId = tokenId;
+          cards.push(nft);
         } else {
           packs.push(tokenId);
         }
