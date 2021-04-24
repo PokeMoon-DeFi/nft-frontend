@@ -67,7 +67,6 @@ const p: BuyInfoProps = {
 const BuyPage = () => {
   const { pb2114 } = useAppSelector((state) => state.user.balance);
   const allowance = useNftAllowance();
-  console.log(pb2114, allowance);
   const { account } = useWeb3React();
   const pballAddress = getAddressFromSymbol("pb2114");
 

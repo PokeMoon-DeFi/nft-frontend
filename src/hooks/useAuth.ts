@@ -4,6 +4,7 @@ import { connectorsByName } from "utils/web3React";
 import { setupNetwork } from "utils/wallet";
 import { ConnectorNames } from "utils/types";
 import { connectorLocalStorageKey } from "config/connectors";
+import { connect } from "react-redux";
 
 export const useEagerConnect = () => {
   const { login } = useAuth();
@@ -12,7 +13,9 @@ export const useEagerConnect = () => {
     const connectorId = window.localStorage.getItem(
       connectorLocalStorageKey
     ) as ConnectorNames;
-    if (connectorId) login(connectorId);
+    if (connectorId && connectorId !== ConnectorNames.BSC) {
+      login(connectorId);
+    }
   }, [login]);
 };
 
@@ -21,6 +24,7 @@ const useAuth = () => {
 
   const login = useCallback((connectorID: ConnectorNames) => {
     const connector = connectorsByName[connectorID];
+    console.log(connector);
     if (connector) {
       activate(connector, async (error: Error) => {
         if (error instanceof UnsupportedChainIdError) {
@@ -35,6 +39,10 @@ const useAuth = () => {
     } else {
       console.error("Can't find connector", "The connector config is wrong");
     }
+    window.localStorage.setItem(
+      connectorLocalStorageKey,
+      ConnectorNames.Injected
+    );
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
