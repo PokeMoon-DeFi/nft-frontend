@@ -19,6 +19,7 @@ import { Container } from "@material-ui/core";
 import BLAST_OFF_COLLECTION from "config/constants/nfts/2114";
 import useAuth from "hooks/useAuth";
 import { ConnectorNames } from "utils/types";
+import { convertToObject } from "typescript";
 
 const StyledImage = styled.img`
   width: clamp(7rem, 100%, 500px);
@@ -44,12 +45,12 @@ const waitForPack = (packId) => {
   });
 };
 
+//@ts-ignore
 const p: BuyInfoProps = {
   pack: { name: "Blast Off", pokeball: "PB-2114" },
   price: 100,
   lastPackId: 42,
   pbPrice: 0.1,
-  allowance: 0, //override
   balance: 200,
   account: "", //override
   onConnectClicked: () => {
@@ -84,10 +85,10 @@ const BuyPage = () => {
         contractAddress,
         account
       );
-      console.log(
-        `sendApproveBep20(${pballAddress}, ${contractAddress}, ${account})`,
-        res
-      );
+      // console.log(
+      //   `sendApproveBep20(${pballAddress}, ${contractAddress}, ${account})`,
+      //   res
+      // );
     }
   }, [account, pballAddress, pballContract]);
 
@@ -136,7 +137,7 @@ const BuyPage = () => {
         >
           <BuyInfo
             {...p}
-            allowance={allowance.toNumber()}
+            allowance={!!allowance ? allowance.toNumber() : 0}
             account={account ?? ""}
             balance={pb2114.toNumber()}
             onConnectClicked={() => login(ConnectorNames.Injected)}

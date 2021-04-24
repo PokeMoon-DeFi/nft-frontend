@@ -4,18 +4,18 @@ import BigNumber from "bignumber.js";
 import { getAddress } from "utils/contractHelpers";
 import { getAllowance } from "utils/callHelpers";
 import useRefresh from "./useRefresh";
-import { test_pb } from "config/constants/contracts";
 
 export const useNftAllowance = () => {
   const [allowance, setAllowance] = useState(new BigNumber(0));
   const { account } = useWeb3React();
-  const tokenAddress = test_pb;
+  const tokenAddress = getAddress("pb2114");
   const nftAddress = getAddress("pokemoonNft");
   const { fastRefresh } = useRefresh();
 
   useEffect(() => {
     const fetchAllowance = async () => {
       const res = await getAllowance(tokenAddress, nftAddress, account);
+
       setAllowance(new BigNumber(res));
     };
 

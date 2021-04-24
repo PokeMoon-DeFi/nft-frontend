@@ -26,8 +26,7 @@ export const asyncFetchBalance = createAsyncThunk(
     const tokens = {
       mnt: getAddressFromSymbol("mnt"),
       kbn: getAddressFromSymbol("kbn"),
-      // TODO: pb2114: getAddressFromSymbol("pb2114"),
-      pb2114: test_pb,
+      pb2114: getAddressFromSymbol("pb2114"),
     };
 
     // TODO: Convert to multicall
