@@ -68,9 +68,6 @@ const App: React.FC = () => {
           />
           <Content maxWidth="md" style={{ paddingTop: 40 }}>
             <Switch>
-              <Route path="/" exact>
-                <Redirect to="/buy" />
-              </Route>
               <Route path="/buy" exact>
                 <BuyPacks />
               </Route>
@@ -84,7 +81,7 @@ const App: React.FC = () => {
                 <Wen />
               </Route>
               <Route>
-                <Redirect to="/" />
+                <Redirect to="/buy" />
               </Route>
             </Switch>
           </Content>
