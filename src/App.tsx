@@ -68,9 +68,6 @@ const App: React.FC = () => {
           />
           <Content maxWidth="md" style={{ paddingTop: 40 }}>
             <Switch>
-              <Route path="/">
-                <Wen />
-              </Route>
               <Route path="/buy" exact>
                 <BuyPacks />
               </Route>
@@ -79,6 +76,9 @@ const App: React.FC = () => {
               </Route>
               <Route path="/pack/:id">
                 <ViewPack />
+              </Route>
+              <Route path="/wen">
+                <Wen />
               </Route>
               <Route>
                 <Redirect to="/buy" />
