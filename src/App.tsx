@@ -13,6 +13,8 @@ import Wen from "views/Wen";
 import useRefresh from "hooks/useRefresh";
 import { Page, Content, GlobalStyle, Theme, Particles } from "nft-uikit";
 import { NavHeader, Fab } from "nft-uikit";
+import useAuth from "hooks/useAuth";
+import { ConnectorNames } from "utils/types";
 
 // Lazy loading
 const Landing = lazy(() => import("./views/Landing"));
@@ -41,6 +43,7 @@ const App: React.FC = () => {
   const dispatch = useDispatch();
   // If stuff keeps rerendering every 10 sec this is what caused that.
   const { fastRefresh } = useRefresh();
+  const { login, logout } = useAuth();
 
   useEffect(() => {
     if (account) {
@@ -53,8 +56,16 @@ const App: React.FC = () => {
       <Particles />
       <SuspenseWithChunkError fallback={<PageLoader />}>
         <Page>
-          <NavHeader account={account ?? ""} />
-          <Fab account={account ?? ""} />
+          <NavHeader
+            account={account ?? ""}
+            onConnect={() => login(ConnectorNames.Injected)}
+            onLogout={logout}
+          />
+          <Fab
+            account={account ?? ""}
+            onConnect={() => login(ConnectorNames.Injected)}
+            onLogout={logout}
+          />
           <Content maxWidth="md" style={{ paddingTop: 40 }}>
             <Switch>
               <Route path="/" exact>
