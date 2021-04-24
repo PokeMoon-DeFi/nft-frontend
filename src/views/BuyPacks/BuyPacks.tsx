@@ -17,6 +17,8 @@ import useMediaQuery from "@material-ui/core/useMediaQuery";
 import { useTheme } from "@material-ui/core/styles";
 import { Container } from "@material-ui/core";
 import BLAST_OFF_COLLECTION from "config/constants/nfts/2114";
+import useAuth from "hooks/useAuth";
+import { ConnectorNames } from "utils/types";
 
 const StyledImage = styled.img`
   width: clamp(7rem, 100%, 500px);
@@ -97,6 +99,8 @@ const BuyPage = () => {
     setOpenPackNotty(true);
   }, [account, nftContract]);
 
+  const { login, logout } = useAuth();
+
   const theme = useTheme();
   const matches = useMediaQuery(theme.breakpoints.down("sm"));
 
@@ -135,7 +139,7 @@ const BuyPage = () => {
             allowance={allowance.toNumber()}
             account={account ?? ""}
             balance={pb2114.toNumber()}
-            onConnectClicked={handleConfirm}
+            onConnectClicked={() => login(ConnectorNames.Injected)}
             onApproveClicked={handleApprove}
             onBuyClicked={() => setOpenConfirm(true)}
           />
