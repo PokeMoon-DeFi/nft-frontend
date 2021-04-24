@@ -17,7 +17,6 @@ const GalleryView = () => {
 
       for (const id of packIds) {
         const res = await getPackInfo(id);
-        console.log(res);
         if (res[4].length === 8) {
           const reduced = [res[0], res[1], res[2], res[3], res[4]];
           const pack = { packId: id, imgUrl, cards: reduced };
@@ -42,6 +41,9 @@ const GalleryView = () => {
       {packs?.map((pack, index) => (
         <Grid
           item
+          sm={6}
+          md={4}
+          lg={4}
           key={index.toString()}
           style={{ display: "flex", justifyContent: "center" }}
         >
