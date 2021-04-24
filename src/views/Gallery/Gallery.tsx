@@ -17,8 +17,12 @@ const GalleryView = () => {
 
       for (const id of packIds) {
         const res = await getPackInfo(id);
-        const pack = { packId: id, imgUrl, cards: res };
-        result.push(pack);
+        console.log(res);
+        if (res[4].length === 8) {
+          const reduced = [res[0], res[1], res[2], res[3], res[4]];
+          const pack = { packId: id, imgUrl, cards: reduced };
+          result.push(pack);
+        }
       }
       setPacks(result);
     }
