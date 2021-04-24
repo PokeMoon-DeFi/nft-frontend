@@ -9,6 +9,7 @@ const Wen = () => {
           <WiggleBall
             src="/images/balls/MAXRBALL.png"
             onClick={() => (window.location.href = "/buy")}
+            height={200}
           />
         </Content>
       </Page>
