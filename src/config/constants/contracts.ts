@@ -18,7 +18,7 @@ const contracts = {
     56: "0xcf39DEC43eAB07D70C3D32776F3ae255ADF69f22",
   },
   pokemoonNft: {
-    56: "0xd1fc7bf649b128d49656dfe8dbbeb4e1ec8c8317",
+    56: "0x2e17f28a12624a38d6d6f5e2b50a6408f9129f77",
   },
   // Banks
   brindletonBay: {
@@ -53,6 +53,9 @@ const contracts = {
   // Pokeballs
   pb2114: {
     56: "0xBEEa03a1768b8CFa0496B4e3aCf3bf5Cc7d69904",
+  },
+  pb2116: {
+    56: "0x90274Ca54A8D37789450a4D909400A79cfcE6A86",
   },
   // Old Tokens
   meowth: {
