@@ -90,9 +90,8 @@ const BuyPage = () => {
   }, [account, pballAddress, pballContract]);
 
   const handleConfirm = useCallback(async () => {
-    //const res = await sendBuyPack(nftContract, account);
-    // const packId = res.events.OnElevation.returnValues.packId;
-    const packId = 11;
+    const res = await sendBuyPack(nftContract, account);
+    const packId = res.events.OnElevation.returnValues.packId;
     await waitForPack(packId);
     setCollectedPackId(packId);
     setOpenPackNotty(true);
