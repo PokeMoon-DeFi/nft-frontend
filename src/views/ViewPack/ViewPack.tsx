@@ -11,6 +11,8 @@ import { PokemoonNft } from "config/constants/nfts/types";
 import { useNftContract } from "utils/contractHelpers";
 import { useWeb3React } from "@web3-react/core";
 import { useAppSelector } from "providers";
+import { Input } from "@material-ui/core";
+import { useInput } from "hooks/useInput";
 
 const ViewPack = () => {
   let { id } = useParams();
@@ -69,8 +71,18 @@ const ViewPack = () => {
     }
   };
 
+  const [pId, userInput] = useInput({ type: "text" });
+
   return (
     <>
+      <div style={{ display: "flex" }}>
+        {userInput}
+        <Button
+          label="View Pack"
+          onClick={() => (window.location.href = `/pack/${pId}`)}
+          style={{ marginLeft: "6px" }}
+        />
+      </div>
       {accountOwnsPack && (
         <Button
           label="Transfer Pack"
@@ -81,7 +93,6 @@ const ViewPack = () => {
         />
       )}
       <Gallery nfts={nfts} style={{ justifyContent: "center" }} />
-
       <SendToAddress
         open={openTransferModal}
         handleClose={() => setOpenTransferModal(false)}
