@@ -52,7 +52,7 @@ export const getPackedOwned = async (account) => {
 /**
  * Calls packInfo(packId) abi method.
  * @param packId
- * @returns contract response
+ * @returns array of tokenIds
  */
 export const getPackInfo = async (packId) => {
   const contract = getNftContract();

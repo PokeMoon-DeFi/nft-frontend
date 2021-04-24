@@ -48,14 +48,13 @@ const App: React.FC = () => {
       dispatch(asyncFetchNfts({ account }));
     }
   }, [dispatch, account, fastRefresh]);
-
   return (
     <Router history={history}>
       <Particles />
       <SuspenseWithChunkError fallback={<PageLoader />}>
         <Page>
           <NavHeader account={account ?? ""} />
-          <Fab />
+          <Fab account={account ?? ""} />
           <Content maxWidth="md" style={{ paddingTop: 40 }}>
             <Switch>
               <Route path="/" exact>
