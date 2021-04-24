@@ -395,7 +395,7 @@ const BLAST_OFF_COLLECTION: { [key: number]: PokemoonNft } = {
     tokenId: "29",
     imageUrl: "014changeteamsUC.png",
     card: BLAST_OFF_CARDS[14],
-    rarity: PM_RARITY.C,
+    rarity: PM_RARITY.U,
   },
   52: {
     tokenId: "52",
