@@ -16,7 +16,7 @@ export const BLAST_OFF_CARDS: { [key: number]: PokemoonCard } = {
     name: "Pikapuff",
     type: PM_TYPES.LIGHTNING,
     description: "That's gonna be a hit.",
-    artist: ARTISTS.LilyPonto,
+    artist: ARTISTS.Armilo,
   },
   3: {
     number: 3,
