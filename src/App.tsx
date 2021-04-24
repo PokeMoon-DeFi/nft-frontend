@@ -69,7 +69,7 @@ const App: React.FC = () => {
           <Content maxWidth="md" style={{ paddingTop: 40 }}>
             <Switch>
               <Route path="/" exact>
-                <Landing />
+                <Redirect to="/buy" />
               </Route>
               <Route path="/buy" exact>
                 <BuyPacks />

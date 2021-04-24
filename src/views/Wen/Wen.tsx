@@ -5,12 +5,7 @@ const Wen = () => {
   return (
     <>
       <Particles />
-      <Page
-        style={{ pointerEvents: "auto" }}
-        onClick={() => {
-          window.location.href = "/";
-        }}
-      >
+      <Page>
         <Content>
           <WiggleBall src="/images/balls/MAXRBALL.png" />
         </Content>
