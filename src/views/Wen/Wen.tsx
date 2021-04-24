@@ -1,13 +1,15 @@
 import { Content, Page, Particles, WiggleBall } from "nft-uikit";
 
 const Wen = () => {
-  window.location.href = "/";
   return (
     <>
       <Particles />
       <Page>
         <Content>
-          <WiggleBall src="/images/balls/MAXRBALL.png" />
+          <WiggleBall
+            src="/images/balls/MAXRBALL.png"
+            onClick={() => (window.location.href = "/buy")}
+          />
         </Content>
       </Page>
     </>
