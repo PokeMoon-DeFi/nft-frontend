@@ -67,12 +67,12 @@ const BuyPage = () => {
   const { pb2114 } = useAppSelector((state) => state.user.balance);
   const allowance = useNftAllowance();
   const { account } = useWeb3React();
-  const pballAddress = getAddressFromSymbol("pb2116");
+  const pballAddress = getAddressFromSymbol("pb2114");
 
   const [openConfirm, setOpenConfirm] = React.useState(false);
   const [openNotty, setOpenNotty] = React.useState(false);
   const [openPackNotty, setOpenPackNotty] = React.useState(false);
-  const pballContract = useContractFromSymbol("pb2116");
+  const pballContract = useContractFromSymbol("pb2114");
   const nftContract = useNftContract();
   const [collectedPackId, setCollectedPackId] = React.useState<number>(-1);
 

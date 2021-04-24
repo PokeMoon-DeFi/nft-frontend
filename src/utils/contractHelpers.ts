@@ -44,8 +44,8 @@ export const getAddressFromSymbol = (symbol: string) => {
       return contracts.meownaut[process.env.REACT_APP_CHAIN_ID];
     case "pb2114":
       return contracts.pb2114[process.env.REACT_APP_CHAIN_ID];
-    case "pb2116":
-      return contracts.pb2116[process.env.REACT_APP_CHAIN_ID];
+    // case "pb2116":
+    //   return contracts.pb2116[process.env.REACT_APP_CHAIN_ID];
     default:
       throw console.error("invalid symbol");
   }

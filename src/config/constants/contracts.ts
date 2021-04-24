@@ -54,9 +54,9 @@ const contracts = {
   pb2114: {
     56: "0xBEEa03a1768b8CFa0496B4e3aCf3bf5Cc7d69904",
   },
-  pb2116: {
-    56: "0x90274Ca54A8D37789450a4D909400A79cfcE6A86",
-  },
+  // pb2116: {
+  //   56: "0x90274Ca54A8D37789450a4D909400A79cfcE6A86",
+  // },
   // Old Tokens
   meowth: {
     97: "0x6310b990B73a284cC212e8c113CD9868A2CCaE5C",
