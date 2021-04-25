@@ -4,12 +4,15 @@ import Grid from "@material-ui/core/Grid";
 import { useEffect, useMemo, useState } from "react";
 import { getPackInfo } from "utils/callHelpers";
 import { parseConfigFileTextToJson } from "typescript";
+import { Typography } from "@material-ui/core";
+import { useTheme } from "styled-components";
 
 const imgUrl = "/images/packs/blastoff.png";
 
 const GalleryView = () => {
   const packIds = useAppSelector((state) => state.user.nfts.packs);
   const [packs, setPacks] = useState<any[]>();
+  const theme = useTheme();
 
   useEffect(() => {
     async function fetchData() {
@@ -34,28 +37,30 @@ const GalleryView = () => {
   }, [packIds]);
 
   return (
-    <Grid container spacing={2} justify="center">
-      {packs && packs.length === 0 && (
-        <WiggleBall src={"/images/balls/MAXRBALL.png"} />
-      )}
-      {packs?.map((pack, index) => (
-        <Grid
-          item
-          sm={6}
-          md={4}
-          lg={4}
-          key={index.toString()}
-          style={{ display: "flex", justifyContent: "center" }}
-        >
-          <PackCard
-            pack={pack}
-            onPackSelected={(id) => {
-              window.location.href = `/pack/${id}`;
-            }}
-          />
-        </Grid>
-      ))}
-    </Grid>
+    <>
+      <Grid container spacing={2} justify="center">
+        {packs && packs.length === 0 && (
+          <WiggleBall src={"/images/balls/MAXRBALL.png"} />
+        )}
+        {packs?.map((pack, index) => (
+          <Grid
+            item
+            sm={6}
+            md={4}
+            lg={4}
+            key={index.toString()}
+            style={{ display: "flex", justifyContent: "center" }}
+          >
+            <PackCard
+              pack={pack}
+              onPackSelected={(id) => {
+                window.location.href = `/pack/${id}`;
+              }}
+            />
+          </Grid>
+        ))}
+      </Grid>
+    </>
   );
 };
 

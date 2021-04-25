@@ -11,8 +11,9 @@ import { PokemoonNft } from "config/constants/nfts/types";
 import { useNftContract } from "utils/contractHelpers";
 import { useWeb3React } from "@web3-react/core";
 import { useAppSelector } from "providers";
-import { Input } from "@material-ui/core";
+import { Input, Typography } from "@material-ui/core";
 import { useInput } from "hooks/useInput";
+import { collapseTextChangeRangesAcrossMultipleVersions } from "typescript";
 
 const ViewPack = () => {
   let { id } = useParams();
@@ -26,13 +27,17 @@ const ViewPack = () => {
 
   useEffect(() => {
     const fetch = async () => {
+      console.log(id);
       const res = await getPackInfo(id);
-      console.log(res);
+      console.log({ res });
       const raw: PokemoonNft[] = [];
       for (let i = 0; i < 5; i++) {
         const tokenId = res[i];
+
         if (tokenId.length === 8) {
-          raw.push(BLAST_OFF_COLLECTION[tokenId.substr(0, 2)]);
+          const n = BLAST_OFF_COLLECTION[tokenId.substr(0, 2)];
+          n.uniqueId = tokenId;
+          raw.push(n);
         }
       }
       setNfts(raw);
@@ -103,7 +108,7 @@ const ViewPack = () => {
           />
         </div>
       </div>
-
+      <Typography style={{ color: "white" }}>Test</Typography>
       <Gallery nfts={nfts} style={{ justifyContent: "center" }} />
       <SendToAddress
         open={openTransferModal}

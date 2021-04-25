@@ -11,7 +11,7 @@ import PageLoader from "components/PageLoader";
 import BigNumber from "bignumber.js";
 import Wen from "views/Wen";
 import useRefresh from "hooks/useRefresh";
-import { Page, Content, GlobalStyle, Theme, Particles } from "nft-uikit";
+import { Page, Content, GlobalStyle, Particles } from "nft-uikit";
 import { NavHeader, Fab } from "nft-uikit";
 import useAuth from "hooks/useAuth";
 import { ConnectorNames } from "utils/types";
