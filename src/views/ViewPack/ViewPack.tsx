@@ -1,4 +1,10 @@
-import { InspectCard, Button, SendToAddress, Gallery } from "nft-uikit";
+import {
+  InspectCard,
+  Button,
+  SendToAddress,
+  Gallery,
+  rawMaterialTheme,
+} from "nft-uikit";
 import React, { useCallback, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import {
@@ -18,7 +24,7 @@ import { collapseTextChangeRangesAcrossMultipleVersions } from "typescript";
 const ViewPack = () => {
   let { id } = useParams();
   const { packs } = useAppSelector((state) => state.user.nfts);
-  const [nfts, setNfts] = useState<PokemoonNft[]>();
+  const [nfts, setNfts] = useState<PokemoonNft[]>([]);
   const [activeNft, setActiveNft] = useState<PokemoonNft | null>(null);
   const [openTransferModal, setOpenTransferModal] = useState(false);
   const nftContract = useNftContract();
@@ -27,21 +33,21 @@ const ViewPack = () => {
 
   useEffect(() => {
     const fetch = async () => {
-      console.log(id);
       const res = await getPackInfo(id);
-      console.log({ res });
-      const raw: PokemoonNft[] = [];
+
       for (let i = 0; i < 5; i++) {
         const tokenId = res[i];
 
         if (tokenId.length === 8) {
-          const n = BLAST_OFF_COLLECTION[tokenId.substr(0, 2)];
-          n.uniqueId = tokenId;
-          raw.push(n);
+          const n: PokemoonNft = {
+            ...BLAST_OFF_COLLECTION[tokenId.substr(0, 2)],
+            uniqueId: tokenId,
+          };
+          setNfts((state) => [...state, n]);
         }
       }
-      setNfts(raw);
     };
+
     fetch();
   }, [id]);
 
@@ -57,24 +63,9 @@ const ViewPack = () => {
   const confirmTransferCallback = useCallback(
     async (destAddress) => {
       const res = await sendTransferPack(nftContract, account, destAddress, id);
-      console.log(res);
     },
     [nftContract, account, id]
   );
-
-  const handleSubMenuCommand = (command: string, idx: number) => {
-    if (!nfts || idx >= nfts?.length) {
-      return;
-    }
-
-    switch (command) {
-      case "info": {
-        const nft = nfts[idx];
-        setActiveNft(nft);
-        break;
-      }
-    }
-  };
 
   const [pId, userInput] = useInput({ type: "text" });
 
