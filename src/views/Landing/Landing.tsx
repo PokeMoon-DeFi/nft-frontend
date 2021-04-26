@@ -11,27 +11,24 @@ const Landing: React.FC = () => {
     <>
       {account ? (
         <>
+          <Button onClick={() => logout()} style={{ pointerEvents: "auto" }}>
+            Logout
+          </Button>
           <Button
-            label="Logout"
-            icon="Backpack"
-            onClick={() => logout()}
-            style={{ pointerEvents: "auto" }}
-          />
-          <Button
-            label="Buy"
-            icon="Buy"
             onClick={() => (window.location.href = "/buy")}
             style={{ pointerEvents: "auto" }}
-          />
+          >
+            Buy
+          </Button>
         </>
       ) : (
         <>
           <Button
-            label="Login"
-            icon="Backpack"
             onClick={() => login(ConnectorNames.Injected)}
             style={{ pointerEvents: "auto" }}
-          />
+          >
+            Login
+          </Button>
         </>
       )}
     </>

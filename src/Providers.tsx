@@ -7,15 +7,18 @@ import { StylesProvider } from "@material-ui/styles";
 import { ThemeProvider as MaterialThemeProvider } from "@material-ui/core";
 import { MaterialTheme, ModalProvider } from "nft-uikit";
 import { RefreshContextProvider } from "contexts/RefreshContext";
+import { ThemeProvider } from "styled-components";
 
 const WrapProvider: FC = ({ children }) => (
   <Web3ReactProvider getLibrary={getLibrary}>
     <Provider store={store}>
       <StylesProvider injectFirst>
         <MaterialThemeProvider theme={MaterialTheme}>
-          <RefreshContextProvider>
-            <ModalProvider>{children}</ModalProvider>
-          </RefreshContextProvider>
+          <ThemeProvider theme={MaterialTheme}>
+            <RefreshContextProvider>
+              <ModalProvider>{children}</ModalProvider>
+            </RefreshContextProvider>
+          </ThemeProvider>
         </MaterialThemeProvider>
       </StylesProvider>
     </Provider>

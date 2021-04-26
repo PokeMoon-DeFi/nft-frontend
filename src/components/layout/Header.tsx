@@ -23,21 +23,18 @@ const Header: React.FC = () => {
     <StyledHeader>
       {account ? (
         <>
-          <Button
-            label="Logout"
-            icon="Backpack"
-            onClick={() => logout()}
-            style={{ pointerEvents: "auto" }}
-          />
+          <Button onClick={() => logout()} style={{ pointerEvents: "auto" }}>
+            Log Out
+          </Button>
         </>
       ) : (
         <>
           <Button
-            label="Login"
-            icon="Backpack"
             onClick={() => login(ConnectorNames.Injected)}
             style={{ pointerEvents: "auto" }}
-          />
+          >
+            Login
+          </Button>
         </>
       )}
       <BalanceCounter

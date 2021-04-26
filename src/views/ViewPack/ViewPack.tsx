@@ -37,7 +37,6 @@ const ViewPack = () => {
 
       for (let i = 0; i < 5; i++) {
         const tokenId = res[i];
-
         if (tokenId.length === 8) {
           const n: PokemoonNft = {
             ...BLAST_OFF_COLLECTION[tokenId.substr(0, 2)],
@@ -79,24 +78,29 @@ const ViewPack = () => {
           width: "100%",
           justifyContent: "space-between",
           flexDirection: accountOwnsPack ? "row" : "row-reverse",
+          marginBottom: 50,
         }}
       >
         {accountOwnsPack && (
           <Button
-            label="Transfer Pack"
-            style={{ marginTop: 50, alignSelf: "center", marginBottom: 50 }}
+            style={{ alignSelf: "center" }}
             onClick={() => {
               setOpenTransferModal(true);
             }}
-          />
+          >
+            Transfer Pack
+          </Button>
         )}
         <div style={{ display: "flex" }}>
           {userInput}
           <Button
-            label="View Pack"
-            onClick={() => (window.location.href = `/pack/${pId}`)}
+            onClick={() =>
+              !!pId ? (window.location.href = `/pack/${pId}`) : null
+            }
             style={{ marginLeft: "6px" }}
-          />
+          >
+            View Pack
+          </Button>
         </div>
       </div>
       <Gallery nfts={nfts} style={{ justifyContent: "center" }} />

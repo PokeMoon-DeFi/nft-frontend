@@ -4,39 +4,71 @@
     <meta charset="utf-8" />
     <!-- GTAG -->
     <script>
-      ;(function (w, d, s, l, i) {
-        w[l] = w[l] || []
-        w[l].push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' })
+      (function (w, d, s, l, i) {
+        w[l] = w[l] || [];
+        w[l].push({ "gtm.start": new Date().getTime(), event: "gtm.js" });
         var f = d.getElementsByTagName(s)[0],
           j = d.createElement(s),
-          dl = l != 'dataLayer' ? '&l=' + l : ''
-        j.async = true
-        j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl
-        f.parentNode.insertBefore(j, f)
-      })(window, document, 'script', 'dataLayer', '%REACT_APP_GTAG%')
+          dl = l != "dataLayer" ? "&l=" + l : "";
+        j.async = true;
+        j.src = "https://www.googletagmanager.com/gtm.js?id=" + i + dl;
+        f.parentNode.insertBefore(j, f);
+      })(window, document, "script", "dataLayer", "%REACT_APP_GTAG%");
     </script>
     <!-- Links -->
     <link rel="preconnect" href="%REACT_APP_NODE_1%" />
     <link rel="preconnect" href="%REACT_APP_NODE_2%" />
     <link rel="preconnect" href="%REACT_APP_NODE_3%" />
     <link rel="preconnect" href="https://fonts.gstatic.com" />
-    <link rel="stylesheet" href="https://use.typekit.net/jss2tuu.css" >
-    <link rel="shortcut icon" type="image/png" href="%PUBLIC_URL%/favicon.ico" />
-    <link rel="apple-touch-icon" sizes="192x192" href="%PUBLIC_URL%/android-chrome-192x192.png" />
-    <link rel="apple-touch-icon" sizes="512x512" href="%PUBLIC_URL%/android-chrome-512x512.png" />
+    <link rel="stylesheet" href="https://use.typekit.net/jss2tuu.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="shortcut icon"
+      type="image/png"
+      href="%PUBLIC_URL%/favicon.ico"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="192x192"
+      href="%PUBLIC_URL%/android-chrome-192x192.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="512x512"
+      href="%PUBLIC_URL%/android-chrome-512x512.png"
+    />
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Josefin+Sans&display=swap"
+      rel="stylesheet"
+    />
     <!-- Meta -->
     <title>PokeMoon</title>
     <meta
       name="description"
       content="Get Meownaut and stake them with PokeMoon, the best decentralized exchange on BSC."
     />
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5, minimum-scale=1" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=5, minimum-scale=1"
+    />
     <meta name="theme-color" content="#000000" />
-    <meta name="twitter:image" content="https://pokemoon.app/android-chrome-512x512.png" />
-    <meta name="twitter:description" content="The strongest community on BSC! Earn Koban and Pokeballs through yield farming and use them to buy NFTs and interact on a platform you can trust." />
+    <meta
+      name="twitter:image"
+      content="https://pokemoon.app/android-chrome-512x512.png"
+    />
+    <meta
+      name="twitter:description"
+      content="The strongest community on BSC! Earn Koban and Pokeballs through yield farming and use them to buy NFTs and interact on a platform you can trust."
+    />
     <meta name="twitter:card" content="summary" />
-    <meta name="twitter:title" content="🌕 Pokemoon - A next-gen DEX on Binance Smart Chan (BSC)" />
+    <meta
+      name="twitter:title"
+      content="🌕 Pokemoon - A next-gen DEX on Binance Smart Chan (BSC)"
+    />
   </head>
   <body>
     <!-- GTAG (noscript) -->
