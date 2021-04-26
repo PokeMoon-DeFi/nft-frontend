@@ -108,7 +108,6 @@ const ViewPack = () => {
           />
         </div>
       </div>
-      <Typography style={{ color: "white" }}>Test</Typography>
       <Gallery nfts={nfts} style={{ justifyContent: "center" }} />
       <SendToAddress
         open={openTransferModal}
