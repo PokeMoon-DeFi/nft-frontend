@@ -47,7 +47,12 @@ const waitForPack = (packId) => {
 
 //@ts-ignore
 const p: BuyInfoProps = {
-  pack: { name: "Blast Off", pokeball: "PB-2114" },
+  pack: {
+    name: "Blast Off",
+    pokeball: "PB-2114",
+    packId: "0",
+    imageUrl: "/images/packs/blastoff.png",
+  },
   price: 100,
   lastPackId: 42,
   pbPrice: 0.1,

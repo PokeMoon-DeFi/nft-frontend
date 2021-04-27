@@ -6,31 +6,31 @@ import { getPackInfo } from "utils/callHelpers";
 import { parseConfigFileTextToJson } from "typescript";
 import { Typography } from "@material-ui/core";
 import { useTheme } from "styled-components";
+import BLAST_OFF_COLLECTION from "config/constants/nfts/2114";
 
-const imgUrl = "/images/packs/blastoff.png";
+const imageUrl = "/images/packs/Blastoff.png";
+const name = "Blastoff";
 
 const GalleryView = () => {
   const packIds = useAppSelector((state) => state.user.nfts.packs);
-  const [packs, setPacks] = useState<any[]>();
-  const theme = useTheme();
+  const [packs, setPacks] = useState<any[]>([]);
 
   useEffect(() => {
     async function fetchData() {
-      const result: any[] = [];
-
       for (const id of packIds) {
         const res = await getPackInfo(id);
         if (res[4].length === 8) {
           const reduced = [res[0], res[1], res[2], res[3], res[4]];
-          const pack = { packId: id, imgUrl, cards: reduced };
-          result.push(pack);
+          const cards = reduced.map((r) => BLAST_OFF_COLLECTION[r]);
+          const pack = { packId: id, imageUrl, cards, name };
+          setPacks((state) => [...state, pack]);
         } else {
           const reduced = [res[0], res[1], res[2], res[3]];
-          const pack = { packId: id, imgUrl, cards: reduced };
-          result.push(pack);
+          const cards = reduced.map((r) => BLAST_OFF_COLLECTION[r]);
+          const pack = { packId: id, imageUrl, cards, name };
+          setPacks((state) => [...state, pack]);
         }
       }
-      setPacks(result);
     }
 
     fetchData();
