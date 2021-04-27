@@ -31,7 +31,6 @@ const ViewPack = () => {
   const { account } = useWeb3React();
   const [accountOwnsPack, setAccountOwnsPack] = useState(false);
 
-  console.log({ packs });
   useEffect(() => {
     const fetch = async () => {
       const res = await getPackInfo(id);
@@ -43,7 +42,6 @@ const ViewPack = () => {
             ...BLAST_OFF_COLLECTION[tokenId.substr(0, 2)],
             uniqueId: tokenId,
           };
-          console.log(n);
           setNfts((state) => [...state, n]);
         }
       }
