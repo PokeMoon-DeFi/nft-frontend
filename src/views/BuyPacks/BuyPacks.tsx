@@ -51,7 +51,7 @@ const p: BuyInfoProps = {
     name: "Blast Off",
     pokeball: "PB-2114",
     packId: "0",
-    imageUrl: "/images/packs/blastoff.png",
+    imageUrl: "/images/packs/Blastoff.png",
   },
   price: 100,
   lastPackId: 42,
@@ -126,7 +126,7 @@ const BuyPage = () => {
           justify={matches ? "center" : "flex-end"}
           style={{ display: "flex", alignItems: "center" }}
         >
-          <StyledImage src="/images/packs/blastoff.png" alt="pack" />
+          <StyledImage src="/images/packs/Blastoff.png" alt="pack" />
         </Grid>
         <Grid
           item
