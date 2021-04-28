@@ -115,31 +115,28 @@ const BuyPage = () => {
       <Grid
         container
         justify="center"
-        alignItems="center"
-        spacing={0}
-        style={{ flex: matches ? 0 : 1 }}
+        spacing={6}
+        style={{
+          marginTop: 12,
+          marginBottom: matches ? 24 : 0,
+          alignItems: "center",
+          display: "flex",
+        }}
       >
         <Grid
           item
-          sm={6}
-          xs={12}
-          justify={matches ? "center" : "flex-end"}
-          style={{ display: "flex", alignItems: "center" }}
+          sm={12}
+          md={3}
+          style={{ display: "flex", justifyContent: "center" }}
         >
-          <StyledImage src="/images/packs/Blastoff.png" alt="pack" />
+          <img
+            src="/images/packs/Blastoff.png"
+            alt="pack"
+            style={{ width: 250 }}
+          />
         </Grid>
-        <Grid
-          item
-          sm={6}
-          xs={12}
-          justify={matches ? "center" : "flex-start"}
-          alignItems={"flex-start"}
-          style={{
-            marginTop: matches ? 0 : 0,
-            display: "flex",
-            flex: 1,
-          }}
-        >
+
+        <Grid item sm={12} md={5} xs={12}>
           <BuyInfo
             {...p}
             allowance={!!allowance ? allowance.toNumber() : 0}

@@ -66,7 +66,7 @@ const App: React.FC = () => {
             onConnect={() => login(ConnectorNames.Injected)}
             onLogout={logout}
           />
-          <Content maxWidth="md" style={{ paddingTop: 40 }}>
+          <Content maxWidth={"xl"}>
             <Switch>
               <Route path="/" exact>
                 <Wen />

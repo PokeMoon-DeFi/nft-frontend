@@ -64,6 +64,7 @@ const ViewPack = () => {
   const confirmTransferCallback = useCallback(
     async (destAddress) => {
       const res = await sendTransferPack(nftContract, account, destAddress, id);
+      // console.log(res);
     },
     [nftContract, account, id]
   );
@@ -80,6 +81,7 @@ const ViewPack = () => {
           width: "100%",
           justifyContent: "space-between",
           flexDirection: accountOwnsPack ? "row" : "row-reverse",
+          marginTop: 50,
           marginBottom: 50,
         }}
       >
