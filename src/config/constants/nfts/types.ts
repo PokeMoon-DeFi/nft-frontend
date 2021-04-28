@@ -28,12 +28,16 @@ export interface PokemoonNft {
   card?: PokemoonCard;
   set?: string;
   rarity?: string;
+  glbUrl?: string;
 }
 
 /**
  * ERC-721 that can be evaluated back to master NFT data
  */
-export interface BlastoffPack {
+export interface PokemoonPack {
+  name?: string;
+  pokeball?: string;
+  nfts?: PokemoonNft[];
   packId: string;
-  cards: PokemoonNft[];
+  imageUrl?: string;
 }

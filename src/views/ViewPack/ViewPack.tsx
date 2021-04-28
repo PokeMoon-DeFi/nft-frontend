@@ -42,6 +42,8 @@ const ViewPack = () => {
             ...BLAST_OFF_COLLECTION[tokenId.substr(0, 2)],
             uniqueId: tokenId,
           };
+          n.glbUrl = `/models/${n.imageUrl.replace(/\..*/g, ".glb")}`;
+
           setNfts((state) => [...state, n]);
         }
       }

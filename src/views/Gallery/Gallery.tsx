@@ -3,17 +3,15 @@ import { useAppSelector } from "providers";
 import Grid from "@material-ui/core/Grid";
 import { useEffect, useMemo, useState } from "react";
 import { getPackInfo } from "utils/callHelpers";
-import { parseConfigFileTextToJson } from "typescript";
-import { Typography } from "@material-ui/core";
-import { useTheme } from "styled-components";
 import BLAST_OFF_COLLECTION from "config/constants/nfts/2114";
+import { PokemoonPack } from "config/constants/nfts/types";
 
 const imageUrl = "/images/packs/Blastoff.png";
 const name = "Blastoff";
 
 const GalleryView = () => {
   const packIds = useAppSelector((state) => state.user.nfts.packs);
-  const [packs, setPacks] = useState<any[]>([]);
+  const [packs, setPacks] = useState<PokemoonPack[]>([]);
 
   useEffect(() => {
     async function fetchData() {
@@ -21,13 +19,13 @@ const GalleryView = () => {
         const res = await getPackInfo(id);
         if (res[4].length === 8) {
           const reduced = [res[0], res[1], res[2], res[3], res[4]];
-          const cards = reduced.map((r) => BLAST_OFF_COLLECTION[r]);
-          const pack = { packId: id, imageUrl, cards, name };
+          const nfts = reduced.map((r) => BLAST_OFF_COLLECTION[r.slice(0, 2)]);
+          const pack: PokemoonPack = { packId: id, imageUrl, nfts, name };
           setPacks((state) => [...state, pack]);
         } else {
           const reduced = [res[0], res[1], res[2], res[3]];
-          const cards = reduced.map((r) => BLAST_OFF_COLLECTION[r]);
-          const pack = { packId: id, imageUrl, cards, name };
+          const nfts = reduced.map((r) => BLAST_OFF_COLLECTION[r]);
+          const pack: PokemoonPack = { packId: id, imageUrl, nfts, name };
           setPacks((state) => [...state, pack]);
         }
       }
