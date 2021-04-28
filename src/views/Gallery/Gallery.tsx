@@ -35,7 +35,7 @@ const GalleryView = () => {
   }, [packIds]);
 
   return (
-    <>
+    <Content maxWidth="lg">
       <Grid container spacing={2} justify="center" style={{ padding: 12 }}>
         {packs && packs.length === 0 && (
           <WiggleBall src={"/images/balls/MAXRBALL.png"} />
@@ -58,7 +58,7 @@ const GalleryView = () => {
           </Grid>
         ))}
       </Grid>
-    </>
+    </Content>
   );
 };
 

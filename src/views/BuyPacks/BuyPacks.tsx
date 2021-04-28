@@ -11,7 +11,7 @@ import {
   useContractFromSymbol,
   useNftContract,
 } from "utils/contractHelpers";
-import { Modal, Notification, BuyInfoProps, BuyInfo } from "nft-uikit";
+import { Modal, Content, Notification, BuyInfoProps, BuyInfo } from "nft-uikit";
 import Grid from "@material-ui/core/Grid";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
 import { useTheme } from "@material-ui/core/styles";
@@ -111,7 +111,7 @@ const BuyPage = () => {
   const matches = useMediaQuery(theme.breakpoints.down("sm"));
 
   return (
-    <>
+    <Content maxWidth="lg">
       <Grid
         container
         justify="center"
@@ -178,7 +178,7 @@ const BuyPage = () => {
           setCollectedPackId(-1);
         }}
       />
-    </>
+    </Content>
   );
 };
 

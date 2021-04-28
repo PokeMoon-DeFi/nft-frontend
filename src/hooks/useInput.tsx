@@ -6,6 +6,7 @@ export const useInput = ({ type /*...*/ }) => {
     <input
       placeholder="Pack ID"
       value={value}
+      style={{ flex: 1 }}
       onChange={(e) => setValue(e.target.value)}
       type={type}
     />

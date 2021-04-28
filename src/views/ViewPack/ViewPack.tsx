@@ -4,6 +4,7 @@ import {
   SendToAddress,
   Gallery,
   rawMaterialTheme,
+  Content,
 } from "nft-uikit";
 import React, { useCallback, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
@@ -19,6 +20,7 @@ import { useWeb3React } from "@web3-react/core";
 import { useAppSelector } from "providers";
 import { Input, Typography } from "@material-ui/core";
 import { useInput } from "hooks/useInput";
+import Grid from "@material-ui/core/Grid";
 import { collapseTextChangeRangesAcrossMultipleVersions } from "typescript";
 
 const ViewPack = () => {
@@ -72,30 +74,26 @@ const ViewPack = () => {
   const [pId, userInput] = useInput({ type: "text" });
 
   return (
-    <>
-      <div
-        style={{
-          display: "flex",
-          flex: 1,
-          alignItems: "center",
-          width: "100%",
-          justifyContent: "space-between",
-          flexDirection: accountOwnsPack ? "row" : "row-reverse",
-          marginTop: 50,
-          marginBottom: 50,
-        }}
+    <Content maxWidth="lg">
+      <Grid
+        container
+        spacing={4}
+        justify="space-around"
+        style={{ display: "flex", marginBottom: 24 }}
       >
-        {accountOwnsPack && (
-          <Button
-            style={{ alignSelf: "center" }}
-            onClick={() => {
-              setOpenTransferModal(true);
-            }}
-          >
-            Transfer Pack
-          </Button>
-        )}
-        <div style={{ display: "flex" }}>
+        <Grid item>
+          {accountOwnsPack && (
+            <Button
+              style={{ alignSelf: "center" }}
+              onClick={() => {
+                setOpenTransferModal(true);
+              }}
+            >
+              Transfer Pack
+            </Button>
+          )}
+        </Grid>
+        <Grid item style={{ alignItems: "center", display: "flex" }}>
           {userInput}
           <Button
             onClick={() =>
@@ -105,8 +103,8 @@ const ViewPack = () => {
           >
             View Pack
           </Button>
-        </div>
-      </div>
+        </Grid>
+      </Grid>
       <Gallery nfts={nfts} style={{ justifyContent: "center" }} />
       <SendToAddress
         open={openTransferModal}
@@ -116,7 +114,7 @@ const ViewPack = () => {
           confirmTransferCallback(destAddress);
         }}
       />
-    </>
+    </Content>
   );
 };
 

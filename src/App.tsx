@@ -66,25 +66,25 @@ const App: React.FC = () => {
             onConnect={() => login(ConnectorNames.Injected)}
             onLogout={logout}
           />
-          <Content maxWidth={"xl"}>
-            <Switch>
-              <Route path="/" exact>
-                <Wen />
-              </Route>
-              <Route path="/buy" exact>
-                <BuyPacks />
-              </Route>
-              <Route path="/gallery" exact>
-                <Gallery />
-              </Route>
-              <Route path="/pack/:id">
-                <ViewPack />
-              </Route>
-              <Route>
-                <Redirect to="/buy" />
-              </Route>
-            </Switch>
-          </Content>
+          {/* <Content maxWidth={"xl"}> */}
+          <Switch>
+            <Route path="/" exact>
+              <Wen />
+            </Route>
+            <Route path="/buy" exact>
+              <BuyPacks />
+            </Route>
+            <Route path="/gallery" exact>
+              <Gallery />
+            </Route>
+            <Route path="/pack/:id">
+              <ViewPack />
+            </Route>
+            <Route>
+              <Redirect to="/buy" />
+            </Route>
+          </Switch>
+          {/* </Content> */}
         </Page>
       </SuspenseWithChunkError>
     </Router>
