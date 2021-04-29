@@ -119,20 +119,15 @@ const BuyPage = () => {
         style={{
           marginTop: 12,
           marginBottom: matches ? 24 : 0,
-          alignItems: "center",
+          alignItems: "flex-start",
           display: "flex",
         }}
       >
-        <Grid
-          item
-          sm={12}
-          md={3}
-          style={{ display: "flex", justifyContent: "center" }}
-        >
+        <Grid item sm={12} md={3} style={{ paddingTop: 12 }}>
           <img
             src="/images/packs/Blastoff.png"
             alt="pack"
-            style={{ width: 250 }}
+            style={{ width: 250, offset: 10 }}
           />
         </Grid>
 

@@ -24,7 +24,6 @@ const useAuth = () => {
 
   const login = useCallback((connectorID: ConnectorNames) => {
     const connector = connectorsByName[connectorID];
-    console.log(connector);
     if (connector) {
       activate(connector, async (error: Error) => {
         if (error instanceof UnsupportedChainIdError) {

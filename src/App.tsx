@@ -59,12 +59,18 @@ const App: React.FC = () => {
           <NavHeader
             account={account ?? ""}
             onConnect={() => login(ConnectorNames.Injected)}
-            onLogout={logout}
+            onLogout={() => {
+              logout();
+              window.location.href = "/";
+            }}
           />
           <Fab
             account={account ?? ""}
             onConnect={() => login(ConnectorNames.Injected)}
-            onLogout={logout}
+            onLogout={() => {
+              logout();
+              window.location.href = "/";
+            }}
           />
           {/* <Content maxWidth={"xl"}> */}
           <Switch>
