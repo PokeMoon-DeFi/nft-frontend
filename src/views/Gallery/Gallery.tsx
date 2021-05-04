@@ -1,10 +1,17 @@
-import { Gallery, PackCard, Content, WiggleBall } from "nft-uikit";
+import {
+  Gallery,
+  PackCard,
+  Content,
+  WiggleBall,
+  FilterDashboard,
+} from "nft-uikit";
 import { useAppSelector } from "providers";
 import Grid from "@material-ui/core/Grid";
 import { useEffect, useMemo, useState } from "react";
 import { getPackInfo } from "utils/callHelpers";
 import BLAST_OFF_COLLECTION from "config/constants/nfts/2114";
 import { PokemoonPack } from "config/constants/nfts/types";
+import Container from "@material-ui/core/Container";
 
 const imageUrl = "/images/packs/Blastoff.png";
 const name = "Blastoff";
@@ -35,7 +42,8 @@ const GalleryView = () => {
   }, [packIds]);
 
   return (
-    <Content maxWidth="lg">
+    <Container maxWidth="lg" style={{ marginTop: 20 }}>
+      <FilterDashboard />
       <Grid container spacing={2} justify="center" style={{ padding: 12 }}>
         {packs && packs.length === 0 && (
           <WiggleBall src={"/images/balls/MAXRBALL.png"} />
@@ -58,7 +66,7 @@ const GalleryView = () => {
           </Grid>
         ))}
       </Grid>
-    </Content>
+    </Container>
   );
 };
 
