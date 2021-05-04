@@ -42,9 +42,21 @@ const GalleryView = () => {
   }, [packIds]);
 
   return (
-    <Container maxWidth="lg" style={{ marginTop: 20 }}>
-      <FilterDashboard />
-      <Grid container spacing={2} justify="center" style={{ padding: 12 }}>
+    <Container
+      maxWidth="lg"
+      style={{
+        marginTop: 60,
+        display: "flex",
+        justifyContent: "center",
+      }}
+    >
+      {/* <FilterDashboard /> */}
+      <Grid
+        container
+        spacing={2}
+        justify="center"
+        style={{ padding: 12, height: "100%" }}
+      >
         {packs && packs.length === 0 && (
           <WiggleBall src={"/images/balls/MAXRBALL.png"} />
         )}
