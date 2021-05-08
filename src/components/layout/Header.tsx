@@ -4,6 +4,7 @@ import { useWeb3React } from "@web3-react/core";
 import { useAppSelector } from "providers";
 import useAuth from "hooks/useAuth";
 import { ConnectorNames } from "utils/types";
+import BigNumber from "bignumber.js";
 
 const StyledHeader = styled.div`
   flex-basis: 150px;
@@ -16,7 +17,9 @@ const StyledHeader = styled.div`
 
 const Header: React.FC = () => {
   const { account } = useWeb3React();
-  const { pb2114 } = useAppSelector((state) => state.user.balance);
+  const pb2114 = new BigNumber(
+    useAppSelector((state) => state.user.balance.pb2114)
+  );
   const { login, logout } = useAuth();
 
   return (

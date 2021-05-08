@@ -15,7 +15,7 @@ import {
 } from "utils/callHelpers";
 import BLAST_OFF_COLLECTION from "config/constants/nfts/2114";
 import { PokemoonNft } from "config/constants/nfts/types";
-import { useNftContract } from "utils/contractHelpers";
+import { useBlastOffContract } from "utils/contractHelpers";
 import { useWeb3React } from "@web3-react/core";
 import { useAppSelector } from "providers";
 import { Input, Typography } from "@material-ui/core";
@@ -25,11 +25,11 @@ import { collapseTextChangeRangesAcrossMultipleVersions } from "typescript";
 
 const ViewPack = () => {
   let { id } = useParams();
-  const { packs } = useAppSelector((state) => state.user.nfts);
+  const { packs } = useAppSelector((state) => state.user.nftBalance.blastOff);
   const [nfts, setNfts] = useState<PokemoonNft[]>([]);
   const [activeNft, setActiveNft] = useState<PokemoonNft | null>(null);
   const [openTransferModal, setOpenTransferModal] = useState(false);
-  const nftContract = useNftContract();
+  const nftContract = useBlastOffContract();
   const { account } = useWeb3React();
   const [accountOwnsPack, setAccountOwnsPack] = useState(false);
 

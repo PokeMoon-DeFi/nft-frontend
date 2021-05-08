@@ -1,5 +1,5 @@
 import { ethers } from "ethers";
-import { getBep20Contract, getNftContract } from "./contractHelpers";
+import { getBep20Contract, getBlastOffContract } from "./contractHelpers";
 
 /**
  * Approve spending of token on contract from account.
@@ -45,7 +45,7 @@ export const sendTransferPack = async (contract, from, to, packId) => {
  * @returns contract response
  */
 export const getPackedOwned = async (account) => {
-  const contract = getNftContract();
+  const contract = getBlastOffContract();
   return contract.methods.packedOwned(account).call();
 };
 
@@ -55,7 +55,7 @@ export const getPackedOwned = async (account) => {
  * @returns array of tokenIds
  */
 export const getPackInfo = async (packId) => {
-  const contract = getNftContract();
+  const contract = getBlastOffContract();
   return contract.methods.packedInfo(packId).call();
 };
 
@@ -65,7 +65,7 @@ export const getPackInfo = async (packId) => {
  * @returns contract response
  */
 export const getNftsOwned = async (account) => {
-  const contract = getNftContract();
+  const contract = getBlastOffContract();
   return contract.methods.tokensOwned(account).call();
 };
 
@@ -94,6 +94,6 @@ export const getAllowance = async (tokenAddress, targetAddress, account) => {
 
 export const getPacksMinted = async () => {
   // Warn: When we add new nft contract we will need to make sure to extend this function to both contracts or try using getBep20Contract.
-  const contract = getNftContract();
+  const contract = getBlastOffContract();
   return contract.methods.finite().call();
 };

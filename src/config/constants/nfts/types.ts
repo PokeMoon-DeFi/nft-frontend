@@ -8,27 +8,22 @@ export interface ArtistInfo {
 }
 
 /**
- * PokeMoon card data that is reused by similar NFTs with different rarities
- */
-export interface PokemoonCard {
-  number: number;
-  name: string;
-  type: string;
-  description: string;
-  artist?: ArtistInfo;
-}
-
-/**
  * PokeMoon NFT with unique tokenId and asset for each card number + rarity. PokeMoon card info is shared across multiple tokenIds
  */
 export interface PokemoonNft {
   tokenId: string;
-  uniqueId?: string;
+  isPack: boolean;
+  set: string;
   imageUrl: string;
-  card?: PokemoonCard;
-  set?: string;
   rarity?: string;
+  number?: number;
+  name?: string;
+  type?: string;
+  description?: string;
+  gifUrl?: string;
   glbUrl?: string;
+  tokenUriResponse?: any;
+  artist?: ArtistInfo;
 }
 
 /**

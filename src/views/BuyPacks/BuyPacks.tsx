@@ -2,14 +2,14 @@ import React, { useCallback } from "react";
 import styled from "styled-components";
 import { Button } from "nft-uikit";
 import { useAppSelector } from "providers";
-import { useNftAllowance } from "hooks/useAllowance";
+import { useBlastOffAllowance } from "hooks/useAllowance";
 import { useWeb3React } from "@web3-react/core";
 import { getPackInfo, sendApproveBep20, sendBuyPack } from "utils/callHelpers";
 import {
   getAddressFromSymbol,
   getAddress,
   useContractFromSymbol,
-  useNftContract,
+  useBlastOffContract,
 } from "utils/contractHelpers";
 import { Modal, Content, Notification, BuyInfoProps, BuyInfo } from "nft-uikit";
 import Grid from "@material-ui/core/Grid";
@@ -20,6 +20,7 @@ import BLAST_OFF_COLLECTION from "config/constants/nfts/2114";
 import useAuth from "hooks/useAuth";
 import { ConnectorNames } from "utils/types";
 import { convertToObject } from "typescript";
+import BigNumber from "bignumber.js";
 
 const StyledImage = styled.img`
   width: clamp(7rem, 100%, 500px);
@@ -70,8 +71,10 @@ const p: BuyInfoProps = {
 };
 
 const BuyPage = () => {
-  const { pb2114 } = useAppSelector((state) => state.user.balance);
-  const allowance = useNftAllowance();
+  const pb2114 = new BigNumber(
+    useAppSelector((state) => state.user.balance.pb2114)
+  );
+  const allowance = useBlastOffAllowance();
   const { account } = useWeb3React();
   const pballAddress = getAddressFromSymbol("pb2114");
 
@@ -79,11 +82,11 @@ const BuyPage = () => {
   const [openNotty, setOpenNotty] = React.useState(false);
   const [openPackNotty, setOpenPackNotty] = React.useState(false);
   const pballContract = useContractFromSymbol("pb2114");
-  const nftContract = useNftContract();
+  const nftContract = useBlastOffContract();
   const [collectedPackId, setCollectedPackId] = React.useState<number>(-1);
 
   const handleApprove = useCallback(async () => {
-    const contractAddress = getAddress("pokemoonNft");
+    const contractAddress = getAddress("blastOff");
     if (account) {
       const res = await sendApproveBep20(
         pballContract,

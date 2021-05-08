@@ -17,7 +17,9 @@ const imageUrl = "/images/packs/Blastoff.png";
 const name = "Blastoff";
 
 const GalleryView = () => {
-  const packIds = useAppSelector((state) => state.user.nfts.packs);
+  const packIds = useAppSelector(
+    (state) => state.user.nftBalance.blastOff.packs
+  );
   const [packs, setPacks] = useState<PokemoonPack[]>([]);
 
   useEffect(() => {

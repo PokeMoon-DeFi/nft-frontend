@@ -1,8 +1,8 @@
 import ARTISTS from "./artists";
-import { PokemoonCard, PokemoonNft } from "./types";
+import { PokemoonNft } from "./types";
 import { PM_RARITY, PM_TYPES } from ".";
 
-export const BLAST_OFF_CARDS: { [key: number]: PokemoonCard } = {
+export const BLAST_OFF_CARDS: { [key: number]: any } = {
   1: {
     number: 1,
     name: "Meownaut",
@@ -126,7 +126,7 @@ export const BLAST_OFF_CARDS: { [key: number]: PokemoonCard } = {
 /**
  * Maps nft keys (first 2 numbers from tokenId) to nft info
  */
-const BLAST_OFF_COLLECTION: { [key: number]: PokemoonNft } = {
+const BLAST_OFF_COLLECTION: { [key: number]: any } = {
   11: {
     tokenId: "11",
     imageUrl: "001meownautC.png",

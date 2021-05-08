@@ -3,7 +3,6 @@ import logger from "redux-logger";
 import thunk from "redux-thunk";
 import User from "./state/UserState";
 import PriceData from "./state/Prices";
-import PublicNftData from "./state/NftDataState";
 
 import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
 
@@ -11,9 +10,8 @@ const store = configureStore({
   reducer: {
     user: User,
     prices: PriceData,
-    nftData: PublicNftData,
   },
-  middleware: [logger, thunk] as const,
+  // middleware: [logger, thunk] as const,
 });
 
 export type AppDispatch = typeof store.dispatch;

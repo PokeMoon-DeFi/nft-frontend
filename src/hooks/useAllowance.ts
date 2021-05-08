@@ -5,16 +5,16 @@ import { getAddress } from "utils/contractHelpers";
 import { getAllowance } from "utils/callHelpers";
 import useRefresh from "./useRefresh";
 
-export const useNftAllowance = () => {
+export const useBlastOffAllowance = () => {
   const [allowance, setAllowance] = useState(new BigNumber(0));
   const { account } = useWeb3React();
   const tokenAddress = getAddress("pb2114");
-  const nftAddress = getAddress("pokemoonNft");
+  const blastOffAddress = getAddress("blastOff");
   const { fastRefresh } = useRefresh();
 
   useEffect(() => {
     const fetchAllowance = async () => {
-      const res = await getAllowance(tokenAddress, nftAddress, account);
+      const res = await getAllowance(tokenAddress, blastOffAddress, account);
 
       setAllowance(new BigNumber(res));
     };
@@ -22,7 +22,7 @@ export const useNftAllowance = () => {
     if (account) {
       fetchAllowance();
     }
-  }, [account, fastRefresh, tokenAddress, nftAddress]);
+  }, [account, fastRefresh, tokenAddress, blastOffAddress]);
 
   return allowance;
 };

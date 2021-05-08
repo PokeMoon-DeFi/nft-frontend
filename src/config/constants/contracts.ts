@@ -4,6 +4,10 @@
 export const test_pb = "0x58556c103590c0cb20bbd261618fe87a13b6e2bc";
 
 const contracts = {
+  multiCall: {
+    56: "0x1ee38d535d541c55c9dae27b12edf090c608e6fb",
+    97: "0x67ADCB4dF3931b0C5Da724058ADC2174a9844412",
+  },
   // Infrastructure
   unova: {
     97: "0x700b57582d08620966adb67396D6723Fa38b0370",
@@ -17,8 +21,11 @@ const contracts = {
     97: "0xd7aC26A8125E0AD80049AD59f72d7ffE67D4117b",
     56: "0xcf39DEC43eAB07D70C3D32776F3ae255ADF69f22",
   },
-  pokemoonNft: {
+  blastOff: {
     56: "0x2e17f28a12624a38d6d6f5e2b50a6408f9129f77",
+  },
+  ampedUp: {
+    56: "",
   },
   // Banks
   brindletonBay: {
@@ -54,9 +61,9 @@ const contracts = {
   pb2114: {
     56: "0xBEEa03a1768b8CFa0496B4e3aCf3bf5Cc7d69904",
   },
-  // pb2116: {
-  //   56: "0x90274Ca54A8D37789450a4D909400A79cfcE6A86",
-  // },
+  pb2116: {
+    56: "0x90274Ca54A8D37789450a4D909400A79cfcE6A86",
+  },
   // Old Tokens
   meowth: {
     97: "0x6310b990B73a284cC212e8c113CD9868A2CCaE5C",
