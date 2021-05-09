@@ -1,8 +1,6 @@
 // 97 = BSC test
 // 56 = BSC main
 // 777 = cTH :P
-export const test_pb = "0x58556c103590c0cb20bbd261618fe87a13b6e2bc";
-
 const contracts = {
   multiCall: {
     56: "0x1ee38d535d541c55c9dae27b12edf090c608e6fb",

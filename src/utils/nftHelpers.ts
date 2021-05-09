@@ -1,9 +1,11 @@
 import BigNumber from "bignumber.js";
+import BLAST_OFF_COLLECTION from "config/constants/nfts/2114";
 import { PokemoonNft } from "config/constants/nfts/types";
+import tokenIdToPack from "config/tokenIdToPack.json";
 
-const isPack = (tokenId: BigNumber) => {
+const isPack = (tokenId: string) => {
   let isPack: boolean;
-  tokenId.isLessThan(new BigNumber(11000000))
+  new BigNumber(tokenId).isLessThan(new BigNumber(11000000))
     ? (isPack = true)
     : (isPack = false);
   return isPack;
@@ -19,24 +21,22 @@ const getBaseUri = (pack: string) => {
 };
 
 const getCardData = (tokenId: string, pack: string) => {
-  const card: PokemoonNft = {
-    tokenId: tokenId,
-    isPack: false,
-    set: pack,
-    imageUrl: getBaseUri(pack)?.concat(tokenId) ?? "",
-  };
-  return card;
+  if (
+    !isPack(tokenId) &&
+    Object.keys(BLAST_OFF_COLLECTION).includes(tokenId.substr(0, 2))
+  ) {
+    switch (pack) {
+      case "Blast Off":
+        return BLAST_OFF_COLLECTION[parseInt(tokenId.substr(0, 2))];
+    }
+  }
 };
 
 export const handleTokenIdResponse = (tokenIds: BigNumber[], pack: string) => {
   const packs: string[] = [];
   const cards: PokemoonNft[] = [];
   tokenIds.forEach((tokenId: BigNumber) => {
-    if (isPack(tokenId)) {
-      packs.push(tokenId.toString());
-    } else {
-      const card: PokemoonNft = getCardData(tokenId.toString(), pack);
-    }
+    const card = getCardData(tokenId.toString(), pack);
   });
   return { pack: { packs, cards } };
 };

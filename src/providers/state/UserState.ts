@@ -58,7 +58,7 @@ export const asyncFetchNftBalance = createAsyncThunk(
   async ({ account }: { account: string }) => {
     const nftAddresses: { [key: string]: string } = {
       blastOff: contracts.blastOff[process.env.REACT_APP_CHAIN_ID],
-      // ampedUp: contracts.ampedUp[process.env.REACT_APP_CHAIN_ID],
+      ampedUp: contracts.ampedUp[process.env.REACT_APP_CHAIN_ID],
     };
     const blastOffCalls = [
       {
@@ -70,12 +70,12 @@ export const asyncFetchNftBalance = createAsyncThunk(
     // const ampedUpCalls = [
     //   { address: nftAddresses.ampedUp, name: "tokensOwned", params: [account] },
     // ];
-    // { address: nftAddresses.ampedUp, name: "tokensOwned", params: [account] },
+
     const blastOffRes = await multicall(BlastOffAbi, blastOffCalls);
     // const ampedUpRes = await multicall(AmpedUpAbi, calls);
     const blastOffTokenIds: BigNumber[] = blastOffRes[0][0];
 
-    const { pack } = handleTokenIdResponse(blastOffTokenIds, "blastOff");
+    handleTokenIdResponse(blastOffTokenIds, "Blast Off");
 
     // console.error("Web3 failed to retrieve nftBalance.");
     return {
