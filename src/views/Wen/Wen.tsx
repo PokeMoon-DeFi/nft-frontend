@@ -11,7 +11,14 @@ import { useState, useEffect } from "react";
 import useAuth from "hooks/useAuth";
 import { ConnectorNames } from "utils/types";
 import { useWeb3React } from "@web3-react/core";
-import { Box, Typography, useTheme, useMediaQuery } from "@material-ui/core";
+import {
+  Box,
+  Typography,
+  useTheme,
+  useMediaQuery,
+  Grid,
+  Link,
+} from "@material-ui/core";
 import styled from "styled-components";
 import Divider from "@material-ui/core/Divider";
 
@@ -33,6 +40,16 @@ const Bulletin = styled(Box)`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  box-shadow: 0px 4px 14px 7px rgb(149 74 137);
+  padding: 20px;
+`;
+
+const CTALabel = styled(Typography)`
+  font-size: 30px;
+`;
+
+const CTALink = styled(Link)`
+  cursor: pointer;
 `;
 
 const Wen = () => {
@@ -40,8 +57,6 @@ const Wen = () => {
   const [pending, setPending] = useState(false);
   const { login } = useAuth();
   const { account } = useWeb3React();
-  const theme = useTheme();
-  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
 
   useEffect(() => {
     if (pending && account) {
@@ -67,27 +82,52 @@ const Wen = () => {
           Now Available
         </Typography>
       </StyledBox>
-      <VideoPlayer
-        url={"https://www.youtube.com/watch?v=7dMQ1MonGBY"}
-        playing
-        muted
-        width={isMobile ? "auto" : 800}
-      />
-      <Button>Buy Now</Button>
-      <Bulletin>
-        <Typography>Welcome to the world of Pokemoon</Typography>
-        <Divider
-          style={{
-            width: "80%",
-            height: 6,
-            backgroundColor: "pink",
-            borderRadius: 30,
-          }}
-        />
-        <Typography>Feeling lost? Check out our Docs</Typography>
-        <Typography>Explore the Pokemoon Universe</Typography>
-        <Typography>Join the Pokemoon Community Discord</Typography>
-      </Bulletin>
+      <Grid container spacing={6}>
+        <Grid item xs={12} sm={6}>
+          <VideoPlayer
+            url={"https://www.youtube.com/watch?v=7dMQ1MonGBY"}
+            playing
+            muted
+            width={"100%"}
+          />
+        </Grid>
+        <Grid item xs={12} sm={6}>
+          <Bulletin>
+            <Typography
+              style={{
+                textDecoration: "underlined",
+                fontStyle: "italic",
+                fontSize: 35,
+              }}
+            >
+              Welcome to the world of Pokemoon!
+            </Typography>
+            <Divider
+              style={{
+                width: "80%",
+                height: 6,
+                backgroundColor: "pink",
+                borderRadius: 30,
+              }}
+            />
+            <CTALabel>
+              <CTALink>Buy</CTALink> our latest packs!
+            </CTALabel>
+            <CTALabel>
+              Feeling lost? Check out our <CTALink>Docs</CTALink>
+            </CTALabel>
+            <CTALabel>
+              <Link>Explore</Link> the Pokemoon Universe
+            </CTALabel>
+            <CTALabel>
+              Join the{" "}
+              <Link href="https://discord.gg/q489KUr3TD">
+                Pokemoon Community Discord
+              </Link>
+            </CTALabel>
+          </Bulletin>
+        </Grid>
+      </Grid>
     </Content>
   );
 };
