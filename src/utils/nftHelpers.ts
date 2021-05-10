@@ -15,7 +15,7 @@ const isPack = (tokenId: string) => {
 
 const getBaseUri = (pack: string) => {
   switch (pack) {
-    case "Blast Off":
+    case "blastOff":
       return "https://storage.pokemoonapis.com/context/token/fde4/identifier/";
     default:
       break;
