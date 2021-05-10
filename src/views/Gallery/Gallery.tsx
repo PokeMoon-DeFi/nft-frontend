@@ -4,83 +4,82 @@ import {
   Content,
   WiggleBall,
   FilterDashboard,
+  TableGrid,
 } from "nft-uikit";
 import { useAppSelector } from "providers";
 import Grid from "@material-ui/core/Grid";
 import { useEffect, useMemo, useState } from "react";
 import { getPackInfo } from "utils/callHelpers";
 import BLAST_OFF_COLLECTION from "config/constants/nfts/2114";
-import { PokemoonPack } from "config/constants/nfts/types";
+import { PokemoonPack, PokemoonNft } from "config/constants/nfts/types";
 import Container from "@material-ui/core/Container";
 
 const imageUrl = "/images/packs/Blastoff.png";
 const name = "Blastoff";
 
+interface FilterState {
+  rarities: string[];
+  types: string[];
+  packs: string[];
+}
+
 const GalleryView = () => {
-  const packIds = useAppSelector(
-    (state) => state.user.nftBalance.blastOff.packs
+  const userNfts = useAppSelector(
+    (state) => state.user.nftBalance.blastOff.cards
   );
 
-  const [packs, setPacks] = useState<PokemoonPack[]>([]);
+  const [viewState, setViewState] = useState("table");
+  const [filterState, setFilterState] = useState<FilterState>({
+    rarities: [],
+    types: [],
+    packs: [],
+  });
+
+  const [filterNfts, setFilterNfts] = useState<PokemoonNft[]>();
 
   useEffect(() => {
-    async function fetchData() {
-      for (const id of packIds) {
-        const res = await getPackInfo(id);
-        if (res[4].length === 8) {
-          const reduced = [res[0], res[1], res[2], res[3], res[4]];
-          const nfts = reduced.map((r) => BLAST_OFF_COLLECTION[r.slice(0, 2)]);
-          const pack: PokemoonPack = { packId: id, imageUrl, nfts, name };
-          setPacks((state) => [...state, pack]);
-        } else {
-          const reduced = [res[0], res[1], res[2], res[3]];
-          const nfts = reduced.map((r) => BLAST_OFF_COLLECTION[r]);
-          const pack: PokemoonPack = { packId: id, imageUrl, nfts, name };
-          setPacks((state) => [...state, pack]);
+    const { rarities, types, packs } = filterState;
+    const filteredNfts = userNfts.filter((nft) => {
+      if (types && types.length > 0) {
+        const type = nft.type;
+        if (!type || !types.includes(type)) {
+          return false;
         }
       }
-    }
 
-    fetchData();
-  }, [packIds]);
+      return true;
+    });
+    setFilterNfts(filteredNfts);
+  }, [filterState, userNfts]);
 
   return (
     <Container
       maxWidth="lg"
       style={{
-        marginTop: 60,
         display: "flex",
         justifyContent: "center",
+        flexDirection: "column",
       }}
     >
-      {/* <FilterDashboard /> */}
-      <Grid
-        container
-        spacing={2}
-        justify="center"
-        style={{ padding: 12, height: "100%" }}
-      >
-        {packs && packs.length === 0 && (
-          <WiggleBall src={"/images/balls/MAXRBALL.png"} />
+      <FilterDashboard
+        onViewStateChange={(state) => setViewState(state)}
+        onTypeFilterChange={(filter) =>
+          setFilterState((state) => ({ ...state, types: filter }))
+        }
+        onRarityFilterChange={(filter) =>
+          setFilterState((state) => ({ ...state, rarities: filter }))
+        }
+        onPackFilterChange={(filter) =>
+          setFilterState((state) => ({ ...state, packs: filter }))
+        }
+      />
+      <Content maxWidth="md">
+        {viewState === "grid" ? (
+          <Gallery nfts={filterNfts} />
+        ) : (
+          <TableGrid nfts={filterNfts ?? []} />
         )}
-        {packs?.map((pack, index) => (
-          <Grid
-            item
-            sm={6}
-            md={4}
-            lg={4}
-            key={index.toString()}
-            style={{ display: "flex", justifyContent: "center" }}
-          >
-            <PackCard
-              pack={pack}
-              onPackSelected={(id) => {
-                window.location.href = `/pack/${id}`;
-              }}
-            />
-          </Grid>
-        ))}
-      </Grid>
+      </Content>
     </Container>
   );
 };

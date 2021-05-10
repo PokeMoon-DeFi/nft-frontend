@@ -24,6 +24,7 @@ export interface PokemoonNft {
   glbUrl?: string;
   tokenUriResponse?: any;
   artist?: ArtistInfo;
+  packId?: string;
 }
 
 /**
