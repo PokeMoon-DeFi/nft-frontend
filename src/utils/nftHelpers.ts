@@ -28,7 +28,7 @@ const isPackCached = (packId) => {
 const getBaseUri = (pack: string) => {
   switch (pack) {
     case "blastOff":
-      return "https://storage.pokemoonapis.com/context/token/fde4/identifier/";
+      return "https://storage.pokemoonapis.com/context/token/fde4/";
     default:
       break;
   }
@@ -38,8 +38,8 @@ const getCardData = async (tokenId: string, pack: string) => {
   const cardId = parseInt(tokenId.substr(0, 2));
   const { imageUrl, card, rarity } = BLAST_OFF_COLLECTION[cardId];
   const nft: PokemoonNft = { tokenId, imageUrl, ...card, rarity };
-  nft.gifUrl = getBaseUri(pack) + tokenId + ".gif";
-  nft.glbUrl = getBaseUri(pack) + tokenId + ".glb";
+
+  nft.glbUrl = `/models/${imageUrl.replace(".png", ".glb")}`;
   nft.set = pack;
   nft.packId = tokenIdToPack[tokenId];
 

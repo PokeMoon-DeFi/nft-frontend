@@ -23,6 +23,14 @@ interface FilterState {
   packs: string[];
 }
 
+const renamePack = (name: string) => {
+  switch (name) {
+    case "Blast-Off!": {
+      return "blastOff";
+    }
+  }
+};
+
 const GalleryView = () => {
   const userNfts = useAppSelector(
     (state) => state.user.nftBalance.blastOff.cards
@@ -39,10 +47,22 @@ const GalleryView = () => {
 
   useEffect(() => {
     const { rarities, types, packs } = filterState;
+
+    const renamedPacks = packs.map((pack) => renamePack(pack));
+
     const filteredNfts = userNfts.filter((nft) => {
       if (types && types.length > 0) {
         const type = nft.type;
         if (!type || !types.includes(type)) {
+          return false;
+        }
+      }
+
+      if (renamedPacks && renamedPacks.length > 0) {
+        const { set } = nft;
+
+        //@ts-ignore
+        if (!set || !renamedPacks.includes(set)) {
           return false;
         }
       }
