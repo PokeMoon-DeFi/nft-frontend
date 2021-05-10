@@ -20,6 +20,7 @@ const GalleryView = () => {
   const packIds = useAppSelector(
     (state) => state.user.nftBalance.blastOff.packs
   );
+
   const [packs, setPacks] = useState<PokemoonPack[]>([]);
 
   useEffect(() => {

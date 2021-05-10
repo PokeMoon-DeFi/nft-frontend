@@ -72,14 +72,14 @@ export const asyncFetchNftBalance = createAsyncThunk(
     // ];
 
     const blastOffRes = await multicall(BlastOffAbi, blastOffCalls);
+
     // const ampedUpRes = await multicall(AmpedUpAbi, calls);
     const blastOffTokenIds: BigNumber[] = blastOffRes[0][0];
-
-    handleTokenIdResponse(blastOffTokenIds, "Blast Off");
+    const blastoffBalance = handleTokenIdResponse(blastOffTokenIds, "blastOff");
 
     // console.error("Web3 failed to retrieve nftBalance.");
     return {
-      nftBalance: { blastOff: initialState.nftBalance },
+      nftBalance: { ...blastoffBalance },
     };
   }
 );
