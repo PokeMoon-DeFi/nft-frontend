@@ -21,6 +21,7 @@ interface FilterState {
   rarities: string[];
   types: string[];
   packs: string[];
+  search: string;
 }
 
 const renamePack = (name: string) => {
@@ -41,26 +42,44 @@ const GalleryView = () => {
     rarities: [],
     types: [],
     packs: [],
+    search: "",
   });
 
   const [filterNfts, setFilterNfts] = useState<PokemoonNft[]>();
 
   useEffect(() => {
-    const { rarities, types, packs } = filterState;
+    const { rarities, types, packs, search } = filterState;
 
+    //Match up pack names
     const renamedPacks = packs.map((pack) => renamePack(pack));
 
+    //Check all filters
     const filteredNfts = userNfts.filter((nft) => {
+      const { type, rarity, set, name } = nft;
+
+      //search
+      if (!!search) {
+        if (!name?.match(search)) {
+          return false;
+        }
+      }
+
+      //rarities
+      if (rarities && rarities.length > 0) {
+        if (!rarity || rarities.includes(rarity)) {
+          return false;
+        }
+      }
+
+      //types
       if (types && types.length > 0) {
-        const type = nft.type;
         if (!type || !types.includes(type)) {
           return false;
         }
       }
 
+      //pack sets
       if (renamedPacks && renamedPacks.length > 0) {
-        const { set } = nft;
-
         //@ts-ignore
         if (!set || !renamedPacks.includes(set)) {
           return false;
@@ -76,6 +95,7 @@ const GalleryView = () => {
     <Container
       maxWidth="lg"
       style={{
+        paddingTop: 30,
         display: "flex",
         justifyContent: "center",
         flexDirection: "column",
@@ -92,6 +112,9 @@ const GalleryView = () => {
         onPackFilterChange={(filter) =>
           setFilterState((state) => ({ ...state, packs: filter }))
         }
+        onSearchFilterChange={(filter) => {
+          setFilterState((state) => ({ ...state, search: filter }));
+        }}
       />
       <Content maxWidth="md">
         {viewState === "grid" ? (

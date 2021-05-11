@@ -8,6 +8,7 @@ import {
   asyncFetchBalance,
   asyncFetchNftBalance,
 } from "providers/state/UserState";
+import { Container } from "@material-ui/core";
 import history from "./routerHistory";
 import SuspenseWithChunkError from "components/SuspenseWithChunkError";
 import PageLoader from "components/PageLoader";
@@ -75,7 +76,7 @@ const App: React.FC = () => {
               window.location.href = "/";
             }}
           />
-          <Content maxWidth={"xl"}>
+          <Content maxWidth={"xl"} style={{ justifyContent: "flex-start" }}>
             <Switch>
               <Route path="/" exact>
                 <Wen />
