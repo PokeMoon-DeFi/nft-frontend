@@ -34,7 +34,7 @@ const getBaseUri = (pack: string) => {
   }
 };
 
-const getCardData = async (tokenId: string, pack: string) => {
+export const getCardData = async (tokenId: string, pack: string) => {
   const cardId = parseInt(tokenId.substr(0, 2));
   const { imageUrl, card, rarity } = BLAST_OFF_COLLECTION[cardId];
   const nft: PokemoonNft = { tokenId, imageUrl, ...card, rarity };

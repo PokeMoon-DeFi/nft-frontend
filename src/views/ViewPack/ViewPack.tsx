@@ -22,7 +22,7 @@ import { useAppSelector } from "providers";
 import { Input, Typography } from "@material-ui/core";
 import { useInput } from "hooks/useInput";
 import Grid from "@material-ui/core/Grid";
-import { collapseTextChangeRangesAcrossMultipleVersions } from "typescript";
+import { getCardData } from "utils/nftHelpers";
 
 const ViewPack = () => {
   let { id } = useParams();
@@ -42,14 +42,9 @@ const ViewPack = () => {
         const tokenId = res[i];
 
         if (tokenId.length === 8) {
-          const n: PokemoonNft = {
-            ...BLAST_OFF_COLLECTION[tokenId.substr(0, 2)],
-            uniqueId: tokenId,
-          };
-          console.log(n);
-          n.glbUrl = `/models/${n.imageUrl.replace(/\..*/g, ".glb")}`;
+          const card = await getCardData(tokenId, "blastOff");
 
-          setNfts((state) => [...state, n]);
+          setNfts((state) => [...state, card]);
         }
       }
     };
