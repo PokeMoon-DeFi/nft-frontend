@@ -14,6 +14,7 @@ import SuspenseWithChunkError from "components/SuspenseWithChunkError";
 import PageLoader from "components/PageLoader";
 import BigNumber from "bignumber.js";
 import Wen from "views/Wen";
+import { Connect } from "views/Connect";
 import useRefresh from "hooks/useRefresh";
 import { Page, Content, Particles } from "nft-uikit";
 import { NavHeader, Fab, LinkConfigState } from "nft-uikit";
@@ -107,7 +108,7 @@ const App: React.FC = () => {
             >
               <Switch>
                 <Route path="/" exact>
-                  <Wen />
+                  <Connect />
                 </Route>
                 <Route path="/buy" exact>
                   <BuyPacks />
