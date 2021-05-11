@@ -5,6 +5,7 @@ import {
   WiggleBall,
   FilterDashboard,
   TableGrid,
+  RarityChip,
 } from "nft-uikit";
 import { useAppSelector } from "providers";
 import Grid from "@material-ui/core/Grid";
@@ -30,6 +31,11 @@ const renamePack = (name: string) => {
       return "blastOff";
     }
   }
+};
+
+const capitalize = (s: string) => {
+  if (typeof s !== "string") return "";
+  return s.charAt(0).toUpperCase() + s.slice(1);
 };
 
 const GalleryView = () => {
@@ -59,14 +65,14 @@ const GalleryView = () => {
 
       //search
       if (!!search) {
-        if (!name?.match(search)) {
+        if (name?.search(new RegExp(search, "gi")) === -1) {
           return false;
         }
       }
 
       //rarities
       if (rarities && rarities.length > 0) {
-        if (!rarity || rarities.includes(rarity)) {
+        if (!rarity || !rarities.includes(rarity)) {
           return false;
         }
       }
