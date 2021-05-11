@@ -16,8 +16,16 @@ const PublicGallery: FC = () => {
   });
 
   return (
-    <Content maxWidth="lg" style={{ justifyContent: "flex-start" }}>
-      <Gallery nfts={nfts} />
+    <Content
+      maxWidth="lg"
+      style={{
+        justifyContent: "flex-start",
+        height: "100%",
+        paddingTop: 40,
+        paddingBottom: 40,
+      }}
+    >
+      <Gallery pageSize={8} nfts={nfts} />
     </Content>
   );
 };

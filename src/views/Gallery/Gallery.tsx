@@ -43,7 +43,7 @@ const GalleryView = () => {
     (state) => state.user.nftBalance.blastOff.cards
   );
 
-  const [viewState, setViewState] = useState("table");
+  const [viewState, setViewState] = useState("grid");
   const [filterState, setFilterState] = useState<FilterState>({
     rarities: [],
     types: [],
@@ -101,10 +101,11 @@ const GalleryView = () => {
     <Container
       maxWidth="lg"
       style={{
-        paddingTop: 30,
         display: "flex",
         justifyContent: "center",
         flexDirection: "column",
+        alignItems: "center",
+        height: "100%",
       }}
     >
       <FilterDashboard
@@ -122,9 +123,9 @@ const GalleryView = () => {
           setFilterState((state) => ({ ...state, search: filter }));
         }}
       />
-      <Content maxWidth="md">
+      <Content maxWidth="lg" style={{ justifyContent: "flex-start" }}>
         {viewState === "grid" ? (
-          <Gallery nfts={filterNfts} />
+          <Gallery pageSize={8} nfts={filterNfts} />
         ) : (
           <TableGrid nfts={filterNfts ?? []} />
         )}

@@ -114,7 +114,10 @@ const BuyPage = () => {
   const matches = useMediaQuery(theme.breakpoints.down("sm"));
 
   return (
-    <Content maxWidth="lg">
+    <Content
+      maxWidth="lg"
+      style={{ flex: 1, height: " 100%", alignItems: "center" }}
+    >
       <Grid
         container
         justify="center"
@@ -122,7 +125,7 @@ const BuyPage = () => {
         style={{
           marginTop: 12,
           marginBottom: matches ? 24 : 0,
-          alignItems: "flex-start",
+          alignItems: "center",
           display: "flex",
         }}
       >

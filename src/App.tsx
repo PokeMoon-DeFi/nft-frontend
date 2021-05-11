@@ -42,14 +42,14 @@ const linkConfig: LinkConfigState[] = [
     icon: <StoreOutlinedIcon />,
   },
   {
+    target: "/collection",
+    label: "My Collection",
+    icon: <AccountBalanceIcon />,
+  },
+  {
     target: "/gallery",
     label: "Gallery",
     icon: <PhotoSizeSelectActualIcon />,
-  },
-  {
-    target: "/collection",
-    label: "Collection",
-    icon: <AccountBalanceIcon />,
   },
 ];
 
@@ -91,41 +91,42 @@ const App: React.FC = () => {
               window.location.href = "/";
             }}
             linkConfig={linkConfig}
-          />
-          <Fab
-            account={account ?? ""}
-            onConnect={() => login(ConnectorNames.Injected)}
-            onLogout={() => {
-              logout();
-              window.location.href = "/";
-            }}
-            linkConfig={linkConfig}
-          />
-          <Content
-            maxWidth={"xl"}
-            style={{ justifyContent: "flex-start", paddingTop: 40 }}
           >
-            <Switch>
-              <Route path="/" exact>
-                <Wen />
-              </Route>
-              <Route path="/buy" exact>
-                <BuyPacks />
-              </Route>
-              <Route path="/gallery" exact>
-                <PublicGallery />
-              </Route>
-              <Route path="/collection" exact>
-                <Gallery />
-              </Route>
-              <Route path="/pack/:id">
-                <ViewPack />
-              </Route>
-              <Route>
-                <Redirect to="/buy" />
-              </Route>
-            </Switch>
-          </Content>
+            <Fab
+              account={account ?? ""}
+              onConnect={() => login(ConnectorNames.Injected)}
+              onLogout={() => {
+                logout();
+                window.location.href = "/";
+              }}
+              linkConfig={linkConfig}
+            />
+            <Container
+              maxWidth={"xl"}
+              style={{ justifyContent: "flex-start", paddingTop: 30, flex: 1 }}
+            >
+              <Switch>
+                <Route path="/" exact>
+                  <Wen />
+                </Route>
+                <Route path="/buy" exact>
+                  <BuyPacks />
+                </Route>
+                <Route path="/gallery" exact>
+                  <PublicGallery />
+                </Route>
+                <Route path="/collection" exact>
+                  <Gallery />
+                </Route>
+                <Route path="/pack/:id">
+                  <ViewPack />
+                </Route>
+                <Route>
+                  <Redirect to="/buy" />
+                </Route>
+              </Switch>
+            </Container>
+          </NavHeader>
         </Page>
       </SuspenseWithChunkError>
     </Router>
