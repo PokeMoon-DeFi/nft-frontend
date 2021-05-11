@@ -16,19 +16,42 @@ import BigNumber from "bignumber.js";
 import Wen from "views/Wen";
 import useRefresh from "hooks/useRefresh";
 import { Page, Content, Particles } from "nft-uikit";
-import { NavHeader, Fab } from "nft-uikit";
+import { NavHeader, Fab, LinkConfigState } from "nft-uikit";
 import useAuth from "hooks/useAuth";
 import { ConnectorNames } from "utils/types";
+import AccountBalanceIcon from "@material-ui/icons/AccountBalance";
+import StoreOutlinedIcon from "@material-ui/icons/StoreOutlined";
+import PhotoSizeSelectActualIcon from "@material-ui/icons/PhotoSizeSelectActual";
 
 // Lazy loading
 const Landing = lazy(() => import("./views/Landing"));
 const BuyPacks = lazy(() => import("./views/BuyPacks"));
 const Gallery = lazy(() => import("./views/Gallery"));
 const ViewPack = lazy(() => import("./views/ViewPack"));
+const PublicGallery = lazy(() => import("./views/Gallery/PublicGallery"));
+
 BigNumber.config({
   EXPONENTIAL_AT: 1000,
   DECIMAL_PLACES: 80,
 });
+
+const linkConfig: LinkConfigState[] = [
+  {
+    target: "/buy",
+    label: "Buy",
+    icon: <StoreOutlinedIcon />,
+  },
+  {
+    target: "/gallery",
+    label: "Gallery",
+    icon: <PhotoSizeSelectActualIcon />,
+  },
+  {
+    target: "/collection",
+    label: "Collection",
+    icon: <AccountBalanceIcon />,
+  },
+];
 
 const App: React.FC = () => {
   // https://github.com/ChainSafe/web3.js/issues/3898
@@ -67,6 +90,7 @@ const App: React.FC = () => {
               logout();
               window.location.href = "/";
             }}
+            linkConfig={linkConfig}
           />
           <Fab
             account={account ?? ""}
@@ -75,8 +99,12 @@ const App: React.FC = () => {
               logout();
               window.location.href = "/";
             }}
+            linkConfig={linkConfig}
           />
-          <Content maxWidth={"xl"} style={{ justifyContent: "flex-start" }}>
+          <Content
+            maxWidth={"xl"}
+            style={{ justifyContent: "flex-start", paddingTop: 40 }}
+          >
             <Switch>
               <Route path="/" exact>
                 <Wen />
@@ -85,6 +113,9 @@ const App: React.FC = () => {
                 <BuyPacks />
               </Route>
               <Route path="/gallery" exact>
+                <PublicGallery />
+              </Route>
+              <Route path="/collection" exact>
                 <Gallery />
               </Route>
               <Route path="/pack/:id">
