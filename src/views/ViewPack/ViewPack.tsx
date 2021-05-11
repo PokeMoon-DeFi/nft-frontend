@@ -5,6 +5,7 @@ import {
   Gallery,
   rawMaterialTheme,
   Content,
+  NftCard,
 } from "nft-uikit";
 import React, { useCallback, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
@@ -39,11 +40,13 @@ const ViewPack = () => {
 
       for (let i = 0; i < 5; i++) {
         const tokenId = res[i];
+
         if (tokenId.length === 8) {
           const n: PokemoonNft = {
             ...BLAST_OFF_COLLECTION[tokenId.substr(0, 2)],
             uniqueId: tokenId,
           };
+          console.log(n);
           n.glbUrl = `/models/${n.imageUrl.replace(/\..*/g, ".glb")}`;
 
           setNfts((state) => [...state, n]);
@@ -74,7 +77,10 @@ const ViewPack = () => {
   const [pId, userInput] = useInput({ type: "text" });
 
   return (
-    <Content maxWidth="lg">
+    <Content
+      maxWidth="xl"
+      style={{ paddingTop: 60, justifyContent: "flex-start" }}
+    >
       <Grid
         container
         spacing={4}
@@ -105,7 +111,28 @@ const ViewPack = () => {
           </Button>
         </Grid>
       </Grid>
-      <Gallery nfts={nfts} style={{ justifyContent: "center" }} />
+      <Grid
+        container
+        spacing={4}
+        justify="center"
+        style={{ alignItems: "center", flex: 1, paddingBottom: "10%" }}
+      >
+        {nfts.map((nft, index) => {
+          return (
+            <Grid
+              item
+              md={2}
+              style={{
+                display: "flex",
+                justifyContent: "center",
+              }}
+              key={index.toString()}
+            >
+              <NftCard nft={nft} imageUrl={nft.imageUrl} />
+            </Grid>
+          );
+        })}
+      </Grid>
       <SendToAddress
         open={openTransferModal}
         handleClose={() => setOpenTransferModal(false)}

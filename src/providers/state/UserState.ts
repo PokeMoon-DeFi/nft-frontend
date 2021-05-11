@@ -79,7 +79,6 @@ export const asyncFetchNftBalance = createAsyncThunk(
       blastOffTokenIds,
       "blastOff"
     );
-    console.log(blastoffBalance);
     // console.error("Web3 failed to retrieve nftBalance.");
     return {
       nftBalance: { ...blastoffBalance },
