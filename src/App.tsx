@@ -23,7 +23,7 @@ import { ConnectorNames } from "utils/types";
 import AccountBalanceIcon from "@material-ui/icons/AccountBalance";
 import StoreOutlinedIcon from "@material-ui/icons/StoreOutlined";
 import PhotoSizeSelectActualIcon from "@material-ui/icons/PhotoSizeSelectActual";
-
+import ToolBar from "@material-ui/core/Toolbar";
 // Lazy loading
 const Landing = lazy(() => import("./views/Landing"));
 const BuyPacks = lazy(() => import("./views/BuyPacks"));
@@ -93,6 +93,7 @@ const App: React.FC = () => {
             }}
             linkConfig={linkConfig}
           >
+            <ToolBar />
             <Fab
               account={account ?? ""}
               onConnect={() => login(ConnectorNames.Injected)}
@@ -104,7 +105,7 @@ const App: React.FC = () => {
             />
             <Container
               maxWidth={"xl"}
-              style={{ justifyContent: "flex-start", paddingTop: 30, flex: 1 }}
+              style={{ justifyContent: "flex-start", flex: 1 }}
             >
               <Switch>
                 <Route path="/" exact>

@@ -21,7 +21,6 @@ const PublicGallery: FC = () => {
       style={{
         justifyContent: "flex-start",
         height: "100%",
-        paddingTop: 40,
         paddingBottom: 40,
       }}
     >
