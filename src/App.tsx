@@ -108,7 +108,7 @@ const App: React.FC = () => {
           >
             <Switch>
               <Route path="/" exact>
-                <Connect />
+                <Landing />
               </Route>
               <Route path="/buy" exact>
                 <BuyPacks />
