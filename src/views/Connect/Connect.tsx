@@ -17,10 +17,7 @@ const Connect = () => {
   }, [account, pending]);
 
   return (
-    <Content
-      maxWidth="xl"
-      style={{ paddingTop: 32, paddingLeft: 0, paddingRight: 0 }}
-    >
+    <Content maxWidth="xl" style={{ paddingLeft: 0, paddingRight: 0 }}>
       <ConnectScreen
         imgUrl={"/images/balls/MoonLogo.png"}
         open={open}

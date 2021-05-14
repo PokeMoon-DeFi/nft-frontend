@@ -111,25 +111,34 @@ const BuyPage = () => {
   const { login, logout } = useAuth();
 
   const theme = useTheme();
-  const matches = useMediaQuery(theme.breakpoints.down("sm"));
+  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
 
   return (
-    <Content
-      maxWidth="lg"
-      style={{ flex: 1, height: " 100%", alignItems: "center" }}
-    >
+    <>
       <Grid
         container
-        justify="center"
+        justify="space-around"
         spacing={6}
         style={{
-          marginTop: 12,
-          marginBottom: matches ? 24 : 0,
+          padding: "50px 8px 72px 8px",
           alignItems: "center",
           display: "flex",
+          flex: 1,
+          height: !isMobile ? "100%" : "auto",
         }}
       >
-        <Grid item sm={12} md={3} style={{ paddingTop: 12 }}>
+        <Grid
+          item
+          sm={12}
+          md={3}
+          style={{
+            paddingTop: 12,
+            alignItems: "center",
+            display: "flex",
+            justifyContent: "center",
+            flex: 1,
+          }}
+        >
           <img
             src="/images/packs/Blastoff.png"
             alt="pack"
@@ -149,6 +158,7 @@ const BuyPage = () => {
           />
         </Grid>
       </Grid>
+      {/* <div style={{ height: 20, width: "100%" }} /> */}
       <Modal
         title="Are you sure?"
         content="100 PBs will be burned in this transaction."
@@ -179,7 +189,7 @@ const BuyPage = () => {
           setCollectedPackId(-1);
         }}
       />
-    </Content>
+    </>
   );
 };
 

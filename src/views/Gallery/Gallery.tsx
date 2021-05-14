@@ -15,9 +15,6 @@ import BLAST_OFF_COLLECTION from "config/constants/nfts/2114";
 import { PokemoonPack, PokemoonNft } from "config/constants/nfts/types";
 import Container from "@material-ui/core/Container";
 
-const imageUrl = "/images/packs/Blastoff.png";
-const name = "Blastoff";
-
 interface FilterState {
   rarities: string[];
   types: string[];
@@ -102,10 +99,11 @@ const GalleryView = () => {
       maxWidth="lg"
       style={{
         display: "flex",
-        justifyContent: "center",
+        justifyContent: "flex-start",
         flexDirection: "column",
         alignItems: "center",
         height: "100%",
+        paddingTop: 20,
       }}
     >
       <FilterDashboard

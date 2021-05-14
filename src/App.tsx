@@ -24,6 +24,8 @@ import AccountBalanceIcon from "@material-ui/icons/AccountBalance";
 import StoreOutlinedIcon from "@material-ui/icons/StoreOutlined";
 import PhotoSizeSelectActualIcon from "@material-ui/icons/PhotoSizeSelectActual";
 import ToolBar from "@material-ui/core/Toolbar";
+import { makeStyles } from "@material-ui/styles";
+
 // Lazy loading
 const Landing = lazy(() => import("./views/Landing"));
 const BuyPacks = lazy(() => import("./views/BuyPacks"));
@@ -54,6 +56,11 @@ const linkConfig: LinkConfigState[] = [
   },
 ];
 
+const useStyles = makeStyles((theme) => ({
+  //@ts-ignore
+  offset: theme.mixins.toolbar,
+}));
+
 const App: React.FC = () => {
   // https://github.com/ChainSafe/web3.js/issues/3898
   useEffect(() => {
@@ -72,6 +79,7 @@ const App: React.FC = () => {
   // If stuff keeps rerendering every 10 sec this is what caused that.
   const { fastRefresh } = useRefresh();
   const { login, logout } = useAuth();
+  const classes = useStyles();
 
   useEffect(() => {
     if (account) {
@@ -92,43 +100,42 @@ const App: React.FC = () => {
               window.location.href = "/";
             }}
             linkConfig={linkConfig}
+          />
+
+          <Container
+            maxWidth={"xl"}
+            style={{ height: "100%", justifyContent: "flex-start", flex: 1 }}
           >
-            <ToolBar />
-            <Fab
-              account={account ?? ""}
-              onConnect={() => login(ConnectorNames.Injected)}
-              onLogout={() => {
-                logout();
-                window.location.href = "/";
-              }}
-              linkConfig={linkConfig}
-            />
-            <Container
-              maxWidth={"xl"}
-              style={{ justifyContent: "flex-start", flex: 1 }}
-            >
-              <Switch>
-                <Route path="/" exact>
-                  <Connect />
-                </Route>
-                <Route path="/buy" exact>
-                  <BuyPacks />
-                </Route>
-                <Route path="/gallery" exact>
-                  <PublicGallery />
-                </Route>
-                <Route path="/collection" exact>
-                  <Gallery />
-                </Route>
-                <Route path="/pack/:id">
-                  <ViewPack />
-                </Route>
-                <Route>
-                  <Redirect to="/buy" />
-                </Route>
-              </Switch>
-            </Container>
-          </NavHeader>
+            <Switch>
+              <Route path="/" exact>
+                <Connect />
+              </Route>
+              <Route path="/buy" exact>
+                <BuyPacks />
+              </Route>
+              <Route path="/gallery" exact>
+                <PublicGallery />
+              </Route>
+              <Route path="/collection" exact>
+                <Gallery />
+              </Route>
+              <Route path="/pack/:id">
+                <ViewPack />
+              </Route>
+              <Route>
+                <Redirect to="/buy" />
+              </Route>
+            </Switch>
+          </Container>
+          <Fab
+            account={account ?? ""}
+            onConnect={() => login(ConnectorNames.Injected)}
+            onLogout={() => {
+              logout();
+              window.location.href = "/";
+            }}
+            linkConfig={linkConfig}
+          />
         </Page>
       </SuspenseWithChunkError>
     </Router>

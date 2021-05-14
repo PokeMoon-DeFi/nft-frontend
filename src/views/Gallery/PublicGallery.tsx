@@ -22,6 +22,7 @@ const PublicGallery: FC = () => {
         justifyContent: "flex-start",
         height: "100%",
         paddingBottom: 40,
+        paddingTop: 20,
       }}
     >
       <Gallery pageSize={8} nfts={nfts} />
