@@ -117,7 +117,7 @@ const BuyPage = () => {
     <>
       <Grid
         container
-        justify="space-around"
+        justify="center"
         spacing={6}
         style={{
           padding: "50px 8px 72px 8px",

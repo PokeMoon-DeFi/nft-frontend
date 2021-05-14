@@ -25,6 +25,7 @@ import StoreOutlinedIcon from "@material-ui/icons/StoreOutlined";
 import PhotoSizeSelectActualIcon from "@material-ui/icons/PhotoSizeSelectActual";
 import ToolBar from "@material-ui/core/Toolbar";
 import { makeStyles } from "@material-ui/styles";
+import HomeIcon from "@material-ui/icons/Home";
 
 // Lazy loading
 const Landing = lazy(() => import("./views/Landing"));
@@ -39,6 +40,11 @@ BigNumber.config({
 });
 
 const linkConfig: LinkConfigState[] = [
+  {
+    target: "/",
+    label: "Home",
+    icon: <HomeIcon />,
+  },
   {
     target: "/buy",
     label: "Buy",
