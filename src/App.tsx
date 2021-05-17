@@ -33,6 +33,7 @@ const BuyPacks = lazy(() => import("./views/BuyPacks"));
 const Gallery = lazy(() => import("./views/Gallery"));
 const ViewPack = lazy(() => import("./views/ViewPack"));
 const PublicGallery = lazy(() => import("./views/Gallery/PublicGallery"));
+const WhitePaperView = lazy(() => import("./views/WhitePaper"));
 
 BigNumber.config({
   EXPONENTIAL_AT: 1000,
@@ -124,6 +125,9 @@ const App: React.FC = () => {
               </Route>
               <Route path="/collection" exact>
                 <Gallery />
+              </Route>
+              <Route path="/white-paper" exact>
+                <WhitePaperView />
               </Route>
               <Route path="/pack/:id">
                 <ViewPack />
