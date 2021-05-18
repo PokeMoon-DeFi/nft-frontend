@@ -57,8 +57,8 @@ const linkConfig: LinkConfigState[] = [
     icon: <AccountBalanceIcon />,
   },
   {
-    target: "/gallery",
-    label: "Gallery",
+    target: "/pokedex/blastOff",
+    label: "Pokedex",
     icon: <PhotoSizeSelectActualIcon />,
   },
 ];
@@ -120,7 +120,7 @@ const App: React.FC = () => {
               <Route path="/buy" exact>
                 <BuyPacks />
               </Route>
-              <Route path="/gallery" exact>
+              <Route path="/pokedex/:set" exact>
                 <PublicGallery />
               </Route>
               <Route path="/collection" exact>

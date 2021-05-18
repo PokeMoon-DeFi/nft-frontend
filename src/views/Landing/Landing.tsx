@@ -188,17 +188,17 @@ const Landing: React.FC = () => {
               }}
             />
             <CTALabel>
-              🛍️<CTALink href="/buy">Buy</CTALink> our latest packs!
+              🛍️ <CTALink href="/buy">Buy</CTALink> our latest packs!
             </CTALabel>
             <CTALabel>
               📚 Feeling lost? Check out our{" "}
               <CTALink href="https://docs.pokemoon.app/">Docs</CTALink>
             </CTALabel>
             <CTALabel>
-              🗺️<Link href="/gallery">Explore</Link> the Pokemoon Universe
+              🗺️ <Link href="/gallery">Explore</Link> the Pokemoon Universe
             </CTALabel>
             <CTALabel>
-              🦄Join the{" "}
+              🦄 Join the{" "}
               <Link href="https://discord.gg/mz2yY2vUMM">
                 Pokemoon Community Discord
               </Link>

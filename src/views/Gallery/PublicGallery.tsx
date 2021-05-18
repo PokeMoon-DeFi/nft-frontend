@@ -2,8 +2,10 @@ import BLAST_OFF_COLLECTION from "config/constants/nfts/2114";
 import { PokemoonNft } from "config/constants/nfts/types";
 import { FC } from "react";
 import { Gallery, Content } from "nft-uikit";
+import { useParams } from "react-router-dom";
 
 const PublicGallery: FC = () => {
+  const { set } = useParams();
   const nfts: PokemoonNft[] = Object.entries(BLAST_OFF_COLLECTION)
     .map(([key, value]) => {
       const { card } = value;
@@ -12,7 +14,7 @@ const PublicGallery: FC = () => {
     ?.sort((a, b) => parseInt(b.tokenId) - parseInt(a.tokenId));
 
   nfts?.forEach((nft) => {
-    nft.glbUrl = "/models/" + nft.imageUrl.replace(".png", ".glb");
+    nft.glbUrl = `/models/${set}/` + nft.imageUrl.replace(".png", ".glb");
   });
 
   return (
