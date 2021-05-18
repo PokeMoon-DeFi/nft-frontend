@@ -3,8 +3,8 @@ import BLAST_OFF_COLLECTION, {
   BLAST_OFF_CARDS,
 } from "config/constants/nfts/2114";
 import { PokemoonNft } from "config/constants/nfts/types";
-import tokenIdToPack from "config/tokenIdToPack.json";
-import blastoffPacks from "config/blastOffPacks.json";
+import blastOffTokenCache from "config/constants/cache/blastOff/tokenIdToPack.json";
+import blastOffPackCache from "config/constants/cache/blastOff/blastOffPacks.json";
 import contracts from "config/constants/contracts";
 import multicall from "utils/multicall";
 import BlastOffAbi from "config/abi/BlastOff.json";
@@ -17,12 +17,30 @@ const isPack = (tokenId: string) => {
   return isPack;
 };
 
-const isCached = (tokenId) => {
-  return Object.keys(tokenIdToPack).includes(tokenId);
+const getPackCache = (pack: string) => {
+  switch (pack) {
+    default:
+    case "blastOff": {
+      return blastOffPackCache;
+    }
+  }
 };
 
-const isPackCached = (packId) => {
-  return Object.keys(blastoffPacks).includes(packId);
+const getTokenCache = (pack: string) => {
+  switch (pack) {
+    default:
+    case "blastOff": {
+      return blastOffTokenCache;
+    }
+  }
+};
+
+const isTokenCached = (tokenId, pack) => {
+  return Object.keys(getTokenCache(pack)).includes(tokenId);
+};
+
+const isPackCached = (packId, pack) => {
+  return Object.keys(getPackCache(pack)).includes(packId);
 };
 
 const getBaseUri = (pack: string) => {
@@ -42,7 +60,7 @@ export const getCardData = async (tokenId: string, set: string) => {
   nft.glbUrl = `/models/${set}/${imageUrl.replace(".png", ".glb")}`;
   nft.imageUrl = `/images/cards/${set}/${imageUrl}`;
   nft.set = set;
-  nft.packId = tokenIdToPack[tokenId];
+  nft.packId = getTokenCache(set)[tokenId];
 
   return nft;
 };
@@ -60,8 +78,8 @@ export const handleTokenIdResponse = async (
     }
   }
 
-  const missingPacks = packs.filter((packId) => !isPackCached(packId));
-  await collectMissingPacks(missingPacks);
+  const missingPacks = packs.filter((packId) => !isPackCached(packId, pack));
+  await collectMissingPacks(missingPacks, pack);
 
   for (const tokenId of tokenIds) {
     if (tokenId.toNumber() < 11000000) {
@@ -80,7 +98,7 @@ export const handleTokenIdResponse = async (
   return { [pack]: { packs, cards } };
 };
 
-const collectMissingPacks = async (packIds: string[]) => {
+const collectMissingPacks = async (packIds: string[], pack: string) => {
   const nftAddresses: { [key: string]: string } = {
     blastOff: contracts.blastOff[process.env.REACT_APP_CHAIN_ID],
     ampedUp: contracts.ampedUp[process.env.REACT_APP_CHAIN_ID],
@@ -88,7 +106,7 @@ const collectMissingPacks = async (packIds: string[]) => {
 
   const calls = packIds.map((packId) => {
     return {
-      address: nftAddresses.blastOff,
+      address: nftAddresses[pack],
       name: "packedInfo",
       params: [packId],
     };
@@ -99,12 +117,14 @@ const collectMissingPacks = async (packIds: string[]) => {
   for (const res of multiCallResponse) {
     const packId = packIds[index];
     const { card1, card2, card3, card4, card5 } = res;
-    blastoffPacks[packId] = [card1, card2, card3, card4, card5];
-    tokenIdToPack[card1] = packId;
-    tokenIdToPack[card2] = packId;
-    tokenIdToPack[card3] = packId;
-    tokenIdToPack[card4] = packId;
-    tokenIdToPack[card5] = packId;
+    const cache = getPackCache(pack);
+
+    cache[packId] = [card1, card2, card3, card4, card5];
+    cache["card1"] = packId;
+    cache["card2"] = packId;
+    cache["card3"] = packId;
+    cache["card4"] = packId;
+    cache["card5"] = packId;
     index += 1;
   }
 };
