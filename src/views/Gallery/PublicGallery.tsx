@@ -15,6 +15,7 @@ const PublicGallery: FC = () => {
 
   nfts?.forEach((nft) => {
     nft.glbUrl = `/models/${set}/` + nft.imageUrl.replace(".png", ".glb");
+    nft.imageUrl = `/images/cards/${set}/${nft.imageUrl}`;
   });
 
   return (

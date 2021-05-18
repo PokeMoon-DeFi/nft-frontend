@@ -15,8 +15,6 @@ import Divider from "@material-ui/core/Divider";
 function AdCarousel(props) {
   var items = [
     {
-      name: "Random Name #1",
-      description: "Probably the most random thing you have ever seen!",
       desktop: "/images/banners/AmpedUpSoonPC.png",
       mobile: "/images/banners/AmpedUpSoonMobile.png",
     },

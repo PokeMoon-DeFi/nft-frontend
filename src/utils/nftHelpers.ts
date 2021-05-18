@@ -34,13 +34,14 @@ const getBaseUri = (pack: string) => {
   }
 };
 
-export const getCardData = async (tokenId: string, pack: string) => {
+export const getCardData = async (tokenId: string, set: string) => {
   const cardId = parseInt(tokenId.substr(0, 2));
   const { imageUrl, card, rarity } = BLAST_OFF_COLLECTION[cardId];
   const nft: PokemoonNft = { tokenId, imageUrl, ...card, rarity };
 
-  nft.glbUrl = `/models/${pack}/${imageUrl.replace(".png", ".glb")}`;
-  nft.set = pack;
+  nft.glbUrl = `/models/${set}/${imageUrl.replace(".png", ".glb")}`;
+  nft.imageUrl = `/images/cards/${set}/${imageUrl}`;
+  nft.set = set;
   nft.packId = tokenIdToPack[tokenId];
 
   return nft;
