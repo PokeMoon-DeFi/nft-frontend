@@ -18,10 +18,23 @@ const ARTISTS: { [key: string]: ArtistInfo } = {
   },
   NinjaGuy: {
     name: "NinjaGuy",
+    instagram: "@hildahei",
   },
   Mathijs: {
     name: "Mathijs",
     instagram: "@mathijs_cheese",
+  },
+  Hrushi: {
+    name: "Hrushi",
+    instagram: "@artoholichrushi",
+  },
+  Cosmeownaut: {
+    name: "Cosmeownaut",
+    instagram: "@Bad_Things_Good",
+  },
+  Mawa: {
+    name: "Mawa",
+    instagram: "@nikomara._",
   },
 };
 
