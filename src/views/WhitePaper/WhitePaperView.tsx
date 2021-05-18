@@ -18,16 +18,14 @@ import Box from "@material-ui/core/Box";
 import { Link } from "@material-ui/core";
 import Divider from "@material-ui/core/Divider";
 import Paper from "@material-ui/core/Paper";
+import Kobandit from "./Kobandit";
 
-const reflectionText =
-  "Static rewards, also known as reflection — $PMON holders are rewarded simply by holding the PocBalls. 5% fee is redistributed to all existing holders.";
-
-const lpText =
-  "5% fee is split so that half of it is exchanged to BNB and paired up with the other half which stays in $PMON, becoming a liquidity pair on Pancake Swap.";
-
-const burnText =
-  "More than half of the total supply have been sent to a burned address — 580T supply. The team will also consider burning PocBalls manually.";
-
+const kbnText =
+  "Koban are the central rewards of our platform, and eventually will be integrated with the most utilities. Koban can be earned in the Gyms and Daycare by staking Meownaut and other token pairs! After earning some Koban, they can be sent to the Bank and stored in order to secure a portion of the ever-rotating PokÃ©ball supply and eventually that season's special NFT packs!";
+const mntText =
+  "A deflationary token, as our long-term project stretches on, you will notice the supply of Meownaut getting lower and lower, making this fortuitous genetic anomaly an ever-rarer commodity! There is a 4% moving fee 2% will be burned the other 2% will go the the meownaut holders (Unless you staked your MNT in daycare)";
+const pbText =
+  "All PB tokens have a number designation that indicates what season they are (PB-2114 is the firstset, PB-2116 is the second set, etc.). PB has a limited total supply and when it is drained there will be no more! Stake your Koban in the Bank to earn PB until the PB runs out. There is a 20% Koban Penalty for unstaking your Koban before the PB runs out, so hang tight! Once the total supply of PB has been distributed, the Koban Withdrawal fee is waived and the NFT exchange opens!";
 const IconWrapper = styled.div`
   padding: 8px 16px;
   box-sizing: content-box;
@@ -40,6 +38,8 @@ const Title = styled(Typography)``;
 
 const StyledLink = styled(Link)`
   cursor: pointer;
+  font-size: 14pt;
+  margin: 5px;
 `;
 
 const StyledSection = styled.div`
@@ -58,14 +58,36 @@ const StyledHeader = styled.div`
     rgba(198, 100, 224, 1) 54%,
     rgba(134, 138, 246, 1) 100%
   );
-  height: 55vh;
+  /* height: 55vh; */
+  height: auto;
   border-radius: 15px 30px 0px 0px;
   display: flex;
   justify-content: center;
   flex-direction: column;
+  padding-top: 40px;
+  flex: 1;
+  min-width: 200;
 `;
 
 const StyledBlurbContainer = styled.div``;
+
+const HeroTitle = styled(Typography)`
+  color: white;
+  font-size: 26pt;
+  text-shadow: 12px 12px 20px #34036d;
+`;
+
+const HeroBlurb = styled(Typography)`
+  text-shadow: 12px 12px 20px #34036d;
+  margin-bottom: 20px;
+`;
+
+const OutlinedBlurb = styled(Paper)`
+  background-color: rgb(246 216 244 / 86%);
+  border: 4px purple solid;
+  padding: 40px;
+  border-radius: 30px;
+`;
 
 const WhitePaperView = () => {
   return (
@@ -83,24 +105,55 @@ const WhitePaperView = () => {
         style={{
           height: "auto",
           marginTop: 40,
-          marginBottom: 200,
         }}
       >
         <StyledHeader>
-          <div style={{ width: 400, paddingLeft: 40 }}>
-            <Typography style={{ fontSize: 26 }}>Pokemoon</Typography>
-            <Typography>
-              PocMon ($PMON) is a meme based & decentralized community
-              experiment in Binance Smart Chain, Honouring the Pocket Monsters
-              we all know and love.
-            </Typography>
-            <Button style={{ maxWidth: 170 }}>{"White Paper >"}</Button>
-          </div>
+          <Grid container justify="center">
+            <Grid
+              item
+              xs={12}
+              md={6}
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                paddingLeft: 40,
+                justifyContent: "space-around",
+                height: "100%",
+              }}
+            >
+              <HeroTitle>Pokemoon</HeroTitle>
+              <HeroBlurb style={{ color: "white" }}>
+                An innovative new decentralized exchange and dApp platform
+                running on Binance Smart Chain. With layered farming, an
+                Automated Market Maker, fully 3-D rendered NFT trading cards,
+                and more! With lots of upcoming features that will let you earn
+                tokens to play with and exchange for NFTs within a constantly
+                expanding creative universe created and curated by the best damn
+                community in crypto.
+              </HeroBlurb>
+              <Button style={{ maxWidth: 170, marginBottom: 40 }}>
+                {"White Paper >"}
+              </Button>
+            </Grid>
+            <Grid
+              item
+              xs={12}
+              md={6}
+              style={{
+                alignItems: "center",
+                display: "flex",
+                flexDirection: "column",
+              }}
+            >
+              <Kobandit />
+            </Grid>
+          </Grid>
         </StyledHeader>
 
         <StyledSection
           style={{
             zIndex: -1,
+            borderRadius: "0px 0px 30px 30px",
           }}
         >
           <Waves style={{ zIndex: 2 }} />
@@ -109,12 +162,12 @@ const WhitePaperView = () => {
             spacing={8}
             container
             justify="space-around"
-            style={{ marginTop: "-25vh", paddingLeft: 20, paddingRight: 10 }}
+            style={{ marginTop: -250, paddingLeft: 20, paddingRight: 10 }}
           >
             <Grid item>
               <InfoBox
-                title="DEX"
-                content={lpText}
+                title="Meownaut (MNT)"
+                content={mntText}
                 href="google.com"
                 buttonLabel="Exchange Now"
                 icon={
@@ -126,8 +179,8 @@ const WhitePaperView = () => {
             </Grid>
             <Grid item>
               <InfoBox
-                title="Yield Farming"
-                content={reflectionText}
+                title="Koban (KBN)"
+                content={kbnText}
                 href="google.com"
                 buttonLabel="Start Farming"
                 icon={
@@ -139,8 +192,8 @@ const WhitePaperView = () => {
             </Grid>
             <Grid item>
               <InfoBox
-                title="NFTs"
-                content={reflectionText}
+                title="PB-XXXX"
+                content={pbText}
                 href="google.com"
                 buttonLabel="Earn NFTs"
                 icon={
@@ -174,27 +227,22 @@ const WhitePaperView = () => {
                 paddingRight: 40,
               }}
             >
-              <Paper
-                elevation={7}
-                style={{
-                  backgroundColor: "rgb(246 216 244 / 86%)",
-                  border: "4px purple solid",
-                  padding: 40,
-                }}
-              >
+              <OutlinedBlurb elevation={7}>
                 <StyledBlurb style={{ fontSize: 32, marginBottom: 24 }}>
-                  About Pokemoon
+                  About Our NFT Platform
                 </StyledBlurb>
                 <StyledBlurb>
-                  The deflationary mechanics work in three directions. Automatic
-                  Liquidity Pool ensures a solid price floor and the advantage
-                  of holders over sellers, as the latter are forced to pay a
-                  penalty. Passive Rewards also encourage holders not to sell
-                  the coin in order to harvest the highest income. Finally, the
-                  Manual Burn is a transparent process that starts with the
-                  team’s tokens burn before the launch.
+                  Our NFT card packs are limited edition, time-restricted sets
+                  of fully 3D rendered trading cards that will have all kinds of
+                  abilities, utilities, and tradability as our platform expands.
+                  PB earned at the Bank is the only currency for purchasing our
+                  NFT packs. Each pack contains 5 random cards of varying rarity
+                  (Common, Uncommon, Rare, Legendary, and Moonlike) Buy card
+                  packs at <Link>https://nft.pokemoon.app/buy</Link>
+                  <br /> {"View your collection at "}
+                  <Link>https://nft.pokemoon.app/gallery</Link>
                 </StyledBlurb>
-              </Paper>
+              </OutlinedBlurb>
             </Grid>
           </Grid>
           <Grid
@@ -205,7 +253,7 @@ const WhitePaperView = () => {
             <Grid item>
               <InfoBox
                 title="Meownaut"
-                content={reflectionText}
+                content={kbnText}
                 href="google.com"
                 buttonLabel="Buy MNT"
                 icon={
@@ -219,7 +267,7 @@ const WhitePaperView = () => {
             <Grid item>
               <InfoBox
                 title="Koban"
-                content={burnText}
+                content={pbText}
                 href="google.com"
                 buttonLabel="Buy KBN"
                 icon={
@@ -245,16 +293,18 @@ const WhitePaperView = () => {
                 paddingRight: 40,
               }}
             >
-              <Typography>Tokens</Typography>
-              <Typography>
-                The deflationary mechanics work in three directions. Automatic
-                Liquidity Pool ensures a solid price floor and the advantage of
-                holders over sellers, as the latter are forced to pay a penalty.
-                Passive Rewards also encourage holders not to sell the coin in
-                order to harvest the highest income. Finally, the Manual Burn is
-                a transparent process that starts with the team’s tokens burn
-                before the launch.
-              </Typography>
+              <OutlinedBlurb>
+                <Typography>Tokens</Typography>
+                <Typography>
+                  The deflationary mechanics work in three directions. Automatic
+                  Liquidity Pool ensures a solid price floor and the advantage
+                  of holders over sellers, as the latter are forced to pay a
+                  penalty. Passive Rewards also encourage holders not to sell
+                  the coin in order to harvest the highest income. Finally, the
+                  Manual Burn is a transparent process that starts with the
+                  team’s tokens burn before the launch.
+                </Typography>
+              </OutlinedBlurb>
             </Grid>
             <Grid
               item
@@ -273,7 +323,7 @@ const WhitePaperView = () => {
               md={6}
               style={{
                 display: "flex",
-                flexDirection: "column",
+                justifyContent: "center",
                 alignItems: "center",
               }}
             >
@@ -294,23 +344,25 @@ const WhitePaperView = () => {
                 justifyContent: "space-around",
               }}
             >
-              <Typography style={{ marginBottom: 30 }}>
-                NFT Marketplace
-              </Typography>
-              <Typography>
-                PocMon aims to become the #1 platform for the trade and exchange
-                of gaming NFT'S on Binance Smart Chain. The popularity of
-                blockchain games will ensure the massive nature of this
-                marketplace. Besides, there’ll be an easy-to-follow and use
-                interface for conducting auctions, including those with charity
-                purposes. Selected artists and designers from the community of
-                PocMon Trainers will be invited to release the first PocMon
-                Branded NFTs and NFT Game Cards. We believe that unique pocket
-                monsters will instill excitement within our community and
-                beyond, with the prospect of turning the heads of NFT collectors
-                on the BSC.
-              </Typography>
-              <Button style={{ marginTop: 30 }}>{"Read More Info >"}</Button>
+              <OutlinedBlurb>
+                <Typography style={{ marginBottom: 30 }}>
+                  NFT Marketplace
+                </Typography>
+                <Typography>
+                  PocMon aims to become the #1 platform for the trade and
+                  exchange of gaming NFT'S on Binance Smart Chain. The
+                  popularity of blockchain games will ensure the massive nature
+                  of this marketplace. Besides, there’ll be an easy-to-follow
+                  and use interface for conducting auctions, including those
+                  with charity purposes. Selected artists and designers from the
+                  community of PocMon Trainers will be invited to release the
+                  first PocMon Branded NFTs and NFT Game Cards. We believe that
+                  unique pocket monsters will instill excitement within our
+                  community and beyond, with the prospect of turning the heads
+                  of NFT collectors on the BSC.
+                </Typography>
+                <Button style={{ marginTop: 30 }}>{"Read More Info >"}</Button>
+              </OutlinedBlurb>
             </Grid>
           </Grid>
           <TimelineStepper />
@@ -335,10 +387,16 @@ const WhitePaperView = () => {
           bottom: 0,
           left: 0,
           right: 0,
-          position: "absolute",
         }}
       >
-        <Grid container justify="center" style={{ height: 180, width: "100%" }}>
+        <Grid
+          container
+          justify="center"
+          style={{
+            width: "100%",
+            padding: 50,
+          }}
+        >
           <Grid
             item
             xs={12}
@@ -350,11 +408,14 @@ const WhitePaperView = () => {
               justifyContent: "space-evenly",
             }}
           >
-            <Typography>PokeMoon</Typography>
+            <Typography style={{ fontSize: 28 }}>PokeMoon</Typography>
             <Typography style={{ textAlign: "center" }}>
-              PocMon ($PMON) is a meme based & decentralized community
-              experiment in Binance Smart Chain, Honouring the Pocket Monsters
-              we all know and love.
+              An innovative new decentralized exchange and dApp platform running
+              on Binance Smart Chain. With layered farming, an Automated Market
+              Maker, fully 3-D rendered NFT trading cards, and more! With lots
+              of upcoming features that will let you earn tokens to play with
+              and exchange for NFTs within a constantly expanding creative
+              universe created and curated by the best damn community in crypto.
             </Typography>
           </Grid>
           <Grid
@@ -366,9 +427,10 @@ const WhitePaperView = () => {
               display: "flex",
               alignItems: "center",
               justifyContent: "space-evenly",
+              flex: 1,
             }}
           >
-            <Typography>Socials</Typography>
+            <Typography style={{ fontSize: 28 }}>Socials</Typography>
             <StyledLink>🎮 Discord</StyledLink>
             <StyledLink>📖 Medium</StyledLink>
             <StyledLink>💬 Telegram</StyledLink>

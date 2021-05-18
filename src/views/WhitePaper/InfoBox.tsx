@@ -20,7 +20,8 @@ const StyledPaper = styled(Paper)`
   padding: 32px;
   border-radius: 16px;
   border: 2px black dashed;
-  justify-content: space-space-evenly;
+  justify-content: flex-start;
+  /* height: 100%; */
 `;
 
 const Title = styled(Typography)`
@@ -34,8 +35,10 @@ const Content = styled(Typography)`
   font-size: 1rem;
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+
   align-items: center;
+  flex: 1;
+  padding-top: 30px;
 `;
 
 const InfoBox: FC<InfoBoxProps> = ({
@@ -49,10 +52,8 @@ const InfoBox: FC<InfoBoxProps> = ({
     <StyledPaper elevation={11}>
       {icon ? icon : null}
       <Title>{title}</Title>
-      <Content>
-        {content}{" "}
-        {href && <Button style={{ marginTop: 26 }}>{buttonLabel}</Button>}
-      </Content>
+      <Content>{content} </Content>
+      {href && <Button style={{ marginTop: 26 }}>{buttonLabel}</Button>}
     </StyledPaper>
   );
 };
