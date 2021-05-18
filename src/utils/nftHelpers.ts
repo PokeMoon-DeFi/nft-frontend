@@ -39,7 +39,7 @@ export const getCardData = async (tokenId: string, pack: string) => {
   const { imageUrl, card, rarity } = BLAST_OFF_COLLECTION[cardId];
   const nft: PokemoonNft = { tokenId, imageUrl, ...card, rarity };
 
-  nft.glbUrl = `/models/${imageUrl.replace(".png", ".glb")}`;
+  nft.glbUrl = `/models/${pack}/${imageUrl.replace(".png", ".glb")}`;
   nft.set = pack;
   nft.packId = tokenIdToPack[tokenId];
 

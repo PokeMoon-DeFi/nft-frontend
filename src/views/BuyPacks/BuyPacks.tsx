@@ -27,13 +27,13 @@ const StyledImage = styled.img`
   // height: clamp(200px, 70%, 1200px);
 `;
 
-const waitForPack = (packId) => {
+const waitForPack = (packId, set: string) => {
   return new Promise<void>((resolve, reject) => {
     (async () => {
       const interval = setInterval(() => checkPack(packId), 500);
       async function checkPack(packId) {
         try {
-          const res = await getPackInfo(packId);
+          const res = await getPackInfo(packId, set);
           if (res[4].length === 8) {
             clearInterval(interval);
             resolve();
@@ -103,7 +103,7 @@ const BuyPage = () => {
   const handleConfirm = useCallback(async () => {
     const res = await sendBuyPack(nftContract, account);
     const packId = res.events.OnElevation.returnValues.packId;
-    await waitForPack(packId);
+    await waitForPack(packId, "blastOff");
     setCollectedPackId(packId);
     setOpenPackNotty(true);
   }, [account, nftContract]);

@@ -129,7 +129,7 @@ const App: React.FC = () => {
               <Route path="/white-paper" exact>
                 <WhitePaperView />
               </Route>
-              <Route path="/pack/:id">
+              <Route path="/pack/:set/:id">
                 <ViewPack />
               </Route>
               <Route>

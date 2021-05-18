@@ -25,10 +25,8 @@ import Grid from "@material-ui/core/Grid";
 import { getCardData } from "utils/nftHelpers";
 
 const ViewPack = () => {
-  let { id } = useParams();
-  const { packs } = useAppSelector((state) => state.user.nftBalance.blastOff);
+  let { id, set } = useParams();
   const [nfts, setNfts] = useState<PokemoonNft[]>([]);
-  const [activeNft, setActiveNft] = useState<PokemoonNft | null>(null);
   const [openTransferModal, setOpenTransferModal] = useState(false);
   const nftContract = useBlastOffContract();
   const { account } = useWeb3React();
@@ -36,13 +34,13 @@ const ViewPack = () => {
 
   useEffect(() => {
     const fetch = async () => {
-      const res = await getPackInfo(id);
+      const res = await getPackInfo(id, set);
 
       for (let i = 0; i < 5; i++) {
         const tokenId = res[i];
 
         if (tokenId.length === 8) {
-          const card = await getCardData(tokenId, "blastOff");
+          const card = await getCardData(tokenId, set);
 
           setNfts((state) => [...state, card]);
         }
@@ -50,7 +48,7 @@ const ViewPack = () => {
     };
 
     fetch();
-  }, [id]);
+  }, [id, set]);
 
   useEffect(() => {
     const fetch = async () => {
@@ -74,13 +72,17 @@ const ViewPack = () => {
   return (
     <Content
       maxWidth="xl"
-      style={{ paddingTop: 60, justifyContent: "flex-start" }}
+      style={{ paddingTop: 60, justifyContent: "flex-start", height: "100%" }}
     >
       <Grid
         container
         spacing={4}
         justify="space-around"
-        style={{ display: "flex", marginBottom: 24 }}
+        style={{
+          display: "flex",
+          marginBottom: 24,
+          alignItems: "center",
+        }}
       >
         <Grid item>
           {accountOwnsPack && (
