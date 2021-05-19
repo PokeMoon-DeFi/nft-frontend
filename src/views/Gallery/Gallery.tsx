@@ -6,29 +6,15 @@ import {
   FilterDashboard,
   TableGrid,
   RarityChip,
+  FilterState,
+  getFilteredNfts,
 } from "nft-uikit";
 import { useAppSelector } from "providers";
 import Grid from "@material-ui/core/Grid";
 import { useEffect, useMemo, useState } from "react";
-import { getPackInfo } from "utils/callHelpers";
 import BLAST_OFF_COLLECTION from "config/constants/nfts/2114";
 import { PokemoonPack, PokemoonNft } from "config/constants/nfts/types";
 import Container from "@material-ui/core/Container";
-
-interface FilterState {
-  rarities: string[];
-  types: string[];
-  packs: string[];
-  search: string;
-}
-
-const renamePack = (name: string) => {
-  switch (name) {
-    case "Blast-Off!": {
-      return "blastOff";
-    }
-  }
-};
 
 const capitalize = (s: string) => {
   if (typeof s !== "string") return "";
@@ -48,52 +34,10 @@ const GalleryView = () => {
     search: "",
   });
 
-  const [filterNfts, setFilterNfts] = useState<PokemoonNft[]>();
-
-  useEffect(() => {
-    const { rarities, types, packs, search } = filterState;
-
-    //Match up pack names
-    const renamedPacks = packs.map((pack) => renamePack(pack));
-
-    //Check all filters
-    const filteredNfts = userNfts.filter((nft) => {
-      const { type, rarity, set, name } = nft;
-
-      //search
-      if (!!search) {
-        if (name?.search(new RegExp(search, "gi")) === -1) {
-          return false;
-        }
-      }
-
-      //rarities
-      if (rarities && rarities.length > 0) {
-        if (!rarity || !rarities.includes(rarity)) {
-          return false;
-        }
-      }
-
-      //types
-      if (types && types.length > 0) {
-        if (!type || !types.includes(type)) {
-          return false;
-        }
-      }
-
-      //pack sets
-      if (renamedPacks && renamedPacks.length > 0) {
-        //@ts-ignore
-        if (!set || !renamedPacks.includes(set)) {
-          return false;
-        }
-      }
-
-      return true;
-    });
-    setFilterNfts(filteredNfts);
+  const filterNfts = useMemo(() => {
+    return getFilteredNfts(userNfts, filterState);
   }, [filterState, userNfts]);
-
+  console.log(filterNfts);
   return (
     <Container
       maxWidth="lg"
@@ -125,7 +69,10 @@ const GalleryView = () => {
         {viewState === "grid" ? (
           <Gallery pageSize={8} nfts={filterNfts} />
         ) : (
-          <TableGrid nfts={filterNfts ?? []} />
+          <TableGrid
+            nfts={filterNfts}
+            getRowId={(row) => parseInt(row.tokenId)}
+          />
         )}
       </Content>
     </Container>

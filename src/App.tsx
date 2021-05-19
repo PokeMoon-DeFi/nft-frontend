@@ -47,6 +47,11 @@ const linkConfig: LinkConfigState[] = [
     icon: <HomeIcon />,
   },
   {
+    target: "/news",
+    label: "News",
+    icon: <HomeIcon />,
+  },
+  {
     target: "/buy",
     label: "Buy",
     icon: <StoreOutlinedIcon />,
@@ -57,8 +62,8 @@ const linkConfig: LinkConfigState[] = [
     icon: <AccountBalanceIcon />,
   },
   {
-    target: "/pokedex/ampedUp",
-    label: "Pokedex",
+    target: "/gallery",
+    label: "Gallery",
     icon: <PhotoSizeSelectActualIcon />,
   },
 ];
@@ -115,12 +120,15 @@ const App: React.FC = () => {
           >
             <Switch>
               <Route path="/" exact>
+                <WhitePaperView />
+              </Route>
+              <Route path="/news" exact>
                 <Landing />
               </Route>
               <Route path="/buy" exact>
                 <BuyPacks />
               </Route>
-              <Route path="/pokedex/:set" exact>
+              <Route path="/gallery" exact>
                 <PublicGallery />
               </Route>
               <Route path="/collection" exact>

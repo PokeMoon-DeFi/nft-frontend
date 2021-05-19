@@ -2,6 +2,7 @@ import BigNumber from "bignumber.js";
 import BLAST_OFF_COLLECTION, {
   BLAST_OFF_CARDS,
 } from "config/constants/nfts/2114";
+import AMPED_UP_COLLECTION from "config/constants/nfts/2116";
 import { PokemoonNft } from "config/constants/nfts/types";
 import blastOffTokenCache from "config/constants/cache/blastOff/tokenIdToPack.json";
 import blastOffPackCache from "config/constants/cache/blastOff/blastOffPacks.json";
@@ -15,6 +16,38 @@ const isPack = (tokenId: string) => {
     ? (isPack = true)
     : (isPack = false);
   return isPack;
+};
+
+export const getCollection = (pack: string) => {
+  switch (pack) {
+    default:
+    case "blasOff": {
+      return BLAST_OFF_COLLECTION;
+    }
+    case "ampedUp": {
+      return AMPED_UP_COLLECTION;
+    }
+  }
+};
+
+export const getFlatCollection = () => {
+  const result = [];
+  const packs = ["blastOff", "ampedUp"];
+  for (const pack of packs.reverse()) {
+    const nfts: PokemoonNft[] = Object.entries(getCollection(pack))
+      .map(([key, value]) => {
+        const { card, ...nft } = value;
+        const glbUrl =
+          `/models/${pack}/` + nft.imageUrl.replace(".png", ".glb");
+        const imageUrl = `/images/cards/${pack}/${nft.imageUrl}`;
+        return { ...nft, ...card, glbUrl, imageUrl };
+      })
+      ?.sort((a, b) => b.number - a.number);
+    //@ts-ignore
+    result.push(...nfts);
+  }
+
+  return result;
 };
 
 const getPackCache = (pack: string) => {
