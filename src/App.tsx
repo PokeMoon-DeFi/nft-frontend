@@ -46,11 +46,11 @@ const linkConfig: LinkConfigState[] = [
     label: "Home",
     icon: <HomeIcon />,
   },
-  {
-    target: "/news",
-    label: "News",
-    icon: <HomeIcon />,
-  },
+  // {
+  //   target: "/news",
+  //   label: "News",
+  //   icon: <HomeIcon />,
+  // },
   {
     target: "/buy",
     label: "Buy",
@@ -120,11 +120,12 @@ const App: React.FC = () => {
           >
             <Switch>
               <Route path="/" exact>
-                <WhitePaperView />
-              </Route>
-              <Route path="/news" exact>
+                {/* <WhitePaperView /> */}
                 <Landing />
               </Route>
+              {/* <Route path="/news" exact>
+                <Landing />
+              </Route> */}
               <Route path="/buy" exact>
                 <BuyPacks />
               </Route>
@@ -134,9 +135,9 @@ const App: React.FC = () => {
               <Route path="/collection" exact>
                 <Gallery />
               </Route>
-              <Route path="/white-paper" exact>
+              {/* <Route path="/white-paper" exact>
                 <WhitePaperView />
-              </Route>
+              </Route> */}
               <Route path="/pack/:set/:id">
                 <ViewPack />
               </Route>
