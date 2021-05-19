@@ -1,4 +1,5 @@
 import BLAST_OFF_COLLECTION from "config/constants/nfts/2114";
+import AMPED_UP_COLLECTION from "config/constants/nfts/2116";
 import { PokemoonNft } from "config/constants/nfts/types";
 import { FC } from "react";
 import { Gallery, Content } from "nft-uikit";
@@ -6,7 +7,7 @@ import { useParams } from "react-router-dom";
 
 const PublicGallery: FC = () => {
   const { set } = useParams();
-  const nfts: PokemoonNft[] = Object.entries(BLAST_OFF_COLLECTION)
+  const nfts: PokemoonNft[] = Object.entries(AMPED_UP_COLLECTION)
     .map(([key, value]) => {
       const { card } = value;
       return { ...value, ...card };

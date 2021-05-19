@@ -57,7 +57,7 @@ const linkConfig: LinkConfigState[] = [
     icon: <AccountBalanceIcon />,
   },
   {
-    target: "/pokedex/blastOff",
+    target: "/pokedex/ampedUp",
     label: "Pokedex",
     icon: <PhotoSizeSelectActualIcon />,
   },
