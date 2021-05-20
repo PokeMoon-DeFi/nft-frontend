@@ -15,6 +15,15 @@ import Divider from "@material-ui/core/Divider";
 function AdCarousel(props) {
   var items = [
     {
+      desktop: "/images/banners/Pancakeswap_PC.png",
+      mobile: "/images/banners/Pancakeswap_Mobile.png",
+    },
+    {
+      desktop: "/images/banners/Apeswap_PC.png",
+      mobile: "/images/banners/Apeswap_Mobile.png",
+    },
+
+    {
       desktop: "/images/banners/AmpedUpSoonPC.png",
       mobile: "/images/banners/AmpedUpSoonMobile.png",
     },
@@ -27,6 +36,7 @@ function AdCarousel(props) {
       interval={7500}
       indicators={false}
       className={"carousel"}
+      animation={"slide"}
     >
       {items.map((item, i) => (
         <Item key={i} item={item} />

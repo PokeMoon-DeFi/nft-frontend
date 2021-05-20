@@ -11,7 +11,14 @@ import {
   useContractFromSymbol,
   useBlastOffContract,
 } from "utils/contractHelpers";
-import { Modal, Content, Notification, BuyInfoProps, BuyInfo } from "nft-uikit";
+import {
+  Modal,
+  Content,
+  Notification,
+  BuyInfoProps,
+  BuyInfo,
+  VideoPlayer,
+} from "nft-uikit";
 import Grid from "@material-ui/core/Grid";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
 import { useTheme } from "@material-ui/core/styles";
@@ -70,6 +77,20 @@ const p: BuyInfoProps = {
   },
 };
 
+const StyledBackground = styled.div`
+  background: rgb(238, 39, 255);
+  background: radial-gradient(
+    circle,
+    rgba(238, 39, 255, 0) 0%,
+    rgba(252, 238, 255, 0) 35%,
+    #d889e7 55%,
+    rgba(95, 101, 250, 0) 75%,
+    rgba(95, 101, 250, 0) 100%
+  );
+  margin-top: 20px;
+  margin-bottom: 20px;
+`;
+
 const BuyPage = () => {
   const pb2114 = new BigNumber(
     useAppSelector((state) => state.user.balance.pb2114)
@@ -114,17 +135,36 @@ const BuyPage = () => {
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
 
   return (
-    <>
+    <Container
+      maxWidth="xl"
+      style={{
+        height: "100%",
+        display: "flex",
+        flexDirection: "column",
+        alignContent: "center",
+        justifyContent: "space-between",
+      }}
+    >
+      <StyledBackground
+        style={{
+          display: "flex",
+
+          justifyContent: "center",
+          alignContent: "center",
+        }}
+      >
+        <VideoPlayer url="https://streamable.com/yqu16t" height={200} />
+      </StyledBackground>
       <Grid
         container
         justify="center"
         spacing={6}
         style={{
-          padding: "50px 8px 72px 8px",
-          alignItems: "center",
+          padding: "0px 8px 72px 8px",
           display: "flex",
           flex: 1,
           height: !isMobile ? "100%" : "auto",
+          alignContent: "center",
         }}
       >
         <Grid
@@ -133,7 +173,7 @@ const BuyPage = () => {
           md={3}
           style={{
             paddingTop: 12,
-            alignItems: "center",
+            alignItems: "flex-start",
             display: "flex",
             justifyContent: "center",
             flex: 1,
@@ -189,7 +229,7 @@ const BuyPage = () => {
           setCollectedPackId(-1);
         }}
       />
-    </>
+    </Container>
   );
 };
 

@@ -21,6 +21,7 @@ code {
 
 .carousel {
   /* max-height: 300px; */
+  height: 250px;
   overflow: visible;
   display: flex;
   justify-content: center;
