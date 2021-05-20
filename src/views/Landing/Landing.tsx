@@ -49,14 +49,13 @@ function Item({ item }) {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
 
-  const bi = `url( "${isMobile ? item.mobile : item.desktop}")`;
   return (
     <div>
       <img
         src={isMobile ? item.mobile : item.desktop}
         height={isMobile ? "auto" : "100%"}
         width={isMobile ? "100%" : "auto"}
-        style={{ maxHeight: 250 }}
+        style={{ maxHeight: 250, maxWidth: isMobile ? 440 : "none" }}
         alt={"banner-ad"}
       />
     </div>
