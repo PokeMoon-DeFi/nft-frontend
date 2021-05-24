@@ -23,7 +23,7 @@ const contracts = {
     56: "0x2e17f28a12624a38d6d6f5e2b50a6408f9129f77",
   },
   ampedUp: {
-    56: "",
+    56: "0x47968882eCc8FE91d0C7d3938ad6C1BE2243363E",
   },
   // Banks
   brindletonBay: {
