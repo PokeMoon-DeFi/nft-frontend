@@ -26,10 +26,11 @@ import PhotoSizeSelectActualIcon from "@material-ui/icons/PhotoSizeSelectActual"
 import ToolBar from "@material-ui/core/Toolbar";
 import { makeStyles } from "@material-ui/styles";
 import HomeIcon from "@material-ui/icons/Home";
+import BuyPacks from "views/BuyPacks";
 
 // Lazy loading
 const Landing = lazy(() => import("./views/Landing"));
-const BuyPacks = lazy(() => import("./views/BuyPacks"));
+// const BuyPacks = lazy(() => import("./views/BuyPacks"));
 const Gallery = lazy(() => import("./views/Gallery"));
 const ViewPack = lazy(() => import("./views/ViewPack"));
 const PublicGallery = lazy(() => import("./views/Gallery/PublicGallery"));

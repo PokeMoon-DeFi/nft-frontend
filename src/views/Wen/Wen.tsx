@@ -91,7 +91,17 @@ const Wen = () => {
             width={"100%"}
           />
         </Grid>
-        <Grid item xs={12} sm={6}>
+        <Grid
+          item
+          xs={12}
+          sm={6}
+          style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            flex: 1,
+          }}
+        >
           <Bulletin>
             <Typography
               style={{

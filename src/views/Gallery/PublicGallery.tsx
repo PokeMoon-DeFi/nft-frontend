@@ -15,7 +15,7 @@ import { useParams } from "react-router-dom";
 import { getCollection } from "utils/nftHelpers";
 import Container from "@material-ui/core/Container";
 
-const nfts: PokemoonNft[] = getFlatCollection(["blastOff"]);
+const nfts: PokemoonNft[] = getFlatCollection(["blastOff", "ampedUp"]);
 const PublicGallery: FC = () => {
   const [viewState, setViewState] = useState("grid");
   const [filterState, setFilterState] = useState<FilterState>({

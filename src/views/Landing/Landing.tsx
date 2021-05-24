@@ -172,7 +172,12 @@ const Landing: React.FC = () => {
             modelViewerStyle={{ width: "100%", height: "500px" }}
           />
         </Grid>
-        <Grid item xs={12} md={6} style={{ display: "flex" }}>
+        <Grid
+          item
+          xs={12}
+          md={6}
+          style={{ display: "flex", justifyContent: "center" }}
+        >
           <Bulletin>
             <Typography
               style={{
