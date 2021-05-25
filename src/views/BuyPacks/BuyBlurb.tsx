@@ -4,7 +4,11 @@ import { Typography } from "@material-ui/core";
 import React, { FC, useCallback, useState } from "react";
 import { PokemoonPack } from "config/constants/nfts/types";
 import { Button, Backpack, Buy, SendToAddress, Notification } from "nft-uikit";
-import { getAddress, getAmpedUpContract } from "utils/contractHelpers";
+import {
+  getAddress,
+  getAmpedUpContract,
+  useAmpedUpContract,
+} from "utils/contractHelpers";
 import { sendGiftPack } from "utils/callHelpers";
 import web3 from "web3";
 
@@ -78,16 +82,17 @@ const Blurb: FC<BuyInfoProps> = ({
   const [openNotty, setOpenNotty] = React.useState(false);
 
   const [openPackNotty, setOpenPackNotty] = React.useState(false);
+  const ampedUpContract = useAmpedUpContract();
 
   const sendGift = useCallback(
     async (receiver: string) => {
       setOpenNotty(true);
-      const res = await sendGiftPack(getAmpedUpContract(), account, receiver);
+      const res = await sendGiftPack(ampedUpContract, account, receiver);
       const packId = res.events.EntreatPacked.returnValues.packId;
       setCollectedPackId(packId);
       setOpenPackNotty(true);
     },
-    [account]
+    [account, ampedUpContract]
   );
 
   const [openTransferModal, setOpenTransferModal] = useState(false);

@@ -38,15 +38,15 @@ export const sendBuyPack = async (contract, account) => {
     .send({ from: account, gas: BUY_GAS_ESTIMATE });
 };
 
-export const sendGiftPack = async (contract, sender, receiver) => {
+export const sendGiftPack = async (contract, from, to) => {
   const BUY_GAS_ESTIMATE = 2000000;
 
   //TL;DR: web3.eth.estimateGas() incorrect which would make tx fail
   //BUG: MetaMask won't throw if gas is manually set, even there's an error.
   // const contract = getNftContract();
   return contract.methods
-    .delegateElevation()
-    .send({ from: sender, gas: BUY_GAS_ESTIMATE });
+    .delegateElevation(to)
+    .send({ from, gas: BUY_GAS_ESTIMATE });
 };
 
 export const sendTransferPack = async (contract, from, to, packId) => {
