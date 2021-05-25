@@ -173,16 +173,16 @@ const BuyPage = () => {
           md={3}
           style={{
             paddingTop: 12,
-            alignItems: "flex-start",
+            alignItems: "center",
             display: "flex",
             justifyContent: "center",
             flex: 1,
           }}
         >
           <img
-            src="/images/packs/Blastoff.png"
+            src="/images/packs/amped-up.png"
             alt="pack"
-            style={{ width: 250, offset: 10 }}
+            style={{ maxHeight: 400 }}
           />
         </Grid>
 
