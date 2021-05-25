@@ -13,10 +13,10 @@ export interface UserState {
       cards: PokemoonNft[];
       packs: string[];
     };
-    // ampedUp: {
-    //   cards: PokemoonNft[];
-    //   packs: string[];
-    // };
+    ampedUp: {
+      cards: PokemoonNft[];
+      packs: string[];
+    };
   };
 }
 

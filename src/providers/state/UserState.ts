@@ -7,6 +7,7 @@ import { UserState } from "./types";
 import multicall from "utils/multicall";
 import contracts from "config/constants/contracts";
 import BlastOffAbi from "config/abi/BlastOff.json";
+import AmpedUpAbi from "config/abi/AmpedUp.json";
 import { handleTokenIdResponse } from "utils/nftHelpers";
 const initialState: UserState = {
   balance: {
@@ -14,9 +15,11 @@ const initialState: UserState = {
     koban: "0",
     pb2114: "0",
     pb2116: "0",
+    // apb: "0",
   },
   nftBalance: {
     blastOff: { cards: [], packs: [] },
+    ampedUp: { cards: [], packs: [] },
   },
 };
 
@@ -67,17 +70,22 @@ export const asyncFetchNftBalance = createAsyncThunk(
         params: [account],
       },
     ];
-    // const ampedUpCalls = [
-    //   { address: nftAddresses.ampedUp, name: "tokensOwned", params: [account] },
-    // ];
+    const ampedUpCalls = [
+      { address: nftAddresses.ampedUp, name: "tokensOwned", params: [account] },
+    ];
 
     const blastOffRes = await multicall(BlastOffAbi, blastOffCalls);
 
-    // const ampedUpRes = await multicall(AmpedUpAbi, calls);
+    const ampedUpRes = await multicall(AmpedUpAbi, ampedUpCalls);
     const blastOffTokenIds: BigNumber[] = blastOffRes[0][0];
     const blastoffBalance = await handleTokenIdResponse(
       blastOffTokenIds,
       "blastOff"
+    );
+    const ampedUpTokenIds: BigNumber[] = ampedUpRes[0][0];
+    const ampedUpBalance = await handleTokenIdResponse(
+      ampedUpTokenIds,
+      "ampedUp"
     );
     // console.error("Web3 failed to retrieve nftBalance.");
     return {

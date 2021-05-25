@@ -9,6 +9,7 @@ import blastOffPackCache from "config/constants/cache/blastOff/blastOffPacks.jso
 import contracts from "config/constants/contracts";
 import multicall from "utils/multicall";
 import BlastOffAbi from "config/abi/BlastOff.json";
+import AmpedUpAbi from "config/abi/AmpedUp.json";
 
 const isPack = (tokenId: string) => {
   let isPack: boolean;
@@ -87,7 +88,11 @@ const getBaseUri = (pack: string) => {
 
 export const getCardData = async (tokenId: string, set: string) => {
   const cardId = parseInt(tokenId.substr(0, 2));
-  const { imageUrl, card, rarity } = BLAST_OFF_COLLECTION[cardId];
+  let collection: any;
+  set === "blastOff"
+    ? (collection = BLAST_OFF_COLLECTION)
+    : (collection = AMPED_UP_COLLECTION);
+  const { imageUrl, card, rarity } = collection[cardId];
   const nft: PokemoonNft = { tokenId, imageUrl, ...card, rarity };
 
   nft.glbUrl = `/models/${set}/${imageUrl.replace(".png", ".glb")}`;
