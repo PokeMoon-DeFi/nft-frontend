@@ -124,7 +124,7 @@ const Blurb: FC<BuyInfoProps> = ({
           background: `linear-gradient(120deg, #ffffff 0%, #ffffff 47%, #111111 47.3%, #111111 100%)`,
         }}
       >
-        <Pokeball>{2116}</Pokeball>
+        <Pokeball>{"PB-2116"}</Pokeball>
         <Pack>{"DEGEN BALL"}</Pack>
       </PrimaryInfo>
       <Description>
