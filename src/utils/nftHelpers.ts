@@ -11,6 +11,9 @@ import multicall from "utils/multicall";
 import BlastOffAbi from "config/abi/BlastOff.json";
 import AmpedUpAbi from "config/abi/AmpedUp.json";
 
+import ampedUpTokens from "config/constants/cache/ampedUp/ampedUpTokens.json";
+import ampedUpPacks from "config/constants/cache/ampedUp/ampedUpPacks.json";
+
 const isPack = (tokenId: string) => {
   let isPack: boolean;
   new BigNumber(tokenId).isLessThan(new BigNumber(11000000))
@@ -57,6 +60,9 @@ const getPackCache = (pack: string) => {
     case "blastOff": {
       return blastOffPackCache;
     }
+    case "ampedUp": {
+      return ampedUpPacks;
+    }
   }
 };
 
@@ -65,6 +71,21 @@ const getTokenCache = (pack: string) => {
     default:
     case "blastOff": {
       return blastOffTokenCache;
+    }
+    case "ampedUp": {
+      return ampedUpTokens;
+    }
+  }
+};
+
+const getAbi = (pack: string) => {
+  switch (pack) {
+    default:
+    case "blastOff": {
+      return BlastOffAbi;
+    }
+    case "ampedUp": {
+      return AmpedUpAbi;
     }
   }
 };
@@ -150,7 +171,7 @@ const collectMissingPacks = async (packIds: string[], pack: string) => {
     };
   });
 
-  const multiCallResponse = await multicall(BlastOffAbi, calls);
+  const multiCallResponse = await multicall(getAbi(pack), calls);
   let index = 0;
   for (const res of multiCallResponse) {
     const packId = packIds[index];

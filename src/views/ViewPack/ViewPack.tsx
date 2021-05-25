@@ -16,7 +16,10 @@ import {
 } from "utils/callHelpers";
 import BLAST_OFF_COLLECTION from "config/constants/nfts/2114";
 import { PokemoonNft } from "config/constants/nfts/types";
-import { useBlastOffContract } from "utils/contractHelpers";
+import {
+  useBlastOffContract,
+  getNftContractByName,
+} from "utils/contractHelpers";
 import { useWeb3React } from "@web3-react/core";
 import { useAppSelector } from "providers";
 import { Input, Typography } from "@material-ui/core";
@@ -28,7 +31,7 @@ const ViewPack = () => {
   let { id, set } = useParams();
   const [nfts, setNfts] = useState<PokemoonNft[]>([]);
   const [openTransferModal, setOpenTransferModal] = useState(false);
-  const nftContract = useBlastOffContract();
+  const nftContract = getNftContractByName(set);
   const { account } = useWeb3React();
   const [accountOwnsPack, setAccountOwnsPack] = useState(false);
 
@@ -68,7 +71,6 @@ const ViewPack = () => {
   );
 
   const [pId, userInput] = useInput({ type: "text" });
-
   return (
     <Content
       maxWidth="xl"

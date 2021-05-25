@@ -10,6 +10,7 @@ import {
   getAddress,
   useContractFromSymbol,
   useBlastOffContract,
+  useAmpedUpContract,
 } from "utils/contractHelpers";
 import {
   Modal,
@@ -61,9 +62,12 @@ const p: BuyInfoProps = {
     packId: "0",
     imageUrl: "/images/packs/Blastoff.png",
   },
-  price: 100,
-  lastPackId: 42,
+  price: 1500,
+  //not used
+  lastPackId: 0,
+  //not used
   pbPrice: 0.1,
+  //this gets overridden
   balance: 200,
   account: "", //override
   onConnectClicked: () => {
@@ -91,9 +95,11 @@ const StyledBackground = styled.div`
   margin-bottom: 20px;
 `;
 
+const setName = "ampedUp";
+
 const BuyPage = () => {
-  const pb2114 = new BigNumber(
-    useAppSelector((state) => state.user.balance.pb2114)
+  const pb2116 = new BigNumber(
+    useAppSelector((state) => state.user.balance.pb2116)
   );
   const allowance = useBlastOffAllowance();
   const { account } = useWeb3React();
@@ -103,7 +109,7 @@ const BuyPage = () => {
   const [openNotty, setOpenNotty] = React.useState(false);
   const [openPackNotty, setOpenPackNotty] = React.useState(false);
   const pballContract = useContractFromSymbol("pb2116");
-  const nftContract = useBlastOffContract();
+  const nftContract = useAmpedUpContract();
   const [collectedPackId, setCollectedPackId] = React.useState<number>(-1);
 
   const handleApprove = useCallback(async () => {
@@ -124,7 +130,7 @@ const BuyPage = () => {
   const handleConfirm = useCallback(async () => {
     const res = await sendBuyPack(nftContract, account);
     const packId = res.events.OnElevation.returnValues.packId;
-    await waitForPack(packId, "blastOff");
+    // await waitForPack(packId, "blastOff");
     setCollectedPackId(packId);
     setOpenPackNotty(true);
   }, [account, nftContract]);
@@ -191,7 +197,7 @@ const BuyPage = () => {
             {...p}
             allowance={!!allowance ? allowance.toNumber() : 0}
             account={account ?? ""}
-            balance={pb2114.toNumber()}
+            balance={pb2116.toNumber()}
             onConnectClicked={() => login(ConnectorNames.Injected)}
             onApproveClicked={handleApprove}
             onBuyClicked={() => setOpenConfirm(true)}
@@ -201,7 +207,7 @@ const BuyPage = () => {
       {/* <div style={{ height: 20, width: "100%" }} /> */}
       <Modal
         title="Are you sure?"
-        content="100 PBs will be burned in this transaction."
+        content="1500 PBs will be burned in this transaction."
         open={openConfirm}
         handleClose={() => {
           setOpenConfirm(false);
@@ -223,7 +229,7 @@ const BuyPage = () => {
         message={"pack secured 😎"}
         open={openPackNotty}
         linkLabel={"GO TO PACK"}
-        href={`/pack/${collectedPackId}`}
+        href={`/pack/${setName}/${collectedPackId}`}
         handleClose={() => {
           setOpenPackNotty(false);
           setCollectedPackId(-1);

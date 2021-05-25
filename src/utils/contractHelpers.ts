@@ -58,3 +58,15 @@ export const getAddressFromSymbol = (symbol: string) => {
       throw console.error("invalid symbol");
   }
 };
+
+export const getNftContractByName = (name: string) => {
+  switch (name) {
+    default:
+    case "ampedUp": {
+      return getAmpedUpContract();
+    }
+    case "blastOff": {
+      return getBlastOffContract();
+    }
+  }
+};

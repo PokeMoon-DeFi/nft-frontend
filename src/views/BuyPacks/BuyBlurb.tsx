@@ -1,9 +1,12 @@
 import Container from "@material-ui/core/Container";
 import styled from "styled-components";
 import { Typography } from "@material-ui/core";
-import { FC } from "react";
+import React, { FC, useCallback, useState } from "react";
 import { PokemoonPack } from "config/constants/nfts/types";
-import { Button, Backpack, Buy } from "nft-uikit";
+import { Button, Backpack, Buy, SendToAddress, Notification } from "nft-uikit";
+import { getAddress, getAmpedUpContract } from "utils/contractHelpers";
+import { sendGiftPack } from "utils/callHelpers";
+import web3 from "web3";
 
 const PrimaryInfo = styled.div`
   display: flex;
@@ -49,7 +52,7 @@ const FooterIcon = styled.div`
   text-align: center;
 `;
 
-export interface BuyInfoProps {
+interface BuyInfoProps {
   pack: PokemoonPack;
   price: number;
   lastPackId: number;
@@ -62,7 +65,7 @@ export interface BuyInfoProps {
   onBuyClicked: () => void;
 }
 
-const Blurb = ({
+const Blurb: FC<BuyInfoProps> = ({
   onConnectClicked,
   onApproveClicked,
   onBuyClicked,
@@ -71,6 +74,44 @@ const Blurb = ({
   price,
   allowance,
 }) => {
+  const [collectedPackId, setCollectedPackId] = React.useState<number>(-1);
+  const [openNotty, setOpenNotty] = React.useState(false);
+
+  const [openPackNotty, setOpenPackNotty] = React.useState(false);
+
+  const sendGift = useCallback(
+    async (receiver: string) => {
+      setOpenNotty(true);
+      const res = await sendGiftPack(getAmpedUpContract(), account, receiver);
+      const packId = res.events.EntreatPacked.returnValues.packId;
+      setCollectedPackId(packId);
+      setOpenPackNotty(true);
+    },
+    [account]
+  );
+
+  const [openTransferModal, setOpenTransferModal] = useState(false);
+
+  // return (`
+  //   padding: 12px;
+  //   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+
+  //   h4,
+  //   p {
+  //     text-align: center;
+  //   }
+  // `);
+
+  const DescriptionText = styled.div`
+    text-align: center;
+    font-style: oblique;
+    padding: 6px;
+    justify-content: center;
+    padding-bottom: 12px;
+    font-weight: bold;
+    font-size: 14pt;
+  `;
+
   return (
     <Container>
       <PrimaryInfo
@@ -83,7 +124,7 @@ const Blurb = ({
       </PrimaryInfo>
       <Description>
         <Typography variant="h4" style={{ paddingTop: 10 }}>
-          Blast Off! is Closed!
+          AMPED UP is up!
         </Typography>
         <Typography style={{ padding: 20, textAlign: "center" }}>
           Spend 100 PB and receive 5 random, incredibly special cards
@@ -106,31 +147,54 @@ const Blurb = ({
             Connect
           </Button>
         ) : allowance <= 0 ? (
-          <Button disabled endIcon={<Buy />} onClick={onApproveClicked}>
+          <Button endIcon={<Buy />} onClick={onApproveClicked}>
             Approve
           </Button>
         ) : balance >= price ? (
-          <Button endIcon={<Buy />} onClick={onBuyClicked} disabled>
-            Buy
-          </Button>
+          <div style={{ display: "flex", flex: 1 }}>
+            <Button endIcon={<Buy />} onClick={onBuyClicked}>
+              Buy
+            </Button>
+            <div style={{ width: 20 }} />
+            <Button
+              endIcon={<Buy />}
+              onClick={() => {
+                setOpenTransferModal(true);
+              }}
+            >
+              Buy For A Friend!
+            </Button>
+          </div>
         ) : (
-          <Button endIcon={<Buy />} disabled>
-            Not enough pokeballs 😕
-          </Button>
+          <Button endIcon={<Buy />}>Not enough pokeballs 😕</Button>
         )}
-        <Typography
-          style={{
-            textAlign: "center",
-            fontStyle: "italic",
-          }}
-        >
-          The Blast-Off! NFT Shop is now{" "}
-          <span style={{ fontWeight: "bold" }}>
-            closed as of 19:00 UTC May 23, 2021
-          </span>
-          <p>Keep your eyes peeled for the next release!</p>
-        </Typography>
       </Description>
+      <SendToAddress
+        open={openTransferModal}
+        handleClose={() => setOpenTransferModal(false)}
+        handleConfirm={(destAddress) => {
+          if (web3.utils.isAddress(destAddress)) {
+            sendGift(destAddress);
+            setOpenTransferModal(false);
+          }
+        }}
+      />
+      <Notification
+        message={"gassin' it!"}
+        open={openNotty}
+        handleClose={() => setOpenNotty(false)}
+        style={{ pointerEvents: "auto" }}
+      />
+      <Notification
+        message={"pack secured 😎"}
+        open={openPackNotty}
+        linkLabel={"GO TO PACK"}
+        href={`/pack/ampedUp/${collectedPackId}`}
+        handleClose={() => {
+          setOpenPackNotty(false);
+          setCollectedPackId(-1);
+        }}
+      />
     </Container>
   );
 };
