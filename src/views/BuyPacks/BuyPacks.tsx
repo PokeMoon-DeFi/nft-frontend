@@ -16,7 +16,6 @@ import {
   Content,
   Notification,
   BuyInfoProps,
-  BuyInfo,
   VideoPlayer,
 } from "nft-uikit";
 import Grid from "@material-ui/core/Grid";
@@ -28,6 +27,7 @@ import useAuth from "hooks/useAuth";
 import { ConnectorNames } from "utils/types";
 import { convertToObject } from "typescript";
 import BigNumber from "bignumber.js";
+import BuyBlurb from "./BuyBlurb";
 
 const StyledImage = styled.img`
   width: clamp(7rem, 100%, 500px);
@@ -97,17 +97,17 @@ const BuyPage = () => {
   );
   const allowance = useBlastOffAllowance();
   const { account } = useWeb3React();
-  const pballAddress = getAddressFromSymbol("pb2114");
+  const pballAddress = getAddressFromSymbol("pb2116");
 
   const [openConfirm, setOpenConfirm] = React.useState(false);
   const [openNotty, setOpenNotty] = React.useState(false);
   const [openPackNotty, setOpenPackNotty] = React.useState(false);
-  const pballContract = useContractFromSymbol("pb2114");
+  const pballContract = useContractFromSymbol("pb2116");
   const nftContract = useBlastOffContract();
   const [collectedPackId, setCollectedPackId] = React.useState<number>(-1);
 
   const handleApprove = useCallback(async () => {
-    const contractAddress = getAddress("blastOff");
+    const contractAddress = getAddress("ampedUp");
     if (account) {
       const res = await sendApproveBep20(
         pballContract,
@@ -153,7 +153,7 @@ const BuyPage = () => {
           alignContent: "center",
         }}
       >
-        <VideoPlayer url="https://streamable.com/yqu16t" height={200} />
+        <VideoPlayer url="https://streamable.com/0y8y8d" height={200} />
       </StyledBackground>
       <Grid
         container
@@ -187,7 +187,7 @@ const BuyPage = () => {
         </Grid>
 
         <Grid item sm={12} md={5} xs={12}>
-          <BuyInfo
+          <BuyBlurb
             {...p}
             allowance={!!allowance ? allowance.toNumber() : 0}
             account={account ?? ""}
