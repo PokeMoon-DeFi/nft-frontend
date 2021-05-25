@@ -18,11 +18,10 @@ function AdCarousel(props) {
       desktop: "/images/banners/Pancakeswap_PC.png",
       mobile: "/images/banners/Pancakeswap_Mobile.png",
     },
-    {
-      desktop: "/images/banners/Apeswap_PC.png",
-      mobile: "/images/banners/Apeswap_Mobile.png",
-    },
-
+    // {
+    //   desktop: "/images/banners/Apeswap_PC.png",
+    //   mobile: "/images/banners/Apeswap_Mobile.png",
+    // },
     {
       desktop: "/images/banners/AmpedUpSoonPC.png",
       mobile: "/images/banners/AmpedUpSoonMobile.png",
