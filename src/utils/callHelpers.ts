@@ -28,7 +28,7 @@ export const sendApproveBep20 = async (
  * @returns contract response
  */
 export const sendBuyPack = async (contract, account) => {
-  const BUY_GAS_ESTIMATE = 2000000;
+  const BUY_GAS_ESTIMATE = 1500000;
 
   //TL;DR: web3.eth.estimateGas() incorrect which would make tx fail
   //BUG: MetaMask won't throw if gas is manually set, even there's an error.
@@ -39,7 +39,7 @@ export const sendBuyPack = async (contract, account) => {
 };
 
 export const sendGiftPack = async (contract, from, to) => {
-  const BUY_GAS_ESTIMATE = 2000000;
+  const BUY_GAS_ESTIMATE = 1500000;
 
   //TL;DR: web3.eth.estimateGas() incorrect which would make tx fail
   //BUG: MetaMask won't throw if gas is manually set, even there's an error.
