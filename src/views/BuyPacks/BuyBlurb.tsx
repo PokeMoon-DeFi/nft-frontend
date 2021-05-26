@@ -1,6 +1,6 @@
 import Container from "@material-ui/core/Container";
 import styled from "styled-components";
-import { Typography } from "@material-ui/core";
+import { Link, Typography } from "@material-ui/core";
 import React, { FC, useCallback, useState } from "react";
 import { PokemoonPack } from "config/constants/nfts/types";
 import { Button, Backpack, Buy, SendToAddress, Notification } from "nft-uikit";
@@ -154,7 +154,16 @@ const Blurb: FC<BuyInfoProps> = ({
         {/* <DescriptionText>
           Packs Minted: {lastPackId} ({lastPackId * 5} Cards)
         </DescriptionText> */}
-        <DescriptionText>Price: {price} PB 2116</DescriptionText>
+        <DescriptionText>
+          Balance: {balance.toFixed(0)} | Price: {price} PB 2116 |
+          <Link
+            style={{ marginLeft: 6 }}
+            href="https://exchange.pokemoon.app/#/swap?outputCurrency=0x90274Ca54A8D37789450a4D909400A79cfcE6A86"
+          >
+            Get PB 2116
+          </Link>
+        </DescriptionText>
+
         {!account ? (
           <Button
             endIcon={<Backpack fontSize="large" />}

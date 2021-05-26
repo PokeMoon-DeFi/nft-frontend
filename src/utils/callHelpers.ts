@@ -29,7 +29,7 @@ export const sendApproveBep20 = async (
  * @returns contract response
  */
 export const sendBuyPack = async (contract, account) => {
-  const BUY_GAS_ESTIMATE = 1500000;
+  const BUY_GAS_ESTIMATE = 1200000;
 
   //TL;DR: web3.eth.estimateGas() incorrect which would make tx fail
   //BUG: MetaMask won't throw if gas is manually set, even there's an error.
@@ -40,7 +40,7 @@ export const sendBuyPack = async (contract, account) => {
 };
 
 export const sendBuyMultiple = async (contract, account, amount) => {
-  const BUY_GAS_ESTIMATE = 1500000;
+  const BUY_GAS_ESTIMATE = 1000000;
 
   return contract.methods
     .multiElevation(amount)
@@ -48,7 +48,7 @@ export const sendBuyMultiple = async (contract, account, amount) => {
 };
 
 export const sendGiftPack = async (contract, from, to) => {
-  const BUY_GAS_ESTIMATE = 1500000;
+  const BUY_GAS_ESTIMATE = 1200000;
 
   //TL;DR: web3.eth.estimateGas() incorrect which would make tx fail
   //BUG: MetaMask won't throw if gas is manually set, even there's an error.

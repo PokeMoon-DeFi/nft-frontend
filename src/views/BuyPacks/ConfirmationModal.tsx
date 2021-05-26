@@ -12,6 +12,7 @@ import Grid from "@material-ui/core/Grid";
 import Divider from "@material-ui/core/Divider";
 import { useState, useEffect } from "react";
 import { useAppSelector } from "providers";
+import { Link } from "@material-ui/core";
 
 interface ModalProps extends DialogProps {
   handleClose: () => void;
@@ -97,7 +98,7 @@ const Modal: React.FC<ModalProps> = ({
       </DialogContent>
       <DialogContent>
         <DialogContentText>
-          Your Balance: {parseFloat(pb2116).toFixed(4)}
+          Your Balance: {parseFloat(pb2116).toFixed(1)}
         </DialogContentText>
         {parseFloat(pb2116) > pbCost ? (
           <DialogContentText>
@@ -105,7 +106,12 @@ const Modal: React.FC<ModalProps> = ({
             be burned in this transaction
           </DialogContentText>
         ) : (
-          <DialogContentText>You do not have eonugh PBs!</DialogContentText>
+          <>
+            <DialogContentText>You do not have enough PBs!</DialogContentText>
+            <Link href="https://exchange.pokemoon.app/#/swap?outputCurrency=0x90274Ca54A8D37789450a4D909400A79cfcE6A86">
+              Get PB 2116
+            </Link>
+          </>
         )}
       </DialogContent>
 
