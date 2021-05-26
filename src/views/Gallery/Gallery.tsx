@@ -22,9 +22,10 @@ const capitalize = (s: string) => {
 };
 
 const GalleryView = () => {
-  const userNfts = useAppSelector(
-    (state) => state.user.nftBalance.blastOff.cards
-  );
+  const userNfts = [
+    ...useAppSelector((state) => state.user.nftBalance.blastOff.cards),
+    ...useAppSelector((state) => state.user.nftBalance.ampedUp.cards),
+  ];
 
   const [viewState, setViewState] = useState("grid");
   const [filterState, setFilterState] = useState<FilterState>({
