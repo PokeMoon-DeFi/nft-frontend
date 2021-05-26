@@ -129,8 +129,7 @@ const BuyPage = () => {
 
   const handleConfirm = useCallback(async () => {
     const res = await sendBuyPack(nftContract, account);
-    const packId = res.events.OnElevation.returnValues.packId;
-    // await waitForPack(packId, "blastOff");
+    const packId = res.events["EntreatPacked"].returnValues.packId;
     setCollectedPackId(packId);
     setOpenPackNotty(true);
   }, [account, nftContract]);

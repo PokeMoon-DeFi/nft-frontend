@@ -102,7 +102,7 @@ const ViewPack = () => {
           {userInput}
           <Button
             onClick={() =>
-              !!pId ? (window.location.href = `/pack/${pId}`) : null
+              !!pId ? (window.location.href = `/pack/${set}/${pId}`) : null
             }
             style={{ marginLeft: "6px" }}
           >
