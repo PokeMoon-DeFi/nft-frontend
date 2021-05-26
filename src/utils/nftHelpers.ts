@@ -138,7 +138,7 @@ export const handleTokenIdResponse = async (
   }
 
   const missingPacks = packs.filter((packId) => !isPackCached(packId, pack));
-  await collectMissingPacks(missingPacks, pack);
+  const packCache = await collectMissingPacks(missingPacks, pack);
 
   for (const tokenId of tokenIds) {
     if (tokenId.toNumber() < 11000000) {
@@ -157,6 +157,7 @@ export const handleTokenIdResponse = async (
   return { [pack]: { packs, cards } };
 };
 
+//This updates the static cache
 const collectMissingPacks = async (packIds: string[], pack: string) => {
   const nftAddresses: { [key: string]: string } = {
     blastOff: contracts.blastOff[process.env.REACT_APP_CHAIN_ID],
@@ -173,10 +174,10 @@ const collectMissingPacks = async (packIds: string[], pack: string) => {
 
   const multiCallResponse = await multicall(getAbi(pack), calls);
   let index = 0;
+  const cache = getPackCache(pack);
   for (const res of multiCallResponse) {
     const packId = packIds[index];
     const { card1, card2, card3, card4, card5 } = res;
-    const cache = getPackCache(pack);
 
     cache[packId] = [card1, card2, card3, card4, card5];
     cache["card1"] = packId;
@@ -186,4 +187,5 @@ const collectMissingPacks = async (packIds: string[], pack: string) => {
     cache["card5"] = packId;
     index += 1;
   }
+  return cache;
 };

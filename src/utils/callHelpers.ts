@@ -3,6 +3,7 @@ import {
   getBep20Contract,
   getBlastOffContract,
   getAmpedUpContract,
+  getNftContractByName,
 } from "./contractHelpers";
 
 /**
@@ -59,8 +60,8 @@ export const sendTransferPack = async (contract, from, to, packId) => {
  * @param account
  * @returns contract response
  */
-export const getPackedOwned = async (account) => {
-  const contract = getBlastOffContract();
+export const getPackedOwned = async (account, pack) => {
+  const contract = getNftContractByName(pack);
   return contract.methods.packedOwned(account).call();
 };
 
@@ -121,4 +122,9 @@ export const getPackContract = (name) => {
     case "ampedUp":
       return getAmpedUpContract();
   }
+};
+
+export const getOwnerOf = async (packName, tokenId) => {
+  const contract = getPackContract(packName);
+  return contract.methods.ownerOf(tokenId).call();
 };

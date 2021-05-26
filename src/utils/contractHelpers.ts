@@ -12,6 +12,18 @@ const getContract = (abi: any, address: string, web3?: Web3) => {
   return new _web3.eth.Contract(abi as AbiItem, address);
 };
 
+export const getNftAbiByName = (pack: string) => {
+  switch (pack) {
+    default:
+    case "blastOff": {
+      return BlastOffAbi;
+    }
+    case "ampedUp": {
+      return AmpedUpAbi;
+    }
+  }
+};
+
 export const getAddress = (name: string) => {
   return contracts[name][process.env.REACT_APP_CHAIN_ID];
 };
@@ -69,4 +81,13 @@ export const getNftContractByName = (name: string) => {
       return getBlastOffContract();
     }
   }
+};
+
+export const getNftAddressByName = (name: string) => {
+  const nftAddresses: { [key: string]: string } = {
+    blastOff: contracts.blastOff[process.env.REACT_APP_CHAIN_ID],
+    ampedUp: contracts.ampedUp[process.env.REACT_APP_CHAIN_ID],
+  };
+
+  return nftAddresses[name];
 };

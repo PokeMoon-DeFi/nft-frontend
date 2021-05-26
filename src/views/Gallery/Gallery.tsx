@@ -37,7 +37,6 @@ const GalleryView = () => {
   const filterNfts = useMemo(() => {
     return getFilteredNfts(userNfts, filterState);
   }, [filterState, userNfts]);
-  console.log(filterNfts);
   return (
     <Container
       maxWidth="lg"

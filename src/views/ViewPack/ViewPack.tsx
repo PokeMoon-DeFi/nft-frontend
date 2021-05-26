@@ -19,6 +19,8 @@ import { PokemoonNft } from "config/constants/nfts/types";
 import {
   useBlastOffContract,
   getNftContractByName,
+  getNftAddressByName,
+  getNftAbiByName,
 } from "utils/contractHelpers";
 import { useWeb3React } from "@web3-react/core";
 import { useAppSelector } from "providers";
@@ -26,10 +28,12 @@ import { Input, Typography } from "@material-ui/core";
 import { useInput } from "hooks/useInput";
 import Grid from "@material-ui/core/Grid";
 import { getCardData } from "utils/nftHelpers";
+import multicall from "utils/multicall";
 
 const ViewPack = () => {
   let { id, set } = useParams();
   const [nfts, setNfts] = useState<PokemoonNft[]>([]);
+
   const [openTransferModal, setOpenTransferModal] = useState(false);
   const nftContract = getNftContractByName(set);
   const { account } = useWeb3React();
@@ -38,6 +42,7 @@ const ViewPack = () => {
   useEffect(() => {
     const fetch = async () => {
       const res = await getPackInfo(id, set);
+      let packNfts: PokemoonNft[] = [];
 
       for (let i = 0; i < 5; i++) {
         const tokenId = res[i];
@@ -45,22 +50,33 @@ const ViewPack = () => {
         if (tokenId.length === 8) {
           const card = await getCardData(tokenId, set);
 
-          setNfts((state) => [...state, card]);
+          packNfts.push(card);
         }
+      }
+      setNfts(packNfts);
+
+      if (account) {
+        const calls = packNfts.map((nft) => {
+          return {
+            address: getNftAddressByName(set),
+            name: "ownerOf",
+            params: [nft.tokenId],
+          };
+        });
+
+        const ownedPacks: number[] = await getPackedOwned(account, set);
+        const response: string[] = await multicall(getNftAbiByName(set), calls);
+
+        setAccountOwnsPack(
+          ownedPacks &&
+            ownedPacks.includes(id) &&
+            response.every((response) => response[0] === account)
+        );
       }
     };
 
     fetch();
-  }, [id, set]);
-
-  useEffect(() => {
-    const fetch = async () => {
-      if (!account) return;
-      const ownedPacks: number[] = await getPackedOwned(account);
-      setAccountOwnsPack(ownedPacks && ownedPacks.includes(id));
-    };
-    fetch();
-  }, [id, account]);
+  }, [id, set, account]);
 
   const confirmTransferCallback = useCallback(
     async (destAddress) => {
