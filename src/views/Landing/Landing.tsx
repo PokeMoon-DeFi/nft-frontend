@@ -17,14 +17,16 @@ function AdCarousel(props) {
     {
       desktop: "/images/banners/Pancakeswap_PC.png",
       mobile: "/images/banners/Pancakeswap_Mobile.png",
+      href: "https://exchange.pokemoon.app/#/add/ETH/0x498e3739d58AAe82656030BCBcCf5ac63E0E57e1",
     },
     // {
     //   desktop: "/images/banners/Apeswap_PC.png",
     //   mobile: "/images/banners/Apeswap_Mobile.png",
     // },
     {
-      desktop: "/images/banners/AmpedUpSoonPC.png",
-      mobile: "/images/banners/AmpedUpSoonMobile.png",
+      desktop: "/images/banners/AmpedUpPC.png",
+      mobile: "/images/banners/AmpedUpMobile.png",
+      href: "https://exchange.pokemoon.app/#/swap?outputCurrency=0x90274Ca54A8D37789450a4D909400A79cfcE6A86",
     },
   ];
 
@@ -49,12 +51,16 @@ function Item({ item }) {
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
 
   return (
-    <div>
+    <div onClick={() => (window.location.href = item.href)}>
       <img
         src={isMobile ? item.mobile : item.desktop}
         height={isMobile ? "auto" : "100%"}
         width={isMobile ? "100%" : "auto"}
-        style={{ maxHeight: 250, maxWidth: isMobile ? 440 : "none" }}
+        style={{
+          maxHeight: 250,
+          maxWidth: isMobile ? 440 : "none",
+          cursor: "pointer",
+        }}
         alt={"banner-ad"}
       />
     </div>
@@ -182,7 +188,7 @@ const Landing: React.FC = () => {
                 margin: 20,
               }}
             >
-              Welcome to the world of Pokemoon!
+              Welcome to the world of Pokémoon!
             </Typography>
             <Divider
               style={{

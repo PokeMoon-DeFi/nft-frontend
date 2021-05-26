@@ -129,14 +129,14 @@ const Blurb: FC<BuyInfoProps> = ({
       </PrimaryInfo>
       <Description>
         <Typography variant="h4" style={{ padding: 10 }}>
-          PokeMoon presents: AMPED UP!
+          LET'S GET AMPED UP!
         </Typography>
         <Typography style={{ padding: 10, textAlign: "center" }}>
-          Spend {price} PB and receive 5 special cards from PokeMoon's 2nd
-          premiere pack. Still meticulously designed by our most clever and
-          creative community artists! With all PB 2116 in existence already
-          minted, these packs are set to be scarce! Set at an initial price of
-          roughly 10 BUSD/pack at announcement,
+          Spend {price} PB and receive 5 special cards from PokéMoon's 2nd pack.
+          Once again meticulously designed by our most clever and creative
+          community artists! Set at an initial price of roughly $10 BUSD per
+          pack, and with all PB 2116 already farmed by our loyal PokéMoon
+          trainers, these packs are sure to be scarce!
         </Typography>
         <Typography
           style={{
@@ -146,8 +146,9 @@ const Blurb: FC<BuyInfoProps> = ({
             textAlign: "center",
           }}
         >
-          Each pack contains 5 NFTs that represent ownership of official
-          PokeMoon Virtual Trading Cards and their accompanying media.
+          Each pack contains 5 exclusive NFTs that represent ownership of
+          official PokéMoon Virtual Trading Cards, rendered in a stunning 3D
+          format.
         </Typography>
 
         {/* <DescriptionText>
