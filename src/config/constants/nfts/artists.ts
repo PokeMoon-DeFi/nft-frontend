@@ -5,8 +5,8 @@ const ARTISTS: { [key: string]: ArtistInfo } = {
     name: "Armilo Barrios",
   },
   LilyPonto: {
-    name: "Lily&Ponto",
-    instagram: "@lilloworks",
+    name: "@lilloworks",
+    instagram: "",
   },
   Ilya: {
     name: "Ilya",

@@ -23,7 +23,7 @@ export const AMPED_UP_CARDS: { [key: number]: any } = {
     name: "Graffing",
     type: PM_TYPES.DARKNESS,
     description: "The whole world's a canvas.",
-    artist: ARTISTS.LilyPonto,
+    artist: ARTISTS.NinjaGuy,
   },
   4: {
     number: 4,
@@ -43,7 +43,7 @@ export const AMPED_UP_CARDS: { [key: number]: any } = {
     number: 6,
     name: "Degen Meownaut",
     type: PM_TYPES.DARKNESS,
-    description: `Wait he can talk?, Yes but I wouldn’t believe a single word he says.`,
+    description: `Wait he can talk?"\n\n "Yes, but I wouldn’t believe a single word he says.`,
     artist: ARTISTS.NinjaGuy,
   },
   7: {
@@ -96,170 +96,170 @@ export const AMPED_UP_CARDS: { [key: number]: any } = {
  * Maps nft keys (first 2 numbers from tokenId) to nft info
  */
 const AMPED_UP_COLLECTION: { [key: number]: any } = {
-  22: {
-    tokenId: "22",
+  11: {
+    tokenId: "11",
     imageUrl: "001raituffUC.png",
     card: AMPED_UP_CARDS[1],
     rarity: PM_RARITY.U,
   },
-  32: {
-    tokenId: "32",
+  12: {
+    tokenId: "12",
     imageUrl: "001raituffR.png",
     card: AMPED_UP_CARDS[1],
     rarity: PM_RARITY.R,
   },
-  37: {
-    tokenId: "37",
+  13: {
+    tokenId: "13",
     imageUrl: "001raituffL.png",
     card: AMPED_UP_CARDS[1],
     rarity: PM_RARITY.L,
   },
-  12: {
-    tokenId: "12",
+  14: {
+    tokenId: "14",
     imageUrl: "002dballsC.png",
     card: AMPED_UP_CARDS[2],
     rarity: PM_RARITY.C,
   },
-  23: {
-    tokenId: "23",
+  15: {
+    tokenId: "15",
     imageUrl: "002dballsUC.png",
     card: AMPED_UP_CARDS[2],
     rarity: PM_RARITY.U,
   },
-  21: {
-    tokenId: "21",
+  16: {
+    tokenId: "16",
     imageUrl: "003graffingUC.png",
     card: AMPED_UP_CARDS[3],
     rarity: PM_RARITY.U,
   },
-  29: {
-    tokenId: "29",
+  17: {
+    tokenId: "17",
     imageUrl: "003graffingR.png",
     card: AMPED_UP_CARDS[3],
     rarity: PM_RARITY.R,
   },
-  36: {
-    tokenId: "36",
+  18: {
+    tokenId: "18",
     imageUrl: "003graffingL.png",
     card: AMPED_UP_CARDS[3],
     rarity: PM_RARITY.L,
   },
-  15: {
-    tokenId: "15",
+  19: {
+    tokenId: "19",
     imageUrl: "004astrohelmUC.png",
     card: AMPED_UP_CARDS[4],
     rarity: PM_RARITY.U,
   },
-  33: {
-    tokenId: "33",
+  20: {
+    tokenId: "20",
     imageUrl: "004astrohelmR.png",
     card: AMPED_UP_CARDS[4],
     rarity: PM_RARITY.R,
   },
-  19: {
-    tokenId: "19",
+  21: {
+    tokenId: "21",
     imageUrl: "005profcokeUC.png",
     card: AMPED_UP_CARDS[5],
     rarity: PM_RARITY.U,
   },
-  25: {
-    tokenId: "25",
+  22: {
+    tokenId: "22",
     imageUrl: "005profcokeR.png",
     card: AMPED_UP_CARDS[5],
     rarity: PM_RARITY.R,
   },
-  35: {
-    tokenId: "35",
+  23: {
+    tokenId: "23",
     imageUrl: "005profcokeL.png",
     card: AMPED_UP_CARDS[5],
     rarity: PM_RARITY.L,
   },
-  28: {
-    tokenId: "28",
+  24: {
+    tokenId: "24",
     imageUrl: "006degenmntR.png",
     card: AMPED_UP_CARDS[6],
     rarity: PM_RARITY.R,
   },
-  38: {
-    tokenId: "38",
+  25: {
+    tokenId: "25",
     imageUrl: "006degenmntL.png",
     card: AMPED_UP_CARDS[6],
     rarity: PM_RARITY.L,
   },
-  14: {
-    tokenId: "14",
+  26: {
+    tokenId: "26",
     imageUrl: "007farmerC.png",
     card: AMPED_UP_CARDS[7],
     rarity: PM_RARITY.C,
   },
-  20: {
-    tokenId: "20",
+  27: {
+    tokenId: "27",
     imageUrl: "007farmerUC.png",
     card: AMPED_UP_CARDS[7],
     rarity: PM_RARITY.U,
   },
-  13: {
-    tokenId: "13",
+  28: {
+    tokenId: "28",
     imageUrl: "008ekrowC.png",
     card: AMPED_UP_CARDS[8],
     rarity: PM_RARITY.C,
   },
-  17: {
-    tokenId: "17",
+  29: {
+    tokenId: "29",
     imageUrl: "008ekrowUC.png",
     card: AMPED_UP_CARDS[8],
     rarity: PM_RARITY.U,
   },
-  31: {
-    tokenId: "31",
+  30: {
+    tokenId: "30",
     imageUrl: "008ekrowR.png",
     card: AMPED_UP_CARDS[8],
     rarity: PM_RARITY.R,
   },
-  18: {
-    tokenId: "18",
+  31: {
+    tokenId: "31",
     imageUrl: "009artduckoUC.png",
     card: AMPED_UP_CARDS[9],
     rarity: PM_RARITY.U,
   },
-  27: {
-    tokenId: "27",
+  32: {
+    tokenId: "32",
     imageUrl: "009artduckoR.png",
     card: AMPED_UP_CARDS[9],
     rarity: PM_RARITY.R,
   },
-  34: {
-    tokenId: "34",
+  33: {
+    tokenId: "33",
     imageUrl: "009artduckoL.png",
     card: AMPED_UP_CARDS[9],
     rarity: PM_RARITY.L,
   },
-  16: {
-    tokenId: "16",
+  34: {
+    tokenId: "34",
     imageUrl: "010mynxUC.png",
     card: AMPED_UP_CARDS[10],
     rarity: PM_RARITY.U,
   },
-  26: {
-    tokenId: "26",
+  35: {
+    tokenId: "35",
     imageUrl: "010mynxR.png",
     card: AMPED_UP_CARDS[10],
     rarity: PM_RARITY.R,
   },
-  11: {
-    tokenId: "11",
+  36: {
+    tokenId: "36",
     imageUrl: "011magikazamC.png",
     card: AMPED_UP_CARDS[11],
     rarity: PM_RARITY.C,
   },
-  24: {
-    tokenId: "24",
+  37: {
+    tokenId: "37",
     imageUrl: "011magikazamUC.png",
     card: AMPED_UP_CARDS[11],
     rarity: PM_RARITY.U,
   },
-  30: {
-    tokenId: "30",
+  38: {
+    tokenId: "38",
     imageUrl: "011magikazamR.png",
     card: AMPED_UP_CARDS[11],
     rarity: PM_RARITY.R,
