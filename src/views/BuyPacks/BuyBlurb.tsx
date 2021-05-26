@@ -128,22 +128,32 @@ const Blurb: FC<BuyInfoProps> = ({
         <Pack>{"DEGEN BALL"}</Pack>
       </PrimaryInfo>
       <Description>
-        <Typography variant="h4" style={{ paddingTop: 10 }}>
-          AMPED UP is up!
+        <Typography variant="h4" style={{ padding: 10 }}>
+          PokeMoon presents: AMPED UP!
         </Typography>
-        <Typography style={{ padding: 20, textAlign: "center" }}>
-          Spend 100 PB and receive 5 random, incredibly special cards
-          meticulously designed by our most clever, creative community members.
+        <Typography style={{ padding: 10, textAlign: "center" }}>
+          Spend 1500 PB and receive 5 special cards from PokeMoon's 2nd premiere
+          pack. Still meticulously designed by our most clever and creative
+          community artists! With all PB 2116 in existence already minted, these
+          packs are set to be scarce! Set at an initial price of roughly 10
+          BUSD/pack at announcement,
         </Typography>
-        <Typography style={{ paddingTop: 0, padding: 20, textAlign: "center" }}>
-          Hang tight; these bad boys will have tons of utilities, abilities, and
-          tradability as our platform expands!
+        <Typography
+          style={{
+            padding: 10,
+            paddingLeft: 50,
+            paddingRight: 50,
+            textAlign: "center",
+          }}
+        >
+          Each pack contains 5 NFTs that represent ownership of official
+          PokeMoon Virtual Trading Cards and their accompanying media.
         </Typography>
 
         {/* <DescriptionText>
           Packs Minted: {lastPackId} ({lastPackId * 5} Cards)
         </DescriptionText> */}
-        <DescriptionText>Price: {price} PB</DescriptionText>
+        <DescriptionText>Price: {price} PB 2116</DescriptionText>
         {!account ? (
           <Button
             endIcon={<Backpack fontSize="large" />}
