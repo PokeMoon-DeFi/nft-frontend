@@ -57,14 +57,14 @@ const linkConfig: LinkConfigState[] = [
     icon: <StoreOutlinedIcon />,
   },
   {
+    target: "/catalog",
+    label: "Catalog",
+    icon: <PhotoSizeSelectActualIcon />,
+  },
+  {
     target: "/collection",
     label: "My Collection",
     icon: <AccountBalanceIcon />,
-  },
-  {
-    target: "/gallery",
-    label: "Gallery",
-    icon: <PhotoSizeSelectActualIcon />,
   },
 ];
 
@@ -129,7 +129,7 @@ const App: React.FC = () => {
               <Route path="/buy" exact>
                 <BuyPacks />
               </Route>
-              <Route path="/gallery" exact>
+              <Route path="/catalog" exact>
                 <PublicGallery />
               </Route>
               <Route path="/collection" exact>
