@@ -120,7 +120,7 @@ export const getCardData = async (tokenId: string, set: string, cache = {}) => {
   nft.imageUrl = `/images/cards/${set}/${imageUrl}`;
   nft.set = set;
 
-  nft.packId = cache ? cache[tokenId] : getTokenCache(set)[tokenId];
+  nft.packId = getTokenCache(set)[tokenId];
 
   return nft;
 };
@@ -144,7 +144,7 @@ export const handleTokenIdResponse = async (
   for (const tokenId of tokenIds) {
     if (tokenId.toNumber() < 11000000) {
     } else {
-      cards.push(await getCardData(tokenId.toString(), pack, tokenCache));
+      cards.push(await getCardData(tokenId.toString(), pack));
     }
   }
 
