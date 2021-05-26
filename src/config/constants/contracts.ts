@@ -23,7 +23,7 @@ const contracts = {
     56: "0x2e17f28a12624a38d6d6f5e2b50a6408f9129f77",
   },
   ampedUp: {
-    56: "0xAcf533f4739869aba9D5CF6541Ffb110040AEcd7",
+    56: "0x47968882eCc8FE91d0C7d3938ad6C1BE2243363E",
   },
   // Banks
   brindletonBay: {
@@ -60,7 +60,7 @@ const contracts = {
     56: "0xBEEa03a1768b8CFa0496B4e3aCf3bf5Cc7d69904",
   },
   pb2116: {
-    56: "0x58556C103590c0CB20bBD261618Fe87a13B6E2bc",
+    56: "0x90274Ca54A8D37789450a4D909400A79cfcE6A86",
   },
   // Old Tokens
   meowth: {

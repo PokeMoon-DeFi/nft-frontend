@@ -62,7 +62,7 @@ const p: BuyInfoProps = {
     packId: "0",
     imageUrl: "/images/packs/Blastoff.png",
   },
-  price: 1500,
+  price: 750,
   //not used
   lastPackId: 0,
   //not used

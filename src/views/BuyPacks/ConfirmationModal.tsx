@@ -18,7 +18,7 @@ interface ModalProps extends DialogProps {
   handleConfirm: (packAmount: number) => void;
 }
 
-const PACK_AMOUNT = 1500;
+const PACK_COST = 750;
 
 const Modal: React.FC<ModalProps> = ({
   title,
@@ -27,10 +27,10 @@ const Modal: React.FC<ModalProps> = ({
   ...props
 }) => {
   const [packAmount, setPackAmount] = useState(1);
-  const [pbCost, setPbCost] = useState(PACK_AMOUNT);
+  const [pbCost, setPbCost] = useState(PACK_COST);
   const pb2116 = useAppSelector((state) => state.user.balance.pb2116);
   useEffect(() => {
-    setPbCost(1500 * packAmount);
+    setPbCost(PACK_COST * packAmount);
   }, [packAmount]);
   return (
     <Dialog

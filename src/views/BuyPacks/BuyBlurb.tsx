@@ -132,11 +132,11 @@ const Blurb: FC<BuyInfoProps> = ({
           PokeMoon presents: AMPED UP!
         </Typography>
         <Typography style={{ padding: 10, textAlign: "center" }}>
-          Spend 1500 PB and receive 5 special cards from PokeMoon's 2nd premiere
-          pack. Still meticulously designed by our most clever and creative
-          community artists! With all PB 2116 in existence already minted, these
-          packs are set to be scarce! Set at an initial price of roughly 10
-          BUSD/pack at announcement,
+          Spend {price} PB and receive 5 special cards from PokeMoon's 2nd
+          premiere pack. Still meticulously designed by our most clever and
+          creative community artists! With all PB 2116 in existence already
+          minted, these packs are set to be scarce! Set at an initial price of
+          roughly 10 BUSD/pack at announcement,
         </Typography>
         <Typography
           style={{
