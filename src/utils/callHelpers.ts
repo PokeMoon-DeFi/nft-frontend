@@ -39,6 +39,14 @@ export const sendBuyPack = async (contract, account) => {
     .send({ from: account, gas: BUY_GAS_ESTIMATE });
 };
 
+export const sendBuyMultiple = async (contract, account, amount) => {
+  const BUY_GAS_ESTIMATE = 1500000;
+
+  return contract.methods
+    .multiElevation(amount)
+    .send({ from: account, gas: BUY_GAS_ESTIMATE * amount });
+};
+
 export const sendGiftPack = async (contract, from, to) => {
   const BUY_GAS_ESTIMATE = 1500000;
 

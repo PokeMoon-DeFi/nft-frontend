@@ -4,7 +4,12 @@ import { Button } from "nft-uikit";
 import { useAppSelector } from "providers";
 import { useBlastOffAllowance } from "hooks/useAllowance";
 import { useWeb3React } from "@web3-react/core";
-import { getPackInfo, sendApproveBep20, sendBuyPack } from "utils/callHelpers";
+import {
+  getPackInfo,
+  sendApproveBep20,
+  sendBuyPack,
+  sendBuyMultiple,
+} from "utils/callHelpers";
 import {
   getAddressFromSymbol,
   getAddress,
@@ -12,13 +17,7 @@ import {
   useBlastOffContract,
   useAmpedUpContract,
 } from "utils/contractHelpers";
-import {
-  Modal,
-  Content,
-  Notification,
-  BuyInfoProps,
-  VideoPlayer,
-} from "nft-uikit";
+import { Content, Notification, BuyInfoProps, VideoPlayer } from "nft-uikit";
 import Grid from "@material-ui/core/Grid";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
 import { useTheme } from "@material-ui/core/styles";
@@ -29,6 +28,7 @@ import { ConnectorNames } from "utils/types";
 import { convertToObject } from "typescript";
 import BigNumber from "bignumber.js";
 import BuyBlurb from "./BuyBlurb";
+import ConfirmationModal from "./ConfirmationModal";
 
 const StyledImage = styled.img`
   width: clamp(7rem, 100%, 500px);
@@ -127,12 +127,22 @@ const BuyPage = () => {
     }
   }, [account, pballAddress, pballContract]);
 
-  const handleConfirm = useCallback(async () => {
-    const res = await sendBuyPack(nftContract, account);
-    const packId = res.events["EntreatPacked"].returnValues.packId;
-    setCollectedPackId(packId);
-    setOpenPackNotty(true);
-  }, [account, nftContract]);
+  const handleConfirm = useCallback(
+    async (packAmount) => {
+      let res, packId;
+      if (packAmount === 1) {
+        res = await sendBuyPack(nftContract, account);
+        packId = res.events["EntreatPacked"].returnValues.packId;
+      } else {
+        res = await sendBuyMultiple(nftContract, account, packAmount);
+        packId = res.events["EntreatPacked"][0].returnValues.packId;
+      }
+
+      setCollectedPackId(packId);
+      setOpenPackNotty(true);
+    },
+    [account, nftContract]
+  );
 
   const { login, logout } = useAuth();
 
@@ -204,17 +214,15 @@ const BuyPage = () => {
         </Grid>
       </Grid>
       {/* <div style={{ height: 20, width: "100%" }} /> */}
-      <Modal
-        title="Are you sure?"
-        content="1500 PBs will be burned in this transaction."
+      <ConfirmationModal
         open={openConfirm}
         handleClose={() => {
           setOpenConfirm(false);
         }}
-        handleConfirm={() => {
+        handleConfirm={(packAmount) => {
           setOpenConfirm(false);
           setOpenNotty(true);
-          handleConfirm();
+          handleConfirm(packAmount);
         }}
         style={{ pointerEvents: "auto" }}
       />
