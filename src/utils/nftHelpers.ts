@@ -107,7 +107,7 @@ const getBaseUri = (pack: string) => {
   }
 };
 
-export const getCardData = async (tokenId: string, set: string) => {
+export const getCardData = async (tokenId: string, set: string, cache = {}) => {
   const cardId = parseInt(tokenId.substr(0, 2));
   let collection: any;
   set === "blastOff"
@@ -119,7 +119,8 @@ export const getCardData = async (tokenId: string, set: string) => {
   nft.glbUrl = `/models/${set}/${imageUrl.replace(".png", ".glb")}`;
   nft.imageUrl = `/images/cards/${set}/${imageUrl}`;
   nft.set = set;
-  nft.packId = getTokenCache(set)[tokenId];
+
+  nft.packId = cache ? cache[tokenId] : getTokenCache(set)[tokenId];
 
   return nft;
 };
@@ -138,12 +139,12 @@ export const handleTokenIdResponse = async (
   }
 
   const missingPacks = packs.filter((packId) => !isPackCached(packId, pack));
-  const packCache = await collectMissingPacks(missingPacks, pack);
+  const tokenCache = await collectMissingPacks(missingPacks, pack);
 
   for (const tokenId of tokenIds) {
     if (tokenId.toNumber() < 11000000) {
     } else {
-      cards.push(await getCardData(tokenId.toString(), pack));
+      cards.push(await getCardData(tokenId.toString(), pack, tokenCache));
     }
   }
 
@@ -174,18 +175,28 @@ const collectMissingPacks = async (packIds: string[], pack: string) => {
 
   const multiCallResponse = await multicall(getAbi(pack), calls);
   let index = 0;
-  const cache = getPackCache(pack);
+  const packCache = getPackCache(pack);
+  const tokenCache = getTokenCache(pack);
+
   for (const res of multiCallResponse) {
     const packId = packIds[index];
     const { card1, card2, card3, card4, card5 } = res;
 
-    cache[packId] = [card1, card2, card3, card4, card5];
-    cache["card1"] = packId;
-    cache["card2"] = packId;
-    cache["card3"] = packId;
-    cache["card4"] = packId;
-    cache["card5"] = packId;
+    tokenCache[card1] = packId;
+    tokenCache[card2] = packId;
+    tokenCache[card3] = packId;
+    tokenCache[card4] = packId;
+    tokenCache[card5] = packId;
+
+    packCache[packId] = {
+      card1,
+      card2,
+      card3,
+      card4,
+      card5,
+    };
+
     index += 1;
   }
-  return cache;
+  return tokenCache;
 };
