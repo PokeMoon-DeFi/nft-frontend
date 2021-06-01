@@ -11,7 +11,7 @@ const store = configureStore({
     user: User,
     prices: PriceData,
   },
-  // middleware: [logger, thunk] as const,
+  middleware: [thunk] as const,
 });
 
 export type AppDispatch = typeof store.dispatch;

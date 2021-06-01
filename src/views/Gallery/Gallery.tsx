@@ -1,19 +1,13 @@
 import {
   Gallery,
-  PackCard,
   Content,
-  WiggleBall,
   FilterDashboard,
   TableGrid,
-  RarityChip,
   FilterState,
   getFilteredNfts,
 } from "nft-uikit";
 import { useAppSelector } from "providers";
-import Grid from "@material-ui/core/Grid";
 import { useEffect, useMemo, useState } from "react";
-import BLAST_OFF_COLLECTION from "config/constants/nfts/2114";
-import { PokemoonPack, PokemoonNft } from "config/constants/nfts/types";
 import Container from "@material-ui/core/Container";
 
 const capitalize = (s: string) => {
@@ -22,10 +16,15 @@ const capitalize = (s: string) => {
 };
 
 const GalleryView = () => {
-  const userNfts = [
-    ...useAppSelector((state) => state.user.nftBalance.blastOff.cards),
-    ...useAppSelector((state) => state.user.nftBalance.ampedUp.cards),
-  ];
+  const blastOffCards = useAppSelector(
+    (state) => state.user.nftBalance.blastOff.cards,
+    (a, b) => a.length === b.length
+  );
+
+  const ampedUpCards = useAppSelector(
+    (state) => state.user.nftBalance.ampedUp.cards,
+    (a, b) => a.length === b.length
+  );
 
   const [viewState, setViewState] = useState("grid");
   const [filterState, setFilterState] = useState<FilterState>({
@@ -36,8 +35,9 @@ const GalleryView = () => {
   });
 
   const filterNfts = useMemo(() => {
-    return getFilteredNfts(userNfts, filterState);
-  }, [filterState, userNfts]);
+    return getFilteredNfts([...ampedUpCards, ...blastOffCards], filterState);
+  }, [filterState, ampedUpCards, blastOffCards]);
+
   return (
     <Container
       maxWidth="lg"
