@@ -114,6 +114,10 @@ const contracts = {
     97: "",
     56: "0x8ac76a51cc950d9822d68b83fe1ad97b32cd580d",
   },
+  marketplace: {
+    97: "",
+    56: "0xE297D57d6EcA2f471d3760D75F6caF0Bf7A3EE8E",
+  },
 };
 
 export default contracts;

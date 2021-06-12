@@ -26,6 +26,7 @@ import PhotoSizeSelectActualIcon from "@material-ui/icons/PhotoSizeSelectActual"
 import ToolBar from "@material-ui/core/Toolbar";
 import { makeStyles } from "@material-ui/styles";
 import HomeIcon from "@material-ui/icons/Home";
+import { useFetchMarket } from "hooks/useMarket";
 
 // Lazy loading
 const Landing = lazy(() => import("./views/Landing"));
@@ -80,6 +81,7 @@ const App: React.FC = () => {
   }, []);
 
   useEagerConnect();
+  useFetchMarket();
   // TODO: Implement below hooks
   // useFetchPublicData();
   // useFetchPriceData();
