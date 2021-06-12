@@ -22,6 +22,50 @@ const initialState: MarketState = {
   burnPercent: 0,
 };
 
+export const cancelListing = createAsyncThunk(
+  "market/cancelListing",
+  async (tokenId) => {
+    //Not tested
+    const contract = new Contract(marketplace, marketAbi);
+    const calls = [contract.DischargeTFT(tokenId)];
+    const response = await call(calls);
+    console.log(response);
+  }
+);
+
+export const postListing = createAsyncThunk(
+  "market/postListing",
+  //Only 1 object can passed through, so pack all params you need into 1 object
+  async ({ account, tokenId, price }: any) => {
+    //Not tested
+    const contract = new Contract(marketplace, marketAbi);
+    const response = await contract.MakeTFT(tokenId, price, { from: account });
+    console.log(response);
+  }
+);
+
+export const buyListing = createAsyncThunk(
+  "market/buyListing",
+  async ({ account, tokenId }: any) => {
+    //Not tested
+    const contract = new Contract(marketplace, marketAbi);
+    const response = await contract.TakeTFT(tokenId, { from: account });
+    console.log(response);
+  }
+);
+
+export const updateListing = createAsyncThunk(
+  "market/updateListing",
+  async ({ account, tokenId, price }: any) => {
+    //Not tested
+    const contract = new Contract(marketplace, marketAbi);
+    const response = await contract.UpdateTFT(tokenId, price, {
+      from: account,
+    });
+    console.log(response);
+  }
+);
+
 export const fetchListings = createAsyncThunk(
   "market/fetchListings",
   async () => {
