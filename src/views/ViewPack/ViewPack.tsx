@@ -22,7 +22,6 @@ import {
   getNftAddressByName,
   getNftAbiByName,
 } from "utils/contractHelpers";
-import { useWeb3React } from "@web3-react/core";
 import { useAppSelector } from "providers";
 import { Input, Typography } from "@material-ui/core";
 import { useInput } from "hooks/useInput";
@@ -36,7 +35,7 @@ const ViewPack = () => {
 
   const [openTransferModal, setOpenTransferModal] = useState(false);
   const nftContract = getNftContractByName(set);
-  const { account } = useWeb3React();
+  const account = useAppSelector((state) => state.user.address);
   const [accountOwnsPack, setAccountOwnsPack] = useState(false);
 
   useEffect(() => {

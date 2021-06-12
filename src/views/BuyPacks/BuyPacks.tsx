@@ -3,7 +3,6 @@ import styled from "styled-components";
 import { Button } from "nft-uikit";
 import { useAppSelector } from "providers";
 import { useBlastOffAllowance } from "hooks/useAllowance";
-import { useWeb3React } from "@web3-react/core";
 import {
   getPackInfo,
   sendApproveBep20,
@@ -102,7 +101,7 @@ const BuyPage = () => {
     useAppSelector((state) => state.user.balance.pb2116)
   );
   const allowance = useBlastOffAllowance();
-  const { account } = useWeb3React();
+  const account = useAppSelector((state) => state.user.address);
   const pballAddress = getAddressFromSymbol("pb2116");
 
   const [openConfirm, setOpenConfirm] = React.useState(false);

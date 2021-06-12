@@ -1,4 +1,3 @@
-import { useWeb3React } from "@web3-react/core";
 import useAuth from "hooks/useAuth";
 import Container from "@material-ui/core/Container";
 import Carousel from "react-material-ui-carousel";
@@ -11,6 +10,7 @@ import { useTheme } from "@material-ui/core/styles";
 import styled from "styled-components";
 import Box from "@material-ui/core/Box";
 import Divider from "@material-ui/core/Divider";
+import { useAppSelector } from "providers";
 
 function AdCarousel(props) {
   var items = [
@@ -141,7 +141,7 @@ const CTALink = styled(Link)`
 `;
 
 const Landing: React.FC = () => {
-  const { account } = useWeb3React();
+  const account = useAppSelector((state) => state.user.address);
   const { login, logout } = useAuth();
   const theme = useTheme();
 

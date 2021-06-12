@@ -2,13 +2,13 @@ import { Content, Page, Particles, WiggleBall, ConnectScreen } from "nft-uikit";
 import { useState, useEffect } from "react";
 import useAuth from "hooks/useAuth";
 import { ConnectorNames } from "utils/types";
-import { useWeb3React } from "@web3-react/core";
+import { useAppSelector } from "providers";
 
 const Connect = () => {
   const [open, setOpen] = useState(true);
   const [pending, setPending] = useState(false);
   const { login } = useAuth();
-  const { account } = useWeb3React();
+  const account = useAppSelector((state) => state.user.address);
 
   useEffect(() => {
     if (pending && account) {

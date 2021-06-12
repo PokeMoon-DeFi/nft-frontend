@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import { Button, BalanceCounter } from "nft-uikit";
-import { useWeb3React } from "@web3-react/core";
 import { useAppSelector } from "providers";
 import useAuth from "hooks/useAuth";
 import { ConnectorNames } from "utils/types";
@@ -16,7 +15,7 @@ const StyledHeader = styled.div`
 `;
 
 const Header: React.FC = () => {
-  const { account } = useWeb3React();
+  const account = useAppSelector((state) => state.user.address);
   const pb2114 = new BigNumber(
     useAppSelector((state) => state.user.balance.pb2114)
   );

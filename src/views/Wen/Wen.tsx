@@ -10,7 +10,6 @@ import {
 import { useState, useEffect } from "react";
 import useAuth from "hooks/useAuth";
 import { ConnectorNames } from "utils/types";
-import { useWeb3React } from "@web3-react/core";
 import {
   Box,
   Typography,
@@ -21,6 +20,7 @@ import {
 } from "@material-ui/core";
 import styled from "styled-components";
 import Divider from "@material-ui/core/Divider";
+import { useAppSelector } from "providers";
 
 const StyledBox = styled(Box)`
   background: linear-gradient(180deg, #ff77f1 0%, rgba(0, 0, 0, 0) 100%);
@@ -56,7 +56,7 @@ const Wen = () => {
   const [open, setOpen] = useState(true);
   const [pending, setPending] = useState(false);
   const { login } = useAuth();
-  const { account } = useWeb3React();
+  const account = useAppSelector((state) => state.user.address);
 
   useEffect(() => {
     if (pending && account) {

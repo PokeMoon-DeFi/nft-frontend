@@ -9,7 +9,9 @@ import contracts from "config/constants/contracts";
 import BlastOffAbi from "config/abi/BlastOff.json";
 import AmpedUpAbi from "config/abi/AmpedUp.json";
 import { handleTokenIdResponse } from "utils/nftHelpers";
+
 const initialState: UserState = {
+  address: "",
   balance: {
     meownaut: "0",
     koban: "0",
@@ -94,6 +96,36 @@ export const asyncFetchNftBalance = createAsyncThunk(
     };
   }
 );
+export const connectWallet = createAsyncThunk(
+  "user/connectWallet",
+  async () => {
+    //@ts-ignore
+    if (window.ethereum) {
+      try {
+        //@ts-ignore
+        const accounts = await window.ethereum.request({
+          method: "eth_requestAccounts",
+        });
+        //save to local storage
+        window.localStorage.setItem("isConnected", "true");
+        return accounts;
+      } catch (error) {
+        if (error.code === 4001) {
+          // User rejected request
+        }
+        // setError(error);
+      }
+    }
+  }
+);
+
+export const disconnectWallet = createAsyncThunk(
+  "user/disconnectWallet",
+  async () => {
+    window.localStorage.removeItem("isConnected");
+    return [];
+  }
+);
 
 export const userState = createSlice({
   name: "user",
@@ -109,6 +141,15 @@ export const userState = createSlice({
     },
   },
   extraReducers: (builder) => {
+    builder.addCase(connectWallet.fulfilled, (state, { payload }) => {
+      const addresss = payload[0];
+      if (payload && payload.length > 0) {
+        state.address = addresss;
+      }
+    });
+    builder.addCase(disconnectWallet.fulfilled, (state, { payload }) => {
+      state.address = "";
+    });
     builder.addCase(asyncFetchBalance.fulfilled, (state, action) => {
       const { balance }: any = action.payload;
       state.balance = balance;

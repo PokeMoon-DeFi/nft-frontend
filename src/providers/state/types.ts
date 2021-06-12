@@ -2,6 +2,7 @@ import BigNumber from "bignumber.js";
 import { PokemoonNft } from "config/constants/nfts/types";
 
 export interface UserState {
+  address: string;
   balance: {
     meownaut: string;
     koban: string;

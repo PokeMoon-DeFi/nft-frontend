@@ -2,8 +2,7 @@ import React, { useEffect, lazy } from "react";
 import { Redirect } from "react-router";
 import { Router, Switch, Route } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { useEagerConnect } from "hooks/useAuth";
-import { useWeb3React } from "@web3-react/core";
+import { useEagerConnect, useLogin } from "hooks/useAuth";
 import {
   asyncFetchBalance,
   asyncFetchNftBalance,
@@ -27,6 +26,7 @@ import ToolBar from "@material-ui/core/Toolbar";
 import { makeStyles } from "@material-ui/styles";
 import HomeIcon from "@material-ui/icons/Home";
 import { useFetchMarket } from "hooks/useMarket";
+import { useAppSelector } from "providers";
 
 // Lazy loading
 const Landing = lazy(() => import("./views/Landing"));
@@ -88,11 +88,11 @@ const App: React.FC = () => {
 
   // const balance = useAppSelector((state) => state.user?.balance);
   // TODO: Move dispatches out
-  const { account } = useWeb3React();
   const dispatch = useDispatch();
   // If stuff keeps rerendering every 10 sec this is what caused that.
   const { fastRefresh } = useRefresh();
-  const { login, logout } = useAuth();
+  const { login, logout } = useLogin();
+  const account = useAppSelector((state) => state.user.address);
   const classes = useStyles();
 
   useEffect(() => {
@@ -108,11 +108,8 @@ const App: React.FC = () => {
         <Page>
           <NavHeader
             account={account ?? ""}
-            onConnect={() => login(ConnectorNames.Injected)}
-            onLogout={() => {
-              logout();
-              window.location.href = "/";
-            }}
+            onConnect={login}
+            onLogout={logout}
             linkConfig={linkConfig}
           />
 
@@ -150,11 +147,8 @@ const App: React.FC = () => {
           </Container>
           <Fab
             account={account ?? ""}
-            onConnect={() => login(ConnectorNames.Injected)}
-            onLogout={() => {
-              logout();
-              window.location.href = "/";
-            }}
+            onConnect={login}
+            onLogout={logout}
             linkConfig={linkConfig}
           />
         </Page>
