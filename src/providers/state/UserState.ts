@@ -142,8 +142,8 @@ export const userState = createSlice({
   },
   extraReducers: (builder) => {
     builder.addCase(connectWallet.fulfilled, (state, { payload }) => {
-      const addresss = payload[0];
       if (payload && payload.length > 0) {
+        const addresss = payload[0];
         state.address = addresss;
       }
     });
