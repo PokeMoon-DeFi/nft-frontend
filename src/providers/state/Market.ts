@@ -4,12 +4,15 @@ import { BigNumber } from "ethers";
 import contracts from "config/constants/contracts";
 import marketAbi from "config/abi/Marketplace.json";
 import { call, toNumber } from "utils/callHelpers";
+import { getCardData } from "utils/nftHelpers";
+import { PokemoonNft } from "config/constants/nfts/types";
 
 const marketplace = contracts.marketplace[56];
 
 interface Listing {
   id: number;
   price: number;
+  data: PokemoonNft;
 }
 
 interface MarketState {
@@ -85,12 +88,14 @@ export const fetchListings = createAsyncThunk(
 
     for (let i = 0; i < listingsCount; i++) {
       const id = toNumber(ids[i]);
+      const data = await getCardData(id.toString(), "blastOff");
       const price = toNumber(prices[i]);
       listings.push({
         id,
         price,
+        data,
       });
-      console.log({ id, price });
+      console.log({ id, price, data });
     }
     return { listings, burnPercent };
   }

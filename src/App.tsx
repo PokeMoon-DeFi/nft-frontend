@@ -32,6 +32,7 @@ import { useAppSelector } from "providers";
 const Landing = lazy(() => import("./views/Landing"));
 const BuyPacks = lazy(() => import("./views/BuyPacks"));
 const Gallery = lazy(() => import("./views/Gallery"));
+const MarketPlace = lazy(() => import("./views/Marketplace"));
 const ViewPack = lazy(() => import("./views/ViewPack"));
 const PublicGallery = lazy(() => import("./views/Gallery/PublicGallery"));
 const WhitePaperView = lazy(() => import("./views/WhitePaper"));
@@ -65,6 +66,11 @@ const linkConfig: LinkConfigState[] = [
   {
     target: "/collection",
     label: "My Collection",
+    icon: <AccountBalanceIcon />,
+  },
+  {
+    target: "/market",
+    label: "MarketPlace",
     icon: <AccountBalanceIcon />,
   },
 ];
@@ -133,6 +139,9 @@ const App: React.FC = () => {
               </Route>
               <Route path="/collection" exact>
                 <Gallery />
+              </Route>
+              <Route path="/market" exact>
+                <MarketPlace />
               </Route>
               {/* <Route path="/white-paper" exact>
                 <WhitePaperView />
