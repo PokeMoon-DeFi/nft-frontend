@@ -10,6 +10,7 @@ import Box from "@material-ui/core/Box";
 import Typography from "@material-ui/core/Typography";
 import { useMediaQuery } from "@material-ui/core";
 import { useTheme } from "@material-ui/core/styles";
+import MarketFab from "components/MarketFab";
 
 const ViewToken = () => {
   const params = useParams();
@@ -41,11 +42,12 @@ const ViewToken = () => {
           {nft && <ModelViewer style={{ width: 275, height: 400 }} nft={nft} />}
         </Grid>
         <Grid item>
-          <Box style={{ height: 400, background: "purple" }}>
+          {/* <Box style={{ height: 400, background: "purple" }}>
             <Typography>Stats</Typography>
-          </Box>
+          </Box> */}
         </Grid>
       </Grid>
+      <MarketFab />
     </Container>
   );
 };
