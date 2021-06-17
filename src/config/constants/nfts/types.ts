@@ -25,6 +25,7 @@ export interface PokemoonNft {
   tokenUriResponse?: any;
   artist?: ArtistInfo;
   packId?: string;
+  price?: number;
 }
 
 /**

@@ -48,9 +48,9 @@ export const NftCard: FC<CardWrapper> = ({ nft }) => {
       style={{
         display: "flex",
         position: "relative",
-        maxWidth: 250,
-        height: 347,
-        width: 250,
+        maxWidth: 350,
+        height: 420,
+        width: 300,
         justifyContent: "center",
         alignItems: "center",
         flex: 1,

@@ -41,6 +41,10 @@ const PackCellFormatter = ({ value }: GridCellParams) => {
   return <PackChip pack={value as string} />;
 };
 
+const PriceCellFormatter = ({ value }: GridCellParams) => {
+  return <>{value} KBN</>;
+};
+
 const PackIdFormatter = (params: GridCellParams) => {
   const { value } = params;
   //@ts-ignore
@@ -107,6 +111,14 @@ let columns: GridColDef[] = [
     // flex: 1,
     width: 120,
     renderCell: PackIdFormatter,
+  },
+  {
+    field: "price",
+    headerName: "Price",
+    headerAlign: "center",
+    align: "center",
+    width: 120,
+    renderCell: PriceCellFormatter,
   },
   {
     field: "name",

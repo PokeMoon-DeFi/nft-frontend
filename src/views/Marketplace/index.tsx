@@ -1,12 +1,11 @@
 import React, { useState, useMemo } from "react";
 import Container from "@material-ui/core/Container";
 import { useAppSelector } from "providers";
-
+import TableGrid from "components/TableGrid/TableGrid";
+import Gallery from "components/Gallery/Gallery";
 import {
-  Gallery,
   Content,
   FilterDashboard,
-  TableGrid,
   FilterState,
   getFilteredNfts,
 } from "nft-uikit";
@@ -33,7 +32,11 @@ const MarketPage = () => {
   const [viewState, setViewState] = useState("grid");
 
   const filterNfts = useMemo(() => {
-    const nfts = listings.map((listing) => listing.data);
+    const nfts = listings.map((listing) => ({
+      ...listing.data,
+      price: listing.price,
+    }));
+
     return getFilteredNfts(nfts, filterState);
   }, [filterState, listings]);
 

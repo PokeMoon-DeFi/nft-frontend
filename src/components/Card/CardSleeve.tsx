@@ -36,7 +36,8 @@ const StyledBox = styled(Box)`
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
-  padding: 10px;
+  padding-top: 10px;
+  /* padding: 10px; */
 `;
 
 export const Sleeve: FC<SleeveProps> = ({ nft }) => {
@@ -84,13 +85,32 @@ export const Sleeve: FC<SleeveProps> = ({ nft }) => {
           <TypeChip type={type ?? "fire"} label={type} size="small" />
           <RarityChip rarity={rarity ?? "common"} label={rarity} size="small" />
         </div>
-        <Button
-          style={{ fontSize: 12, textTransform: "none" }}
-          onClick={showModal}
-          endIcon={<SearchIcon />}
+        <div
+          style={{
+            display: "flex",
+            flex: 1,
+            justifyContent: "space-around",
+            width: "100%",
+            alignItems: "center",
+          }}
         >
-          Inspect
-        </Button>
+          {nft.price && (
+            <Typography
+              style={{ color: "gold", alignSelf: "center", fontSize: "1.2rem" }}
+            >
+              {`${nft.price}`} KBN
+            </Typography>
+          )}
+          <Button
+            style={{ fontSize: 12, textTransform: "none", height: 40 }}
+            onClick={() => {
+              window.location.href = `/token/${nft.set}/${nft.tokenId}`;
+            }}
+            endIcon={<SearchIcon />}
+          >
+            Inspect
+          </Button>
+        </div>
       </StyledBox>
     </>
   );

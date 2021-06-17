@@ -16,7 +16,8 @@ import Wen from "views/Wen";
 import { Connect } from "views/Connect";
 import useRefresh from "hooks/useRefresh";
 import { Page, Content, Particles } from "nft-uikit";
-import { NavHeader, Fab, LinkConfigState } from "nft-uikit";
+import { Fab, LinkConfigState } from "nft-uikit";
+import NavHeader from "components/Header";
 import useAuth from "hooks/useAuth";
 import { ConnectorNames } from "utils/types";
 import AccountBalanceIcon from "@material-ui/icons/AccountBalance";
@@ -34,6 +35,7 @@ const BuyPacks = lazy(() => import("./views/BuyPacks"));
 const Gallery = lazy(() => import("./views/Gallery"));
 const MarketPlace = lazy(() => import("./views/Marketplace"));
 const ViewPack = lazy(() => import("./views/ViewPack"));
+const ViewToken = lazy(() => import("./views/ViewToken"));
 const PublicGallery = lazy(() => import("./views/Gallery/PublicGallery"));
 const WhitePaperView = lazy(() => import("./views/WhitePaper"));
 
@@ -149,17 +151,20 @@ const App: React.FC = () => {
               <Route path="/pack/:set/:id">
                 <ViewPack />
               </Route>
+              <Route path="/token/:set/:id">
+                <ViewToken />
+              </Route>
               <Route>
                 <Redirect to="/buy" />
               </Route>
             </Switch>
           </Container>
-          <Fab
+          {/* <Fab
             account={account ?? ""}
             onConnect={login}
             onLogout={logout}
             linkConfig={linkConfig}
-          />
+          /> */}
         </Page>
       </SuspenseWithChunkError>
     </Router>
