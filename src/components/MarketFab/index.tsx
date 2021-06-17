@@ -9,7 +9,15 @@ import { Buy } from "nft-uikit";
 import ShareIcon from "@material-ui/icons/Share";
 import CallMadeIcon from "@material-ui/icons/CallMade";
 
-const MarketFab: FC = () => {
+interface Props {
+  onSend: () => void;
+  onSell: () => void;
+  onShare: () => void;
+  onScan: () => void;
+  isOwner?: boolean;
+}
+
+const MarketFab: FC<Props> = ({ isOwner, onSend, onSell, onShare, onScan }) => {
   const theme = useTheme();
   const [open, setOpen] = useState(false);
 
@@ -31,25 +39,33 @@ const MarketFab: FC = () => {
           key={"Scan"}
           tooltipTitle={"Scan"}
           icon={<CallMadeIcon />}
+          onClick={onScan}
         />
         <SpeedDialAction
           tooltipOpen
           key={"Share"}
           tooltipTitle={"Share"}
           icon={<ShareIcon />}
+          onClick={onShare}
         />
-        <SpeedDialAction
-          tooltipOpen
-          key={"Sell"}
-          tooltipTitle={"Sell"}
-          icon={<Buy style={{ fontSize: 10 }} />}
-        />
-        <SpeedDialAction
-          tooltipOpen
-          key={"Send"}
-          tooltipTitle={"Send"}
-          icon={<SendIcon />}
-        />
+        {isOwner && (
+          <SpeedDialAction
+            tooltipOpen
+            key={"Sell"}
+            tooltipTitle={"Sell"}
+            icon={<Buy style={{ fontSize: 10 }} />}
+            onClick={onSell}
+          />
+        )}
+        {isOwner && (
+          <SpeedDialAction
+            tooltipOpen
+            key={"Send"}
+            tooltipTitle={"Send"}
+            icon={<SendIcon />}
+            onClick={onSend}
+          />
+        )}
       </SpeedDial>
     </Hidden>
   );

@@ -95,7 +95,6 @@ export const fetchListings = createAsyncThunk(
         price,
         data,
       });
-      console.log({ id, price, data });
     }
     return { listings, burnPercent };
   }

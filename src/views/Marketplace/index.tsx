@@ -11,16 +11,6 @@ import {
 } from "nft-uikit";
 
 const MarketPage = () => {
-  const blastOffCards = useAppSelector(
-    (state) => state.user.nftBalance.blastOff.cards,
-    (a, b) => a.length === b.length
-  );
-
-  const ampedUpCards = useAppSelector(
-    (state) => state.user.nftBalance.ampedUp.cards,
-    (a, b) => a.length === b.length
-  );
-
   const listings = useAppSelector((state) => state.market.listings);
 
   const [filterState, setFilterState] = useState<FilterState>({

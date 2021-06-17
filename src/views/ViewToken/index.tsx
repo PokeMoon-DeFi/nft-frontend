@@ -11,6 +11,7 @@ import Typography from "@material-ui/core/Typography";
 import { useMediaQuery } from "@material-ui/core";
 import { useTheme } from "@material-ui/core/styles";
 import MarketFab from "components/MarketFab";
+import useCards from "hooks/useCards";
 
 const ViewToken = () => {
   const params = useParams();
@@ -18,8 +19,11 @@ const ViewToken = () => {
 
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
-
   const [nft, setNft] = useState<PokemoonNft>();
+  const cards = useCards();
+
+  const isOwner = cards.map((c) => c.tokenId).includes(id);
+
   useEffect(() => {
     async function fetchNft() {
       const data = await getCardData(id, set);
@@ -30,7 +34,7 @@ const ViewToken = () => {
 
   return (
     <Container style={{ paddingLeft: 0, paddingRight: 0 }}>
-      <div style={{ width: "100%", height: 300 }} />
+      {/* <div style={{ width: "100%", height: 300 }} /> */}
       <Grid container justify="center" direction={isMobile ? "column" : "row"}>
         <Grid
           item
@@ -47,7 +51,13 @@ const ViewToken = () => {
           </Box> */}
         </Grid>
       </Grid>
-      <MarketFab />
+      <MarketFab
+        isOwner={isOwner}
+        onScan={() => {}}
+        onSell={() => {}}
+        onShare={() => {}}
+        onSend={() => {}}
+      />
     </Container>
   );
 };
