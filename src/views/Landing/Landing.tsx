@@ -120,7 +120,7 @@ const d: PokemoonNft = {
   packId: "66",
 };
 
-const Bulletin = styled(Box)`
+const Bulletin = styled.div`
   background: white;
   display: flex;
   flex-direction: column;
@@ -177,7 +177,7 @@ const Landing: React.FC = () => {
             modelViewerStyle={{ width: "100%", height: "500px" }}
           />
         </Grid>
-        <Grid item xs={12} md={6} style={{ display: "flex" }}>
+        <Grid item xs={12} md={6} style={{ display: "flex", zIndex: 1 }}>
           <Bulletin>
             <Typography
               style={{

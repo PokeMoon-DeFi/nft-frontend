@@ -2,17 +2,24 @@ import BigNumber from "bignumber.js";
 import BLAST_OFF_COLLECTION, {
   BLAST_OFF_CARDS,
 } from "config/constants/nfts/2114";
+import { Contract } from "ethers-multicall";
 import AMPED_UP_COLLECTION from "config/constants/nfts/2116";
-import { PokemoonNft } from "config/constants/nfts/types";
+import { PokemoonNft, TokenUriResponse } from "config/constants/nfts/types";
 import blastOffTokenCache from "config/constants/cache/blastOff/tokenIdToPack.json";
 import blastOffPackCache from "config/constants/cache/blastOff/blastOffPacks.json";
 import contracts from "config/constants/contracts";
 import multicall from "utils/multicall";
 import BlastOffAbi from "config/abi/BlastOff.json";
 import AmpedUpAbi from "config/abi/AmpedUp.json";
-
+import { BigNumber as BN } from "ethers";
 import ampedUpTokens from "config/constants/cache/ampedUp/ampedUpTokens.json";
 import ampedUpPacks from "config/constants/cache/ampedUp/ampedUpPacks.json";
+import {
+  getNftAbiByName,
+  getNftAddressByName,
+  getNftContractByName,
+} from "./contractHelpers";
+import { call } from "./callHelpers";
 
 const isPack = (tokenId: string) => {
   let isPack: boolean;
@@ -123,6 +130,27 @@ export const getCardData = async (tokenId: string, set: string, cache = {}) => {
   nft.packId = getTokenCache(set)[tokenId];
 
   return nft;
+};
+
+export const getNftOwner = async (nft: PokemoonNft) => {
+  const contract = new Contract(getNftAddressByName(nft.set), getAbi(nft.set));
+  const ownerCall = contract.ownerOf(nft.tokenId);
+  const result = await call([ownerCall]);
+
+  return result;
+};
+
+export const getTokenUriResponse = async (
+  nft: PokemoonNft
+): Promise<TokenUriResponse> => {
+  const contract = new Contract(getNftAddressByName(nft.set), getAbi(nft.set));
+  const uriCall = contract.tokenURI(nft.tokenId);
+  const href = await call([uriCall]);
+
+  const response = await fetch(href);
+  const data = await response.json();
+
+  return data;
 };
 
 export const handleTokenIdResponse = async (

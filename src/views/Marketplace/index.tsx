@@ -3,12 +3,8 @@ import Container from "@material-ui/core/Container";
 import { useAppSelector } from "providers";
 import TableGrid from "components/TableGrid/TableGrid";
 import Gallery from "components/Gallery/Gallery";
-import {
-  Content,
-  FilterDashboard,
-  FilterState,
-  getFilteredNfts,
-} from "nft-uikit";
+import { Content, FilterState, getFilteredNfts } from "nft-uikit";
+import FilterDashboard from "components/FilterDashboard";
 
 const MarketPage = () => {
   const listings = useAppSelector((state) => state.market.listings);

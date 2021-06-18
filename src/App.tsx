@@ -1,6 +1,6 @@
 import React, { useEffect, lazy } from "react";
 import { Redirect } from "react-router";
-import { Router, Switch, Route } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { useEagerConnect, useLogin } from "hooks/useAuth";
 import {
@@ -110,62 +110,59 @@ const App: React.FC = () => {
     }
   }, [dispatch, account, fastRefresh]);
   return (
-    <Router history={history}>
+    <Router>
       <Particles />
       <SuspenseWithChunkError fallback={<PageLoader />}>
-        <Page>
-          <NavHeader
-            account={account ?? ""}
-            onConnect={login}
-            onLogout={logout}
-            linkConfig={linkConfig}
-          />
+        {/* <Page> */}
+        <NavHeader
+          account={account ?? ""}
+          onConnect={login}
+          onLogout={logout}
+          linkConfig={linkConfig}
+        />
 
-          <Container
+        {/* <Container
             maxWidth={"xl"}
             style={{ height: "100%", justifyContent: "flex-start", flex: 1 }}
-          >
-            <Switch>
-              <Route path="/" exact>
-                {/* <WhitePaperView /> */}
-                <Landing />
-              </Route>
-              {/* <Route path="/news" exact>
+          > */}
+        <Switch>
+          <Route path="/" exact>
+            {/* <WhitePaperView /> */}
+            <Landing />
+          </Route>
+          {/* <Route path="/news" exact>
                 <Landing />
               </Route> */}
-              <Route path="/buy" exact>
-                <BuyPacks />
-              </Route>
-              <Route path="/catalog" exact>
-                <PublicGallery />
-              </Route>
-              <Route path="/collection" exact>
-                <Gallery />
-              </Route>
-              <Route path="/market" exact>
-                <MarketPlace />
-              </Route>
-              {/* <Route path="/white-paper" exact>
+          <Route path="/buy">
+            <BuyPacks />
+          </Route>
+          <Route path="/catalog" exact>
+            <PublicGallery />
+          </Route>
+          <Route path="/collection" exact>
+            <Gallery />
+          </Route>
+          <Route path="/market" exact>
+            <MarketPlace />
+          </Route>
+          {/* <Route path="/white-paper" exact>
                 <WhitePaperView />
               </Route> */}
-              <Route path="/pack/:set/:id">
-                <ViewPack />
-              </Route>
-              <Route path="/token/:set/:id">
-                <ViewToken />
-              </Route>
-              <Route>
-                <Redirect to="/buy" />
-              </Route>
-            </Switch>
-          </Container>
-          {/* <Fab
+          <Route path="/pack/:set/:id">
+            <ViewPack />
+          </Route>
+          <Route path="/token/:set/:id">
+            <ViewToken />
+          </Route>
+        </Switch>
+        {/* </Container> */}
+        {/* <Fab
             account={account ?? ""}
             onConnect={login}
             onLogout={logout}
             linkConfig={linkConfig}
           /> */}
-        </Page>
+        {/* </Page> */}
       </SuspenseWithChunkError>
     </Router>
   );

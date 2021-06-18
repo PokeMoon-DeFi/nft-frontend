@@ -1,14 +1,9 @@
-import {
-  Gallery,
-  Content,
-  FilterDashboard,
-  TableGrid,
-  FilterState,
-  getFilteredNfts,
-} from "nft-uikit";
+import { Content, TableGrid, FilterState, getFilteredNfts } from "nft-uikit";
 import { useAppSelector } from "providers";
 import { useEffect, useMemo, useState } from "react";
 import Container from "@material-ui/core/Container";
+import { FilterDashboard } from "components/FilterDashboard";
+import Gallery from "components/Gallery/Gallery";
 
 const capitalize = (s: string) => {
   if (typeof s !== "string") return "";

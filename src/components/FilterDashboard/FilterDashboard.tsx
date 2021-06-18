@@ -132,6 +132,7 @@ const Dashboard: FC<DashboardProps> = (props) => {
         borderRadius: 25,
         borderWidth: 5,
         paddingBottom: 10,
+        zIndex: 2,
       }}
     >
       {/* Search Bar */}

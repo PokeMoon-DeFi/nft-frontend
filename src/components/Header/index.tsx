@@ -9,7 +9,7 @@ import { Button, Logo, Modal } from "nft-uikit";
 import styled from "styled-components";
 import IconButton from "@material-ui/core/IconButton";
 import MenuIcon from "@material-ui/icons/Menu";
-import Link from "@material-ui/core/Link";
+import { Link } from "react-router-dom";
 import Sidebar, { NavHeaderProps } from "./Sidebar";
 
 const StyledLink = styled(Link)`
@@ -55,12 +55,12 @@ const NavHeader: FC<NavHeaderProps> = ({
             }}
             onClick={() => (window.location.href = "https://pokemoon.app")}
           />
-          <IconButton onClick={() => setOpenSidebar(true)}>
-            <MenuIcon style={{ color: "white" }} />
-          </IconButton>
 
           {/* SIDEBAR */}
           <Hidden smUp>
+            <IconButton onClick={() => setOpenSidebar(true)}>
+              <MenuIcon style={{ color: "white" }} />
+            </IconButton>
             <Sidebar
               linkConfig={linkConfig}
               open={openSidebar}
@@ -72,7 +72,7 @@ const NavHeader: FC<NavHeaderProps> = ({
               }}
             />
           </Hidden>
-          <Hidden xsDown>
+          <Hidden smDown>
             <div
               style={{
                 justifyContent: "center",
@@ -87,10 +87,7 @@ const NavHeader: FC<NavHeaderProps> = ({
                 <StyledLink
                   key={index.toString()}
                   style={{ margin: 20 }}
-                  onClick={() => {
-                    // @ts-ignore
-                    window.location.href = link.target;
-                  }}
+                  to={link.target}
                 >
                   {link.label}
                 </StyledLink>
@@ -117,32 +114,6 @@ const NavHeader: FC<NavHeaderProps> = ({
               )}
 
               {/*  <BalanceCounter imgUrl={"/images/balls/MAXRBALL.png"} balance={0} /> */}
-            </div>
-          </Hidden>
-
-          <Hidden xsDown>
-            <div
-              style={{
-                justifyContent: "center",
-                alignItems: "center",
-                flex: 1,
-                display: "flex",
-                margin: 10,
-                flexDirection: "row",
-              }}
-            >
-              {linkConfig.map((link, index) => (
-                <StyledLink
-                  key={index.toString()}
-                  style={{ margin: 20 }}
-                  onClick={() => {
-                    //@ts-ignore
-                    window.location.href = link.target;
-                  }}
-                >
-                  {link.label}
-                </StyledLink>
-              ))}
             </div>
           </Hidden>
         </Toolbar>

@@ -2,7 +2,6 @@ import { PokemoonNft } from "config/constants/nfts/types";
 import { FC, useEffect, useState, useMemo } from "react";
 import {
   Content,
-  FilterDashboard,
   FilterState,
   getFilteredNfts,
   getFlatCollection,
@@ -10,6 +9,7 @@ import {
 import Gallery from "components/Gallery/Gallery";
 import TableGrid from "components/TableGrid/TableGrid";
 import Container from "@material-ui/core/Container";
+import FilterDashboard from "components/FilterDashboard";
 
 const nfts: PokemoonNft[] = getFlatCollection(["blastOff", "ampedUp"]);
 

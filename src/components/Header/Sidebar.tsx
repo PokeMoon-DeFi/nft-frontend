@@ -17,6 +17,7 @@ import ExpandMore from "@material-ui/icons/ExpandMore";
 import ExpandLess from "@material-ui/icons/ExpandLess";
 import { Run } from "nft-uikit";
 import ArrowBackIcon from "@material-ui/icons/ArrowBack";
+import { NavLink } from "react-router-dom";
 export interface LinkConfigState {
   target?: string;
   label?: string;
@@ -46,6 +47,7 @@ interface LinkGroupState {
 const logout: LinkConfigState = {
   icon: <Run width={25} />,
   label: "Log Out",
+  target: "/logout",
 };
 
 const LinkGroup: FC<LinkGroupState> = ({ linkConfig, label, icon }) => {
@@ -54,6 +56,7 @@ const LinkGroup: FC<LinkGroupState> = ({ linkConfig, label, icon }) => {
   return (
     <>
       <ListItem
+        key="back"
         button
         onClick={() => {
           setOpen(!open);
@@ -68,7 +71,7 @@ const LinkGroup: FC<LinkGroupState> = ({ linkConfig, label, icon }) => {
           {linkConfig.map((item, index) => {
             const { icon, label } = item;
             return (
-              <ListItem button key={index}>
+              <ListItem button key={`${label}${index}`}>
                 <ListItemIcon>{icon}</ListItemIcon>
                 <ListItemText primary={label}></ListItemText>
               </ListItem>
@@ -89,7 +92,7 @@ const Sidebar: FC<SidebarProps> = ({ open, onOpen, onClose, linkConfig }) => {
           width: 200,
           display: "flex",
           flexDirection: "column",
-          alignItems: "center",
+          alignItems: "flex-start",
           justifyContent: "space-around",
           paddingTop: 20,
         }}
@@ -102,31 +105,33 @@ const Sidebar: FC<SidebarProps> = ({ open, onOpen, onClose, linkConfig }) => {
         </IconButton>
         <Divider />
         {updatedLinkConfig?.map((item, index) => {
-          const { icon, label } = item;
+          const { icon, label, target } = item;
           if (item.group) {
             return (
               <LinkGroup linkConfig={item.group} label={label} icon={icon} />
             );
           }
           return (
-            <>
-              <ListItem
-                button
-                key={index}
-                style={{
-                  marginTop: 20,
-                  display: "flex",
-                  justifyContent: "center",
-                  alignItems: "center",
-                }}
-              >
-                <ListItemIcon style={{ justifyContent: "center" }}>
-                  {icon}
-                </ListItemIcon>
-                <ListItemText primary={label}></ListItemText>
-              </ListItem>
-              {item.divider && <Divider />}
-            </>
+            <div key={label}>
+              <NavLink to={target}>
+                <ListItem
+                  button
+                  style={{
+                    marginTop: 20,
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    paddingLeft: 20,
+                  }}
+                >
+                  <ListItemIcon style={{ justifyContent: "center" }}>
+                    {icon}
+                  </ListItemIcon>
+                  <ListItemText primary={label}></ListItemText>
+                </ListItem>
+                {item.divider && <Divider />}
+              </NavLink>
+            </div>
           );
         })}
       </List>

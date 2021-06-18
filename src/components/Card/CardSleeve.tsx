@@ -104,7 +104,11 @@ export const Sleeve: FC<SleeveProps> = ({ nft }) => {
           <Button
             style={{ fontSize: 12, textTransform: "none", height: 40 }}
             onClick={() => {
-              window.location.href = `/token/${nft.set}/${nft.tokenId}`;
+              if (nft.tokenId?.length > 2) {
+                window.location.href = `/token/${nft.set}/${nft.tokenId}`;
+              } else {
+                showModal();
+              }
             }}
             endIcon={<SearchIcon />}
           >
