@@ -38,3 +38,19 @@ export interface PokemoonPack {
   packId: string;
   imageUrl?: string;
 }
+
+export interface TokenUriResponse {
+  attributes: TokenAttribute[];
+  description: string;
+  external_url: string;
+  image: string;
+  animation_url: string;
+  name: string;
+}
+
+export interface TokenAttribute {
+  trait_type: string;
+  value: number | string;
+  display_type?: string;
+  max_value?: number;
+}
