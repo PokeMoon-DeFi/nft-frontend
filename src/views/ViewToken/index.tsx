@@ -20,6 +20,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import Hidden from "@material-ui/core/Hidden";
 import styled from "styled-components";
 import { useAppSelector } from "providers";
+import { usePostListing } from "hooks/useMarket";
 
 const useStyles = makeStyles({
   root: {
@@ -79,7 +80,7 @@ const ViewToken = () => {
     fetchUriResponse();
   }, [nft, setMetadata]);
 
-  useEffect(() => {}, []);
+  const handlePostListing = usePostListing();
 
   return (
     <>
@@ -132,7 +133,13 @@ const ViewToken = () => {
           )
         ) : isOwner ? (
           <>
-            <Button>Sell</Button>
+            <Button
+              onClick={() => {
+                handlePostListing(id, 90000);
+              }}
+            >
+              Sell
+            </Button>
             <Button>Send</Button>
           </>
         ) : (

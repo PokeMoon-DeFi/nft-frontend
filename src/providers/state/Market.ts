@@ -1,9 +1,10 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { Contract } from "ethers-multicall";
-import { BigNumber } from "ethers";
+import { Contract as ethersContract } from "ethers";
+import { BigNumber, ethers } from "ethers";
 import contracts from "config/constants/contracts";
 import marketAbi from "config/abi/Marketplace.json";
-import { call, toNumber } from "utils/callHelpers";
+import { call, getRpcUrl, toNumber } from "utils/callHelpers";
 import { getCardData } from "utils/nftHelpers";
 import { PokemoonNft } from "config/constants/nfts/types";
 
@@ -39,10 +40,18 @@ export const cancelListing = createAsyncThunk(
 export const postListing = createAsyncThunk(
   "market/postListing",
   //Only 1 object can passed through, so pack all params you need into 1 object
-  async ({ account, tokenId, price }: any) => {
-    //Not tested
-    const contract = new Contract(marketplace, marketAbi);
-    const response = await contract.MakeTFT(tokenId, price, { from: account });
+  async ({ tokenId, price }: any, { getState }) => {
+    //@ts-ignore
+    const provider = new ethers.providers.Web3Provider(window.ethereum, "any");
+
+    const signer = provider.getSigner();
+    const contract = new ethersContract(marketplace, marketAbi, signer);
+    const transaction = await contract.functions.MakeTFT(tokenId, 900000);
+
+    console.log(transaction);
+    const response = await provider.waitForTransaction(transaction.hash);
+
+    //transaction completed
     console.log(response);
   }
 );

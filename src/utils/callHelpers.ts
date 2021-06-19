@@ -29,7 +29,7 @@ const BSC_RPC_BACKUPS = [
 /**
  * @returns a random BSC RPC endpoint
  */
-function getRpcUrl(useBackups: boolean = false) {
+export function getRpcUrl(useBackups: boolean = false) {
   if (useBackups) return BSC_RPC_BACKUPS[Math.floor(Math.random() * 10)];
   return BSC_RPC_ENDPOINTS[Math.floor(Math.random() * 3)];
 }
