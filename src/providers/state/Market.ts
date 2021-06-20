@@ -168,6 +168,11 @@ const marketSlice = createSlice({
     builder.addCase(cancelListing.fulfilled, (state, { payload }) => {
       console.log("cancel listing fulfilled" + payload);
     });
+
+    //handle generic transaction
+    builder.addCase(executeTransaction.pending, (_, { payload }) => {});
+    builder.addCase(executeTransaction.rejected, (_) => {});
+    builder.addCase(executeTransaction.fulfilled, () => {});
   },
 });
 
