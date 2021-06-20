@@ -7,6 +7,9 @@ import marketAbi from "config/abi/Marketplace.json";
 import { call, getRpcUrl, safeAwait, toNumber } from "utils/callHelpers";
 import { getCardData } from "utils/nftHelpers";
 import { PokemoonNft } from "config/constants/nfts/types";
+import { Metamask } from "nft-uikit";
+import { TransactionReceipt } from "web3-core";
+import { reject } from "lodash";
 
 const marketplace = contracts.marketplace[56];
 
@@ -16,9 +19,26 @@ interface Listing {
   data: PokemoonNft;
 }
 
+interface PendingAction {
+  type?: string;
+  status: string;
+  message?: string;
+}
+
 interface MarketState {
   listings: Listing[];
   burnPercent: number;
+  pending?: PendingAction;
+}
+
+interface ExecutionRequest {
+  hash: string;
+  type: string;
+}
+
+interface ExecutionResult extends ExecutionRequest {
+  receipt?: TransactionReceipt;
+  error?: any;
 }
 
 const initialState: MarketState = {
@@ -28,17 +48,20 @@ const initialState: MarketState = {
 
 export const executeTransaction = createAsyncThunk(
   "market/pendingTransaction",
-  async (hash: string) => {
+  async (hash: string, { rejectWithValue }) => {
     //@ts-ignore
     const provider = new ethers.providers.Web3Provider(window.ethereum, "any");
-    const result = await provider.waitForTransaction(hash);
-    return result;
+    const [receipt, error] = await safeAwait(provider.waitForTransaction(hash));
+    if (error) {
+      return rejectWithValue(error);
+    }
+    return receipt;
   }
 );
 
 export const cancelListing = createAsyncThunk(
   "market/cancelListing",
-  async (tokenId: any, { dispatch }) => {
+  async (tokenId: any, { dispatch, rejectWithValue }) => {
     //@ts-ignore
     const provider = new ethers.providers.Web3Provider(window.ethereum, "any");
 
@@ -47,19 +70,22 @@ export const cancelListing = createAsyncThunk(
       marketAbi,
       provider.getSigner()
     );
-    const transaction = await contract.functions.DischargeTFT(
-      tokenId.toString()
-    );
+    const call = contract.functions.DischargeTFT(tokenId.toString());
+    const [transaction, error] = await safeAwait(call);
 
-    await dispatch(executeTransaction(transaction.hash));
-    return transaction;
+    if (error) {
+      return rejectWithValue(error);
+    } else {
+      const { hash } = transaction;
+      return dispatch(executeTransaction(hash));
+    }
   }
 );
 
 export const postListing = createAsyncThunk(
   "market/postListing",
   //Only 1 object can passed through, so pack all params you need into 1 object
-  async ({ tokenId, price }: any, { getState, dispatch }) => {
+  async ({ tokenId, price }: any, { dispatch, rejectWithValue }) => {
     //@ts-ignore
     const provider = new ethers.providers.Web3Provider(window.ethereum, "any");
     const contract = new ethersContract(
@@ -68,21 +94,24 @@ export const postListing = createAsyncThunk(
       provider.getSigner()
     );
 
-    const call = contract.functions.MakeTFT(tokenId.toString(), price);
+    const call = contract.functions.MakeTFT(
+      tokenId.toString(),
+      price.toString()
+    );
     const [transaction, error] = await safeAwait(call);
-    if (error) {
-      throw error;
-    } else {
-      dispatch(executeTransaction(transaction));
-    }
 
-    return transaction;
+    if (error) {
+      return rejectWithValue(error);
+    } else {
+      const { hash } = transaction;
+      return dispatch(executeTransaction(hash));
+    }
   }
 );
 
 export const buyListing = createAsyncThunk(
   "market/buyListing",
-  async ({ tokenId }: any, { dispatch }) => {
+  async (tokenId: any, { dispatch, rejectWithValue }) => {
     //@ts-ignore
     const provider = new ethers.providers.Web3Provider(window.ethereum, "any");
     const contract = new ethersContract(
@@ -90,14 +119,19 @@ export const buyListing = createAsyncThunk(
       marketAbi,
       provider.getSigner()
     );
-    const transaction = await contract.TakeTFT(tokenId);
-    dispatch(executeTransaction(transaction.hash));
+    const call = contract.TakeTFT(tokenId);
+    const [transaction, error] = await safeAwait(call);
+    if (error) {
+      rejectWithValue(error);
+    } else {
+      return dispatch(executeTransaction(transaction.hash));
+    }
   }
 );
 
 export const updateListing = createAsyncThunk(
   "market/updateListing",
-  async ({ account, tokenId, price }: any, { dispatch }) => {
+  async ({ tokenId, price }: any, { dispatch, rejectWithValue }) => {
     //@ts-ignore
     const provider = new ethers.providers.Web3Provider(window.ethereum, "any");
     const contract = new ethersContract(
@@ -105,8 +139,14 @@ export const updateListing = createAsyncThunk(
       marketAbi,
       provider.getSigner()
     );
-    const transaction = await contract.functions.UpdateTFT(tokenId, price);
-    dispatch(executeTransaction(transaction.hash));
+    const call = contract.functions.UpdateTFT(tokenId, price);
+    const [transaction, error] = await safeAwait(call);
+
+    if (error) {
+      rejectWithValue(error);
+    } else {
+      return dispatch(executeTransaction(transaction.hash));
+    }
   }
 );
 
@@ -150,29 +190,109 @@ const marketSlice = createSlice({
       state.burnPercent = payload.burnPercent;
       state.listings = payload.listings;
     });
-    builder.addCase(postListing.pending, (state, { payload }) => {
-      console.log("post listing pending" + payload);
+
+    //POST A LISTING
+    builder.addCase(postListing.pending, (state, { payload, meta }) => {
+      state.pending = {
+        type: "post",
+        status: "pending",
+        message: "Waiting For Approval",
+      };
+      console.log("post listing pending");
     });
-    builder.addCase(postListing.fulfilled, (state, { payload }) => {
-      console.log("post listing completed " + payload);
+    builder.addCase(postListing.fulfilled, (state, { payload, meta }) => {
+      state.pending = { type: "post", status: "fulfilled", message: "Posted!" };
+      console.log("post listing completed ", payload);
     });
-    builder.addCase(buyListing.pending, (state, { payload }) => {
-      console.log("buy listing pending" + payload);
-    });
-    builder.addCase(buyListing.fulfilled, (state, { payload }) => {
-      console.log("buy listing fulfilled" + payload);
-    });
-    builder.addCase(cancelListing.pending, (state, { payload }) => {
-      console.log("cancel listing pending" + payload);
-    });
-    builder.addCase(cancelListing.fulfilled, (state, { payload }) => {
-      console.log("cancel listing fulfilled" + payload);
+    builder.addCase(postListing.rejected, (state, { payload }) => {
+      state.pending = {
+        type: "post",
+        status: "rejected",
+        message: "Rejected!",
+      };
     });
 
-    //handle generic transaction
-    builder.addCase(executeTransaction.pending, (_, { payload }) => {});
-    builder.addCase(executeTransaction.rejected, (_) => {});
-    builder.addCase(executeTransaction.fulfilled, () => {});
+    //BUY A LISTING
+    builder.addCase(buyListing.pending, (state, { payload }) => {
+      console.log("buy listing pending", payload);
+      state.pending = { type: "buy", status: "pending", message: "Buying..." };
+    });
+    builder.addCase(buyListing.fulfilled, (state, { payload }) => {
+      console.log("buy listing fulfilled", payload);
+      state.pending = { type: "buy", status: "fulfilled", message: "Bought!" };
+    });
+    builder.addCase(buyListing.rejected, (state) => {
+      state.pending = { type: "buy", status: "rejected" };
+    });
+
+    //CANCEL A LISTING
+    builder.addCase(cancelListing.pending, (state, { payload }) => {
+      state.pending = {
+        type: "cancel",
+        status: "pending",
+        message: "Waiting for Approval",
+      };
+    });
+    builder.addCase(cancelListing.fulfilled, (state, { payload }) => {
+      console.log("cancel listing fulfilled", payload);
+      state.pending = {
+        type: "cancel",
+        status: "fulfilled",
+        message: "Success!",
+      };
+    });
+    builder.addCase(cancelListing.rejected, (state, { payload }) => {
+      console.log("cancel listing rejected", payload);
+      state.pending = {
+        type: "cancel",
+        status: "rejected",
+        message: "Rejected!",
+      };
+    });
+
+    //UPDATE LISTING
+    builder.addCase(updateListing.pending, (state) => {
+      state.pending = {
+        status: "pending",
+        message: "Waiting for Approval",
+      };
+    });
+    builder.addCase(updateListing.fulfilled, (state, { payload }) => {
+      state.pending = {
+        status: "fulfilled",
+        message: "Updated!",
+      };
+    });
+    builder.addCase(updateListing.rejected, (state) => {
+      state.pending = {
+        status: "rejected",
+        message: "Something went wrong",
+      };
+    });
+
+    //GENERIC HANDLER
+    builder.addCase(executeTransaction.pending, (state, { payload }: any) => {
+      state.pending = {
+        type: "default",
+        status: "pending",
+        message: "Executing..",
+      };
+    });
+    builder.addCase(executeTransaction.rejected, (state, { payload }: any) => {
+      state.pending = {
+        type: "default",
+        status: "rejected",
+        message: "Something went wrong",
+      };
+    });
+    // builder.addCase(executeTransaction.fulfilled, (state, { payload }) => {
+    //   state.pending = {
+    //     type: "default",
+    //     status: "fulfilled",
+    //     message: "Completed!",
+    //   };
+    //   console.log("fulfilled transaction", payload);
+    // });
   },
 });
 

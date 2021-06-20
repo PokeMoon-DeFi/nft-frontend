@@ -21,8 +21,7 @@ import Hidden from "@material-ui/core/Hidden";
 import styled from "styled-components";
 import { useAppSelector } from "providers";
 import { useCancelListing, usePostListing } from "hooks/useMarket";
-import { useDispatch } from "react-redux";
-import { cancelListing } from "providers/state/Market";
+import Notifications from "components/Notifications";
 
 const useStyles = makeStyles({
   root: {
@@ -45,7 +44,6 @@ const PriceText = styled(Typography)`
 
 const ViewToken = () => {
   const params = useParams();
-  const dispatch = useDispatch();
   const { set, id } = params;
 
   const theme = useTheme();
@@ -54,12 +52,10 @@ const ViewToken = () => {
   const [nft, setNft] = useState<PokemoonNft>();
   const [metadata, setMetadata] = useState<TokenUriResponse>();
   const [owner, setOwner] = useState("");
-
-  //gets all nfts using useAppSelector
-  const cards = useCards();
-
+  const [isOwner, setIsOwner] = useState(false);
+  const account = useAppSelector((state) => state.user.address);
   const listings = useAppSelector((state) => state.market.listings);
-  const isOwner = cards.map((c) => c.tokenId).includes(id);
+
   const activeListing = useMemo(() => {
     return listings.find((listing) => listing.id.toString() === id);
   }, [listings, id]);
@@ -83,21 +79,26 @@ const ViewToken = () => {
     fetchUriResponse();
   }, [nft, setMetadata]);
 
+  useEffect(() => {
+    setIsOwner(owner.toLowerCase() === account.toLowerCase());
+  }, [owner, account]);
+
   const handlePostListing = usePostListing();
   const handleCancelListing = useCancelListing();
 
   return (
-    <>
+    <div style={{ zIndex: 2 }}>
+      <Notifications />
       <div style={{ width: "100%", height: 80 }} />
-      <Hidden smUp>
-        <div>
-          <Text>{owner}</Text>
-          <Text display="inline" style={{ color: "white" }}>
-            {nft?.name}
-          </Text>{" "}
-          <Text display="inline">#{nft?.tokenId}</Text>
-        </div>
-      </Hidden>
+      {/* <Hidden smUp> */}
+      <div style={{ zIndex: 2 }}>
+        <Text>{owner}</Text>
+        <Text display="inline" style={{ color: "white" }}>
+          {nft?.name}
+        </Text>{" "}
+        <Text display="inline">#{nft?.tokenId}</Text>
+      </div>
+      {/* </Hidden> */}
       <Grid
         style={{ width: "100%", justifyContent: "center", display: "flex" }}
         container
@@ -165,7 +166,7 @@ const ViewToken = () => {
         onShare={() => {}}
         onSend={() => {}}
       /> */}
-    </>
+    </div>
   );
 };
 

@@ -15,7 +15,8 @@ import BigNumber from "bignumber.js";
 import Wen from "views/Wen";
 import { Connect } from "views/Connect";
 import useRefresh from "hooks/useRefresh";
-import { Page, Content, Particles } from "nft-uikit";
+import Particles from "components/Particles";
+import { Page, Content } from "nft-uikit";
 import { Fab, LinkConfigState } from "nft-uikit";
 import NavHeader from "components/Header";
 import useAuth from "hooks/useAuth";
@@ -110,61 +111,63 @@ const App: React.FC = () => {
     }
   }, [dispatch, account, fastRefresh]);
   return (
-    <Router>
+    <>
       <Particles />
-      <SuspenseWithChunkError fallback={<PageLoader />}>
-        {/* <Page> */}
-        <NavHeader
-          account={account ?? ""}
-          onConnect={login}
-          onLogout={logout}
-          linkConfig={linkConfig}
-        />
+      <Router>
+        <SuspenseWithChunkError fallback={<PageLoader />}>
+          {/* <Page> */}
+          <NavHeader
+            account={account ?? ""}
+            onConnect={login}
+            onLogout={logout}
+            linkConfig={linkConfig}
+          />
 
-        {/* <Container
+          {/* <Container
             maxWidth={"xl"}
             style={{ height: "100%", justifyContent: "flex-start", flex: 1 }}
           > */}
-        <Switch>
-          <Route path="/" exact>
-            {/* <WhitePaperView /> */}
-            <Landing />
-          </Route>
-          {/* <Route path="/news" exact>
+          <Switch>
+            <Route path="/" exact>
+              {/* <WhitePaperView /> */}
+              <Landing />
+            </Route>
+            {/* <Route path="/news" exact>
                 <Landing />
               </Route> */}
-          <Route path="/buy">
-            <BuyPacks />
-          </Route>
-          <Route path="/catalog" exact>
-            <PublicGallery />
-          </Route>
-          <Route path="/collection" exact>
-            <Gallery />
-          </Route>
-          <Route path="/market" exact>
-            <MarketPlace />
-          </Route>
-          {/* <Route path="/white-paper" exact>
+            <Route path="/buy">
+              <BuyPacks />
+            </Route>
+            <Route path="/catalog" exact>
+              <PublicGallery />
+            </Route>
+            <Route path="/collection" exact>
+              <Gallery />
+            </Route>
+            <Route path="/market" exact>
+              <MarketPlace />
+            </Route>
+            {/* <Route path="/white-paper" exact>
                 <WhitePaperView />
               </Route> */}
-          <Route path="/pack/:set/:id">
-            <ViewPack />
-          </Route>
-          <Route path="/token/:set/:id">
-            <ViewToken />
-          </Route>
-        </Switch>
-        {/* </Container> */}
-        {/* <Fab
+            <Route path="/pack/:set/:id">
+              <ViewPack />
+            </Route>
+            <Route path="/token/:set/:id">
+              <ViewToken />
+            </Route>
+          </Switch>
+          {/* </Container> */}
+          {/* <Fab
             account={account ?? ""}
             onConnect={login}
             onLogout={logout}
             linkConfig={linkConfig}
           /> */}
-        {/* </Page> */}
-      </SuspenseWithChunkError>
-    </Router>
+          {/* </Page> */}
+        </SuspenseWithChunkError>
+      </Router>
+    </>
   );
 };
 

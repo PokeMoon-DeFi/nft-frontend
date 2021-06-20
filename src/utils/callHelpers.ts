@@ -29,9 +29,8 @@ const BSC_RPC_BACKUPS = [
 export const safeAwait = async (promise: Promise<any>) => {
   try {
     const data = await promise;
-    return [data, null];
+    return [data, false];
   } catch (error) {
-    console.log(error);
     return [null, error];
   }
 };

@@ -14,7 +14,6 @@ import {
   getPackInfo,
   sendTransferPack,
 } from "utils/callHelpers";
-import BLAST_OFF_COLLECTION from "config/constants/nfts/2114";
 import { PokemoonNft } from "config/constants/nfts/types";
 import {
   useBlastOffContract,
