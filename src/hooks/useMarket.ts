@@ -1,8 +1,13 @@
 import { useDispatch } from "react-redux";
 import { useEffect, useCallback } from "react";
-import { buyListing, fetchListings, postListing } from "providers/state/Market";
+import {
+  buyListing,
+  cancelListing,
+  fetchListings,
+  postListing,
+} from "providers/state/Market";
 
-export const useFetchMarket = () => {
+export const useFetchListing = () => {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(fetchListings());
@@ -14,6 +19,17 @@ export const usePostListing = () => {
   const callback = useCallback(
     (tokenId, price) => {
       dispatch(postListing({ tokenId, price }));
+    },
+    [dispatch]
+  );
+  return callback;
+};
+
+export const useCancelListing = () => {
+  const dispatch = useDispatch();
+  const callback = useCallback(
+    (tokenId) => {
+      dispatch(cancelListing(tokenId));
     },
     [dispatch]
   );

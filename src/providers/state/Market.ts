@@ -4,7 +4,7 @@ import { Contract as ethersContract } from "ethers";
 import { BigNumber, ethers } from "ethers";
 import contracts from "config/constants/contracts";
 import marketAbi from "config/abi/Marketplace.json";
-import { call, getRpcUrl, toNumber } from "utils/callHelpers";
+import { call, getRpcUrl, safeAwait, toNumber } from "utils/callHelpers";
 import { getCardData } from "utils/nftHelpers";
 import { PokemoonNft } from "config/constants/nfts/types";
 
@@ -26,55 +26,87 @@ const initialState: MarketState = {
   burnPercent: 0,
 };
 
+export const executeTransaction = createAsyncThunk(
+  "market/pendingTransaction",
+  async (hash: string) => {
+    //@ts-ignore
+    const provider = new ethers.providers.Web3Provider(window.ethereum, "any");
+    const result = await provider.waitForTransaction(hash);
+    return result;
+  }
+);
+
 export const cancelListing = createAsyncThunk(
   "market/cancelListing",
-  async (tokenId) => {
-    //Not tested
-    const contract = new Contract(marketplace, marketAbi);
-    const calls = [contract.DischargeTFT(tokenId)];
-    const response = await call(calls);
-    console.log(response);
+  async (tokenId: any, { dispatch }) => {
+    //@ts-ignore
+    const provider = new ethers.providers.Web3Provider(window.ethereum, "any");
+
+    const contract = new ethersContract(
+      marketplace,
+      marketAbi,
+      provider.getSigner()
+    );
+    const transaction = await contract.functions.DischargeTFT(
+      tokenId.toString()
+    );
+
+    await dispatch(executeTransaction(transaction.hash));
+    return transaction;
   }
 );
 
 export const postListing = createAsyncThunk(
   "market/postListing",
   //Only 1 object can passed through, so pack all params you need into 1 object
-  async ({ tokenId, price }: any, { getState }) => {
+  async ({ tokenId, price }: any, { getState, dispatch }) => {
     //@ts-ignore
     const provider = new ethers.providers.Web3Provider(window.ethereum, "any");
+    const contract = new ethersContract(
+      marketplace,
+      marketAbi,
+      provider.getSigner()
+    );
 
-    const signer = provider.getSigner();
-    const contract = new ethersContract(marketplace, marketAbi, signer);
-    const transaction = await contract.functions.MakeTFT(tokenId, 900000);
+    const call = contract.functions.MakeTFT(tokenId.toString(), price);
+    const [transaction, error] = await safeAwait(call);
+    if (error) {
+      throw error;
+    } else {
+      dispatch(executeTransaction(transaction));
+    }
 
-    console.log(transaction);
-    const response = await provider.waitForTransaction(transaction.hash);
-
-    //transaction completed
-    console.log(response);
+    return transaction;
   }
 );
 
 export const buyListing = createAsyncThunk(
   "market/buyListing",
-  async ({ account, tokenId }: any) => {
-    //Not tested
-    const contract = new Contract(marketplace, marketAbi);
-    const response = await contract.TakeTFT(tokenId, { from: account });
-    console.log(response);
+  async ({ tokenId }: any, { dispatch }) => {
+    //@ts-ignore
+    const provider = new ethers.providers.Web3Provider(window.ethereum, "any");
+    const contract = new ethersContract(
+      marketplace,
+      marketAbi,
+      provider.getSigner()
+    );
+    const transaction = await contract.TakeTFT(tokenId);
+    dispatch(executeTransaction(transaction.hash));
   }
 );
 
 export const updateListing = createAsyncThunk(
   "market/updateListing",
-  async ({ account, tokenId, price }: any) => {
-    //Not tested
-    const contract = new Contract(marketplace, marketAbi);
-    const response = await contract.UpdateTFT(tokenId, price, {
-      from: account,
-    });
-    console.log(response);
+  async ({ account, tokenId, price }: any, { dispatch }) => {
+    //@ts-ignore
+    const provider = new ethers.providers.Web3Provider(window.ethereum, "any");
+    const contract = new ethersContract(
+      marketplace,
+      marketAbi,
+      provider.getSigner()
+    );
+    const transaction = await contract.functions.UpdateTFT(tokenId, price);
+    dispatch(executeTransaction(transaction.hash));
   }
 );
 
@@ -117,6 +149,24 @@ const marketSlice = createSlice({
     builder.addCase(fetchListings.fulfilled, (state, { payload }) => {
       state.burnPercent = payload.burnPercent;
       state.listings = payload.listings;
+    });
+    builder.addCase(postListing.pending, (state, { payload }) => {
+      console.log("post listing pending" + payload);
+    });
+    builder.addCase(postListing.fulfilled, (state, { payload }) => {
+      console.log("post listing completed " + payload);
+    });
+    builder.addCase(buyListing.pending, (state, { payload }) => {
+      console.log("buy listing pending" + payload);
+    });
+    builder.addCase(buyListing.fulfilled, (state, { payload }) => {
+      console.log("buy listing fulfilled" + payload);
+    });
+    builder.addCase(cancelListing.pending, (state, { payload }) => {
+      console.log("cancel listing pending" + payload);
+    });
+    builder.addCase(cancelListing.fulfilled, (state, { payload }) => {
+      console.log("cancel listing fulfilled" + payload);
     });
   },
 });

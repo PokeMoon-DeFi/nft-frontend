@@ -26,8 +26,8 @@ import PhotoSizeSelectActualIcon from "@material-ui/icons/PhotoSizeSelectActual"
 import ToolBar from "@material-ui/core/Toolbar";
 import { makeStyles } from "@material-ui/styles";
 import HomeIcon from "@material-ui/icons/Home";
-import { useFetchMarket } from "hooks/useMarket";
 import { useAppSelector } from "providers";
+import { fetchListings } from "providers/state/Market";
 
 // Lazy loading
 const Landing = lazy(() => import("./views/Landing"));
@@ -89,7 +89,6 @@ const App: React.FC = () => {
   }, []);
 
   useEagerConnect();
-  useFetchMarket();
   // TODO: Implement below hooks
   // useFetchPublicData();
   // useFetchPriceData();
@@ -107,6 +106,7 @@ const App: React.FC = () => {
     if (account) {
       dispatch(asyncFetchBalance({ account }));
       dispatch(asyncFetchNftBalance({ account }));
+      dispatch(fetchListings());
     }
   }, [dispatch, account, fastRefresh]);
   return (

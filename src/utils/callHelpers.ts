@@ -26,6 +26,16 @@ const BSC_RPC_BACKUPS = [
   "https://bsc-dataseed4.binance.org/",
 ];
 
+export const safeAwait = async (promise: Promise<any>) => {
+  try {
+    const data = await promise;
+    return [data, null];
+  } catch (error) {
+    console.log(error);
+    return [null, error];
+  }
+};
+
 /**
  * @returns a random BSC RPC endpoint
  */

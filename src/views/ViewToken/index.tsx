@@ -20,7 +20,9 @@ import { makeStyles } from "@material-ui/core/styles";
 import Hidden from "@material-ui/core/Hidden";
 import styled from "styled-components";
 import { useAppSelector } from "providers";
-import { usePostListing } from "hooks/useMarket";
+import { useCancelListing, usePostListing } from "hooks/useMarket";
+import { useDispatch } from "react-redux";
+import { cancelListing } from "providers/state/Market";
 
 const useStyles = makeStyles({
   root: {
@@ -43,6 +45,7 @@ const PriceText = styled(Typography)`
 
 const ViewToken = () => {
   const params = useParams();
+  const dispatch = useDispatch();
   const { set, id } = params;
 
   const theme = useTheme();
@@ -81,6 +84,7 @@ const ViewToken = () => {
   }, [nft, setMetadata]);
 
   const handlePostListing = usePostListing();
+  const handleCancelListing = useCancelListing();
 
   return (
     <>
@@ -127,7 +131,13 @@ const ViewToken = () => {
         {activeListing && <PriceText>{activeListing.price} KBN</PriceText>}
         {activeListing ? (
           isOwner ? (
-            <Button>Cancel Listing</Button>
+            <Button
+              onClick={() => {
+                handleCancelListing(id);
+              }}
+            >
+              Cancel Listing
+            </Button>
           ) : (
             <Button>Buy</Button>
           )
