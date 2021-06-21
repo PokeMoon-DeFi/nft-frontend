@@ -147,7 +147,7 @@ export const getTokenUriResponse = async (
   const uriCall = contract.tokenURI(nft.tokenId);
   const href = await call([uriCall]);
 
-  const response = await fetch(href);
+  const response = await fetch(href + ".json");
   const data = await response.json();
 
   return data;

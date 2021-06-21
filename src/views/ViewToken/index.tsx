@@ -21,6 +21,7 @@ import Hidden from "@material-ui/core/Hidden";
 import styled from "styled-components";
 import { useAppSelector } from "providers";
 import {
+  useBuyListing,
   useCancelListing,
   useGiftNft as useSendGiftNft,
   usePostListing,
@@ -92,6 +93,7 @@ const ViewToken = () => {
     setIsOwner(owner.toLowerCase() === account.toLowerCase());
   }, [owner, account]);
 
+  const handleBuyListing = useBuyListing();
   const handlePostListing = usePostListing();
   const handleCancelListing = useCancelListing();
   const handleUpdateListing = useUpdateListing();
@@ -154,7 +156,7 @@ const ViewToken = () => {
               </Button>
             </>
           ) : (
-            <Button>Buy</Button>
+            <Button onClick={() => handleBuyListing(id)}>Buy</Button>
           )
         ) : isOwner ? (
           <>
@@ -165,6 +167,20 @@ const ViewToken = () => {
           <></>
         )}
         <Text>{metadata?.name}</Text>
+        <Text>{metadata?.description}</Text>
+        {metadata?.attributes.map((val, index) => {
+          return (
+            <div key={val.display_type + index.toString()}>
+              <Text>{val.display_type}</Text>
+              <Text>{val.max_value}</Text>
+              <Text>{val.trait_type}</Text>
+              <Text>{val.value}</Text>
+            </div>
+          );
+        })}
+        {/* <Text>{metadata?.attributes}</Text> */}
+        <Text>{metadata?.animation_url}</Text>
+        <Text>{metadata?.external_url}</Text>
       </div>
       <PriceModal
         handleConfirm={(price) => {

@@ -22,11 +22,13 @@ import {
 } from "nft-uikit";
 import SearchIcon from "@material-ui/icons/Search";
 import { PokemoonNft } from "config/constants/nfts/types";
-
+import { useHistory, useRouteMatch } from "react-router-dom";
+import { useCallback } from "react";
 export interface TableGridProps {
   nfts: Array<PokemoonNft>;
   hidePackId?: boolean;
   getRowId?: GridRowIdGetter;
+  mode?: string;
 }
 
 const TypeCellFormatter = ({ value }: GridCellParams) => {
@@ -82,13 +84,34 @@ const useStyles = makeStyles({
   },
 });
 
-const ButtonCell = (params: GridCellParams) => {
+const ShowModalButton = (params: GridCellParams) => {
   const nft = params.row;
+  const isMarket = useRouteMatch("/market");
+  const history = useHistory();
   //@ts-ignore
   const [showModal] = useModal(<InspectorDialog nft={nft} />);
+  const handleViewToken = useCallback(() => {
+    history.push(`/token/${nft.set}/${nft.tokenId}`);
+  }, [history, nft]);
   return (
-    <Button endIcon={<SearchIcon />} onClick={showModal}>
+    <Button
+      endIcon={<SearchIcon />}
+      onClick={isMarket ? handleViewToken : showModal}
+    >
       Inspect
+    </Button>
+  );
+};
+
+const ViewTokenButton = (params: GridCellParams) => {
+  const nft = params.row;
+  const history = useHistory();
+  return (
+    <Button
+      onClick={() => history.push(`/token/${nft.set}/${nft.tokenId}`)}
+      endIcon={<SearchIcon />}
+    >
+      View Token
     </Button>
   );
 };
@@ -161,7 +184,9 @@ let columns: GridColDef[] = [
     align: "center",
     headerName: "Actions",
     width: 150,
-    renderCell: (params: GridCellParams) => <ButtonCell {...params} />,
+    renderCell: (params: GridCellParams) => {
+      return <ShowModalButton {...params} />;
+    },
   },
 ];
 

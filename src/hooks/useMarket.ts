@@ -60,9 +60,13 @@ export const useGiftNft = () => {
   return callback;
 };
 
-// export const useBuyListing = () => {
-//   const dispatch = useDispatch();
-//   useEffect(() => {
-//     dispatch(buyListing({id: 11000002}));
-//   })
-// }
+export const useBuyListing = () => {
+  const dispatch = useDispatch();
+  const callback = useCallback(
+    (id) => {
+      dispatch(buyListing(id));
+    },
+    [dispatch]
+  );
+  return callback;
+};
