@@ -198,11 +198,9 @@ const marketSlice = createSlice({
         status: "pending",
         message: "Waiting For Approval",
       };
-      console.log("post listing pending");
     });
     builder.addCase(postListing.fulfilled, (state, { payload, meta }) => {
       state.pending = { type: "post", status: "fulfilled", message: "Posted!" };
-      console.log("post listing completed ", payload);
     });
     builder.addCase(postListing.rejected, (state, { payload }) => {
       state.pending = {
@@ -214,11 +212,9 @@ const marketSlice = createSlice({
 
     //BUY A LISTING
     builder.addCase(buyListing.pending, (state, { payload }) => {
-      console.log("buy listing pending", payload);
       state.pending = { type: "buy", status: "pending", message: "Buying..." };
     });
     builder.addCase(buyListing.fulfilled, (state, { payload }) => {
-      console.log("buy listing fulfilled", payload);
       state.pending = { type: "buy", status: "fulfilled", message: "Bought!" };
     });
     builder.addCase(buyListing.rejected, (state) => {

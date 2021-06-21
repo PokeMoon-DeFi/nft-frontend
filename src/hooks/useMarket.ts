@@ -5,6 +5,7 @@ import {
   cancelListing,
   fetchListings,
   postListing,
+  updateListing,
 } from "providers/state/Market";
 
 export const useFetchListing = () => {
@@ -30,6 +31,17 @@ export const useCancelListing = () => {
   const callback = useCallback(
     (tokenId) => {
       dispatch(cancelListing(tokenId));
+    },
+    [dispatch]
+  );
+  return callback;
+};
+
+export const useUpdateListing = () => {
+  const dispatch = useDispatch();
+  const callback = useCallback(
+    (tokenId, price) => {
+      dispatch(updateListing({ tokenId, price }));
     },
     [dispatch]
   );

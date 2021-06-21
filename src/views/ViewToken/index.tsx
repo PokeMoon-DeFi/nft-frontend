@@ -20,8 +20,13 @@ import { makeStyles } from "@material-ui/core/styles";
 import Hidden from "@material-ui/core/Hidden";
 import styled from "styled-components";
 import { useAppSelector } from "providers";
-import { useCancelListing, usePostListing } from "hooks/useMarket";
+import {
+  useCancelListing,
+  usePostListing,
+  useUpdateListing,
+} from "hooks/useMarket";
 import Notifications from "components/Notifications";
+import PriceModal from "./PriceModal";
 
 const useStyles = makeStyles({
   root: {
@@ -55,6 +60,7 @@ const ViewToken = () => {
   const [isOwner, setIsOwner] = useState(false);
   const account = useAppSelector((state) => state.user.address);
   const listings = useAppSelector((state) => state.market.listings);
+  const [showModal, setShowModal] = useState(false);
 
   const activeListing = useMemo(() => {
     return listings.find((listing) => listing.id.toString() === id);
@@ -85,6 +91,7 @@ const ViewToken = () => {
 
   const handlePostListing = usePostListing();
   const handleCancelListing = useCancelListing();
+  const handleUpdateListing = useUpdateListing();
 
   return (
     <div style={{ zIndex: 2 }}>
@@ -132,25 +139,22 @@ const ViewToken = () => {
         {activeListing && <PriceText>{activeListing.price} KBN</PriceText>}
         {activeListing ? (
           isOwner ? (
-            <Button
-              onClick={() => {
-                handleCancelListing(id);
-              }}
-            >
-              Cancel Listing
-            </Button>
+            <>
+              <Button onClick={() => setShowModal(true)}>Update Listing</Button>
+              <Button
+                onClick={() => {
+                  handleCancelListing(id);
+                }}
+              >
+                Cancel Listing
+              </Button>
+            </>
           ) : (
             <Button>Buy</Button>
           )
         ) : isOwner ? (
           <>
-            <Button
-              onClick={() => {
-                handlePostListing(id, 90000);
-              }}
-            >
-              Sell
-            </Button>
+            <Button onClick={() => setShowModal(true)}>Sell</Button>
             <Button>Send</Button>
           </>
         ) : (
@@ -158,14 +162,18 @@ const ViewToken = () => {
         )}
         <Text>{metadata?.name}</Text>
       </div>
-
-      {/* <MarketFab
-        isOwner={isOwner}
-        onScan={() => {}}
-        onSell={() => {}}
-        onShare={() => {}}
-        onSend={() => {}}
-      /> */}
+      <PriceModal
+        handleConfirm={(price) => {
+          setShowModal(false);
+          if (activeListing) {
+            handleUpdateListing(id, price);
+          } else {
+            handlePostListing(id, price);
+          }
+        }}
+        handleClose={() => setShowModal(false)}
+        open={showModal}
+      />
     </div>
   );
 };

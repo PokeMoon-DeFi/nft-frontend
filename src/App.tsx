@@ -122,19 +122,10 @@ const App: React.FC = () => {
             onLogout={logout}
             linkConfig={linkConfig}
           />
-
-          {/* <Container
-            maxWidth={"xl"}
-            style={{ height: "100%", justifyContent: "flex-start", flex: 1 }}
-          > */}
           <Switch>
             <Route path="/" exact>
-              {/* <WhitePaperView /> */}
               <Landing />
             </Route>
-            {/* <Route path="/news" exact>
-                <Landing />
-              </Route> */}
             <Route path="/buy">
               <BuyPacks />
             </Route>
@@ -147,9 +138,6 @@ const App: React.FC = () => {
             <Route path="/market" exact>
               <MarketPlace />
             </Route>
-            {/* <Route path="/white-paper" exact>
-                <WhitePaperView />
-              </Route> */}
             <Route path="/pack/:set/:id">
               <ViewPack />
             </Route>
@@ -157,14 +145,6 @@ const App: React.FC = () => {
               <ViewToken />
             </Route>
           </Switch>
-          {/* </Container> */}
-          {/* <Fab
-            account={account ?? ""}
-            onConnect={login}
-            onLogout={logout}
-            linkConfig={linkConfig}
-          /> */}
-          {/* </Page> */}
         </SuspenseWithChunkError>
       </Router>
     </>
