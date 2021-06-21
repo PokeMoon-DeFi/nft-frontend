@@ -154,7 +154,7 @@ export const buyListing = createAsyncThunk(
     const call = contract.TakeTFT(tokenId);
     const [transaction, error] = await safeAwait(call);
     if (error) {
-      rejectWithValue(error);
+      return rejectWithValue(error);
     } else {
       return dispatch(executeTransaction(transaction.hash));
     }
@@ -175,7 +175,7 @@ export const updateListing = createAsyncThunk(
     const [transaction, error] = await safeAwait(call);
 
     if (error) {
-      rejectWithValue(error);
+      return rejectWithValue(error);
     } else {
       return dispatch(executeTransaction(transaction.hash));
     }

@@ -11,7 +11,7 @@ import {
 } from "nft-uikit";
 import SearchIcon from "@material-ui/icons/Search";
 import { PokemoonNft } from "config/constants/nfts/types";
-
+import { useHistory } from "react-router-dom";
 interface SleeveProps {
   nft: PokemoonNft;
 }
@@ -44,6 +44,7 @@ export const Sleeve: FC<SleeveProps> = ({ nft }) => {
   const { tokenId, rarity } = nft;
   const { name, type } = nft ?? { name: "", type: "fire" };
   const [showModal] = useModal(<InspectorDialog nft={nft} />);
+  const history = useHistory();
 
   return (
     <>
@@ -105,7 +106,7 @@ export const Sleeve: FC<SleeveProps> = ({ nft }) => {
             style={{ fontSize: 12, textTransform: "none", height: 40 }}
             onClick={() => {
               if (nft.tokenId?.length > 2) {
-                window.location.href = `/token/${nft.set}/${nft.tokenId}`;
+                history.push(`/token/${nft.set}/${nft.tokenId}`);
               } else {
                 showModal();
               }

@@ -44,7 +44,7 @@ const Gallery: React.FC<CarouselProps> = ({ nfts, pageSize = 8, ...props }) => {
         container
         spacing={4}
         justify="space-around"
-        style={{ height: "100%", alignItems: "center" }}
+        style={{ height: "100%", alignItems: "center", marginBottom: 80 }}
         {...props}
       >
         {nfts

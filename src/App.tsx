@@ -114,14 +114,16 @@ const App: React.FC = () => {
     <>
       <Particles />
       <Router>
+        <NavHeader
+          account={account ?? ""}
+          onConnect={login}
+          onLogout={logout}
+          linkConfig={linkConfig}
+        />
+
         <SuspenseWithChunkError fallback={<PageLoader />}>
           {/* <Page> */}
-          <NavHeader
-            account={account ?? ""}
-            onConnect={login}
-            onLogout={logout}
-            linkConfig={linkConfig}
-          />
+
           <Switch>
             <Route path="/" exact>
               <Landing />
