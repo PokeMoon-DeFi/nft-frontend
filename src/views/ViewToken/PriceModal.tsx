@@ -49,7 +49,14 @@ const PriceModal: FC<ModalProps> = ({
         </div>
         <DialogActions>
           <Button onClick={handleClose}>Close</Button>
-          <Button onClick={() => handleConfirm(price)}>Confirm</Button>
+          <Button
+            disabled={price <= 0}
+            onClick={() => {
+              handleConfirm(price);
+            }}
+          >
+            Confirm
+          </Button>
         </DialogActions>
       </DialogContent>
     </Dialog>

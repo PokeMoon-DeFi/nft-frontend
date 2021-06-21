@@ -4,6 +4,7 @@ import {
   buyListing,
   cancelListing,
   fetchListings,
+  giftNft,
   postListing,
   updateListing,
 } from "providers/state/Market";
@@ -42,6 +43,17 @@ export const useUpdateListing = () => {
   const callback = useCallback(
     (tokenId, price) => {
       dispatch(updateListing({ tokenId, price }));
+    },
+    [dispatch]
+  );
+  return callback;
+};
+
+export const useGiftNft = () => {
+  const dispatch = useDispatch();
+  const callback = useCallback(
+    (destAddress, tokenId, packName) => {
+      dispatch(giftNft({ destAddress, tokenId, packName }));
     },
     [dispatch]
   );

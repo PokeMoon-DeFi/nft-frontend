@@ -22,11 +22,13 @@ import styled from "styled-components";
 import { useAppSelector } from "providers";
 import {
   useCancelListing,
+  useGiftNft as useSendGiftNft,
   usePostListing,
   useUpdateListing,
 } from "hooks/useMarket";
 import Notifications from "components/Notifications";
 import PriceModal from "./PriceModal";
+import { SendToAddress } from "nft-uikit";
 
 const useStyles = makeStyles({
   root: {
@@ -61,6 +63,7 @@ const ViewToken = () => {
   const account = useAppSelector((state) => state.user.address);
   const listings = useAppSelector((state) => state.market.listings);
   const [showModal, setShowModal] = useState(false);
+  const [showGiftmodal, setShowGiftModal] = useState(false);
 
   const activeListing = useMemo(() => {
     return listings.find((listing) => listing.id.toString() === id);
@@ -92,6 +95,7 @@ const ViewToken = () => {
   const handlePostListing = usePostListing();
   const handleCancelListing = useCancelListing();
   const handleUpdateListing = useUpdateListing();
+  const handleSendGift = useSendGiftNft();
 
   return (
     <div style={{ zIndex: 2 }}>
@@ -155,7 +159,7 @@ const ViewToken = () => {
         ) : isOwner ? (
           <>
             <Button onClick={() => setShowModal(true)}>Sell</Button>
-            <Button>Send</Button>
+            <Button onClick={() => setShowGiftModal(true)}>Send</Button>
           </>
         ) : (
           <></>
@@ -173,6 +177,14 @@ const ViewToken = () => {
         }}
         handleClose={() => setShowModal(false)}
         open={showModal}
+      />
+      <SendToAddress
+        open={showGiftmodal}
+        handleClose={() => setShowGiftModal(false)}
+        handleConfirm={(account) => {
+          handleSendGift(account, nft?.tokenId, nft?.set);
+          setShowGiftModal(false);
+        }}
       />
     </div>
   );

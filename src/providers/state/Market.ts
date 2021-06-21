@@ -10,9 +10,14 @@ import { PokemoonNft } from "config/constants/nfts/types";
 import { Metamask } from "nft-uikit";
 import { TransactionReceipt } from "web3-core";
 import { reject } from "lodash";
+import {
+  getNftAbiByName,
+  getNftAddressByName,
+  getNftContractByName,
+} from "utils/contractHelpers";
+import { RootState } from "providers";
 
 const marketplace = contracts.marketplace[56];
-
 interface Listing {
   id: number;
   price: number;
@@ -78,6 +83,33 @@ export const cancelListing = createAsyncThunk(
     } else {
       const { hash } = transaction;
       return dispatch(executeTransaction(hash));
+    }
+  }
+);
+
+export const giftNft = createAsyncThunk(
+  "market/giftNft",
+  async (
+    { destAddress, tokenId, packName }: any,
+    { dispatch, getState, rejectWithValue }
+  ) => {
+    //@ts-ignore
+    const provider = new ethers.providers.Web3Provider(window.ethereum, "any");
+    const account = (getState() as RootState).user.address;
+    const nftAbi = getNftAbiByName(packName);
+    const nftAddress = getNftAddressByName(packName);
+    const contract = new ethersContract(
+      nftAddress,
+      nftAbi,
+      provider.getSigner()
+    );
+    const call = contract.functions.transferFrom(account, destAddress, tokenId);
+    const [tx, error] = await safeAwait(call);
+
+    if (error) {
+      return rejectWithValue(error);
+    } else {
+      return dispatch(executeTransaction(tx.hash));
     }
   }
 );
@@ -189,6 +221,28 @@ const marketSlice = createSlice({
     builder.addCase(fetchListings.fulfilled, (state, { payload }) => {
       state.burnPercent = payload.burnPercent;
       state.listings = payload.listings;
+    });
+
+    //SEND A GIFT
+    builder.addCase(giftNft.pending, (state) => {
+      state.pending = {
+        status: "pending",
+        message: "Waiting for Approval",
+      };
+    });
+
+    builder.addCase(giftNft.rejected, (state) => {
+      state.pending = {
+        status: "rejected",
+        message: "Transfer Rejected",
+      };
+    });
+
+    builder.addCase(giftNft.fulfilled, (state) => {
+      state.pending = {
+        status: "fulfilled",
+        message: "Transfer Succeeded",
+      };
     });
 
     //POST A LISTING
