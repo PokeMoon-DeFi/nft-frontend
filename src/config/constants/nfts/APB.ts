@@ -194,9 +194,9 @@ const MEAN_GREENS_COLLECTION: { [key: number]: any } = {
   },
   23: {
     tokenId: "23",
-    imageUrl: "007bananacondaC.png",
+    imageUrl: "007bananacondaUC.png",
     card: MEAN_GREENS_CARDS[7],
-    rarity: PM_RARITY.C,
+    rarity: PM_RARITY.U,
   },
   30: {
     tokenId: "30",
