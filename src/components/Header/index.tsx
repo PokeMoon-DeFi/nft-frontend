@@ -57,7 +57,7 @@ const NavHeader: FC<NavHeaderProps> = ({
           />
 
           {/* SIDEBAR */}
-          <Hidden smUp>
+          <Hidden mdUp>
             <IconButton onClick={() => setOpenSidebar(true)}>
               <MenuIcon style={{ color: "white" }} />
             </IconButton>
