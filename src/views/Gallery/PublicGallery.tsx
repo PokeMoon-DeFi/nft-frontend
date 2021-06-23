@@ -9,13 +9,17 @@ import {
   TableGrid,
   FilterState,
   getFilteredNfts,
-  getFlatCollection,
 } from "nft-uikit";
+import { getFlatCollection } from "utils/nftHelpers";
 import { useParams } from "react-router-dom";
 import { getCollection } from "utils/nftHelpers";
 import Container from "@material-ui/core/Container";
 
-const nfts: PokemoonNft[] = getFlatCollection(["blastOff", "ampedUp"]);
+const nfts: PokemoonNft[] = getFlatCollection([
+  "blastOff",
+  "ampedUp",
+  "meanGreens",
+]);
 
 const PublicGallery: FC = () => {
   const [viewState, setViewState] = useState("grid");
