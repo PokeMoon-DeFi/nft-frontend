@@ -60,7 +60,7 @@ export const getFlatCollection = (packs: string[]) => {
       nfts.push(flattened);
     }
     lastPackAmount = nfts.length;
-    result.push(...nfts.sort((a, b) => b.number - a.number));
+    result.push(...nfts.sort((a, b) => a.number - b.number));
   }
 
   return result;
