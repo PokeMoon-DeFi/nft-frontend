@@ -26,3 +26,24 @@ export const useBlastOffAllowance = () => {
 
   return allowance;
 };
+
+export const useAPBAllowance = () => {
+  const [allowance, setAllowance] = useState(new BigNumber(0));
+  const { account } = useWeb3React();
+  const tokenAddress = getAddress("apb");
+  const meanGreensAddress = getAddress("meanGreens");
+  const { fastRefresh } = useRefresh();
+
+  useEffect(() => {
+    const fetchAllowance = async () => {
+      const res = await getAllowance(tokenAddress, meanGreensAddress, account);
+      setAllowance(new BigNumber(res));
+    };
+
+    if (account) {
+      fetchAllowance();
+    }
+  }, [account, fastRefresh, tokenAddress, meanGreensAddress]);
+
+  return allowance;
+};

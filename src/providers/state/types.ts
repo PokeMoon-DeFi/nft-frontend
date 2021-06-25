@@ -1,22 +1,22 @@
 import BigNumber from "bignumber.js";
 import { PokemoonNft } from "config/constants/nfts/types";
 
+interface Balance {
+  cards: PokemoonNft[];
+  packs: string[];
+}
 export interface UserState {
   balance: {
     meownaut: string;
     koban: string;
     pb2114: string;
     pb2116: string;
+    apb: string;
   };
   nftBalance: {
-    blastOff: {
-      cards: PokemoonNft[];
-      packs: string[];
-    };
-    ampedUp: {
-      cards: PokemoonNft[];
-      packs: string[];
-    };
+    blastOff: Balance;
+    ampedUp: Balance;
+    meanGreens: Balance;
   };
 }
 
@@ -29,4 +29,5 @@ export interface PriceState {
   koban: number;
   pb2114: number;
   pb2116: number;
+  apb: number;
 }

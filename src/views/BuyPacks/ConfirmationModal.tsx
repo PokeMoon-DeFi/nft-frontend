@@ -13,13 +13,12 @@ import Divider from "@material-ui/core/Divider";
 import { useState, useEffect } from "react";
 import { useAppSelector } from "providers";
 import { Link } from "@material-ui/core";
+import { PACK_COST } from "config";
 
 interface ModalProps extends DialogProps {
   handleClose: () => void;
   handleConfirm: (packAmount: number) => void;
 }
-
-const PACK_COST = 750;
 
 const Modal: React.FC<ModalProps> = ({
   title,
@@ -28,11 +27,12 @@ const Modal: React.FC<ModalProps> = ({
   ...props
 }) => {
   const [packAmount, setPackAmount] = useState(1);
-  const [pbCost, setPbCost] = useState(PACK_COST);
-  const pb2116 = useAppSelector((state) => state.user.balance.pb2116);
+  const [pbCost, setPbCost] = useState<number>(PACK_COST);
+  const apb = useAppSelector((state) => state.user.balance.apb);
   useEffect(() => {
     setPbCost(PACK_COST * packAmount);
   }, [packAmount]);
+
   return (
     <Dialog
       PaperProps={{
@@ -75,7 +75,7 @@ const Modal: React.FC<ModalProps> = ({
               InputLabelProps={{
                 style: { display: "none" },
               }}
-              error={parseFloat(pb2116) < pbCost}
+              error={parseFloat(apb) < pbCost}
             />
           </Grid>
           <Grid item style={{ display: "flex", justifyContent: "center" }}>
@@ -98,9 +98,9 @@ const Modal: React.FC<ModalProps> = ({
       </DialogContent>
       <DialogContent>
         <DialogContentText>
-          Your Balance: {parseFloat(pb2116).toFixed(1)}
+          Your Balance: {parseFloat(apb).toFixed(1)}
         </DialogContentText>
-        {parseFloat(pb2116) > pbCost ? (
+        {parseFloat(apb) > pbCost ? (
           <DialogContentText>
             <span style={{ fontWeight: "bold" }}>{`${pbCost} PBs `}</span> will
             be burned in this transaction
@@ -109,7 +109,7 @@ const Modal: React.FC<ModalProps> = ({
           <>
             <DialogContentText>You do not have enough PBs!</DialogContentText>
             <Link href="https://exchange.pokemoon.app/#/swap?outputCurrency=0x90274Ca54A8D37789450a4D909400A79cfcE6A86">
-              Get PB 2116
+              Get APB
             </Link>
           </>
         )}
@@ -123,7 +123,7 @@ const Modal: React.FC<ModalProps> = ({
           onClick={() => handleConfirm(packAmount)}
           color="primary"
           autoFocus
-          disabled={parseFloat(pb2116) < pbCost}
+          disabled={parseFloat(apb) < pbCost}
         >
           Agree
         </Button>

@@ -8,18 +8,21 @@ import multicall from "utils/multicall";
 import contracts from "config/constants/contracts";
 import BlastOffAbi from "config/abi/BlastOff.json";
 import AmpedUpAbi from "config/abi/AmpedUp.json";
+import MeanGreensAbi from "config/abi/MeanGreens.json";
 import { handleTokenIdResponse } from "utils/nftHelpers";
+
 const initialState: UserState = {
   balance: {
     meownaut: "0",
     koban: "0",
     pb2114: "0",
     pb2116: "0",
-    // apb: "0",
+    apb: "0",
   },
   nftBalance: {
     blastOff: { cards: [], packs: [] },
     ampedUp: { cards: [], packs: [] },
+    meanGreens: { cards: [], packs: [] },
   },
 };
 
@@ -31,6 +34,7 @@ export const asyncFetchBalance = createAsyncThunk(
       kbn: getAddressFromSymbol("kbn"),
       pb2114: getAddressFromSymbol("pb2114"),
       pb2116: getAddressFromSymbol("pb2116"),
+      apb: getAddressFromSymbol("apb"),
     };
 
     // TODO: Convert to multicall
@@ -39,13 +43,14 @@ export const asyncFetchBalance = createAsyncThunk(
       const kbnRes = await getBep20Balance(tokens.kbn, account);
       const pb2114Res = await getBep20Balance(tokens.pb2114, account);
       const pb2116Res = await getBep20Balance(tokens.pb2116, account);
-
+      const apbRes = await getBep20Balance(tokens.apb, account);
       return {
         balance: {
           meownaut: Web3.utils.fromWei(mntRes),
           koban: Web3.utils.fromWei(kbnRes),
           pb2114: Web3.utils.fromWei(pb2114Res),
           pb2116: Web3.utils.fromWei(pb2116Res),
+          apb: Web3.utils.fromWei(apbRes),
         },
       };
     }
@@ -62,6 +67,7 @@ export const asyncFetchNftBalance = createAsyncThunk(
     const nftAddresses: { [key: string]: string } = {
       blastOff: contracts.blastOff[process.env.REACT_APP_CHAIN_ID],
       ampedUp: contracts.ampedUp[process.env.REACT_APP_CHAIN_ID],
+      meanGreens: contracts.meanGreens[process.env.REACT_APP_CHAIN_ID],
     };
     const blastOffCalls = [
       {
@@ -72,6 +78,13 @@ export const asyncFetchNftBalance = createAsyncThunk(
     ];
     const ampedUpCalls = [
       { address: nftAddresses.ampedUp, name: "tokensOwned", params: [account] },
+    ];
+    const meanGreenCalls = [
+      {
+        address: nftAddresses.meanGreens,
+        name: "tokensOwned",
+        params: [account],
+      },
     ];
 
     const blastOffRes = await multicall(BlastOffAbi, blastOffCalls);
@@ -88,9 +101,20 @@ export const asyncFetchNftBalance = createAsyncThunk(
       "ampedUp"
     );
 
+    const meanGreenRes = await multicall(MeanGreensAbi, meanGreenCalls);
+    const meanGreensIds: BigNumber[] = meanGreenRes[0][0];
+    const meanGreensBalance = await handleTokenIdResponse(
+      meanGreensIds,
+      "meanGreens"
+    );
+
     // console.error("Web3 failed to retrieve nftBalance.");
     return {
-      nftBalance: { ...blastoffBalance, ...ampedUpBalance },
+      nftBalance: {
+        ...blastoffBalance,
+        ...ampedUpBalance,
+        ...meanGreensBalance,
+      },
     };
   }
 );
