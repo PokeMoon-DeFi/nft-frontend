@@ -195,14 +195,14 @@ const Landing: React.FC = () => {
             </CTALabel>
             <CTALabel>
               📚 Feeling lost? Check out our{" "}
-              <CTALink href="https://docs.pokemoon.app/">Docs</CTALink>
+              <CTALink href="https://docs.pokemoon.io/">Docs</CTALink>
             </CTALabel>
             <CTALabel>
               🗺️ <Link href="/gallery">Explore</Link> the Pokemoon Universe
             </CTALabel>
             <CTALabel>
               🦄 Join the{" "}
-              <Link href="https://discord.gg/mz2yY2vUMM">
+              <Link href="https://discord.pokemoon.io">
                 Pokemoon Community Discord
               </Link>
             </CTALabel>
