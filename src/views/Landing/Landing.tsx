@@ -19,15 +19,6 @@ function AdCarousel(props) {
       mobile: "/images/banners/Pancakeswap_Mobile.png",
       href: "https://exchange.pokemoon.app/#/add/ETH/0x498e3739d58AAe82656030BCBcCf5ac63E0E57e1",
     },
-    // {
-    //   desktop: "/images/banners/Apeswap_PC.png",
-    //   mobile: "/images/banners/Apeswap_Mobile.png",
-    // },
-    {
-      desktop: "/images/banners/AmpedUpPC.png",
-      mobile: "/images/banners/AmpedUpMobile.png",
-      href: "https://exchange.pokemoon.app/#/swap?outputCurrency=0x90274Ca54A8D37789450a4D909400A79cfcE6A86",
-    },
   ];
 
   return (
@@ -72,7 +63,7 @@ const n: PokemoonNft = {
   tokenId: "11000002",
   imageUrl: "001meownautC.png",
   number: 1,
-  name: "DeGen Meownaut",
+  name: "Maroslash",
   type: "Psychic",
   description:
     "Legend says that the bioluminescent coin in a Meownaut's chest is the source of its resilience and good fortune.",
@@ -80,7 +71,7 @@ const n: PokemoonNft = {
     name: "Armilo Barrios",
   },
   rarity: "Common",
-  glbUrl: "/models/ampedUp/006degenmntL.glb",
+  glbUrl: "/models/meanGreens/005maroslashL.glb",
   set: "blastOff",
   packId: "5",
 };
@@ -89,7 +80,7 @@ const p: PokemoonNft = {
   tokenId: "37000002",
   imageUrl: "010kadalaxslimUC.png",
   number: 10,
-  name: "Graffing",
+  name: "Venobat",
   type: "Psychic",
   description:
     "Some Kadalax, having conquered their material vices, are able to sustain themselves off air and thought alone.",
@@ -98,7 +89,7 @@ const p: PokemoonNft = {
     instagram: "@ilyaspb2019",
   },
   rarity: "Uncommon",
-  glbUrl: "/models/ampedUp/003graffingL.glb",
+  glbUrl: "/models/meanGreens/003venobatL.glb",
   set: "blastOff",
   packId: "5",
 };
@@ -107,7 +98,7 @@ const d: PokemoonNft = {
   tokenId: "18000013",
   imageUrl: "011zapduckC.png",
   number: 11,
-  name: "Artducko",
+  name: "Clobberilla",
   type: "Lightning",
   description: "Strike one, you're out.",
   artist: {
@@ -115,7 +106,7 @@ const d: PokemoonNft = {
     instagram: "@morlux_artista",
   },
   rarity: "Common",
-  glbUrl: "/models/ampedUp/009artduckoL.glb",
+  glbUrl: "/models/meanGreens/013clobberillaL.glb",
   set: "blastOff",
   packId: "66",
 };
@@ -172,7 +163,7 @@ const Landing: React.FC = () => {
       >
         <Grid item xs={12} md={6}>
           <ModelCarousel
-            nfts={[p, d, n]}
+            nfts={[n, d, p]}
             style={{ height: "100%" }}
             modelViewerStyle={{ width: "100%", height: "500px" }}
           />
@@ -204,14 +195,14 @@ const Landing: React.FC = () => {
             </CTALabel>
             <CTALabel>
               📚 Feeling lost? Check out our{" "}
-              <CTALink href="https://docs.pokemoon.app/">Docs</CTALink>
+              <CTALink href="https://docs.pokemoon.io/">Docs</CTALink>
             </CTALabel>
             <CTALabel>
               🗺️ <Link href="/gallery">Explore</Link> the Pokemoon Universe
             </CTALabel>
             <CTALabel>
               🦄 Join the{" "}
-              <Link href="https://discord.gg/mz2yY2vUMM">
+              <Link href="https://discord.pokemoon.io">
                 Pokemoon Community Discord
               </Link>
             </CTALabel>

@@ -4,6 +4,7 @@ import web3NoAccount from "./web3";
 import bep20Abi from "config/abi/Bep20.json";
 import AmpedUpAbi from "config/abi/AmpedUp.json";
 import BlastOffAbi from "config/abi/BlastOff.json";
+import MeanGreensAbi from "config/abi/MeanGreens.json";
 import contracts from "config/constants/contracts";
 import useWeb3 from "hooks/useWeb3";
 
@@ -21,6 +22,9 @@ export const getNftAbiByName = (pack: string) => {
     case "ampedUp": {
       return AmpedUpAbi;
     }
+    case "meanGreens": {
+      return MeanGreensAbi;
+    }
   }
 };
 
@@ -36,12 +40,19 @@ export const useAmpedUpContract = () => {
   const web3 = useWeb3();
   return getContract(AmpedUpAbi, getAddress("ampedUp"), web3);
 };
+export const useMeanGreensContract = () => {
+  const web3 = useWeb3();
+  return getMeanGreensContract(web3);
+};
 
 export const getBlastOffContract = (web3?: Web3) => {
   return getContract(BlastOffAbi, getAddress("blastOff"), web3);
 };
 export const getAmpedUpContract = (web3?: Web3) => {
   return getContract(AmpedUpAbi, getAddress("ampedUp"), web3);
+};
+export const getMeanGreensContract = (web3?: Web3) => {
+  return getContract(MeanGreensAbi, getAddress("meanGreens"), web3);
 };
 
 export const getBep20Contract = (address: string, web3?: Web3) => {
@@ -66,6 +77,8 @@ export const getAddressFromSymbol = (symbol: string) => {
       return contracts.pb2114[process.env.REACT_APP_CHAIN_ID];
     case "pb2116":
       return contracts.pb2116[process.env.REACT_APP_CHAIN_ID];
+    case "apb":
+      return contracts.apb[process.env.REACT_APP_CHAIN_ID];
     default:
       throw console.error("invalid symbol");
   }
@@ -80,6 +93,9 @@ export const getNftContractByName = (name: string) => {
     case "blastOff": {
       return getBlastOffContract();
     }
+    case "meanGreens": {
+      return getMeanGreensContract();
+    }
   }
 };
 
@@ -87,6 +103,7 @@ export const getNftAddressByName = (name: string) => {
   const nftAddresses: { [key: string]: string } = {
     blastOff: contracts.blastOff[process.env.REACT_APP_CHAIN_ID],
     ampedUp: contracts.ampedUp[process.env.REACT_APP_CHAIN_ID],
+    meanGreens: contracts.meanGreens[process.env.REACT_APP_CHAIN_ID],
   };
 
   return nftAddresses[name];

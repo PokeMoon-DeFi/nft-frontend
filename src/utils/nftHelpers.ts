@@ -1,8 +1,7 @@
 import BigNumber from "bignumber.js";
-import BLAST_OFF_COLLECTION, {
-  BLAST_OFF_CARDS,
-} from "config/constants/nfts/2114";
+import BLAST_OFF_COLLECTION from "config/constants/nfts/2114";
 import AMPED_UP_COLLECTION from "config/constants/nfts/2116";
+import MEAN_GREENS_COLLECTION from "config/constants/nfts/APB";
 import { PokemoonNft } from "config/constants/nfts/types";
 import blastOffTokenCache from "config/constants/cache/blastOff/tokenIdToPack.json";
 import blastOffPackCache from "config/constants/cache/blastOff/blastOffPacks.json";
@@ -31,24 +30,37 @@ export const getCollection = (pack: string) => {
     case "ampedUp": {
       return AMPED_UP_COLLECTION;
     }
+    case "meanGreens": {
+      return MEAN_GREENS_COLLECTION;
+    }
   }
 };
 
-export const getFlatCollection = () => {
-  const result = [];
-  const packs = ["blastOff", "ampedUp"];
+export const getFlatCollection = (packs: string[]) => {
+  const result: any[] = [];
+  let lastPackAmount = 0;
+
   for (const pack of packs.reverse()) {
-    const nfts: PokemoonNft[] = Object.entries(getCollection(pack))
-      .map(([key, value]) => {
-        const { card, ...nft } = value;
-        const glbUrl =
-          `/models/${pack}/` + nft.imageUrl.replace(".png", ".glb");
-        const imageUrl = `/images/cards/${pack}/${nft.imageUrl}`;
-        return { ...nft, ...card, glbUrl, imageUrl };
-      })
-      ?.sort((a, b) => b.number - a.number);
-    //@ts-ignore
-    result.push(...nfts);
+    const vals = Object.values(getCollection(pack));
+    const nfts: any[] = [];
+
+    for (const val of vals) {
+      const { card, ...nft } = val;
+      const glbUrl = `/models/${pack}/` + nft.imageUrl.replace(".png", ".glb");
+      const imageUrl = `/images/cards/${pack}/${nft.imageUrl}`;
+      const number = lastPackAmount + card.number;
+      const flattened = {
+        ...nft,
+        ...card,
+        glbUrl,
+        imageUrl,
+        set: pack,
+        number,
+      };
+      nfts.push(flattened);
+    }
+    lastPackAmount = nfts.length;
+    result.push(...nfts.sort((a, b) => a.number - b.number));
   }
 
   return result;
@@ -109,10 +121,7 @@ const getBaseUri = (pack: string) => {
 
 export const getCardData = async (tokenId: string, set: string, cache = {}) => {
   const cardId = parseInt(tokenId.substr(0, 2));
-  let collection: any;
-  set === "blastOff"
-    ? (collection = BLAST_OFF_COLLECTION)
-    : (collection = AMPED_UP_COLLECTION);
+  const collection = getCollection(set);
   const { imageUrl, card, rarity } = collection[cardId];
   const nft: PokemoonNft = { tokenId, imageUrl, ...card, rarity };
 

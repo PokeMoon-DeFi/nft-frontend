@@ -8,6 +8,7 @@ import {
   getAddress,
   getAmpedUpContract,
   useAmpedUpContract,
+  useMeanGreensContract,
 } from "utils/contractHelpers";
 import { sendGiftPack } from "utils/callHelpers";
 import web3 from "web3";
@@ -82,30 +83,20 @@ const Blurb: FC<BuyInfoProps> = ({
   const [openNotty, setOpenNotty] = React.useState(false);
 
   const [openPackNotty, setOpenPackNotty] = React.useState(false);
-  const ampedUpContract = useAmpedUpContract();
+  const meanGreensContract = useMeanGreensContract();
 
   const sendGift = useCallback(
     async (receiver: string) => {
       setOpenNotty(true);
-      const res = await sendGiftPack(ampedUpContract, account, receiver);
+      const res = await sendGiftPack(meanGreensContract, account, receiver);
       const packId = res.events.EntreatPacked.returnValues.packId;
       setCollectedPackId(packId);
       setOpenPackNotty(true);
     },
-    [account, ampedUpContract]
+    [account, meanGreensContract]
   );
 
   const [openTransferModal, setOpenTransferModal] = useState(false);
-
-  // return (`
-  //   padding: 12px;
-  //   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-
-  //   h4,
-  //   p {
-  //     text-align: center;
-  //   }
-  // `);
 
   const DescriptionText = styled.div`
     text-align: center;
@@ -124,19 +115,19 @@ const Blurb: FC<BuyInfoProps> = ({
           background: `linear-gradient(120deg, #ffffff 0%, #ffffff 47%, #111111 47.3%, #111111 100%)`,
         }}
       >
-        <Pokeball>{"PB-2116"}</Pokeball>
-        <Pack>{"DEGEN BALL"}</Pack>
+        <Pokeball>{"APB"}</Pokeball>
+        <Pack>{"APE BALL"}</Pack>
       </PrimaryInfo>
       <Description>
         <Typography variant="h4" style={{ padding: 10 }}>
-          LET'S GET AMPED UP!
+          LET'S GET MEAN, GREENS
         </Typography>
         <Typography style={{ padding: 10, textAlign: "center" }}>
-          Spend {price} PB and receive 5 special cards from PokéMoon's 2nd pack.
-          Once again meticulously designed by our most clever and creative
+          Spend {price} APB and receive 5 special cards from PokéMoon's 3rd
+          pack. Once again meticulously designed by our most clever and creative
           community artists! Set at an initial price of roughly $10 BUSD per
-          pack, and with all PB 2116 already farmed by our loyal PokéMoon
-          trainers, these packs are sure to be scarce!
+          pack, and with all APB already farmed by our loyal PokéMoon trainers,
+          these packs are sure to be scarce!
         </Typography>
         <Typography
           style={{
@@ -155,12 +146,12 @@ const Blurb: FC<BuyInfoProps> = ({
           Packs Minted: {lastPackId} ({lastPackId * 5} Cards)
         </DescriptionText> */}
         <DescriptionText>
-          Balance: {balance.toFixed(0)} | Price: {price} PB 2116 |
+          Balance: {balance.toFixed(0)} | Price: {price} APB |
           <Link
             style={{ marginLeft: 6 }}
-            href="https://exchange.pokemoon.app/#/swap?outputCurrency=0x90274Ca54A8D37789450a4D909400A79cfcE6A86"
+            href="https://exchange.pokemoon.app/#/swap?outputCurrency=0x27B6C8e457Be1d3bB3bE424d8Bf240e1FaF36386"
           >
-            Get PB 2116
+            Get APB
           </Link>
         </DescriptionText>
 
@@ -191,7 +182,7 @@ const Blurb: FC<BuyInfoProps> = ({
             </Button>
           </div>
         ) : (
-          <Button endIcon={<Buy />}>Not enough pokeballs 😕</Button>
+          <Button endIcon={<Buy />}>Not enough APB 😕</Button>
         )}
       </Description>
       <SendToAddress

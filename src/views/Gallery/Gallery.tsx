@@ -26,6 +26,11 @@ const GalleryView = () => {
     (a, b) => a.length === b.length
   );
 
+  const meanGreenCards = useAppSelector(
+    (state) => state.user.nftBalance.meanGreens.cards,
+    (a, b) => a.length === b.length
+  );
+
   const [viewState, setViewState] = useState("grid");
   const [filterState, setFilterState] = useState<FilterState>({
     rarities: [],
@@ -35,8 +40,11 @@ const GalleryView = () => {
   });
 
   const filterNfts = useMemo(() => {
-    return getFilteredNfts([...ampedUpCards, ...blastOffCards], filterState);
-  }, [filterState, ampedUpCards, blastOffCards]);
+    return getFilteredNfts(
+      [...ampedUpCards, ...blastOffCards, ...meanGreenCards],
+      filterState
+    );
+  }, [filterState, ampedUpCards, blastOffCards, meanGreenCards]);
 
   return (
     <Container

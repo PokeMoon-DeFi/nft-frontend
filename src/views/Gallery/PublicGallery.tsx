@@ -9,13 +9,17 @@ import {
   TableGrid,
   FilterState,
   getFilteredNfts,
-  getFlatCollection,
 } from "nft-uikit";
+import { getFlatCollection } from "utils/nftHelpers";
 import { useParams } from "react-router-dom";
 import { getCollection } from "utils/nftHelpers";
 import Container from "@material-ui/core/Container";
 
-const nfts: PokemoonNft[] = getFlatCollection(["blastOff", "ampedUp"]);
+const nfts: PokemoonNft[] = getFlatCollection([
+  "blastOff",
+  "ampedUp",
+  "meanGreens",
+]);
 
 const PublicGallery: FC = () => {
   const [viewState, setViewState] = useState("grid");
@@ -40,6 +44,7 @@ const PublicGallery: FC = () => {
         alignItems: "center",
         height: "100%",
         paddingTop: 20,
+        marginBottom: 60,
       }}
     >
       <FilterDashboard
@@ -57,9 +62,16 @@ const PublicGallery: FC = () => {
           setFilterState((state) => ({ ...state, search: filter }));
         }}
       />
-      <Content maxWidth="lg" style={{ justifyContent: "flex-start" }}>
+      <Content
+        maxWidth="lg"
+        style={{ justifyContent: "flex-start", marginBottom: 100 }}
+      >
         {viewState === "grid" ? (
-          <Gallery pageSize={8} nfts={filteredNfts} />
+          <Gallery
+            pageSize={8}
+            nfts={filteredNfts}
+            style={{ marginBottom: 50 }}
+          />
         ) : (
           <TableGrid nfts={filteredNfts} hidePackId />
         )}
