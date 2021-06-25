@@ -44,6 +44,7 @@ const PublicGallery: FC = () => {
         alignItems: "center",
         height: "100%",
         paddingTop: 20,
+        marginBottom: 60,
       }}
     >
       <FilterDashboard
@@ -61,9 +62,16 @@ const PublicGallery: FC = () => {
           setFilterState((state) => ({ ...state, search: filter }));
         }}
       />
-      <Content maxWidth="lg" style={{ justifyContent: "flex-start" }}>
+      <Content
+        maxWidth="lg"
+        style={{ justifyContent: "flex-start", marginBottom: 100 }}
+      >
         {viewState === "grid" ? (
-          <Gallery pageSize={8} nfts={filteredNfts} />
+          <Gallery
+            pageSize={8}
+            nfts={filteredNfts}
+            style={{ marginBottom: 50 }}
+          />
         ) : (
           <TableGrid nfts={filteredNfts} hidePackId />
         )}
