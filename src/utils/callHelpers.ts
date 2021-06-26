@@ -4,6 +4,7 @@ import {
   getBlastOffContract,
   getAmpedUpContract,
   getNftContractByName,
+  getMeanGreensContract,
 } from "./contractHelpers";
 
 /**
@@ -79,7 +80,7 @@ export const getPackedOwned = async (account, pack) => {
  * @returns array of tokenIds
  */
 export const getPackInfo = async (packId, name) => {
-  const contract = getPackContract(name);
+  const contract = getNftContractByName(name);
   return contract.methods.packedInfo(packId).call();
 };
 
@@ -129,6 +130,8 @@ export const getPackContract = (name) => {
       return getBlastOffContract();
     case "ampedUp":
       return getAmpedUpContract();
+    case "meanGreens":
+      return getMeanGreensContract();
   }
 };
 

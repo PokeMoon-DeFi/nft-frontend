@@ -9,7 +9,7 @@ import contracts from "config/constants/contracts";
 import multicall from "utils/multicall";
 import BlastOffAbi from "config/abi/BlastOff.json";
 import AmpedUpAbi from "config/abi/AmpedUp.json";
-
+import MeanGreensAbi from "config/abi/MeanGreens.json";
 import ampedUpTokens from "config/constants/cache/ampedUp/ampedUpTokens.json";
 import ampedUpPacks from "config/constants/cache/ampedUp/ampedUpPacks.json";
 
@@ -68,36 +68,46 @@ export const getFlatCollection = (packs: string[]) => {
 
 const getPackCache = (pack: string) => {
   switch (pack) {
-    default:
     case "blastOff": {
       return blastOffPackCache;
     }
     case "ampedUp": {
       return ampedUpPacks;
     }
+    // case "meanGreens": {
+    //   return meanGreensPacks;
+    // }
+    default:
+      return {};
   }
 };
 
 const getTokenCache = (pack: string) => {
   switch (pack) {
-    default:
     case "blastOff": {
       return blastOffTokenCache;
     }
     case "ampedUp": {
       return ampedUpTokens;
     }
+    default:
+      return {};
   }
 };
 
 const getAbi = (pack: string) => {
   switch (pack) {
-    default:
     case "blastOff": {
       return BlastOffAbi;
     }
     case "ampedUp": {
       return AmpedUpAbi;
+    }
+    case "meanGreens": {
+      return MeanGreensAbi;
+    }
+    default: {
+      return MeanGreensAbi;
     }
   }
 };
@@ -110,15 +120,6 @@ const isPackCached = (packId, pack) => {
   return Object.keys(getPackCache(pack)).includes(packId);
 };
 
-const getBaseUri = (pack: string) => {
-  switch (pack) {
-    case "blastOff":
-      return "https://storage.pokemoonapis.com/context/token/fde4/";
-    default:
-      break;
-  }
-};
-
 export const getCardData = async (tokenId: string, set: string, cache = {}) => {
   const cardId = parseInt(tokenId.substr(0, 2));
   const collection = getCollection(set);
@@ -128,8 +129,8 @@ export const getCardData = async (tokenId: string, set: string, cache = {}) => {
   nft.glbUrl = `/models/${set}/${imageUrl.replace(".png", ".glb")}`;
   nft.imageUrl = `/images/cards/${set}/${imageUrl}`;
   nft.set = set;
-
-  nft.packId = getTokenCache(set)[tokenId];
+  let usedCache = cache ?? getTokenCache(set);
+  nft.packId = usedCache[tokenId];
 
   return nft;
 };
@@ -148,14 +149,25 @@ export const handleTokenIdResponse = async (
   }
 
   const missingPacks = packs.filter((packId) => !isPackCached(packId, pack));
-  const tokenCache = await collectMissingPacks(missingPacks, pack);
 
+  const tokenCache = await collectMissingPacks(missingPacks, pack);
+  if (pack === "meanGreens") {
+    console.log(tokenCache);
+  }
   for (const tokenId of tokenIds) {
     if (tokenId.toNumber() < 11000000) {
     } else {
-      cards.push(await getCardData(tokenId.toString(), pack));
+      cards.push(
+        await getCardData(tokenId.toString(), pack, tokenCache ?? undefined)
+      );
     }
   }
+
+  // 1 we have the map jsons for blastoff ampedup
+  // 1.5 both done can always rely on json to be updated on local storage init
+  // 2 get finite() call compare to json length
+  // 3 multicall for the difference of finite (total pack ids) and local storage length
+  // 4 update localstorage variables
 
   // iterate through tokenIds
   // only get the packs
@@ -172,6 +184,7 @@ const collectMissingPacks = async (packIds: string[], pack: string) => {
   const nftAddresses: { [key: string]: string } = {
     blastOff: contracts.blastOff[process.env.REACT_APP_CHAIN_ID],
     ampedUp: contracts.ampedUp[process.env.REACT_APP_CHAIN_ID],
+    meanGreens: contracts.meanGreens[process.env.REACT_APP_CHAIN_ID],
   };
 
   const calls = packIds.map((packId) => {
