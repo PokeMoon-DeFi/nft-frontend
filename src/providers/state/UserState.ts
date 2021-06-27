@@ -173,6 +173,7 @@ export const userState = createSlice({
     });
     builder.addCase(disconnectWallet.fulfilled, (state, { payload }) => {
       state.address = "";
+      state.nftBalance = initialState.nftBalance;
     });
     builder.addCase(asyncFetchBalance.fulfilled, (state, action) => {
       const { balance }: any = action.payload;

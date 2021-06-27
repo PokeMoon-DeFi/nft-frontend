@@ -18,7 +18,12 @@ import { Run } from "components/Icons";
 import { makeStyles } from "@material-ui/core";
 import ArrowForwardIcon from "@material-ui/icons/ArrowForward";
 import Flip from "react-reveal/Flip";
-
+import Bounce from "react-reveal/Bounce";
+import Slide from "react-reveal/Slide";
+import Fade from "react-reveal/Fade";
+import { useLogin } from "hooks/useAuth";
+import { useAppSelector } from "providers";
+import AccountBalanceWalletIcon from "@material-ui/icons/AccountBalanceWallet";
 export interface LinkConfigState {
   target?: string;
   label?: string;
@@ -94,7 +99,8 @@ const LinkGroup: FC<LinkGroupState> = ({ linkConfig, label, icon }) => {
 };
 
 const Sidebar: FC<SidebarProps> = ({ open, onOpen, onClose, linkConfig }) => {
-  const updatedLinkConfig = [...linkConfig, logout];
+  const { login, logout } = useLogin();
+  const account = useAppSelector((state) => state.user.address);
   return (
     <Drawer
       PaperProps={{
@@ -123,10 +129,11 @@ const Sidebar: FC<SidebarProps> = ({ open, onOpen, onClose, linkConfig }) => {
         >
           <ArrowForwardIcon style={{ fill: "white" }} />
         </IconButton>
+
         <Divider />
 
         {/* THIS IS WHAT UR LOOKING FOR */}
-        {updatedLinkConfig?.map((item, index) => {
+        {linkConfig?.map((item, index) => {
           const { icon, label, target } = item;
           if (item.group) {
             return (
@@ -159,6 +166,39 @@ const Sidebar: FC<SidebarProps> = ({ open, onOpen, onClose, linkConfig }) => {
           );
         })}
       </List>
+
+      <div
+        style={{
+          position: "absolute",
+          bottom: 0,
+          height: 100,
+          width: "100%",
+        }}
+      >
+        <ListItem
+          button
+          style={{
+            marginTop: 20,
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            paddingLeft: 20,
+          }}
+          onClick={account ? logout : login}
+        >
+          <ListItemIcon style={{ justifyContent: "center", fill: "white" }}>
+            {account ? (
+              <Run width={25} />
+            ) : (
+              <AccountBalanceWalletIcon style={{ fill: "white" }} width={25} />
+            )}
+          </ListItemIcon>
+          <ListItemText
+            style={{ color: "white" }}
+            primary={account ? "Log Out" : "Connect Wallet"}
+          />
+        </ListItem>
+      </div>
     </Drawer>
   );
 };

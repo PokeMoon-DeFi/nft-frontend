@@ -61,11 +61,11 @@ const linkConfig: LinkConfigState[] = [
     label: "My Collection",
     icon: <AccountBalanceIcon {...iconStyle} />,
   },
-  {
-    target: "/market",
-    label: "MarketPlace",
-    icon: <AccountBalanceIcon {...iconStyle} />,
-  },
+  // {
+  //   target: "/market",
+  //   label: "MarketPlace",
+  //   icon: <AccountBalanceIcon {...iconStyle} />,
+  // },
 ];
 
 const useStyles = makeStyles((theme) => ({
@@ -91,12 +91,13 @@ const App: React.FC = () => {
   const { fastRefresh } = useRefresh();
   const { login, logout } = useLogin();
   const account = useAppSelector((state) => state.user.address);
-
   useEffect(() => {
     if (account) {
       dispatch(asyncFetchBalance({ account }));
       dispatch(asyncFetchNftBalance({ account }));
       // dispatch(fetchListings());
+    } else {
+      console.log("no account");
     }
   }, [dispatch, account, fastRefresh]);
   return (
