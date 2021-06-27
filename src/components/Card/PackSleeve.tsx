@@ -3,7 +3,6 @@ import Box, { BoxProps } from "@material-ui/core/Box";
 import styled from "styled-components";
 import { Typography } from "@material-ui/core";
 import Button from "components/Button";
-import { TypeChip, RarityChip } from "components/Chip";
 import SearchIcon from "@material-ui/icons/Search";
 import { InspectorDialog } from "components/Modal";
 import StarRateIcon from "@material-ui/icons/StarRate";

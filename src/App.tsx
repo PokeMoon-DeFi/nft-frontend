@@ -32,7 +32,6 @@ const BuyPacks = lazy(() => import("./views/BuyPacks"));
 const Gallery = lazy(() => import("./views/Gallery"));
 const ViewPack = lazy(() => import("./views/ViewPack"));
 const PublicGallery = lazy(() => import("./views/Gallery/PublicGallery"));
-const WhitePaperView = lazy(() => import("./views/WhitePaper"));
 
 BigNumber.config({
   EXPONENTIAL_AT: 1000,
@@ -67,11 +66,6 @@ const linkConfig: LinkConfigState[] = [
   },
 ];
 
-const useStyles = makeStyles((theme) => ({
-  //@ts-ignore
-  offset: theme.mixins.toolbar,
-}));
-
 const App: React.FC = () => {
   // https://github.com/ChainSafe/web3.js/issues/3898
   useEffect(() => {
@@ -90,7 +84,6 @@ const App: React.FC = () => {
   // If stuff keeps rerendering every 10 sec this is what caused that.
   const { fastRefresh } = useRefresh();
   const { login, logout } = useAuth();
-  const classes = useStyles();
 
   useEffect(() => {
     if (account) {

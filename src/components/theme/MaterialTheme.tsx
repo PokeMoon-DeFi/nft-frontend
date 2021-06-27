@@ -1,64 +1,64 @@
 import { createMuiTheme, ThemeOptions } from "@material-ui/core";
 
-// declare module "@material-ui/core/styles/createPalette" {
-//   type Color = React.CSSProperties["color"];
-//   type TypeTheme = {
-//     bgColor: Color;
-//     textColor: Color;
-//   };
-//   interface Palette {
-//     rarity: {
-//       [key: string]: TypeTheme;
-//       common: TypeTheme;
-//       uncommon: TypeTheme;
-//       rare: TypeTheme;
-//       legendary: TypeTheme;
-//       moonlike: TypeTheme;
-//     };
-//     types: {
-//       [key: string]: TypeTheme;
-//       item: TypeTheme;
-//       supporter: TypeTheme;
-//       psychic: TypeTheme;
-//       lightning: TypeTheme;
-//       grass: TypeTheme;
-//       fire: TypeTheme;
-//       water: TypeTheme;
-//       fighting: TypeTheme;
-//       colorless: TypeTheme;
-//       darkness: TypeTheme;
-//       dragon: TypeTheme;
-//       metal: TypeTheme;
-//       fairy: TypeTheme;
-//     };
-//   }
-//   interface PaletteOptions {
-//     rarity: {
-//       [key: string]: TypeTheme;
-//       common: TypeTheme;
-//       uncommon: TypeTheme;
-//       rare: TypeTheme;
-//       legendary: TypeTheme;
-//       moonlike: TypeTheme;
-//     };
-//     types: {
-//       [key: string]: TypeTheme;
-//       item: TypeTheme;
-//       supporter: TypeTheme;
-//       psychic: TypeTheme;
-//       lightning: TypeTheme;
-//       grass: TypeTheme;
-//       fire: TypeTheme;
-//       water: TypeTheme;
-//       fighting: TypeTheme;
-//       colorless: TypeTheme;
-//       darkness: TypeTheme;
-//       dragon: TypeTheme;
-//       metal: TypeTheme;
-//       fairy: TypeTheme;
-//     };
-//   }
-// }
+declare module "@material-ui/core/styles/createPalette" {
+  type Color = React.CSSProperties["color"];
+  type TypeTheme = {
+    bgColor: Color;
+    textColor: Color;
+  };
+  interface Palette {
+    rarity: {
+      [key: string]: TypeTheme;
+      common: TypeTheme;
+      uncommon: TypeTheme;
+      rare: TypeTheme;
+      legendary: TypeTheme;
+      moonlike: TypeTheme;
+    };
+    types: {
+      [key: string]: TypeTheme;
+      item: TypeTheme;
+      supporter: TypeTheme;
+      psychic: TypeTheme;
+      lightning: TypeTheme;
+      grass: TypeTheme;
+      fire: TypeTheme;
+      water: TypeTheme;
+      fighting: TypeTheme;
+      colorless: TypeTheme;
+      darkness: TypeTheme;
+      dragon: TypeTheme;
+      metal: TypeTheme;
+      fairy: TypeTheme;
+    };
+  }
+  interface PaletteOptions {
+    rarity: {
+      [key: string]: TypeTheme;
+      common: TypeTheme;
+      uncommon: TypeTheme;
+      rare: TypeTheme;
+      legendary: TypeTheme;
+      moonlike: TypeTheme;
+    };
+    types: {
+      [key: string]: TypeTheme;
+      item: TypeTheme;
+      supporter: TypeTheme;
+      psychic: TypeTheme;
+      lightning: TypeTheme;
+      grass: TypeTheme;
+      fire: TypeTheme;
+      water: TypeTheme;
+      fighting: TypeTheme;
+      colorless: TypeTheme;
+      darkness: TypeTheme;
+      dragon: TypeTheme;
+      metal: TypeTheme;
+      fairy: TypeTheme;
+    };
+  }
+}
 
 export const rawMaterialTheme: ThemeOptions = {
   overrides: {
