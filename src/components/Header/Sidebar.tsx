@@ -1,7 +1,6 @@
 import { FC, useState } from "react";
 import Drawer, { DrawerProps } from "@material-ui/core/Drawer";
 import IconButton from "@material-ui/core/IconButton";
-import MenuIcon from "@material-ui/icons/Menu";
 import SwipeableDrawer, {
   SwipeableDrawerProps,
 } from "@material-ui/core/SwipeableDrawer";
@@ -16,6 +15,9 @@ import ExpandLess from "@material-ui/icons/ExpandLess";
 import ArrowBackIcon from "@material-ui/icons/ArrowBack";
 import { NavLink } from "react-router-dom";
 import { Run } from "components/Icons";
+import { makeStyles } from "@material-ui/core";
+import ArrowForwardIcon from "@material-ui/icons/ArrowForward";
+import Flip from "react-reveal/Flip";
 
 export interface LinkConfigState {
   target?: string;
@@ -49,9 +51,15 @@ const logout: LinkConfigState = {
   target: "/logout",
 };
 
+const useStyle = makeStyles({
+  root: {
+    color: "white",
+  },
+});
+
 const LinkGroup: FC<LinkGroupState> = ({ linkConfig, label, icon }) => {
   const [open, setOpen] = useState(false);
-
+  const classes = useStyle();
   return (
     <>
       <ListItem
@@ -72,7 +80,10 @@ const LinkGroup: FC<LinkGroupState> = ({ linkConfig, label, icon }) => {
             return (
               <ListItem button key={`${label}${index}`}>
                 <ListItemIcon>{icon}</ListItemIcon>
-                <ListItemText primary={label}></ListItemText>
+                {/* <ListItemText
+                  style={{ color: "white" }}
+                  primary={label}
+                ></ListItemText> */}
               </ListItem>
             );
           })}
@@ -85,11 +96,21 @@ const LinkGroup: FC<LinkGroupState> = ({ linkConfig, label, icon }) => {
 const Sidebar: FC<SidebarProps> = ({ open, onOpen, onClose, linkConfig }) => {
   const updatedLinkConfig = [...linkConfig, logout];
   return (
-    <Drawer open={open} anchor="right" onClose={onClose} style={{ width: 200 }}>
+    <Drawer
+      PaperProps={{
+        style: {
+          background: "#1C0A40",
+        },
+      }}
+      open={open}
+      anchor="right"
+      onClose={onClose}
+      style={{ width: 200 }}
+    >
       <List
         style={{
-          width: 200,
-          display: "flex",
+          flex: 1,
+          height: 400,
           flexDirection: "column",
           alignItems: "flex-start",
           justifyContent: "space-around",
@@ -100,9 +121,11 @@ const Sidebar: FC<SidebarProps> = ({ open, onOpen, onClose, linkConfig }) => {
           onClick={onClose}
           style={{ marginLeft: 10, alignSelf: "flex-start" }}
         >
-          <ArrowBackIcon />
+          <ArrowForwardIcon style={{ fill: "white" }} />
         </IconButton>
         <Divider />
+
+        {/* THIS IS WHAT UR LOOKING FOR */}
         {updatedLinkConfig?.map((item, index) => {
           const { icon, label, target } = item;
           if (item.group) {
@@ -123,10 +146,12 @@ const Sidebar: FC<SidebarProps> = ({ open, onOpen, onClose, linkConfig }) => {
                     paddingLeft: 20,
                   }}
                 >
-                  <ListItemIcon style={{ justifyContent: "center" }}>
+                  <ListItemIcon
+                    style={{ justifyContent: "center", fill: "white" }}
+                  >
                     {icon}
                   </ListItemIcon>
-                  <ListItemText primary={label}></ListItemText>
+                  <ListItemText style={{ color: "white" }} primary={label} />
                 </ListItem>
                 {item.divider && <Divider />}
               </NavLink>

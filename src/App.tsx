@@ -33,32 +33,38 @@ BigNumber.config({
   DECIMAL_PLACES: 80,
 });
 
+const iconStyle = {
+  style: {
+    fill: "white",
+  },
+};
+
 const linkConfig: LinkConfigState[] = [
   {
     target: "/",
     label: "Home",
-    icon: <HomeIcon />,
+    icon: <HomeIcon {...iconStyle} />,
   },
 
   {
     target: "/buy",
     label: "Buy",
-    icon: <StoreOutlinedIcon />,
+    icon: <StoreOutlinedIcon {...iconStyle} />,
   },
   {
     target: "/catalog",
     label: "Catalog",
-    icon: <PhotoSizeSelectActualIcon />,
+    icon: <PhotoSizeSelectActualIcon {...iconStyle} />,
   },
   {
     target: "/collection",
     label: "My Collection",
-    icon: <AccountBalanceIcon />,
+    icon: <AccountBalanceIcon {...iconStyle} />,
   },
   {
     target: "/market",
     label: "MarketPlace",
-    icon: <AccountBalanceIcon />,
+    icon: <AccountBalanceIcon {...iconStyle} />,
   },
 ];
 

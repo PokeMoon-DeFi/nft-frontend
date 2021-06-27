@@ -11,6 +11,8 @@ import Sidebar, { NavHeaderProps } from "./Sidebar";
 import Button from "components/Button";
 import { Logo } from "components/Icons";
 import { Modal } from "components/Modal";
+import Flip from "react-reveal/Flip";
+
 const StyledLink = styled(Link)`
   color: white;
   font-size: 1.3em;
