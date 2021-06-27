@@ -97,7 +97,7 @@ const App: React.FC = () => {
       dispatch(asyncFetchNftBalance({ account }));
       // dispatch(fetchListings());
     } else {
-      console.log("no account");
+      // console.log("no account");
     }
   }, [dispatch, account, fastRefresh]);
   return (

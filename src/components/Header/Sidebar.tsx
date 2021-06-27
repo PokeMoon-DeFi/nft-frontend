@@ -24,6 +24,8 @@ import Fade from "react-reveal/Fade";
 import { useLogin } from "hooks/useAuth";
 import { useAppSelector } from "providers";
 import AccountBalanceWalletIcon from "@material-ui/icons/AccountBalanceWallet";
+import { useHistory } from "react-router-dom";
+
 export interface LinkConfigState {
   target?: string;
   label?: string;
@@ -101,6 +103,11 @@ const LinkGroup: FC<LinkGroupState> = ({ linkConfig, label, icon }) => {
 const Sidebar: FC<SidebarProps> = ({ open, onOpen, onClose, linkConfig }) => {
   const { login, logout } = useLogin();
   const account = useAppSelector((state) => state.user.address);
+  const updatedLinkConfig = account
+    ? linkConfig
+    : linkConfig.filter((link) => link.target !== "/collection");
+  const history = useHistory();
+
   return (
     <Drawer
       PaperProps={{
@@ -133,7 +140,7 @@ const Sidebar: FC<SidebarProps> = ({ open, onOpen, onClose, linkConfig }) => {
         <Divider />
 
         {/* THIS IS WHAT UR LOOKING FOR */}
-        {linkConfig?.map((item, index) => {
+        {updatedLinkConfig?.map((item, index) => {
           const { icon, label, target } = item;
           if (item.group) {
             return (
@@ -184,7 +191,14 @@ const Sidebar: FC<SidebarProps> = ({ open, onOpen, onClose, linkConfig }) => {
             alignItems: "center",
             paddingLeft: 20,
           }}
-          onClick={account ? logout : login}
+          onClick={
+            account
+              ? () => {
+                  history.push("/");
+                  logout();
+                }
+              : login
+          }
         >
           <ListItemIcon style={{ justifyContent: "center", fill: "white" }}>
             {account ? (

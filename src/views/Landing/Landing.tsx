@@ -198,7 +198,7 @@ const Landing: React.FC = () => {
               <CTALink href="https://docs.pokemoon.io/">Docs</CTALink>
             </CTALabel>
             <CTALabel>
-              🗺️ <Link href="/gallery">Explore</Link> the Pokemoon Universe
+              🗺️ <Link href="/catalog">Explore</Link> the Pokemoon Universe
             </CTALabel>
             <CTALabel>
               🦄 Join the{" "}
