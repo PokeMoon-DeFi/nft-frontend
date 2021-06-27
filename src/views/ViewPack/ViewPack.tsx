@@ -1,12 +1,3 @@
-import {
-  InspectCard,
-  Button,
-  SendToAddress,
-  Gallery,
-  rawMaterialTheme,
-  Content,
-  NftCard,
-} from "nft-uikit";
 import React, { useCallback, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import {
@@ -14,21 +5,21 @@ import {
   getPackInfo,
   sendTransferPack,
 } from "utils/callHelpers";
-import BLAST_OFF_COLLECTION from "config/constants/nfts/2114";
 import { PokemoonNft } from "config/constants/nfts/types";
 import {
-  useBlastOffContract,
   getNftContractByName,
   getNftAddressByName,
   getNftAbiByName,
 } from "utils/contractHelpers";
 import { useWeb3React } from "@web3-react/core";
-import { useAppSelector } from "providers";
-import { Input, Typography } from "@material-ui/core";
 import { useInput } from "hooks/useInput";
 import Grid from "@material-ui/core/Grid";
 import { getCardData } from "utils/nftHelpers";
 import multicall from "utils/multicall";
+import Button from "components/Button";
+import { Content } from "components/layout";
+import { NftCard } from "components/Card";
+import { SendToAddress } from "components/Modal";
 
 const ViewPack = () => {
   let { id, set } = useParams();

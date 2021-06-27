@@ -2,7 +2,7 @@ import React, { FC } from "react";
 import Paper from "@material-ui/core/Paper";
 import Typography from "@material-ui/core/Typography";
 import styled from "styled-components";
-import { Button } from "nft-uikit";
+import Button from "components/Button";
 
 interface InfoBoxProps {
   content: string;
