@@ -1,15 +1,16 @@
 import { FC, useState } from "react";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
-import { Logo } from "components/Icons";
-import Hidden from "@material-ui/core/Hidden";
-import Button from "components/Button";
-import styled from "styled-components";
-import DialogModal from "components/Modal/DialogModal";
-import Link from "@material-ui/core/Link";
-import { NavHeaderProps } from "./types";
-import Sidebar from "components/Header/Sidebar";
 
+import Hidden from "@material-ui/core/Hidden";
+import styled from "styled-components";
+import IconButton from "@material-ui/core/IconButton";
+import MenuIcon from "@material-ui/icons/Menu";
+import { Link } from "react-router-dom";
+import Sidebar, { NavHeaderProps } from "./Sidebar";
+import Button from "components/Button";
+import { Logo } from "components/Icons";
+import { Modal } from "components/Modal";
 const StyledLink = styled(Link)`
   color: white;
   font-size: 1.3em;
@@ -55,7 +56,10 @@ const NavHeader: FC<NavHeaderProps> = ({
           />
 
           {/* SIDEBAR */}
-          {/* <Hidden mdUp>
+          <Hidden mdUp>
+            <IconButton onClick={() => setOpenSidebar(true)}>
+              <MenuIcon style={{ color: "white" }} />
+            </IconButton>
             <Sidebar
               linkConfig={linkConfig}
               open={openSidebar}
@@ -66,8 +70,8 @@ const NavHeader: FC<NavHeaderProps> = ({
                 setOpenSidebar(false);
               }}
             />
-          </Hidden> */}
-          <Hidden xsDown>
+          </Hidden>
+          <Hidden smDown>
             <div
               style={{
                 justifyContent: "center",
@@ -82,10 +86,7 @@ const NavHeader: FC<NavHeaderProps> = ({
                 <StyledLink
                   key={index.toString()}
                   style={{ margin: 20 }}
-                  onClick={() => {
-                    // @ts-ignore
-                    window.location.href = link.target;
-                  }}
+                  to={link.target}
                 >
                   {link.label}
                 </StyledLink>
@@ -114,35 +115,9 @@ const NavHeader: FC<NavHeaderProps> = ({
               {/*  <BalanceCounter imgUrl={"/images/balls/MAXRBALL.png"} balance={0} /> */}
             </div>
           </Hidden>
-
-          {/* <Hidden xsDown> */}
-          {/* <div
-            style={{
-              justifyContent: "center",
-              alignItems: "center",
-              flex: 1,
-              display: "flex",
-              margin: 10,
-              flexDirection: "row",
-            }}
-          >
-            {linkConfig.map((link, index) => (
-              <StyledLink
-                key={index.toString()}
-                style={{ margin: 20 }}
-                onClick={() => {
-                  window.location.href = link.target;
-                }}
-              >
-                {link.label}
-              </StyledLink>
-            ))}
-          </div> */}
-
-          {/* </Hidden> */}
         </Toolbar>
       </AppBar>
-      <DialogModal
+      <Modal
         open={logoutModalOpen}
         title={"Log Out?"}
         handleClose={() => setLogoutModalOpen(false)}
@@ -152,7 +127,7 @@ const NavHeader: FC<NavHeaderProps> = ({
             onLogout();
           }
         }}
-      ></DialogModal>
+      ></Modal>
     </>
   );
 };

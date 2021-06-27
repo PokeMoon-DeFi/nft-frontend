@@ -235,7 +235,11 @@ const Dashboard: FC<DashboardProps> = (props) => {
             return (
               <div className={classes.chips}>
                 {(selected as string[]).map((value) => (
-                  <PackChip pack={renamePack(value)} className={classes.chip} />
+                  <PackChip
+                    key={value}
+                    pack={renamePack(value)}
+                    className={classes.chip}
+                  />
                 ))}
               </div>
             );

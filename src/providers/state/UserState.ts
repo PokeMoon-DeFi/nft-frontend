@@ -12,6 +12,7 @@ import MeanGreensAbi from "config/abi/MeanGreens.json";
 import { handleTokenIdResponse } from "utils/nftHelpers";
 
 const initialState: UserState = {
+  address: "",
   balance: {
     meownaut: "0",
     koban: "0",
@@ -44,6 +45,7 @@ export const asyncFetchBalance = createAsyncThunk(
       const pb2114Res = await getBep20Balance(tokens.pb2114, account);
       const pb2116Res = await getBep20Balance(tokens.pb2116, account);
       const apbRes = await getBep20Balance(tokens.apb, account);
+
       return {
         balance: {
           meownaut: Web3.utils.fromWei(mntRes),
@@ -118,6 +120,36 @@ export const asyncFetchNftBalance = createAsyncThunk(
     };
   }
 );
+export const connectWallet = createAsyncThunk(
+  "user/connectWallet",
+  async () => {
+    //@ts-ignore
+    if (window.ethereum) {
+      try {
+        //@ts-ignore
+        const accounts = await window.ethereum.request({
+          method: "eth_requestAccounts",
+        });
+        //save to local storage
+        window.localStorage.setItem("isConnected", "true");
+        return accounts;
+      } catch (error) {
+        if (error.code === 4001) {
+          // User rejected request
+        }
+        // setError(error);
+      }
+    }
+  }
+);
+
+export const disconnectWallet = createAsyncThunk(
+  "user/disconnectWallet",
+  async () => {
+    window.localStorage.removeItem("isConnected");
+    return [];
+  }
+);
 
 export const userState = createSlice({
   name: "user",
@@ -133,6 +165,15 @@ export const userState = createSlice({
     },
   },
   extraReducers: (builder) => {
+    builder.addCase(connectWallet.fulfilled, (state, { payload }) => {
+      if (payload && payload.length > 0) {
+        const addresss = payload[0];
+        state.address = addresss;
+      }
+    });
+    builder.addCase(disconnectWallet.fulfilled, (state, { payload }) => {
+      state.address = "";
+    });
     builder.addCase(asyncFetchBalance.fulfilled, (state, action) => {
       const { balance }: any = action.payload;
       state.balance = balance;

@@ -4,19 +4,32 @@ import { connectorsByName } from "utils/web3React";
 import { setupNetwork } from "utils/wallet";
 import { ConnectorNames } from "utils/types";
 import { connectorLocalStorageKey } from "config/connectors";
-import { connect } from "react-redux";
+import { useDispatch } from "react-redux";
+import { connectWallet, disconnectWallet } from "providers/state/UserState";
 
 export const useEagerConnect = () => {
-  const { login } = useAuth();
+  const { login } = useLogin();
 
   useEffect(() => {
-    const connectorId = window.localStorage.getItem(
-      connectorLocalStorageKey
-    ) as ConnectorNames;
-    if (connectorId && connectorId !== ConnectorNames.BSC) {
-      login(connectorId);
+    const isConnected = window.localStorage.getItem("isConnected");
+    if (isConnected === "true") {
+      login();
     }
   }, [login]);
+};
+
+export const useLogin = () => {
+  const dispatch = useDispatch();
+
+  const login = useCallback(() => {
+    dispatch(connectWallet());
+  }, [dispatch]);
+
+  const logout = useCallback(() => {
+    dispatch(disconnectWallet());
+  }, [dispatch]);
+
+  return { login, logout };
 };
 
 const useAuth = () => {
