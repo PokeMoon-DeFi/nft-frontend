@@ -4,13 +4,13 @@ import Container from "@material-ui/core/Container";
 import Carousel from "react-material-ui-carousel";
 import { Paper, Button, Typography, Link } from "@material-ui/core";
 import Grid from "@material-ui/core/Grid";
-import { ModelCarousel } from "nft-uikit";
 import { PokemoonNft } from "config/constants/nfts/types";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
 import { useTheme } from "@material-ui/core/styles";
 import styled from "styled-components";
 import Box from "@material-ui/core/Box";
 import Divider from "@material-ui/core/Divider";
+import { ModelCarousel } from "components/ModelViewer";
 
 function AdCarousel(props) {
   var items = [

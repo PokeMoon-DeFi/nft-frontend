@@ -14,7 +14,7 @@ import { useTheme } from "@material-ui/core";
 import Button from "components/Button";
 import CloseIcon from "@material-ui/icons/Close";
 import { InspectorDialogProps } from "components/Modal/InspectorModal";
-import { PM_TYPES } from "nft-uikit";
+import { PM_TYPES } from "config/constants/nfts";
 
 const Container = styled.div`
   display: flex;

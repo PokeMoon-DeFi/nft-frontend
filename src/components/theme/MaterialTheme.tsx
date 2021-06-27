@@ -1,4 +1,3 @@
-import React from "react";
 import { createMuiTheme, ThemeOptions } from "@material-ui/core";
 
 // declare module "@material-ui/core/styles/createPalette" {

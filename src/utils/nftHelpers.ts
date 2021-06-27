@@ -12,6 +12,7 @@ import AmpedUpAbi from "config/abi/AmpedUp.json";
 
 import ampedUpTokens from "config/constants/cache/ampedUp/ampedUpTokens.json";
 import ampedUpPacks from "config/constants/cache/ampedUp/ampedUpPacks.json";
+import { FilterState } from "components/FilterDashboard";
 
 const isPack = (tokenId: string) => {
   let isPack: boolean;
@@ -19,6 +20,69 @@ const isPack = (tokenId: string) => {
     ? (isPack = true)
     : (isPack = false);
   return isPack;
+};
+
+export const renamePack = (name: string) => {
+  switch (name) {
+    case "Blast-Off!": {
+      return "blastOff";
+    }
+    case "Amped Up": {
+      return "ampedUp";
+    }
+    case "Mean Greens": {
+      return "meanGreens";
+    }
+  }
+  return "";
+};
+
+export const getFilteredNfts = (
+  userNfts: PokemoonNft[],
+  filterState: FilterState
+) => {
+  const { rarities, types, packs, search } = filterState;
+
+  //Match up pack names
+  const renamedPacks = packs.map((pack) => renamePack(pack));
+
+  //Check all filters
+  const filteredNfts = userNfts.filter((nft) => {
+    const { type, rarity, set, name } = nft;
+
+    //search
+    if (!!search) {
+      if (name?.search(new RegExp(search, "gi")) === -1) {
+        return false;
+      }
+    }
+
+    //rarities
+    if (rarities && rarities.length > 0) {
+      if (!rarity || !rarities.includes(rarity)) {
+        return false;
+      }
+    }
+
+    //types
+    if (types && types.length > 0) {
+      if (!type || !types.includes(type)) {
+        return false;
+      }
+    }
+
+    //pack sets
+    if (renamedPacks && renamedPacks.length > 0) {
+      //@ts-ignore
+      if (!set || !renamedPacks.includes(set)) {
+        return false;
+      }
+    }
+
+    return true;
+  });
+
+  return filteredNfts;
 };
 
 export const getCollection = (pack: string) => {

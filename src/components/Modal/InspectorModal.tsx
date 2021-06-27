@@ -8,7 +8,7 @@ export interface InspectorDialogProps
   extends Omit<DialogProps, "open">,
     PortalHandler {
   nft: PokemoonNft;
-  handleClose: () => void;
+  handleClose?: () => void;
 }
 
 export const InspectorDialog: FC<InspectorDialogProps> = ({

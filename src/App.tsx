@@ -13,20 +13,18 @@ import history from "./routerHistory";
 import SuspenseWithChunkError from "components/SuspenseWithChunkError";
 import PageLoader from "components/PageLoader";
 import BigNumber from "bignumber.js";
-import Wen from "views/Wen";
-import { Connect } from "views/Connect";
 import useRefresh from "hooks/useRefresh";
 import Page from "components/page";
-import { NavHeader, Fab, LinkConfigState } from "nft-uikit";
 import Particles from "components/Particles";
 import useAuth from "hooks/useAuth";
 import { ConnectorNames } from "utils/types";
 import AccountBalanceIcon from "@material-ui/icons/AccountBalance";
 import StoreOutlinedIcon from "@material-ui/icons/StoreOutlined";
 import PhotoSizeSelectActualIcon from "@material-ui/icons/PhotoSizeSelectActual";
-import ToolBar from "@material-ui/core/Toolbar";
 import { makeStyles } from "@material-ui/styles";
 import HomeIcon from "@material-ui/icons/Home";
+import { NavHeader, LinkConfigState } from "components/layout";
+import { Fab } from "components/Fab";
 
 // Lazy loading
 const Landing = lazy(() => import("./views/Landing"));

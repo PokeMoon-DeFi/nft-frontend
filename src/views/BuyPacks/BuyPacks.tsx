@@ -1,6 +1,5 @@
 import React, { useCallback } from "react";
 import styled from "styled-components";
-import { Button } from "nft-uikit";
 import { useAppSelector } from "providers";
 import { useAPBAllowance, useBlastOffAllowance } from "hooks/useAllowance";
 import { useWeb3React } from "@web3-react/core";
@@ -18,7 +17,6 @@ import {
   useAmpedUpContract,
   useMeanGreensContract,
 } from "utils/contractHelpers";
-import { Content, Notification, BuyInfoProps, VideoPlayer } from "nft-uikit";
 import Grid from "@material-ui/core/Grid";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
 import { useTheme } from "@material-ui/core/styles";
@@ -31,30 +29,8 @@ import BigNumber from "bignumber.js";
 import BuyBlurb from "./BuyBlurb";
 import ConfirmationModal from "./ConfirmationModal";
 import { PACK_COST } from "config";
-
-const StyledImage = styled.img`
-  width: clamp(7rem, 100%, 500px);
-  // height: clamp(200px, 70%, 1200px);
-`;
-
-const waitForPack = (packId, set: string) => {
-  return new Promise<void>((resolve, reject) => {
-    (async () => {
-      const interval = setInterval(() => checkPack(packId), 500);
-      async function checkPack(packId) {
-        try {
-          const res = await getPackInfo(packId, set);
-          if (res[4].length === 8) {
-            clearInterval(interval);
-            resolve();
-          }
-        } catch (err) {
-          reject(err);
-        }
-      }
-    })();
-  });
-};
+import { VideoPlayer } from "components/VideoPlayer";
+import { Notification } from "components/Notification";
 
 //@ts-ignore
 const p: BuyInfoProps = {

@@ -1,19 +1,11 @@
-import {
-  Gallery,
-  Content,
-  FilterDashboard,
-  TableGrid,
-  FilterState,
-  getFilteredNfts,
-} from "nft-uikit";
 import { useAppSelector } from "providers";
-import { useEffect, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 import Container from "@material-ui/core/Container";
-
-const capitalize = (s: string) => {
-  if (typeof s !== "string") return "";
-  return s.charAt(0).toUpperCase() + s.slice(1);
-};
+import { FilterState, FilterDashboard } from "components/FilterDashboard";
+import { Content } from "components/layout";
+import { getFilteredNfts } from "utils";
+import { Gallery } from "components/Gallery";
+import { TableGrid } from "components/TableGrid";
 
 const GalleryView = () => {
   const blastOffCards = useAppSelector(

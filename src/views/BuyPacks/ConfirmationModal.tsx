@@ -6,7 +6,6 @@ import DialogActions from "@material-ui/core/DialogActions";
 import ButtonGroup from "@material-ui/core/ButtonGroup";
 import RemoveCircleIcon from "@material-ui/icons/RemoveCircle";
 import AddCircleIcon from "@material-ui/icons/AddCircle";
-import { Button, AmpedUp } from "nft-uikit";
 import TextField from "@material-ui/core/TextField";
 import Grid from "@material-ui/core/Grid";
 import Divider from "@material-ui/core/Divider";
@@ -14,6 +13,7 @@ import { useState, useEffect } from "react";
 import { useAppSelector } from "providers";
 import { Link } from "@material-ui/core";
 import { PACK_COST } from "config";
+import Button from "components/Button";
 
 interface ModalProps extends DialogProps {
   handleClose: () => void;

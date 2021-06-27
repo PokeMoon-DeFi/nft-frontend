@@ -1,6 +1,5 @@
-import { RARITIES } from "nft-uikit";
+import { RARITIES } from "config/constants/nfts";
 import { PokemoonNft } from "config/constants/nfts/types";
-
 export interface Rarities {
   [key: string]: number;
   [RARITIES.COMMON]: number;
