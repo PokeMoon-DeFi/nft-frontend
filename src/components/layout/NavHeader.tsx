@@ -8,6 +8,7 @@ import styled from "styled-components";
 import DialogModal from "components/Modal/DialogModal";
 import Link from "@material-ui/core/Link";
 import { NavHeaderProps } from "./types";
+import Sidebar from "components/Header/Sidebar";
 
 const StyledLink = styled(Link)`
   color: white;
@@ -29,6 +30,7 @@ const NavHeader: FC<NavHeaderProps> = ({
   linkConfig,
 }) => {
   const [logoutModalOpen, setLogoutModalOpen] = useState(false);
+  const [openSidebar, setOpenSidebar] = useState(false);
   return (
     <>
       <AppBar
@@ -53,18 +55,18 @@ const NavHeader: FC<NavHeaderProps> = ({
           />
 
           {/* SIDEBAR */}
-          {/* <Hidden smUp> */}
-          {/* <Sidebar
-            linkConfig={linkConfig}
-            open={openSidebar}
-            onOpen={() => {
-              setOpenSidebar(true);
-            }}
-            onClose={() => {
-              setOpenSidebar(false);
-            }}
-          /> */}
-          {/* </Hidden> */}
+          {/* <Hidden mdUp>
+            <Sidebar
+              linkConfig={linkConfig}
+              open={openSidebar}
+              onOpen={() => {
+                setOpenSidebar(true);
+              }}
+              onClose={() => {
+                setOpenSidebar(false);
+              }}
+            />
+          </Hidden> */}
           <Hidden xsDown>
             <div
               style={{
