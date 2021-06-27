@@ -29,6 +29,7 @@ const BuyPacks = lazy(() => import("./views/BuyPacks"));
 const Gallery = lazy(() => import("./views/Gallery"));
 const ViewPack = lazy(() => import("./views/ViewPack"));
 const PublicGallery = lazy(() => import("./views/Gallery/PublicGallery"));
+const Marketplace = lazy(() => import("./views/Marketplace"));
 
 BigNumber.config({
   EXPONENTIAL_AT: 1000,
@@ -63,11 +64,11 @@ const linkConfig: LinkConfigState[] = [
     label: "My Collection",
     icon: <AccountBalanceIcon {...iconStyle} />,
   },
-  // {
-  //   target: "/market",
-  //   label: "MarketPlace",
-  //   icon: <AccountBalanceIcon {...iconStyle} />,
-  // },
+  {
+    target: "/market",
+    label: "MarketPlace",
+    icon: <AccountBalanceIcon {...iconStyle} />,
+  },
 ];
 
 const useStyles = makeStyles((theme) => ({
@@ -94,10 +95,11 @@ const App: React.FC = () => {
   const { login, logout } = useAuth();
   const { account } = useWeb3React();
   useEffect(() => {
+    dispatch(fetchListings());
+
     if (account) {
       dispatch(asyncFetchBalance({ account }));
       dispatch(asyncFetchNftBalance({ account }));
-      // dispatch(fetchListings());
     } else {
       // console.log("no account");
     }
@@ -129,9 +131,9 @@ const App: React.FC = () => {
             <Route path="/collection" exact>
               <Gallery />
             </Route>
-            {/* <Route path="/market" exact>
-              <MarketPlace />
-            </Route> */}
+            <Route path="/market" exact>
+              <Marketplace />
+            </Route>
             <Route path="/pack/:set/:id">
               <ViewPack />
             </Route>
