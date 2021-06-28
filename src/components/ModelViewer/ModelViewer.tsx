@@ -122,6 +122,7 @@ const ModelViewer: FC<ModelViewerProps> = ({ nft, loadingBall, ...props }) => {
         position: "relative",
         display: "flex",
         height: 500,
+        touchAction: "none",
         ...style,
       }}
     >
