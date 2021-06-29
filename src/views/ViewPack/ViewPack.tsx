@@ -27,7 +27,6 @@ import { Content } from "components/layout";
 import { NftCard } from "components/Card";
 import { SendToAddress } from "components/Modal";
 import { useAppSelector } from "providers";
-import { identity } from "lodash";
 
 const ViewPack = () => {
   let { id, set } = useParams();
