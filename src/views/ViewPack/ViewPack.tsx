@@ -36,7 +36,6 @@ const ViewPack = () => {
   const [openTransferModal, setOpenTransferModal] = useState(false);
   const nftContract = useNftContractbyName(set);
   const { account } = useWeb3React();
-  console.log(account);
   const [accountOwnsPack, setAccountOwnsPack] = useState(false);
 
   useEffect(() => {
@@ -81,7 +80,6 @@ const ViewPack = () => {
 
   const confirmTransferCallback = useCallback(
     async (destAddress) => {
-      console.log(account, destAddress, id);
       const res = await sendTransferPack(nftContract, account, destAddress, id);
 
       // const provider = new ethers.providers.Web3Provider(
