@@ -4,10 +4,11 @@ import BigNumber from "bignumber.js";
 import { getAddress } from "utils/contractHelpers";
 import { getAllowance } from "utils/callHelpers";
 import useRefresh from "./useRefresh";
+import { useAppSelector } from "providers";
 
 export const useBlastOffAllowance = () => {
   const [allowance, setAllowance] = useState(new BigNumber(0));
-  const { account } = useWeb3React();
+  const account = useAppSelector((state) => state.user.address);
   const tokenAddress = getAddress("pb2116");
   const ampedUpAddress = getAddress("ampedUp");
   const { fastRefresh } = useRefresh();

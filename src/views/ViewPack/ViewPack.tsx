@@ -20,6 +20,7 @@ import Button from "components/Button";
 import { Content } from "components/layout";
 import { NftCard } from "components/Card";
 import { SendToAddress } from "components/Modal";
+import { useAppSelector } from "providers";
 
 const ViewPack = () => {
   let { id, set } = useParams();
@@ -27,7 +28,7 @@ const ViewPack = () => {
 
   const [openTransferModal, setOpenTransferModal] = useState(false);
   const nftContract = getNftContractByName(set);
-  const { account } = useWeb3React();
+  const account = useAppSelector((state) => state.user.address);
   const [accountOwnsPack, setAccountOwnsPack] = useState(false);
 
   useEffect(() => {
@@ -61,7 +62,9 @@ const ViewPack = () => {
         setAccountOwnsPack(
           ownedPacks &&
             ownedPacks.includes(id) &&
-            response.every((response) => response[0] === account)
+            response.every(
+              (response) => response[0].toLowerCase() === account.toLowerCase()
+            )
         );
       }
     };
@@ -71,8 +74,8 @@ const ViewPack = () => {
 
   const confirmTransferCallback = useCallback(
     async (destAddress) => {
-      const res = await sendTransferPack(nftContract, account, destAddress, id);
-      // console.log(res);
+      //TODO: Create contract
+      //Have ethereum.Provider sign contract
     },
     [nftContract, account, id]
   );

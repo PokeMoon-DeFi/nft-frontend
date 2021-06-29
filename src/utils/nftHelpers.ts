@@ -9,7 +9,7 @@ import contracts from "config/constants/contracts";
 import multicall from "utils/multicall";
 import BlastOffAbi from "config/abi/BlastOff.json";
 import AmpedUpAbi from "config/abi/AmpedUp.json";
-
+import MeanGreensAbi from "config/abi/MeanGreens.json";
 import ampedUpTokens from "config/constants/cache/ampedUp/ampedUpTokens.json";
 import ampedUpPacks from "config/constants/cache/ampedUp/ampedUpPacks.json";
 import { FilterState } from "components/FilterDashboard";
@@ -132,25 +132,27 @@ export const getFlatCollection = (packs: string[]) => {
 
 const getPackCache = (pack: string) => {
   switch (pack) {
-    default:
     case "blastOff": {
       return blastOffPackCache;
     }
     case "ampedUp": {
       return ampedUpPacks;
     }
+    default:
+      return {};
   }
 };
 
 const getTokenCache = (pack: string) => {
   switch (pack) {
-    default:
     case "blastOff": {
       return blastOffTokenCache;
     }
     case "ampedUp": {
       return ampedUpTokens;
     }
+    default:
+      return {};
   }
 };
 
@@ -162,6 +164,9 @@ const getAbi = (pack: string) => {
     }
     case "ampedUp": {
       return AmpedUpAbi;
+    }
+    case "meanGreens": {
+      return MeanGreensAbi;
     }
   }
 };
@@ -193,7 +198,8 @@ export const getCardData = async (tokenId: string, set: string, cache = {}) => {
   nft.imageUrl = `/images/cards/${set}/${imageUrl}`;
   nft.set = set;
 
-  nft.packId = getTokenCache(set)[tokenId];
+  const usedCache = cache ?? getTokenCache(set);
+  nft.packId = usedCache[tokenId];
 
   return nft;
 };
@@ -217,7 +223,9 @@ export const handleTokenIdResponse = async (
   for (const tokenId of tokenIds) {
     if (tokenId.toNumber() < 11000000) {
     } else {
-      cards.push(await getCardData(tokenId.toString(), pack));
+      cards.push(
+        await getCardData(tokenId.toString(), pack, tokenCache ?? undefined)
+      );
     }
   }
 
@@ -236,6 +244,7 @@ const collectMissingPacks = async (packIds: string[], pack: string) => {
   const nftAddresses: { [key: string]: string } = {
     blastOff: contracts.blastOff[process.env.REACT_APP_CHAIN_ID],
     ampedUp: contracts.ampedUp[process.env.REACT_APP_CHAIN_ID],
+    meanGreens: contracts.meanGreens[process.env.REACT_APP_CHAIN_ID],
   };
 
   const calls = packIds.map((packId) => {
