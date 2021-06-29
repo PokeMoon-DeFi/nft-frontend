@@ -8,7 +8,7 @@ import { useAppSelector } from "providers";
 
 export const useBlastOffAllowance = () => {
   const [allowance, setAllowance] = useState(new BigNumber(0));
-  const account = useAppSelector((state) => state.user.address);
+  const { account } = useWeb3React();
   const tokenAddress = getAddress("pb2116");
   const ampedUpAddress = getAddress("ampedUp");
   const { fastRefresh } = useRefresh();

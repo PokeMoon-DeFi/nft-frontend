@@ -21,10 +21,12 @@ import Flip from "react-reveal/Flip";
 import Bounce from "react-reveal/Bounce";
 import Slide from "react-reveal/Slide";
 import Fade from "react-reveal/Fade";
-import { useLogin } from "hooks/useAuth";
+import useAuth, { useLogin } from "hooks/useAuth";
 import { useAppSelector } from "providers";
 import AccountBalanceWalletIcon from "@material-ui/icons/AccountBalanceWallet";
 import { useHistory } from "react-router-dom";
+import { useWeb3React } from "@web3-react/core";
+import { ConnectorNames } from "utils/types";
 
 export interface LinkConfigState {
   target?: string;
@@ -101,8 +103,8 @@ const LinkGroup: FC<LinkGroupState> = ({ linkConfig, label, icon }) => {
 };
 
 const Sidebar: FC<SidebarProps> = ({ open, onOpen, onClose, linkConfig }) => {
-  const { login, logout } = useLogin();
-  const account = useAppSelector((state) => state.user.address);
+  const { login, logout } = useAuth();
+  const { account } = useWeb3React();
   const updatedLinkConfig = account
     ? linkConfig
     : linkConfig.filter((link) => link.target !== "/collection");
@@ -197,7 +199,7 @@ const Sidebar: FC<SidebarProps> = ({ open, onOpen, onClose, linkConfig }) => {
                   history.push("/");
                   logout();
                 }
-              : login
+              : () => login(ConnectorNames.Injected)
           }
         >
           <ListItemIcon style={{ justifyContent: "center", fill: "white" }}>

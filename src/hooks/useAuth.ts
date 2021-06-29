@@ -8,12 +8,22 @@ import { useDispatch } from "react-redux";
 import { connectWallet, disconnectWallet } from "providers/state/UserState";
 
 export const useEagerConnect = () => {
-  const { login } = useLogin();
+  // const { login } = useLogin();
+
+  // useEffect(() => {
+  //   const isConnected = window.localStorage.getItem("isConnected");
+  //   if (isConnected === "true") {
+  //     login();
+  //   }
+  // }, [login]);
+  const { login } = useAuth();
 
   useEffect(() => {
-    const isConnected = window.localStorage.getItem("isConnected");
-    if (isConnected === "true") {
-      login();
+    const connectorId = window.localStorage.getItem(
+      connectorLocalStorageKey
+    ) as ConnectorNames;
+    if (connectorId && connectorId !== ConnectorNames.BSC) {
+      login(connectorId);
     }
   }, [login]);
 };

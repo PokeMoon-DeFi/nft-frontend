@@ -1,7 +1,7 @@
 import React, { useEffect, lazy } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { useEagerConnect } from "hooks/useAuth";
+import useAuth, { useEagerConnect } from "hooks/useAuth";
 import {
   asyncFetchBalance,
   asyncFetchNftBalance,
@@ -20,6 +20,8 @@ import { LinkConfigState } from "components/layout";
 import NavHeader from "components/Header";
 import { useLogin } from "hooks/useAuth";
 import { useAppSelector } from "providers";
+import { useWeb3React } from "@web3-react/core";
+import { ConnectorNames } from "utils/types";
 
 // Lazy loading
 const Landing = lazy(() => import("./views/Landing"));
@@ -89,8 +91,8 @@ const App: React.FC = () => {
   const dispatch = useDispatch();
   // If stuff keeps rerendering every 10 sec this is what caused that.
   const { fastRefresh } = useRefresh();
-  const { login, logout } = useLogin();
-  const account = useAppSelector((state) => state.user.address);
+  const { login, logout } = useAuth();
+  const { account } = useWeb3React();
   useEffect(() => {
     if (account) {
       dispatch(asyncFetchBalance({ account }));
@@ -106,7 +108,7 @@ const App: React.FC = () => {
       <Router>
         <NavHeader
           account={account ?? ""}
-          onConnect={login}
+          onConnect={() => login(ConnectorNames.Injected)}
           onLogout={logout}
           linkConfig={linkConfig}
         />
