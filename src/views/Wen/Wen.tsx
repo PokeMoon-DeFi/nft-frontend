@@ -1,12 +1,3 @@
-import {
-  Content,
-  Page,
-  Particles,
-  WiggleBall,
-  ConnectScreen,
-  VideoPlayer,
-  Button,
-} from "nft-uikit";
 import { useState, useEffect } from "react";
 import useAuth from "hooks/useAuth";
 import { ConnectorNames } from "utils/types";
@@ -21,6 +12,8 @@ import {
 } from "@material-ui/core";
 import styled from "styled-components";
 import Divider from "@material-ui/core/Divider";
+import { Content } from "components/layout";
+import { VideoPlayer } from "components/VideoPlayer";
 
 const StyledBox = styled(Box)`
   background: linear-gradient(180deg, #ff77f1 0%, rgba(0, 0, 0, 0) 100%);

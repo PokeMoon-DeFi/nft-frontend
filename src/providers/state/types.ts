@@ -6,6 +6,8 @@ interface Balance {
   packs: string[];
 }
 export interface UserState {
+  address: string;
+
   balance: {
     meownaut: string;
     koban: string;

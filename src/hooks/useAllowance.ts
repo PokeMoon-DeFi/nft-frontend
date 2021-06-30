@@ -4,6 +4,7 @@ import BigNumber from "bignumber.js";
 import { getAddress } from "utils/contractHelpers";
 import { getAllowance } from "utils/callHelpers";
 import useRefresh from "./useRefresh";
+import { useAppSelector } from "providers";
 
 export const useBlastOffAllowance = () => {
   const [allowance, setAllowance] = useState(new BigNumber(0));

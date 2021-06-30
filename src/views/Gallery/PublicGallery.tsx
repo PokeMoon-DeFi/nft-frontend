@@ -1,19 +1,11 @@
-import BLAST_OFF_COLLECTION from "config/constants/nfts/2114";
-import AMPED_UP_COLLECTION from "config/constants/nfts/2116";
 import { PokemoonNft } from "config/constants/nfts/types";
-import { FC, useEffect, useState, useMemo } from "react";
-import {
-  Gallery,
-  Content,
-  FilterDashboard,
-  TableGrid,
-  FilterState,
-  getFilteredNfts,
-} from "nft-uikit";
-import { getFlatCollection } from "utils/nftHelpers";
-import { useParams } from "react-router-dom";
-import { getCollection } from "utils/nftHelpers";
+import { FC, useState, useMemo } from "react";
+import { FilterState, FilterDashboard } from "components/FilterDashboard";
+import { getFlatCollection, getFilteredNfts } from "utils/nftHelpers";
 import Container from "@material-ui/core/Container";
+import { Content } from "components/layout";
+import { Gallery } from "components/Gallery";
+import { TableGrid } from "components/TableGrid";
 
 const nfts: PokemoonNft[] = getFlatCollection([
   "blastOff",

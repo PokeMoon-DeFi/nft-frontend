@@ -5,9 +5,10 @@ import store from "providers";
 import { Provider } from "react-redux";
 import { StylesProvider } from "@material-ui/styles";
 import { ThemeProvider as MaterialThemeProvider } from "@material-ui/core";
-import { MaterialTheme, ModalProvider } from "nft-uikit";
 import { RefreshContextProvider } from "contexts/RefreshContext";
 import { ThemeProvider } from "styled-components";
+import { MaterialTheme } from "components/theme";
+import ModalProvider from "providers/ModalContext";
 
 const WrapProvider: FC = ({ children }) => (
   <Web3ReactProvider getLibrary={getLibrary}>

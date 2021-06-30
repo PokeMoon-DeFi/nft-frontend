@@ -21,3 +21,11 @@ export const PM_RARITY = {
   L: "Legendary",
   M: "Moonlike",
 };
+
+export enum RARITIES {
+  COMMON = "Common",
+  UNCOMMON = "Uncommon",
+  RARE = "Rare",
+  LEGENDARY = "Legendary",
+  MOONLIKE = "Moonlike",
+}

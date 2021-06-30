@@ -2,7 +2,6 @@ import { FC } from "react";
 import Container from "@material-ui/core/Container";
 import Typography from "@material-ui/core/Typography";
 import Waves from "./Waves";
-import { Button, Logo } from "nft-uikit";
 import InfoBox from "./InfoBox";
 import Grid from "@material-ui/core/Grid";
 import SyncIconOutlined from "@material-ui/icons/SyncOutlined";
@@ -19,6 +18,7 @@ import { Link } from "@material-ui/core";
 import Divider from "@material-ui/core/Divider";
 import Paper from "@material-ui/core/Paper";
 import Kobandit from "./Kobandit";
+import Button from "components/Button";
 
 const kbnText =
   "Koban are the central rewards of our platform, and eventually will be integrated with the most utilities. Koban can be earned in the Gyms and Daycare by staking Meownaut and other token pairs! After earning some Koban, they can be sent to the Bank and stored in order to secure a portion of the ever-rotating PokÃ©ball supply and eventually that season's special NFT packs!";

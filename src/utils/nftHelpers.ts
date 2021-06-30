@@ -9,9 +9,10 @@ import contracts from "config/constants/contracts";
 import multicall from "utils/multicall";
 import BlastOffAbi from "config/abi/BlastOff.json";
 import AmpedUpAbi from "config/abi/AmpedUp.json";
-
+import MeanGreensAbi from "config/abi/MeanGreens.json";
 import ampedUpTokens from "config/constants/cache/ampedUp/ampedUpTokens.json";
 import ampedUpPacks from "config/constants/cache/ampedUp/ampedUpPacks.json";
+import { FilterState } from "components/FilterDashboard";
 
 const isPack = (tokenId: string) => {
   let isPack: boolean;
@@ -19,6 +20,69 @@ const isPack = (tokenId: string) => {
     ? (isPack = true)
     : (isPack = false);
   return isPack;
+};
+
+export const renamePack = (name: string) => {
+  switch (name) {
+    case "Blast-Off!": {
+      return "blastOff";
+    }
+    case "Amped Up": {
+      return "ampedUp";
+    }
+    case "Mean Greens": {
+      return "meanGreens";
+    }
+  }
+  return "";
+};
+
+export const getFilteredNfts = (
+  userNfts: PokemoonNft[],
+  filterState: FilterState
+) => {
+  const { rarities, types, packs, search } = filterState;
+
+  //Match up pack names
+  const renamedPacks = packs.map((pack) => renamePack(pack));
+
+  //Check all filters
+  const filteredNfts = userNfts.filter((nft) => {
+    const { type, rarity, set, name } = nft;
+
+    //search
+    if (!!search) {
+      if (name?.search(new RegExp(search, "gi")) === -1) {
+        return false;
+      }
+    }
+
+    //rarities
+    if (rarities && rarities.length > 0) {
+      if (!rarity || !rarities.includes(rarity)) {
+        return false;
+      }
+    }
+
+    //types
+    if (types && types.length > 0) {
+      if (!type || !types.includes(type)) {
+        return false;
+      }
+    }
+
+    //pack sets
+    if (renamedPacks && renamedPacks.length > 0) {
+      //@ts-ignore
+      if (!set || !renamedPacks.includes(set)) {
+        return false;
+      }
+    }
+
+    return true;
+  });
+
+  return filteredNfts;
 };
 
 export const getCollection = (pack: string) => {
@@ -68,25 +132,27 @@ export const getFlatCollection = (packs: string[]) => {
 
 const getPackCache = (pack: string) => {
   switch (pack) {
-    default:
     case "blastOff": {
       return blastOffPackCache;
     }
     case "ampedUp": {
       return ampedUpPacks;
     }
+    default:
+      return {};
   }
 };
 
 const getTokenCache = (pack: string) => {
   switch (pack) {
-    default:
     case "blastOff": {
       return blastOffTokenCache;
     }
     case "ampedUp": {
       return ampedUpTokens;
     }
+    default:
+      return {};
   }
 };
 
@@ -98,6 +164,9 @@ const getAbi = (pack: string) => {
     }
     case "ampedUp": {
       return AmpedUpAbi;
+    }
+    case "meanGreens": {
+      return MeanGreensAbi;
     }
   }
 };
@@ -129,7 +198,8 @@ export const getCardData = async (tokenId: string, set: string, cache = {}) => {
   nft.imageUrl = `/images/cards/${set}/${imageUrl}`;
   nft.set = set;
 
-  nft.packId = getTokenCache(set)[tokenId];
+  const usedCache = cache ?? getTokenCache(set);
+  nft.packId = usedCache[tokenId];
 
   return nft;
 };
@@ -153,7 +223,9 @@ export const handleTokenIdResponse = async (
   for (const tokenId of tokenIds) {
     if (tokenId.toNumber() < 11000000) {
     } else {
-      cards.push(await getCardData(tokenId.toString(), pack));
+      cards.push(
+        await getCardData(tokenId.toString(), pack, tokenCache ?? undefined)
+      );
     }
   }
 
@@ -172,6 +244,7 @@ const collectMissingPacks = async (packIds: string[], pack: string) => {
   const nftAddresses: { [key: string]: string } = {
     blastOff: contracts.blastOff[process.env.REACT_APP_CHAIN_ID],
     ampedUp: contracts.ampedUp[process.env.REACT_APP_CHAIN_ID],
+    meanGreens: contracts.meanGreens[process.env.REACT_APP_CHAIN_ID],
   };
 
   const calls = packIds.map((packId) => {

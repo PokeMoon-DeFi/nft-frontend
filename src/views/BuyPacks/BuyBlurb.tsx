@@ -3,7 +3,6 @@ import styled from "styled-components";
 import { Link, Typography } from "@material-ui/core";
 import React, { FC, useCallback, useState } from "react";
 import { PokemoonPack } from "config/constants/nfts/types";
-import { Button, Backpack, Buy, SendToAddress, Notification } from "nft-uikit";
 import {
   getAddress,
   getAmpedUpContract,
@@ -12,6 +11,10 @@ import {
 } from "utils/contractHelpers";
 import { sendGiftPack } from "utils/callHelpers";
 import web3 from "web3";
+import Button from "components/Button";
+import { Backpack, Buy } from "components/Icons";
+import { SendToAddress } from "components/Modal";
+import { Notification } from "components/Notification";
 
 const PrimaryInfo = styled.div`
   display: flex;

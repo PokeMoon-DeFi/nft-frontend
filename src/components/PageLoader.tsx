@@ -1,6 +1,7 @@
-import { Page, WiggleBall } from "nft-uikit";
 import React from "react";
 import styled from "styled-components";
+import { WiggleBall } from "./Loading";
+import Page from "./page";
 
 const Wrapper = styled(Page)`
   display: flex;

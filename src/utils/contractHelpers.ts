@@ -45,6 +45,11 @@ export const useMeanGreensContract = () => {
   return getMeanGreensContract(web3);
 };
 
+export const useNftContractbyName = (name: string) => {
+  const web3 = useWeb3();
+  return getNftContractByName(name, web3);
+};
+
 export const getBlastOffContract = (web3?: Web3) => {
   return getContract(BlastOffAbi, getAddress("blastOff"), web3);
 };
@@ -84,17 +89,17 @@ export const getAddressFromSymbol = (symbol: string) => {
   }
 };
 
-export const getNftContractByName = (name: string) => {
+export const getNftContractByName = (name: string, web3?: Web3) => {
   switch (name) {
     default:
     case "ampedUp": {
-      return getAmpedUpContract();
+      return getAmpedUpContract(web3);
     }
     case "blastOff": {
-      return getBlastOffContract();
+      return getBlastOffContract(web3);
     }
     case "meanGreens": {
-      return getMeanGreensContract();
+      return getMeanGreensContract(web3);
     }
   }
 };
