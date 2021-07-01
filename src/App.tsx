@@ -22,6 +22,7 @@ import { useLogin } from "hooks/useAuth";
 import { useAppSelector } from "providers";
 import { useWeb3React } from "@web3-react/core";
 import { ConnectorNames } from "utils/types";
+import { fetchListings } from "providers/state/Market";
 
 // Lazy loading
 const Landing = lazy(() => import("./views/Landing"));

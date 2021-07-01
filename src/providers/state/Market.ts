@@ -195,8 +195,9 @@ export const fetchListings = createAsyncThunk(
 
     for (let i = 0; i < listingsCount; i++) {
       const id = toNumber(ids[i]);
-      const data = await getCardData(id.toString(), "blastOff");
+      const data: PokemoonNft = await getCardData(id.toString(), "blastOff");
       const price = toNumber(prices[i]);
+      data.price = price;
       listings.push({
         id,
         price,
