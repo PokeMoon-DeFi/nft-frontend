@@ -9,6 +9,7 @@ import { RefreshContextProvider } from "contexts/RefreshContext";
 import { ThemeProvider } from "styled-components";
 import { MaterialTheme } from "components/theme";
 import ModalProvider from "providers/ModalContext";
+import { SnackbarProvider } from "notistack";
 
 const WrapProvider: FC = ({ children }) => (
   <Web3ReactProvider getLibrary={getLibrary}>
@@ -17,7 +18,9 @@ const WrapProvider: FC = ({ children }) => (
         <MaterialThemeProvider theme={MaterialTheme}>
           <ThemeProvider theme={MaterialTheme}>
             <RefreshContextProvider>
-              <ModalProvider>{children}</ModalProvider>
+              <SnackbarProvider>
+                <ModalProvider>{children}</ModalProvider>
+              </SnackbarProvider>
             </RefreshContextProvider>
           </ThemeProvider>
         </MaterialThemeProvider>

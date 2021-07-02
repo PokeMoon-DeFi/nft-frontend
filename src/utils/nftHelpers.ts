@@ -2,7 +2,7 @@ import BigNumber from "bignumber.js";
 import BLAST_OFF_COLLECTION from "config/constants/nfts/2114";
 import AMPED_UP_COLLECTION from "config/constants/nfts/2116";
 import MEAN_GREENS_COLLECTION from "config/constants/nfts/APB";
-import { PokemoonNft } from "config/constants/nfts/types";
+import { PokemoonNft, TokenUriResponse } from "config/constants/nfts/types";
 import blastOffTokenCache from "config/constants/cache/blastOff/tokenIdToPack.json";
 import blastOffPackCache from "config/constants/cache/blastOff/blastOffPacks.json";
 import contracts from "config/constants/contracts";
@@ -13,6 +13,9 @@ import MeanGreensAbi from "config/abi/MeanGreens.json";
 import ampedUpTokens from "config/constants/cache/ampedUp/ampedUpTokens.json";
 import ampedUpPacks from "config/constants/cache/ampedUp/ampedUpPacks.json";
 import { FilterState } from "components/FilterDashboard";
+import { Contract } from "ethers-multicall";
+import { getNftAddressByName } from "./contractHelpers";
+import { call } from "./callHelpers";
 
 const isPack = (tokenId: string) => {
   let isPack: boolean;
@@ -98,6 +101,14 @@ export const getCollection = (pack: string) => {
       return MEAN_GREENS_COLLECTION;
     }
   }
+};
+
+export const getNftOwner = async (nft: PokemoonNft) => {
+  const contract = new Contract(getNftAddressByName(nft.set), getAbi(nft.set));
+  const ownerCall = contract.ownerOf(nft.tokenId);
+  const result = await call([ownerCall]);
+
+  return result;
 };
 
 export const getFlatCollection = (packs: string[]) => {
@@ -237,6 +248,19 @@ export const handleTokenIdResponse = async (
   // get array of cards data
 
   return { [pack]: { packs, cards } };
+};
+
+export const getTokenUriResponse = async (
+  nft: PokemoonNft
+): Promise<TokenUriResponse> => {
+  const contract = new Contract(getNftAddressByName(nft.set), getAbi(nft.set));
+  const uriCall = contract.tokenURI(nft.tokenId);
+  const href = await call([uriCall]);
+
+  const response = await fetch(href + ".json");
+  const data = await response.json();
+
+  return data;
 };
 
 //This updates the static cache

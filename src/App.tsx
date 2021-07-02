@@ -31,6 +31,7 @@ const Gallery = lazy(() => import("./views/Gallery"));
 const ViewPack = lazy(() => import("./views/ViewPack"));
 const PublicGallery = lazy(() => import("./views/Gallery/PublicGallery"));
 const Marketplace = lazy(() => import("./views/Marketplace"));
+const ViewToken = lazy(() => import("./views/ViewToken"));
 
 BigNumber.config({
   EXPONENTIAL_AT: 1000,
@@ -138,9 +139,9 @@ const App: React.FC = () => {
             <Route path="/pack/:set/:id">
               <ViewPack />
             </Route>
-            {/* <Route path="/token/:set/:id">
+            <Route path="/token/:set/:id">
               <ViewToken />
-            </Route> */}
+            </Route>
           </Switch>
         </SuspenseWithChunkError>
       </Router>
