@@ -30,6 +30,7 @@ import { SendToAddress } from "components/Modal";
 import Button from "components/Button";
 import { ModelViewer } from "components/ModelViewer";
 import InfoBox from "./InfoBox";
+import { numberWithCommas } from "utils";
 
 const useStyles = makeStyles({
   root: {
@@ -132,7 +133,20 @@ const ViewToken = () => {
           {nft && (
             <ModelViewer style={{ width: "90%", height: "50vh" }} nft={nft} />
           )}
-          {activeListing && <PriceText>{activeListing.price} KBN</PriceText>}
+          {activeListing && (
+            <>
+              <Typography
+                variant="h5"
+                display="inline"
+                style={{ color: "yellow", margin: 10 }}
+              >
+                {"Price: "}
+                <PriceText display="inline">
+                  {numberWithCommas(activeListing.price)} KBN
+                </PriceText>
+              </Typography>
+            </>
+          )}
           {activeListing ? (
             isOwner ? (
               <>
