@@ -32,6 +32,9 @@ const ButtonLogic: FC<LogicProps> = ({ isOwner, activeListing }) => {
   const handleApprove = useApproveMarket(set);
   const allowance = useGetKobanAllowance(marketAddress);
 
+  if (!marketAddress) {
+    return <></>;
+  }
   if (allowance.isEqualTo(0)) {
     return <Button onClick={handleApprove}>Approve</Button>;
   } else if (isOwner && activeListing) {

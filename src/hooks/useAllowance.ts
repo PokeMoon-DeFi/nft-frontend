@@ -65,6 +65,7 @@ export const useGetKobanAllowance = (contractAddress: string) => {
       setAllowance(new BigNumber(0));
       return;
     }
+
     const fetchAllowance = async () => {
       const res = await getAllowance(kobanAddress, contractAddress, account);
       setAllowance(new BigNumber(res));
@@ -73,7 +74,7 @@ export const useGetKobanAllowance = (contractAddress: string) => {
     if (account) {
       fetchAllowance();
     }
-  }, [account, fastRefresh, allowance, kobanAddress, contractAddress]);
+  }, [account, fastRefresh, kobanAddress, contractAddress]);
 
   return allowance;
 };
