@@ -29,6 +29,7 @@ import PriceModal from "./PriceModal";
 import { SendToAddress } from "components/Modal";
 import Button from "components/Button";
 import { ModelViewer } from "components/ModelViewer";
+import InfoBox from "./InfoBox";
 
 const useStyles = makeStyles({
   root: {
@@ -97,19 +98,20 @@ const ViewToken = () => {
   const handleCancelListing = useCancelListing();
   const handleUpdateListing = useUpdateListing();
   const handleSendGift = useSendGiftNft();
-
   return (
     <div style={{ zIndex: 2 }}>
       <Notifications />
-      <div style={{ width: "100%", height: 80 }} />
+      {/* <div style={{ width: "100%", height: 80 }} /> */}
       {/* <Hidden smUp> */}
-      <div style={{ zIndex: 2 }}>
-        <Text>{owner}</Text>
-        <Text display="inline" style={{ color: "white" }}>
+      <Box margin={2}>
+        <Typography display={"inline"} variant="h3" style={{ color: "white" }}>
           {nft?.name}
-        </Text>{" "}
-        <Text display="inline">#{nft?.tokenId}</Text>
-      </div>
+        </Typography>{" "}
+        <Typography variant="h6" style={{ color: "white" }} display="inline">
+          #{nft?.tokenId}
+        </Typography>
+        {/* <Text>{owner}</Text> */}
+      </Box>
       {/* </Hidden> */}
       <Grid
         style={{ width: "100%", justifyContent: "center", display: "flex" }}
@@ -119,11 +121,50 @@ const ViewToken = () => {
         <Grid
           item
           sm={12}
-          style={{ display: "flex", justifyContent: "center" }}
+          md={4}
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            flexDirection: "column",
+            alignItems: "center",
+          }}
         >
-          {nft && <ModelViewer style={{ width: 275, height: 400 }} nft={nft} />}
+          {nft && (
+            <ModelViewer style={{ width: "90%", height: "50vh" }} nft={nft} />
+          )}
+          {activeListing && <PriceText>{activeListing.price} KBN</PriceText>}
+          {activeListing ? (
+            isOwner ? (
+              <>
+                <Button onClick={() => setShowModal(true)}>
+                  Update Listing
+                </Button>
+                <Button
+                  onClick={() => {
+                    handleCancelListing(id);
+                  }}
+                >
+                  Cancel Listing
+                </Button>
+              </>
+            ) : (
+              <Button
+                style={{ width: "80%" }}
+                onClick={() => handleBuyListing(id)}
+              >
+                Buy
+              </Button>
+            )
+          ) : isOwner ? (
+            <>
+              <Button onClick={() => setShowModal(true)}>Sell</Button>
+              <Button onClick={() => setShowGiftModal(true)}>Send</Button>
+            </>
+          ) : (
+            <></>
+          )}
         </Grid>
-        <Grid item>
+        <Grid item sm={12} md={6}>
           {/* <Box style={{ height: 400, background: "purple" }}>
             <Typography>Stats</Typography>
           </Box> */}
@@ -132,7 +173,7 @@ const ViewToken = () => {
       <div
         style={{
           display: "flex",
-          flex: 1,
+
           flexDirection: "column",
           justifyContent: "center",
           marginTop: 20,
@@ -141,32 +182,9 @@ const ViewToken = () => {
           marginRight: 10,
         }}
       >
-        {activeListing && <PriceText>{activeListing.price} KBN</PriceText>}
-        {activeListing ? (
-          isOwner ? (
-            <>
-              <Button onClick={() => setShowModal(true)}>Update Listing</Button>
-              <Button
-                onClick={() => {
-                  handleCancelListing(id);
-                }}
-              >
-                Cancel Listing
-              </Button>
-            </>
-          ) : (
-            <Button onClick={() => handleBuyListing(id)}>Buy</Button>
-          )
-        ) : isOwner ? (
-          <>
-            <Button onClick={() => setShowModal(true)}>Sell</Button>
-            <Button onClick={() => setShowGiftModal(true)}>Send</Button>
-          </>
-        ) : (
-          <></>
-        )}
-        <Text>{metadata?.name}</Text>
-        <Text>{metadata?.description}</Text>
+        {metadata && <InfoBox data={metadata} />}
+        {/* <Text>{metadata?.name}</Text> */}
+        {/* <Text>{metadata?.description}</Text>
         {metadata?.attributes.map((val, index) => {
           return (
             <div key={val.display_type + index.toString()}>
@@ -178,8 +196,8 @@ const ViewToken = () => {
           );
         })}
         {/* <Text>{metadata?.attributes}</Text> */}
-        <Text>{metadata?.animation_url}</Text>
-        <Text>{metadata?.external_url}</Text>
+        {/* <Text>{metadata?.animation_url}</Text>
+        <Text>{metadata?.external_url}</Text>  */}
       </div>
       <PriceModal
         handleConfirm={(price) => {

@@ -11,7 +11,8 @@ import useModal from "hooks/useModal";
 import { numberWithCommas } from "utils";
 import HelpIcon from "@material-ui/icons/Help";
 import Popover from "@material-ui/core/Popover";
-
+import { useHistory } from "react-router-dom";
+import { useCallback } from "react";
 interface SleeveProps {
   nft: PokemoonNft;
 }
@@ -47,18 +48,23 @@ const PriceTag = styled(Typography)`
 `;
 
 export const Sleeve: FC<SleeveProps> = ({ nft }) => {
-  const { tokenId, rarity, price } = nft;
+  const { tokenId, rarity, price, set } = nft;
   const { name, type } = nft ?? { name: "", type: "fire" };
   const [showModal] = useModal(<InspectorDialog nft={nft} />);
 
   const [showPopper, setShowPopper] = useState(false);
   const [popperAnchor, setPopperAnchor] = useState<HTMLElement | null>(null);
 
+  const history = useHistory();
   const handleShowHelp = (e: any) => {
     setPopperAnchor(e.currentTarget);
     setShowPopper(true);
   };
+
   const handleCloseHelp = () => setShowPopper(false);
+  const handleRedirect = useCallback(() => {
+    history.push(`token/${set}/${tokenId}`);
+  }, [history, set, tokenId]);
 
   return (
     <>
@@ -146,7 +152,7 @@ export const Sleeve: FC<SleeveProps> = ({ nft }) => {
         )}
         <Button
           style={{ fontSize: 12, textTransform: "none" }}
-          onClick={showModal}
+          onClick={price ? handleRedirect : showModal}
           endIcon={<SearchIcon />}
         >
           Inspect
