@@ -155,6 +155,9 @@ export const userState = createSlice({
   name: "user",
   initialState,
   reducers: {
+    setAccount: (state, action) => {
+      state.address = action.payload;
+    },
     setBalance: (state, action) => {
       const { balance } = action.payload;
       state.balance = balance;
@@ -186,5 +189,5 @@ export const userState = createSlice({
   },
 });
 
-export const { setBalance, setNftBalance } = userState.actions;
+export const { setBalance, setNftBalance, setAccount } = userState.actions;
 export default userState.reducer;

@@ -5,7 +5,11 @@ import { setupNetwork } from "utils/wallet";
 import { ConnectorNames } from "utils/types";
 import { connectorLocalStorageKey } from "config/connectors";
 import { useDispatch } from "react-redux";
-import { connectWallet, disconnectWallet } from "providers/state/UserState";
+import {
+  connectWallet,
+  disconnectWallet,
+  setAccount,
+} from "providers/state/UserState";
 
 export const useEagerConnect = () => {
   // const { login } = useLogin();
@@ -43,7 +47,8 @@ export const useLogin = () => {
 };
 
 const useAuth = () => {
-  const { activate, deactivate } = useWeb3React();
+  const { activate, deactivate, account } = useWeb3React();
+  const dispatch = useDispatch();
 
   const login = useCallback((connectorID: ConnectorNames) => {
     const connector = connectorsByName[connectorID];
@@ -67,6 +72,10 @@ const useAuth = () => {
     );
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  useEffect(() => {
+    dispatch(setAccount(account));
+  }, [account, dispatch]);
 
   return { login, logout: deactivate };
 };

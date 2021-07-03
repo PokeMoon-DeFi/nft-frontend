@@ -69,7 +69,7 @@ export const cancelListing = createAsyncThunk(
       marketAbi,
       provider.getSigner()
     );
-    const call = contract.functions.DischargeTFT(tokenId.toString());
+    const call = contract.functions.cancelOrder(tokenId.toString());
     const [transaction, error] = await safeAwait(call);
 
     if (error) {
@@ -120,7 +120,7 @@ export const postListing = createAsyncThunk(
       provider.getSigner()
     );
 
-    const call = contract.functions.MakeTFT(
+    const call = contract.functions.placeOrder(
       tokenId.toString(),
       price.toString()
     );
@@ -145,7 +145,7 @@ export const buyListing = createAsyncThunk(
       marketAbi,
       provider.getSigner()
     );
-    const call = contract.TakeTFT(tokenId);
+    const call = contract.takeOrder(tokenId.toString());
 
     const [transaction, error] = await safeAwait(call);
     console.log(transaction, error);
@@ -167,7 +167,7 @@ export const updateListing = createAsyncThunk(
       marketAbi,
       provider.getSigner()
     );
-    const call = contract.functions.UpdateTFT(tokenId, price);
+    const call = contract.functions.updateOrder(tokenId, price);
     const [transaction, error] = await safeAwait(call);
 
     if (error) {
@@ -183,22 +183,27 @@ export const fetchListings = createAsyncThunk(
   async () => {
     const contract = new Contract(marketplace, marketAbi);
     const calls = [
-      contract.TFTLength(),
-      contract["dbe431f9"](),
-      contract.getTFT(),
+      contract.listingLength(),
+      contract["x0000000000000001"](),
+      contract.getListing(),
     ];
     const response = await call(calls);
+
     let [listingsCount, burnPercent, listingInfo] = response;
 
     burnPercent = toNumber(burnPercent) / 10000;
 
     const listings: any = [];
+    // console.log(listingInfo);
     const [ids, prices] = listingInfo;
+    // console.log(ids.map((d) => console.log(BigNumber.from(d).toString())));
+    // console.log(prices.map((d) => console.log(BigNumber.from(d).toString())));
 
-    for (let i = 0; i < listingsCount; i++) {
-      const id = toNumber(ids[i]);
+    for (let info of listingInfo) {
+      const { pricing, tokenId } = info;
+      const id = toNumber(tokenId);
       const data: PokemoonNft = await getCardData(id.toString(), "blastOff");
-      const price = toNumber(prices[i]);
+      const price = toNumber(pricing);
       data.price = price;
       listings.push({
         id,
