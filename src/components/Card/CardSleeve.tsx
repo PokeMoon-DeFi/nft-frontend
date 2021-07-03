@@ -152,7 +152,7 @@ export const Sleeve: FC<SleeveProps> = ({ nft }) => {
         )}
         <Button
           style={{ fontSize: 12, textTransform: "none" }}
-          onClick={price ? handleRedirect : showModal}
+          onClick={tokenId?.length > 2 ? handleRedirect : showModal}
           endIcon={<SearchIcon />}
         >
           Inspect

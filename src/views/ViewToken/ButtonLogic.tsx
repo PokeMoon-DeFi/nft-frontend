@@ -12,7 +12,6 @@ import { useParams } from "react-router-dom";
 import { SendToAddress } from "components/Modal";
 import { getMarketAddress } from "utils";
 import { useApproveMarket, useGetKobanAllowance } from "hooks/useAllowance";
-
 interface LogicProps {
   isOwner: boolean;
   activeListing: boolean;
@@ -40,7 +39,7 @@ const ButtonLogic: FC<LogicProps> = ({ isOwner, activeListing }) => {
       <>
         <Button onClick={() => setShowPriceModal(true)}>Update</Button>
         <div style={{ height: 10 }} />
-        <Button onClick={handleCancelListing}>Cancel</Button>
+        <Button onClick={() => handleCancelListing(tokenId)}>Cancel</Button>
         <PriceModal
           handleConfirm={(price) => {
             setShowPriceModal(false);

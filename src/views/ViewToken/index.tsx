@@ -139,7 +139,10 @@ const ViewToken = () => {
           }}
         >
           {nft && (
-            <ModelViewer style={{ width: "90%", height: "50vh" }} nft={nft} />
+            <ModelViewer
+              style={{ minWidth: 300, width: "90%", height: "50vh" }}
+              nft={nft}
+            />
           )}
           {activeListing && (
             <>
@@ -160,36 +163,6 @@ const ViewToken = () => {
             activeListing={!!activeListing}
             set={set}
           />
-          {/* {activeListing ? (
-            isOwner ? (
-              <>
-                <Button onClick={() => setShowModal(true)}>
-                  Update Listing
-                </Button>
-                <Button
-                  onClick={() => {
-                    handleCancelListing(id);
-                  }}
-                >
-                  Cancel Listing
-                </Button>
-              </>
-            ) : (
-              <Button
-                style={{ width: "80%" }}
-                onClick={() => handleBuyListing(id)}
-              >
-                Buy
-              </Button>
-            )
-          ) : isOwner ? (
-            <>
-              <Button onClick={() => setShowModal(true)}>Sell</Button>
-              <Button onClick={() => setShowGiftModal(true)}>Send</Button>
-            </>
-          ) : (
-            <></>
-          )} */}
         </Grid>
         <Grid
           item

@@ -83,6 +83,7 @@ export const useApproveMarket = (name: string) => {
   const contract = useContractFromSymbol("koban");
   const callback = useCallback(async () => {
     const market = getMarketAddress(name);
+    if (!market) return;
 
     await sendApproveBep20(contract, market, account);
   }, [name, account, contract]);
