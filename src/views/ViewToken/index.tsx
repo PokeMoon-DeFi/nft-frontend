@@ -31,6 +31,8 @@ import Button from "components/Button";
 import { ModelViewer } from "components/ModelViewer";
 import InfoBox from "./InfoBox";
 import { numberWithCommas } from "utils";
+import ButtonLogic from "./ButtonLogic";
+import { useWeb3React } from "@web3-react/core";
 
 const useStyles = makeStyles({
   root: {
@@ -62,7 +64,7 @@ const ViewToken = () => {
   const [metadata, setMetadata] = useState<TokenUriResponse>();
   const [owner, setOwner] = useState("");
   const [isOwner, setIsOwner] = useState(false);
-  const account = useAppSelector((state) => state.user.address);
+  const { account } = useWeb3React();
   const listings = useAppSelector((state) => state.market.listings);
   const [showModal, setShowModal] = useState(false);
   const [showGiftmodal, setShowGiftModal] = useState(false);
@@ -91,6 +93,7 @@ const ViewToken = () => {
   }, [nft, setMetadata]);
 
   useEffect(() => {
+    if (!account) return;
     setIsOwner(owner.toLowerCase() === account.toLowerCase());
   }, [owner, account]);
 
@@ -152,7 +155,12 @@ const ViewToken = () => {
               </Typography>
             </>
           )}
-          {activeListing ? (
+          <ButtonLogic
+            isOwner={isOwner}
+            activeListing={!!activeListing}
+            set={set}
+          />
+          {/* {activeListing ? (
             isOwner ? (
               <>
                 <Button onClick={() => setShowModal(true)}>
@@ -181,7 +189,7 @@ const ViewToken = () => {
             </>
           ) : (
             <></>
-          )}
+          )} */}
         </Grid>
         <Grid
           item

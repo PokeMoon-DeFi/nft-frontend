@@ -146,7 +146,9 @@ export const buyListing = createAsyncThunk(
       provider.getSigner()
     );
     const call = contract.TakeTFT(tokenId);
+
     const [transaction, error] = await safeAwait(call);
+    console.log(transaction, error);
     if (error) {
       return rejectWithValue(error);
     } else {

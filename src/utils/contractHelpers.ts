@@ -7,6 +7,7 @@ import BlastOffAbi from "config/abi/BlastOff.json";
 import MeanGreensAbi from "config/abi/MeanGreens.json";
 import contracts from "config/constants/contracts";
 import useWeb3 from "hooks/useWeb3";
+import marketAbi from "config/abi/Marketplace.json";
 
 const getContract = (abi: any, address: string, web3?: Web3) => {
   const _web3 = web3 ?? web3NoAccount;
@@ -24,6 +25,16 @@ export const getNftAbiByName = (pack: string) => {
     }
     case "meanGreens": {
       return MeanGreensAbi;
+    }
+  }
+};
+
+export const useMarketContractByName = (name: string) => {
+  const web3 = useWeb3();
+  switch (name) {
+    default:
+    case "blastOff": {
+      return getMarketContract(contracts.marketplace[56], web3);
     }
   }
 };
@@ -64,6 +75,10 @@ export const getBep20Contract = (address: string, web3?: Web3) => {
   return getContract(bep20Abi, address, web3);
 };
 
+export const getMarketContract = (address: string, web3?: Web3) => {
+  return getContract(marketAbi, address, web3);
+};
+
 export const useContractFromSymbol = (symbol: string) => {
   const address = getAddressFromSymbol(symbol);
   const web3 = useWeb3();
@@ -74,6 +89,7 @@ export const getAddressFromSymbol = (symbol: string) => {
   switch (symbol) {
     case "wbnb":
       return contracts.wbnb[process.env.REACT_APP_CHAIN_ID];
+    case "koban":
     case "kbn":
       return contracts.koban[process.env.REACT_APP_CHAIN_ID];
     case "mnt":

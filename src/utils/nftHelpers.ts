@@ -25,6 +25,23 @@ const isPack = (tokenId: string) => {
   return isPack;
 };
 
+export const getMarketAddress = (name: string) => {
+  switch (name) {
+    case "blastOff": {
+      return contracts.marketplace[56];
+    }
+    case "ampedUp": {
+      return "";
+    }
+    case "meanGreens": {
+      return "";
+    }
+    default: {
+      return "";
+    }
+  }
+};
+
 export const renamePack = (name: string) => {
   switch (name) {
     case "Blast-Off!": {
