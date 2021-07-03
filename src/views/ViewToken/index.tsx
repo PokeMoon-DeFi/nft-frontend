@@ -115,7 +115,12 @@ const ViewToken = () => {
       </Box>
       {/* </Hidden> */}
       <Grid
-        style={{ width: "100%", justifyContent: "center", display: "flex" }}
+        style={{
+          width: "100%",
+          justifyContent: "center",
+          display: "flex",
+          alignItems: "center",
+        }}
         container
         direction={isMobile ? "column" : "row"}
       >
@@ -178,10 +183,23 @@ const ViewToken = () => {
             <></>
           )}
         </Grid>
-        <Grid item sm={12} md={6}>
+        <Grid
+          item
+          sm={12}
+          md={4}
+          style={{
+            flex: 1,
+            width: "100%",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            padding: 16,
+          }}
+        >
           {/* <Box style={{ height: 400, background: "purple" }}>
             <Typography>Stats</Typography>
           </Box> */}
+          {metadata && <InfoBox data={metadata} />}
         </Grid>
       </Grid>
       <div
@@ -196,7 +214,6 @@ const ViewToken = () => {
           marginRight: 10,
         }}
       >
-        {metadata && <InfoBox data={metadata} />}
         {/* <Text>{metadata?.name}</Text> */}
         {/* <Text>{metadata?.description}</Text>
         {metadata?.attributes.map((val, index) => {
