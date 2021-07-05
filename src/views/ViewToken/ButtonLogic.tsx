@@ -12,11 +12,22 @@ import { useParams } from "react-router-dom";
 import { SendToAddress } from "components/Modal";
 import { getMarketAddress } from "utils";
 import { useApproveMarket, useGetKobanAllowance } from "hooks/useAllowance";
+import styled from "styled-components";
+import Send from "components/Icons/Send";
+
 interface LogicProps {
   isOwner: boolean;
   activeListing: boolean;
   set: string;
 }
+
+const ButtonDiv = styled.div`
+  flex: 1;
+  display: flex;
+  justify-content: space-between;
+  width: 350px;
+  margin-top: 10px;
+`;
 const ButtonLogic: FC<LogicProps> = ({ isOwner, activeListing }) => {
   const handleBuyListing = useBuyListing();
   const handlePostListing = usePostListing();
@@ -32,17 +43,13 @@ const ButtonLogic: FC<LogicProps> = ({ isOwner, activeListing }) => {
   const handleApprove = useApproveMarket(set);
   const allowance = useGetKobanAllowance(marketAddress);
 
-  if (!marketAddress) {
-    return <></>;
-  }
-  if (allowance.isEqualTo(0)) {
+  if (allowance.isEqualTo(0) && marketAddress) {
     return <Button onClick={handleApprove}>Approve</Button>;
   } else if (isOwner && activeListing) {
     return (
-      <>
-        <Button onClick={() => setShowPriceModal(true)}>Update</Button>
-        <div style={{ height: 10 }} />
+      <ButtonDiv>
         <Button onClick={() => handleCancelListing(tokenId)}>Cancel</Button>
+        <Button onClick={() => setShowPriceModal(true)}>Update</Button>
         <PriceModal
           handleConfirm={(price) => {
             setShowPriceModal(false);
@@ -51,13 +58,20 @@ const ButtonLogic: FC<LogicProps> = ({ isOwner, activeListing }) => {
           handleClose={() => setShowPriceModal(false)}
           open={showPriceModal}
         />
-      </>
+      </ButtonDiv>
     );
   } else if (isOwner) {
     return (
-      <>
-        <Button onClick={() => setShowPriceModal(true)}>Sell</Button>
-        <Button onClick={() => setShowGiftModal(true)}>Gift</Button>
+      <ButtonDiv style={{ marginTop: 20 }}>
+        <Button
+          disabled={!marketAddress}
+          onClick={() => setShowPriceModal(true)}
+        >
+          Sell
+        </Button>
+        <Button startIcon={<Send />} onClick={() => setShowGiftModal(true)}>
+          Gift
+        </Button>
         <PriceModal
           handleConfirm={(price) => {
             setShowPriceModal(false);
@@ -74,7 +88,7 @@ const ButtonLogic: FC<LogicProps> = ({ isOwner, activeListing }) => {
             setShowGiftModal(false);
           }}
         />
-      </>
+      </ButtonDiv>
     );
   } else if (activeListing) {
     return (

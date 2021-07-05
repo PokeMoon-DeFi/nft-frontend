@@ -50,28 +50,31 @@ const useAuth = () => {
   const { activate, deactivate, account } = useWeb3React();
   const dispatch = useDispatch();
 
-  const login = useCallback((connectorID: ConnectorNames) => {
-    const connector = connectorsByName[connectorID];
-    if (connector) {
-      activate(connector, async (error: Error) => {
-        if (error instanceof UnsupportedChainIdError) {
-          const hasSetup = await setupNetwork();
-          if (hasSetup) {
-            activate(connector);
+  const login = useCallback(
+    (connectorID: ConnectorNames) => {
+      const connector = connectorsByName[connectorID];
+      if (connector) {
+        activate(connector, async (error: Error) => {
+          if (error instanceof UnsupportedChainIdError) {
+            const hasSetup = await setupNetwork();
+            if (hasSetup) {
+              activate(connector);
+            }
+          } else {
+            console.error(error.name, error.message);
           }
-        } else {
-          console.error(error.name, error.message);
-        }
-      });
-    } else {
-      console.error("Can't find connector", "The connector config is wrong");
-    }
-    window.localStorage.setItem(
-      connectorLocalStorageKey,
-      ConnectorNames.Injected
-    );
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+        });
+      } else {
+        console.error("Can't find connector", "The connector config is wrong");
+      }
+      window.localStorage.setItem(
+        connectorLocalStorageKey,
+        ConnectorNames.Injected
+      );
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+    },
+    [activate]
+  );
 
   useEffect(() => {
     dispatch(setAccount(account));

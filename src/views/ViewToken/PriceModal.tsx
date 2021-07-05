@@ -3,9 +3,11 @@ import Dialog, { DialogProps } from "@material-ui/core/Dialog";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogContentText from "@material-ui/core/DialogContentText";
-import { DialogActions, Typography } from "@material-ui/core";
+import { DialogActions, Typography, useTheme } from "@material-ui/core";
 import TextField from "@material-ui/core/TextField";
 import Button from "components/Button";
+import { useMediaQuery } from "@material-ui/core";
+import { numberWithCommas } from "utils";
 
 interface ModalProps extends DialogProps {
   handleClose: () => void;
@@ -18,22 +20,52 @@ const PriceModal: FC<ModalProps> = ({
   ...props
 }) => {
   const [price, setPrice] = useState(0);
+  const theme = useTheme();
+  const fullscreen = useMediaQuery(theme.breakpoints.down("sm"));
+
   return (
     <Dialog {...props}>
       <DialogTitle>Confirm Asking Price</DialogTitle>
       <DialogContent>
-        <DialogContentText>Sell this NFT for {price} KBN</DialogContentText>
-        <div style={{ display: "flex" }}>
+        <DialogContentText>
+          Sell this NFT for {price ? numberWithCommas(price) : " "} KBN
+        </DialogContentText>
+        <div
+          style={{
+            display: "flex",
+            width: "100%",
+            justifyContent: "space-evenly",
+          }}
+        >
           <TextField
             label="KBN Amount"
-            type="number"
-            value={price}
-            style={{ maxWidth: 100, marginBottom: 24 }}
-            onChange={(event: any) => {
-              //@ts-ignore
-              setPrice(event.target.value);
+            value={numberWithCommas(price)}
+            fullWidth
+            style={{
+              marginBottom: 24,
+              flex: 1,
+              maxWidth: "20ch",
+              display: "flex",
             }}
-            inputProps={{ style: { fontSize: 24, textAlign: "center" } }}
+            onChange={(event: any) => {
+              const val: string = event.target.value;
+              if (!val || val.length > 12) return;
+
+              if (/^[0-9,]*$/.test(val)) {
+                const num = Number.parseInt(val.replace(/,/g, ""));
+                //@ts-ignore
+                setPrice(num);
+              }
+            }}
+            inputProps={{
+              style: {
+                fontSize: 24,
+                textAlign: "center",
+                maxWidth: "12ch",
+                width: "100%",
+                flex: 1,
+              },
+            }}
             InputLabelProps={{
               style: { display: "none" },
             }}
@@ -41,10 +73,9 @@ const PriceModal: FC<ModalProps> = ({
           />
           <Typography
             variant="h4"
-            component="span"
-            style={{ alignSelf: "center", textAlign: "center", flex: 1 }}
+            style={{ alignSelf: "center", textAlign: "center", marginLeft: 16 }}
           >
-            KBN
+            {" KBN"}
           </Typography>
         </div>
         <DialogActions>

@@ -31,6 +31,8 @@ const InfoBox: FC<InfoBoxProps> = ({ data }) => {
         flexDirection: "column",
         alignItems: "center",
         overflow: "hidden",
+        flex: 1,
+        height: "100%",
       }}
     >
       {attributes.map((attr, index) => {
@@ -40,7 +42,8 @@ const InfoBox: FC<InfoBoxProps> = ({ data }) => {
               display: "flex",
               justifyContent: "space-between",
               width: "100%",
-              height: 40,
+              // height: 40,
+              flex: 1,
               padding: 12,
               alignItems: "center",
               background: index % 2 === 0 ? background1 : background2,

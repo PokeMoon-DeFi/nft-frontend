@@ -50,7 +50,7 @@ const Text = styled(Typography)`
 
 const PriceText = styled(Typography)`
   color: gold;
-  font-size: 24pt;
+  font-size: 20pt;
 `;
 
 const ViewToken = () => {
@@ -107,22 +107,35 @@ const ViewToken = () => {
       <Notifications />
       {/* <div style={{ width: "100%", height: 80 }} /> */}
       {/* <Hidden smUp> */}
-      <Box margin={2}>
+
+      <Container
+        maxWidth="sm"
+        style={{
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "baseline",
+          marginTop: 10,
+          marginBottom: 20,
+          width: "100%",
+        }}
+      >
         <Typography display={"inline"} variant="h3" style={{ color: "white" }}>
           {nft?.name}
-        </Typography>{" "}
+        </Typography>
+        {"     "}
         <Typography variant="h6" style={{ color: "white" }} display="inline">
           #{nft?.tokenId}
         </Typography>
         {/* <Text>{owner}</Text> */}
-      </Box>
+      </Container>
       {/* </Hidden> */}
       <Grid
         style={{
           width: "100%",
+          height: "100%",
           justifyContent: "center",
           display: "flex",
-          alignItems: "center",
+          alignItems: "flex-start",
         }}
         container
         direction={isMobile ? "column" : "row"}
@@ -136,26 +149,17 @@ const ViewToken = () => {
             justifyContent: "center",
             flexDirection: "column",
             alignItems: "center",
+            width: "100%",
           }}
         >
           {nft && (
-            <ModelViewer
-              style={{ minWidth: 300, width: "90%", height: "50vh" }}
-              nft={nft}
-            />
+            <ModelViewer style={{ width: 350, height: "50vh" }} nft={nft} />
           )}
           {activeListing && (
             <>
-              <Typography
-                variant="h5"
-                display="inline"
-                style={{ color: "yellow", margin: 10 }}
-              >
-                {"Price: "}
-                <PriceText display="inline">
-                  {numberWithCommas(activeListing.price)} KBN
-                </PriceText>
-              </Typography>
+              <PriceText display="inline" style={{ marginTop: 10 }}>
+                {"Price: " + numberWithCommas(activeListing.price)} KBN
+              </PriceText>
             </>
           )}
           <ButtonLogic
@@ -170,6 +174,7 @@ const ViewToken = () => {
           md={4}
           style={{
             flex: 1,
+            height: "100%",
             width: "100%",
             display: "flex",
             justifyContent: "center",

@@ -42,7 +42,7 @@ const StyledBox = styled(Box)`
 
 const PriceTag = styled(Typography)`
   color: gold;
-  font-size: 16pt;
+  font-size: 12pt;
   font-weight: bold;
   text-shadow: 4px 4px 4px black;
 `;
@@ -131,7 +131,9 @@ export const Sleeve: FC<SleeveProps> = ({ nft }) => {
           {name}
         </Typography>
         {price ? (
-          <PriceTag>{numberWithCommas(price)} KBN</PriceTag>
+          <div>
+            <PriceTag>{numberWithCommas(price)} KBN</PriceTag>
+          </div>
         ) : (
           <div
             style={{
