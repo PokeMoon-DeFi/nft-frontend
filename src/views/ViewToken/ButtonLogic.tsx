@@ -63,14 +63,14 @@ const ButtonLogic: FC<LogicProps> = ({ isOwner, activeListing }) => {
   } else if (isOwner) {
     return (
       <ButtonDiv style={{ marginTop: 20 }}>
+        <Button startIcon={<Send />} onClick={() => setShowGiftModal(true)}>
+          Send
+        </Button>
         <Button
           disabled={!marketAddress}
           onClick={() => setShowPriceModal(true)}
         >
           Sell
-        </Button>
-        <Button startIcon={<Send />} onClick={() => setShowGiftModal(true)}>
-          Gift
         </Button>
         <PriceModal
           handleConfirm={(price) => {

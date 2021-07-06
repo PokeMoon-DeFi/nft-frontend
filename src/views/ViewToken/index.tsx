@@ -113,10 +113,10 @@ const ViewToken = () => {
         style={{
           display: "flex",
           justifyContent: "space-between",
-          alignItems: "baseline",
-          marginTop: 10,
-          marginBottom: 20,
+          alignItems: "center",
+          height: 200,
           width: "100%",
+          textAlign: "center",
         }}
       >
         <Typography display={"inline"} variant="h3" style={{ color: "white" }}>
@@ -132,10 +132,9 @@ const ViewToken = () => {
       <Grid
         style={{
           width: "100%",
-          height: "100%",
+          // height: "100%",
           justifyContent: "center",
-          display: "flex",
-          alignItems: "flex-start",
+          alignItems: "center",
         }}
         container
         direction={isMobile ? "column" : "row"}
@@ -173,12 +172,12 @@ const ViewToken = () => {
           sm={12}
           md={4}
           style={{
-            flex: 1,
-            height: "100%",
-            width: "100%",
+            // flex: 1,
             display: "flex",
-            justifyContent: "center",
+            height: 500,
+            justifyContent: "space-around",
             alignItems: "center",
+            width: "100%",
             padding: 16,
           }}
         >
