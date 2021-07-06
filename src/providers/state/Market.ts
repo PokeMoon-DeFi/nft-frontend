@@ -27,7 +27,7 @@ interface PendingAction {
 interface MarketState {
   listings: Listing[];
   burnPercent: number;
-  pending?: PendingAction;
+  pending?: PendingAction | undefined;
 }
 
 interface ExecutionRequest {
@@ -218,7 +218,11 @@ export const fetchListings = createAsyncThunk(
 const marketSlice = createSlice({
   name: "market",
   initialState,
-  reducers: {},
+  reducers: {
+    clearMessage: (state) => {
+      state.pending = undefined;
+    },
+  },
   extraReducers: (builder) => {
     builder.addCase(fetchListings.fulfilled, (state, { payload }) => {
       state.burnPercent = payload.burnPercent;
@@ -259,6 +263,7 @@ const marketSlice = createSlice({
       state.pending = { type: "post", status: "fulfilled", message: "Posted!" };
     });
     builder.addCase(postListing.rejected, (state, { payload }) => {
+      console.log("post listing canceled");
       state.pending = {
         type: "post",
         status: "rejected",
@@ -347,5 +352,7 @@ const marketSlice = createSlice({
     // });
   },
 });
+
+export const { clearMessage } = marketSlice.actions;
 
 export default marketSlice.reducer;

@@ -108,26 +108,8 @@ const ViewToken = () => {
       {/* <div style={{ width: "100%", height: 80 }} /> */}
       {/* <Hidden smUp> */}
 
-      <Container
-        maxWidth="sm"
-        style={{
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "center",
-          height: 200,
-          width: "100%",
-          textAlign: "center",
-        }}
-      >
-        <Typography display={"inline"} variant="h3" style={{ color: "white" }}>
-          {nft?.name}
-        </Typography>
-        {"     "}
-        <Typography variant="h6" style={{ color: "white" }} display="inline">
-          #{nft?.tokenId}
-        </Typography>
-        {/* <Text>{owner}</Text> */}
-      </Container>
+      {/* <Text>{owner}</Text> */}
+
       {/* </Hidden> */}
       <Grid
         style={{
@@ -135,6 +117,7 @@ const ViewToken = () => {
           // height: "100%",
           justifyContent: "center",
           alignItems: "center",
+          marginTop: 100,
         }}
         container
         direction={isMobile ? "column" : "row"}
@@ -149,8 +132,34 @@ const ViewToken = () => {
             flexDirection: "column",
             alignItems: "center",
             width: "100%",
+            padding: 24,
           }}
         >
+          <div
+            style={{
+              width: "100%",
+              display: "flex",
+              justifyContent: "space-evenly",
+              alignItems: "baseline",
+              marginBottom: 20,
+            }}
+          >
+            <Typography
+              display={"inline"}
+              variant="h3"
+              style={{ color: "white" }}
+            >
+              {nft?.name}
+            </Typography>
+            {"     "}
+            <Typography
+              variant="h6"
+              style={{ color: "white" }}
+              display="inline"
+            >
+              #{nft?.tokenId}
+            </Typography>
+          </div>
           {nft && (
             <ModelViewer style={{ width: 350, height: "50vh" }} nft={nft} />
           )}
@@ -178,7 +187,7 @@ const ViewToken = () => {
             justifyContent: "space-around",
             alignItems: "center",
             width: "100%",
-            padding: 16,
+            padding: 24,
           }}
         >
           {/* <Box style={{ height: 400, background: "purple" }}>

@@ -24,7 +24,7 @@ interface LogicProps {
 const ButtonDiv = styled.div`
   flex: 1;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   width: 350px;
   margin-top: 10px;
 `;
