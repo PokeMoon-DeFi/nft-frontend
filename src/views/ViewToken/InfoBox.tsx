@@ -67,7 +67,10 @@ const InfoBox: FC<InfoBoxProps> = ({ nft }) => {
             width: "100%",
           }}
         >
-          <Typography variant="h4" style={{ color: "white", marginTop: 16 }}>
+          <Typography
+            variant="h4"
+            style={{ textAlign: "center", color: "white", marginTop: 16 }}
+          >
             {`${nft.name} #${nft.tokenId}`}
           </Typography>
         </div>

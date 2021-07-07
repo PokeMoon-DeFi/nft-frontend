@@ -216,7 +216,11 @@ const getBaseUri = (pack: string) => {
   }
 };
 
-export const getCardData = async (tokenId: string, set: string, cache = {}) => {
+export const getCardData = async (
+  tokenId: string,
+  set: string,
+  cache: any | undefined = undefined
+) => {
   const cardId = parseInt(tokenId.substr(0, 2));
   const collection = getCollection(set);
   const { imageUrl, card, rarity } = collection[cardId];
