@@ -39,6 +39,12 @@ const MarketPage = () => {
         paddingTop: 20,
       }}
     >
+      <img
+        width="100%"
+        src={"/images/banners/Marketplace.png"}
+        alt="banner"
+        style={{ marginTop: 8 }}
+      />
       <FilterDashboard
         onViewStateChange={(state) => setViewState(state)}
         onTypeFilterChange={(filter) =>

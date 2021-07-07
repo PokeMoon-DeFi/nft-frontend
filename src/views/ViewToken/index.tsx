@@ -60,7 +60,7 @@ const ViewToken = () => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
 
-  const [nft, setNft] = useState<PokemoonNft>();
+  const [nft, setNft] = useState<PokemoonNft | undefined>();
   const [metadata, setMetadata] = useState<TokenUriResponse>();
   const [owner, setOwner] = useState("");
   const [isOwner, setIsOwner] = useState(false);
@@ -85,12 +85,14 @@ const ViewToken = () => {
 
   useEffect(() => {
     async function fetchUriResponse() {
-      if (!nft) return;
+      if (!nft || metadata) return;
       const data = await getTokenUriResponse(nft);
+      //@ts-ignore
+      setNft((state) => ({ ...state, tokenUriResponse: data }));
       setMetadata(data);
     }
     fetchUriResponse();
-  }, [nft, setMetadata]);
+  }, [nft, setMetadata, setNft, metadata]);
 
   useEffect(() => {
     if (!account) return;
@@ -104,6 +106,14 @@ const ViewToken = () => {
   const handleSendGift = useSendGiftNft();
   return (
     <div style={{ zIndex: 2 }}>
+      <Container maxWidth="lg">
+        <img
+          width="100%"
+          src={"/images/banners/Marketplace.png"}
+          alt="banner"
+          style={{ marginTop: 8 }}
+        />
+      </Container>
       <Notifications />
       {/* <div style={{ width: "100%", height: 80 }} /> */}
       {/* <Hidden smUp> */}
@@ -116,8 +126,7 @@ const ViewToken = () => {
           width: "100%",
           // height: "100%",
           justifyContent: "center",
-          alignItems: "center",
-          marginTop: 100,
+          alignItems: "flex-start",
         }}
         container
         direction={isMobile ? "column" : "row"}
@@ -135,40 +144,13 @@ const ViewToken = () => {
             padding: 24,
           }}
         >
-          <div
-            style={{
-              width: "100%",
-              display: "flex",
-              justifyContent: "space-evenly",
-              alignItems: "baseline",
-              marginBottom: 20,
-            }}
-          >
-            <Typography
-              display={"inline"}
-              variant="h3"
-              style={{ color: "white" }}
-            >
-              {nft?.name}
-            </Typography>
-            {"     "}
-            <Typography
-              variant="h6"
-              style={{ color: "white" }}
-              display="inline"
-            >
-              #{nft?.tokenId}
-            </Typography>
-          </div>
           {nft && (
             <ModelViewer style={{ width: 350, height: "50vh" }} nft={nft} />
           )}
           {activeListing && (
-            <>
-              <PriceText display="inline" style={{ marginTop: 10 }}>
-                {"Price: " + numberWithCommas(activeListing.price)} KBN
-              </PriceText>
-            </>
+            <PriceText display="inline" style={{ marginTop: 10 }}>
+              {"Price: " + numberWithCommas(activeListing.price)} KBN
+            </PriceText>
           )}
           <ButtonLogic
             isOwner={isOwner}
@@ -181,9 +163,10 @@ const ViewToken = () => {
           sm={12}
           md={4}
           style={{
-            // flex: 1,
+            flex: 1,
             display: "flex",
-            height: 500,
+            // height: 500,
+            height: "100%",
             justifyContent: "space-around",
             alignItems: "center",
             width: "100%",
@@ -193,7 +176,8 @@ const ViewToken = () => {
           {/* <Box style={{ height: 400, background: "purple" }}>
             <Typography>Stats</Typography>
           </Box> */}
-          {metadata && <InfoBox data={metadata} />}
+
+          {nft && <InfoBox nft={nft} />}
         </Grid>
       </Grid>
       <div

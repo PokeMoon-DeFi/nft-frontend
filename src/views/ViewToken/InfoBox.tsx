@@ -5,7 +5,7 @@ import Typography from "@material-ui/core/Typography";
 import styled from "styled-components";
 
 interface InfoBoxProps {
-  data: TokenUriResponse;
+  nft: PokemoonNft;
 }
 
 const Text = styled(Typography)`
@@ -29,7 +29,12 @@ const StyledBox = styled(Box)`
 const background1 = "#e784eb";
 const background2 = "#6d406e";
 
-const InfoBox: FC<InfoBoxProps> = ({ data }) => {
+const InfoBox: FC<InfoBoxProps> = ({ nft }) => {
+  const { tokenUriResponse: data } = nft;
+  if (!data) {
+    return <></>;
+  }
+
   const { attributes } = data;
   return (
     <div
@@ -45,7 +50,7 @@ const InfoBox: FC<InfoBoxProps> = ({ data }) => {
       <StyledBox
         style={{
           width: "100%",
-          // display: "flex",
+          display: "flex",
           flexDirection: "column",
           alignItems: "center",
           overflow: "auto",
@@ -53,6 +58,19 @@ const InfoBox: FC<InfoBoxProps> = ({ data }) => {
           // height: "100%",
         }}
       >
+        <div
+          style={{
+            display: "flex",
+            flex: 1,
+            alignItems: "baseline",
+            justifyContent: "space-around",
+            width: "100%",
+          }}
+        >
+          <Typography variant="h4" style={{ color: "white", marginTop: 16 }}>
+            {`${nft.name} #${nft.tokenId}`}
+          </Typography>
+        </div>
         <Typography
           variant="h6"
           style={{
@@ -72,7 +90,7 @@ const InfoBox: FC<InfoBoxProps> = ({ data }) => {
                 display: "flex",
                 justifyContent: "space-between",
                 width: "100%",
-                height: 80,
+                height: 42,
                 // flex: 1,
                 padding: 12,
                 alignItems: "center",
