@@ -11,9 +11,14 @@ import PriceModal from "./PriceModal";
 import { useParams } from "react-router-dom";
 import { SendToAddress } from "components/Modal";
 import { getMarketAddress } from "utils";
-import { useApproveMarket, useGetKobanAllowance } from "hooks/useAllowance";
+import {
+  useApproveMarket,
+  useGetKobanAllowance,
+  useApproveNft as useApproveNft,
+} from "hooks/useAllowance";
 import styled from "styled-components";
 import Send from "components/Icons/Send";
+import BigNumber from "bignumber.js";
 
 interface LogicProps {
   isOwner: boolean;
@@ -41,9 +46,10 @@ const ButtonLogic: FC<LogicProps> = ({ isOwner, activeListing }) => {
   const { set, id: tokenId } = useParams();
   const marketAddress = getMarketAddress(set);
   const handleApprove = useApproveMarket(set);
-  const allowance = useGetKobanAllowance(marketAddress);
+  const kobanAllowance = useGetKobanAllowance(marketAddress);
+  const { isApproved, sendApproval } = useApproveNft(set);
 
-  if (allowance.isEqualTo(0) && marketAddress) {
+  if (kobanAllowance.isEqualTo(0) && marketAddress) {
     return <Button onClick={handleApprove}>Approve</Button>;
   } else if (isOwner && activeListing) {
     return (
@@ -66,12 +72,16 @@ const ButtonLogic: FC<LogicProps> = ({ isOwner, activeListing }) => {
         <Button startIcon={<Send />} onClick={() => setShowGiftModal(true)}>
           Send
         </Button>
-        <Button
-          disabled={!marketAddress}
-          onClick={() => setShowPriceModal(true)}
-        >
-          Sell
-        </Button>
+        {isApproved ? (
+          <Button
+            disabled={!marketAddress}
+            onClick={() => setShowPriceModal(true)}
+          >
+            Sell
+          </Button>
+        ) : (
+          <Button onClick={sendApproval}>Approve To Sell</Button>
+        )}
         <PriceModal
           handleConfirm={(price) => {
             setShowPriceModal(false);
@@ -93,7 +103,7 @@ const ButtonLogic: FC<LogicProps> = ({ isOwner, activeListing }) => {
   } else if (activeListing) {
     return (
       <>
-        <Button onClick={handleBuyListing}>Buy</Button>
+        <Button onClick={() => handleBuyListing(tokenId)}>Buy</Button>
       </>
     );
   } else {

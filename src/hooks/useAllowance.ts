@@ -5,6 +5,8 @@ import {
   getAddress,
   getBep20Contract,
   useContractFromSymbol,
+  useMarketContractByName,
+  useNftContractbyName,
 } from "utils/contractHelpers";
 import { getAllowance, sendApproveBep20 } from "utils/callHelpers";
 import useRefresh from "./useRefresh";
@@ -89,4 +91,35 @@ export const useApproveMarket = (name: string) => {
     await sendApproveBep20(contract, market, account);
   }, [name, account, contract]);
   return callback;
+};
+
+export const useApproveNft = (set) => {
+  const contract = useNftContractbyName(set);
+
+  const [isApproved, setApproved] = useState(false);
+  const { account } = useWeb3React();
+  const { fastRefresh, slowRefresh } = useRefresh();
+
+  useEffect(() => {
+    const fetchApproval = async () => {
+      const result = await contract.methods
+        .isApprovedForAll(account, getMarketAddress(set))
+        .call();
+
+      setApproved(result);
+    };
+
+    if (!account) return;
+    fetchApproval();
+  }, [fastRefresh, account, setApproved, contract, set]);
+
+  const sendApproval = useCallback(async () => {
+    const marketAddress = getMarketAddress(set);
+
+    const result = await contract.methods
+      .setApprovalForAll(marketAddress, true)
+      .send({ from: account });
+  }, [contract, set, account]);
+
+  return { isApproved, sendApproval };
 };
