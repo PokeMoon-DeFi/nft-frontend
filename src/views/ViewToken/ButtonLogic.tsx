@@ -93,7 +93,7 @@ const ButtonLogic: FC<LogicProps> = ({ isOwner, activeListing }) => {
   } else if (activeListing) {
     return (
       <>
-        <Button onClick={handleBuyListing}>Buy</Button>
+        <Button onClick={() => handleBuyListing(tokenId)}>Buy</Button>
       </>
     );
   } else {
