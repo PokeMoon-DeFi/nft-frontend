@@ -3,6 +3,7 @@ import logger from "redux-logger";
 import thunk from "redux-thunk";
 import User from "./state/UserState";
 import PriceData from "./state/Prices";
+import Market from "./state/Market";
 
 import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
 
@@ -10,6 +11,7 @@ const store = configureStore({
   reducer: {
     user: User,
     prices: PriceData,
+    market: Market,
   },
   middleware: [thunk] as const,
 });

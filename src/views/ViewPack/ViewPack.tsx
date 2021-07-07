@@ -1,15 +1,21 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { Contract as ethersContract } from "ethers";
+
 import {
   getPackedOwned,
   getPackInfo,
+  safeAwait,
   sendTransferPack,
 } from "utils/callHelpers";
 import { PokemoonNft } from "config/constants/nfts/types";
+import { BigNumber, ethers } from "ethers";
+
 import {
   getNftContractByName,
   getNftAddressByName,
   getNftAbiByName,
+  useNftContractbyName,
 } from "utils/contractHelpers";
 import { useWeb3React } from "@web3-react/core";
 import { useInput } from "hooks/useInput";
@@ -20,13 +26,14 @@ import Button from "components/Button";
 import { Content } from "components/layout";
 import { NftCard } from "components/Card";
 import { SendToAddress } from "components/Modal";
+import { useAppSelector } from "providers";
 
 const ViewPack = () => {
   let { id, set } = useParams();
   const [nfts, setNfts] = useState<PokemoonNft[]>([]);
 
   const [openTransferModal, setOpenTransferModal] = useState(false);
-  const nftContract = getNftContractByName(set);
+  const nftContract = useNftContractbyName(set);
   const { account } = useWeb3React();
   const [accountOwnsPack, setAccountOwnsPack] = useState(false);
 
@@ -57,11 +64,12 @@ const ViewPack = () => {
 
         const ownedPacks: number[] = await getPackedOwned(account, set);
         const response: string[] = await multicall(getNftAbiByName(set), calls);
-
         setAccountOwnsPack(
           ownedPacks &&
             ownedPacks.includes(id) &&
-            response.every((response) => response[0] === account)
+            response.every(
+              (response) => response[0].toLowerCase() === account.toLowerCase()
+            )
         );
       }
     };
@@ -72,9 +80,33 @@ const ViewPack = () => {
   const confirmTransferCallback = useCallback(
     async (destAddress) => {
       const res = await sendTransferPack(nftContract, account, destAddress, id);
-      // console.log(res);
+
+      // const provider = new ethers.providers.Web3Provider(
+
+      //   window.ethereum,
+      //   "any"
+      // );
+
+      // const contract = new ethersContract(
+      //   getNftAddressByName(set),
+      //   getNftAbiByName(set),
+      //   provider.getSigner()
+      // );
+      // const [tx, error] = await safeAwait(
+      //   contract.functions.transferPackedFrom(
+      //     account,
+      //     destAddress,
+      //     id.toString()
+      //   )
+      // );
+
+      // if (!error) {
+      //   const [receipt, e] = await safeAwait(
+      //     provider.waitForTransaction(tx.hash)
+      //   );
+      // }
     },
-    [nftContract, account, id]
+    [id, account, nftContract]
   );
 
   const [pId, userInput] = useInput({ type: "text" });

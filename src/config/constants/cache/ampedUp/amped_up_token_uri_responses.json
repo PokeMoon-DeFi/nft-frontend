@@ -1,0 +1,601 @@
+{
+  "11": {
+    "attributes": [
+      { "trait_type": "Denomination", "value": "Magikazam" },
+      { "trait_type": "MoonLabel", "value": "C" },
+      { "trait_type": "Class", "value": "Water" },
+      { "trait_type": "HP", "value": 90 },
+      { "trait_type": "Stamina", "value": 80 },
+      {
+        "display_type": "Booster",
+        "trait_type": "JetPack",
+        "max_value": 12,
+        "value": 11
+      },
+      { "display_type": "number", "trait_type": "Generation", "value": 1 }
+    ],
+    "description": "I don’t think they’re supposed to listen through the pointy end.",
+    "external_url": "https://storage.pokemoonapis.com/context/token/f7a1/identifier/11000000",
+    "image": "https://storage.pokemoonapis.com/context/token/f7a1/object/magikazam-common.png",
+    "animation_url": "https://storage.pokemoonapis.com/context/token/f7a1/object/magikazam-common.glb",
+    "name": "Magikazam Common"
+  },
+  "12": {
+    "attributes": [
+      { "trait_type": "Denomination", "value": "DiamondBalls" },
+      { "trait_type": "MoonLabel", "value": "C" },
+      { "trait_type": "Class", "value": "Item" },
+      {
+        "display_type": "Booster",
+        "trait_type": "JetPack",
+        "max_value": 12,
+        "value": 2
+      },
+      { "display_type": "number", "trait_type": "Generation", "value": 1 }
+    ],
+    "description": "There was him; too brazen to back down, and me; too mesmerized to look away.",
+    "external_url": "https://storage.pokemoonapis.com/context/token/f7a1/identifier/12000000",
+    "image": "https://storage.pokemoonapis.com/context/token/f7a1/object/dballs-common.png",
+    "animation_url": "https://storage.pokemoonapis.com/context/token/f7a1/object/dballs-common.glb",
+    "name": "DiamondBalls Common"
+  },
+  "13": {
+    "attributes": [
+      { "trait_type": "Denomination", "value": "Ekrow" },
+      { "trait_type": "MoonLabel", "value": "C" },
+      { "trait_type": "Class", "value": "Colorless" },
+      { "trait_type": "HP", "value": 90 },
+      { "trait_type": "Stamina", "value": 30 },
+      {
+        "display_type": "Booster",
+        "trait_type": "JetPack",
+        "max_value": 12,
+        "value": 8
+      },
+      { "display_type": "number", "trait_type": "Generation", "value": 1 }
+    ],
+    "description": "50 points from Slytherclaw!",
+    "external_url": "https://storage.pokemoonapis.com/context/token/f7a1/identifier/13000000",
+    "image": "https://storage.pokemoonapis.com/context/token/f7a1/object/ekrow-common.png",
+    "animation_url": "https://storage.pokemoonapis.com/context/token/f7a1/object/ekrow-common.glb",
+    "name": "Ekrow Common"
+  },
+  "14": {
+    "attributes": [
+      { "trait_type": "Denomination", "value": "Farmer" },
+      { "trait_type": "MoonLabel", "value": "C" },
+      { "trait_type": "Class", "value": "Grass" },
+      { "trait_type": "HP", "value": 80 },
+      { "trait_type": "Stamina", "value": 20 },
+      {
+        "display_type": "Booster",
+        "trait_type": "JetPack",
+        "max_value": 12,
+        "value": 7
+      },
+      { "display_type": "number", "trait_type": "Generation", "value": 1 }
+    ],
+    "description": "...and stay off my property you no-good Kobandits!",
+    "external_url": "https://storage.pokemoonapis.com/context/token/f7a1/identifier/14000000",
+    "image": "https://storage.pokemoonapis.com/context/token/f7a1/object/farmer-common.png",
+    "animation_url": "https://storage.pokemoonapis.com/context/token/f7a1/object/farmer-common.glb",
+    "name": "Farmer Common"
+  },
+  "15": {
+    "attributes": [
+      { "trait_type": "Denomination", "value": "AstroHelm" },
+      { "trait_type": "MoonLabel", "value": "UC" },
+      { "trait_type": "Class", "value": "Item" },
+      {
+        "display_type": "Booster",
+        "trait_type": "JetPack",
+        "max_value": 12,
+        "value": 4
+      },
+      { "display_type": "number", "trait_type": "Generation", "value": 1 }
+    ],
+    "description": "Wanna get high?",
+    "external_url": "https://storage.pokemoonapis.com/context/token/f7a1/identifier/15000000",
+    "image": "https://storage.pokemoonapis.com/context/token/f7a1/object/astrohelm-uncommon.png",
+    "animation_url": "https://storage.pokemoonapis.com/context/token/f7a1/object/astrohelm-uncommon.glb",
+    "name": "AstroHelm Uncommon"
+  },
+  "16": {
+    "attributes": [
+      { "trait_type": "Denomination", "value": "Mynx" },
+      { "trait_type": "MoonLabel", "value": "UC" },
+      { "trait_type": "Class", "value": "Psychic" },
+      { "trait_type": "HP", "value": 120 },
+      { "trait_type": "Stamina", "value": 90 },
+      {
+        "display_type": "Booster",
+        "trait_type": "JetPack",
+        "max_value": 12,
+        "value": 10
+      },
+      { "display_type": "number", "trait_type": "Generation", "value": 1 }
+    ],
+    "description": "Men are from Mars, and women are from Venus.  We’re still not sure about this one.",
+    "external_url": "https://storage.pokemoonapis.com/context/token/f7a1/identifier/16000000",
+    "image": "https://storage.pokemoonapis.com/context/token/f7a1/object/mynx-uncommon.png",
+    "animation_url": "https://storage.pokemoonapis.com/context/token/f7a1/object/mynx-uncommon.glb",
+    "name": "Mynx Uncommon"
+  },
+  "17": {
+    "attributes": [
+      { "trait_type": "Denomination", "value": "Ekrow" },
+      { "trait_type": "MoonLabel", "value": "UC" },
+      { "trait_type": "Class", "value": "Colorless" },
+      { "trait_type": "HP", "value": 90 },
+      { "trait_type": "Stamina", "value": 30 },
+      {
+        "display_type": "Booster",
+        "trait_type": "JetPack",
+        "max_value": 12,
+        "value": 8
+      },
+      { "display_type": "number", "trait_type": "Generation", "value": 1 }
+    ],
+    "description": "50 points from Slytherclaw!",
+    "external_url": "https://storage.pokemoonapis.com/context/token/f7a1/identifier/17000000",
+    "image": "https://storage.pokemoonapis.com/context/token/f7a1/object/ekrow-uncommon.png",
+    "animation_url": "https://storage.pokemoonapis.com/context/token/f7a1/object/ekrow-uncommon.glb",
+    "name": "Ekrow Uncommon"
+  },
+  "18": {
+    "attributes": [
+      { "trait_type": "Denomination", "value": "Artducko" },
+      { "trait_type": "MoonLabel", "value": "UC" },
+      { "trait_type": "Class", "value": "Water" },
+      { "trait_type": "HP", "value": 140 },
+      { "trait_type": "Stamina", "value": 100 },
+      { "trait_type": "Storm", "value": 30 },
+      {
+        "display_type": "Booster",
+        "trait_type": "JetPack",
+        "max_value": 12,
+        "value": 9
+      },
+      { "display_type": "number", "trait_type": "Generation", "value": 1 }
+    ],
+    "description": "Drake number one of the Great White North.",
+    "external_url": "https://storage.pokemoonapis.com/context/token/f7a1/identifier/18000000",
+    "image": "https://storage.pokemoonapis.com/context/token/f7a1/object/artducko-uncommon.png",
+    "animation_url": "https://storage.pokemoonapis.com/context/token/f7a1/object/artducko-uncommon.glb",
+    "name": "Artducko Uncommon"
+  },
+  "19": {
+    "attributes": [
+      { "trait_type": "Denomination", "value": "ProfessorCoke" },
+      { "trait_type": "MoonLabel", "value": "UC" },
+      { "trait_type": "Class", "value": "Supporter" },
+      {
+        "display_type": "Booster",
+        "trait_type": "JetPack",
+        "max_value": 12,
+        "value": 5
+      },
+      { "display_type": "number", "trait_type": "Generation", "value": 1 }
+    ],
+    "description": "It's a hell of a drug.",
+    "external_url": "https://storage.pokemoonapis.com/context/token/f7a1/identifier/19000000",
+    "image": "https://storage.pokemoonapis.com/context/token/f7a1/object/profcoke-uncommon.png",
+    "animation_url": "https://storage.pokemoonapis.com/context/token/f7a1/object/profcoke-uncommon.glb",
+    "name": "ProfessorCoke Uncommon"
+  },
+  "20": {
+    "attributes": [
+      { "trait_type": "Denomination", "value": "Farmer" },
+      { "trait_type": "MoonLabel", "value": "UC" },
+      { "trait_type": "Class", "value": "Grass" },
+      { "trait_type": "HP", "value": 80 },
+      { "trait_type": "Stamina", "value": 20 },
+      {
+        "display_type": "Booster",
+        "trait_type": "JetPack",
+        "max_value": 12,
+        "value": 7
+      },
+      { "display_type": "number", "trait_type": "Generation", "value": 1 }
+    ],
+    "description": "...and stay off my property you no-good Kobandits!",
+    "external_url": "https://storage.pokemoonapis.com/context/token/f7a1/identifier/20000000",
+    "image": "https://storage.pokemoonapis.com/context/token/f7a1/object/farmer-uncommon.png",
+    "animation_url": "https://storage.pokemoonapis.com/context/token/f7a1/object/farmer-uncommon.glb",
+    "name": "Farmer Uncommon"
+  },
+  "21": {
+    "attributes": [
+      { "trait_type": "Denomination", "value": "Graffing" },
+      { "trait_type": "MoonLabel", "value": "UC" },
+      { "trait_type": "Class", "value": "Dark" },
+      { "trait_type": "HP", "value": 120 },
+      { "trait_type": "Stamina", "value": 50 },
+      {
+        "display_type": "Booster",
+        "trait_type": "JetPack",
+        "max_value": 12,
+        "value": 3
+      },
+      { "display_type": "number", "trait_type": "Generation", "value": 1 }
+    ],
+    "description": "The whole world's a canvas.",
+    "external_url": "https://storage.pokemoonapis.com/context/token/f7a1/identifier/21000000",
+    "image": "https://storage.pokemoonapis.com/context/token/f7a1/object/graffing-uncommon.png",
+    "animation_url": "https://storage.pokemoonapis.com/context/token/f7a1/object/graffing-uncommon.glb",
+    "name": "Graffing Uncommon"
+  },
+  "22": {
+    "attributes": [
+      { "trait_type": "Denomination", "value": "Raituff" },
+      { "trait_type": "MoonLabel", "value": "UC" },
+      { "trait_type": "Class", "value": "Lightning" },
+      { "trait_type": "HP", "value": 150 },
+      { "trait_type": "Stamina", "value": 100 },
+      { "trait_type": "Storm", "value": 60 },
+      {
+        "display_type": "Booster",
+        "trait_type": "JetPack",
+        "max_value": 12,
+        "value": 1
+      },
+      { "display_type": "number", "trait_type": "Generation", "value": 1 }
+    ],
+    "description": "Thunderbolt and lightning, very very frightening.",
+    "external_url": "https://storage.pokemoonapis.com/context/token/f7a1/identifier/22000000",
+    "image": "https://storage.pokemoonapis.com/context/token/f7a1/object/raituff-uncommon.png",
+    "animation_url": "https://storage.pokemoonapis.com/context/token/f7a1/object/raituff-uncommon.glb",
+    "name": "Raituff Uncommon"
+  },
+  "23": {
+    "attributes": [
+      { "trait_type": "Denomination", "value": "DiamondBalls" },
+      { "trait_type": "MoonLabel", "value": "UC" },
+      { "trait_type": "Class", "value": "Item" },
+      {
+        "display_type": "Booster",
+        "trait_type": "JetPack",
+        "max_value": 12,
+        "value": 2
+      },
+      { "display_type": "number", "trait_type": "Generation", "value": 1 }
+    ],
+    "description": "There was him; too brazen to back down, and me; too mesmerized to look away.",
+    "external_url": "https://storage.pokemoonapis.com/context/token/f7a1/identifier/23000000",
+    "image": "https://storage.pokemoonapis.com/context/token/f7a1/object/dballs-uncommon.png",
+    "animation_url": "https://storage.pokemoonapis.com/context/token/f7a1/object/dballs-uncommon.glb",
+    "name": "DiamondBalls Uncommon"
+  },
+  "24": {
+    "attributes": [
+      { "trait_type": "Denomination", "value": "Magikazam" },
+      { "trait_type": "MoonLabel", "value": "UC" },
+      { "trait_type": "Class", "value": "Water" },
+      { "trait_type": "HP", "value": 90 },
+      { "trait_type": "Stamina", "value": 80 },
+      {
+        "display_type": "Booster",
+        "trait_type": "JetPack",
+        "max_value": 12,
+        "value": 11
+      },
+      { "display_type": "number", "trait_type": "Generation", "value": 1 }
+    ],
+    "description": "I don’t think they’re supposed to listen through the pointy end.",
+    "external_url": "https://storage.pokemoonapis.com/context/token/f7a1/identifier/24000000",
+    "image": "https://storage.pokemoonapis.com/context/token/f7a1/object/magikazam-uncommon.png",
+    "animation_url": "https://storage.pokemoonapis.com/context/token/f7a1/object/magikazam-uncommon.glb",
+    "name": "Magikazam Uncommon"
+  },
+  "25": {
+    "attributes": [
+      { "trait_type": "Denomination", "value": "ProfessorCoke" },
+      { "trait_type": "MoonLabel", "value": "R" },
+      { "trait_type": "Class", "value": "Supporter" },
+      {
+        "display_type": "Booster",
+        "trait_type": "JetPack",
+        "max_value": 12,
+        "value": 5
+      },
+      { "display_type": "number", "trait_type": "Generation", "value": 1 }
+    ],
+    "description": "It's a hell of a drug.",
+    "external_url": "https://storage.pokemoonapis.com/context/token/f7a1/identifier/25000000",
+    "image": "https://storage.pokemoonapis.com/context/token/f7a1/object/profcoke-rare.png",
+    "animation_url": "https://storage.pokemoonapis.com/context/token/f7a1/object/profcoke-rare.glb",
+    "name": "ProfessorCoke Rare"
+  },
+  "26": {
+    "attributes": [
+      { "trait_type": "Denomination", "value": "Mynx" },
+      { "trait_type": "MoonLabel", "value": "R" },
+      { "trait_type": "Class", "value": "Psychic" },
+      { "trait_type": "HP", "value": 120 },
+      { "trait_type": "Stamina", "value": 90 },
+      {
+        "display_type": "Booster",
+        "trait_type": "JetPack",
+        "max_value": 12,
+        "value": 10
+      },
+      { "display_type": "number", "trait_type": "Generation", "value": 1 }
+    ],
+    "description": "Men are from Mars, and women are from Venus.  We’re still not sure about this one.",
+    "external_url": "https://storage.pokemoonapis.com/context/token/f7a1/identifier/26000000",
+    "image": "https://storage.pokemoonapis.com/context/token/f7a1/object/mynx-rare.png",
+    "animation_url": "https://storage.pokemoonapis.com/context/token/f7a1/object/mynx-rare.glb",
+    "name": "Mynx Rare"
+  },
+  "27": {
+    "attributes": [
+      { "trait_type": "Denomination", "value": "Artducko" },
+      { "trait_type": "MoonLabel", "value": "R" },
+      { "trait_type": "Class", "value": "Water" },
+      { "trait_type": "HP", "value": 140 },
+      { "trait_type": "Stamina", "value": 100 },
+      { "trait_type": "Storm", "value": 30 },
+      {
+        "display_type": "Booster",
+        "trait_type": "JetPack",
+        "max_value": 12,
+        "value": 9
+      },
+      { "display_type": "number", "trait_type": "Generation", "value": 1 }
+    ],
+    "description": "Drake number one of the Great White North.",
+    "external_url": "https://storage.pokemoonapis.com/context/token/f7a1/identifier/27000000",
+    "image": "https://storage.pokemoonapis.com/context/token/f7a1/object/artducko-rare.png",
+    "animation_url": "https://storage.pokemoonapis.com/context/token/f7a1/object/artducko-rare.glb",
+    "name": "Artducko Rare"
+  },
+  "28": {
+    "attributes": [
+      { "trait_type": "Denomination", "value": "DegenMeownaut" },
+      { "trait_type": "MoonLabel", "value": "R" },
+      { "trait_type": "Class", "value": "Dark" },
+      { "trait_type": "HP", "value": 100 },
+      { "trait_type": "Stamina", "value": 60 },
+      {
+        "display_type": "Booster",
+        "trait_type": "JetPack",
+        "max_value": 12,
+        "value": 6
+      },
+      { "display_type": "number", "trait_type": "Generation", "value": 1 }
+    ],
+    "description": "Wait he can talk?, Yes but I wouldn’t believe a single word he says.",
+    "external_url": "https://storage.pokemoonapis.com/context/token/f7a1/identifier/28000000",
+    "image": "https://storage.pokemoonapis.com/context/token/f7a1/object/degenmnt-rare.png",
+    "animation_url": "https://storage.pokemoonapis.com/context/token/f7a1/object/degenmnt-rare.glb",
+    "name": "DegenMeownaut Rare"
+  },
+  "29": {
+    "attributes": [
+      { "trait_type": "Denomination", "value": "Graffing" },
+      { "trait_type": "MoonLabel", "value": "R" },
+      { "trait_type": "Class", "value": "Dark" },
+      { "trait_type": "HP", "value": 120 },
+      { "trait_type": "Stamina", "value": 50 },
+      {
+        "display_type": "Booster",
+        "trait_type": "JetPack",
+        "max_value": 12,
+        "value": 3
+      },
+      { "display_type": "number", "trait_type": "Generation", "value": 1 }
+    ],
+    "description": "The whole world's a canvas.",
+    "external_url": "https://storage.pokemoonapis.com/context/token/f7a1/identifier/29000000",
+    "image": "https://storage.pokemoonapis.com/context/token/f7a1/object/graffing-rare.png",
+    "animation_url": "https://storage.pokemoonapis.com/context/token/f7a1/object/graffing-rare.glb",
+    "name": "Graffing Rare"
+  },
+  "30": {
+    "attributes": [
+      { "trait_type": "Denomination", "value": "Magikazam" },
+      { "trait_type": "MoonLabel", "value": "R" },
+      { "trait_type": "Class", "value": "Water" },
+      { "trait_type": "HP", "value": 90 },
+      { "trait_type": "Stamina", "value": 80 },
+      {
+        "display_type": "Booster",
+        "trait_type": "JetPack",
+        "max_value": 12,
+        "value": 11
+      },
+      { "display_type": "number", "trait_type": "Generation", "value": 1 }
+    ],
+    "description": "I don’t think they’re supposed to listen through the pointy end.",
+    "external_url": "https://storage.pokemoonapis.com/context/token/f7a1/identifier/30000000",
+    "image": "https://storage.pokemoonapis.com/context/token/f7a1/object/magikazam-rare.png",
+    "animation_url": "https://storage.pokemoonapis.com/context/token/f7a1/object/magikazam-rare.glb",
+    "name": "Magikazam Rare"
+  },
+  "31": {
+    "attributes": [
+      { "trait_type": "Denomination", "value": "Ekrow" },
+      { "trait_type": "MoonLabel", "value": "R" },
+      { "trait_type": "Class", "value": "Colorless" },
+      { "trait_type": "HP", "value": 90 },
+      { "trait_type": "Stamina", "value": 30 },
+      {
+        "display_type": "Booster",
+        "trait_type": "JetPack",
+        "max_value": 12,
+        "value": 8
+      },
+      { "display_type": "number", "trait_type": "Generation", "value": 1 }
+    ],
+    "description": "50 points from Slytherclaw!",
+    "external_url": "https://storage.pokemoonapis.com/context/token/f7a1/identifier/31000000",
+    "image": "https://storage.pokemoonapis.com/context/token/f7a1/object/ekrow-rare.png",
+    "animation_url": "https://storage.pokemoonapis.com/context/token/f7a1/object/ekrow-rare.glb",
+    "name": "Ekrow Rare"
+  },
+  "32": {
+    "attributes": [
+      { "trait_type": "Denomination", "value": "Raituff" },
+      { "trait_type": "MoonLabel", "value": "R" },
+      { "trait_type": "Class", "value": "Lightning" },
+      { "trait_type": "HP", "value": 150 },
+      { "trait_type": "Stamina", "value": 100 },
+      { "trait_type": "Storm", "value": 60 },
+      {
+        "display_type": "Booster",
+        "trait_type": "JetPack",
+        "max_value": 12,
+        "value": 1
+      },
+      { "display_type": "number", "trait_type": "Generation", "value": 1 }
+    ],
+    "description": "Thunderbolt and lightning, very very frightening.",
+    "external_url": "https://storage.pokemoonapis.com/context/token/f7a1/identifier/32000000",
+    "image": "https://storage.pokemoonapis.com/context/token/f7a1/object/raituff-rare.png",
+    "animation_url": "https://storage.pokemoonapis.com/context/token/f7a1/object/raituff-rare.glb",
+    "name": "Raituff Rare"
+  },
+  "33": {
+    "attributes": [
+      { "trait_type": "Denomination", "value": "AstroHelm" },
+      { "trait_type": "MoonLabel", "value": "R" },
+      { "trait_type": "Class", "value": "Item" },
+      {
+        "display_type": "Booster",
+        "trait_type": "JetPack",
+        "max_value": 12,
+        "value": 4
+      },
+      { "display_type": "number", "trait_type": "Generation", "value": 1 }
+    ],
+    "description": "Wanna get high?",
+    "external_url": "https://storage.pokemoonapis.com/context/token/f7a1/identifier/33000000",
+    "image": "https://storage.pokemoonapis.com/context/token/f7a1/object/astrohelm-rare.png",
+    "animation_url": "https://storage.pokemoonapis.com/context/token/f7a1/object/astrohelm-rare.glb",
+    "name": "AstroHelm Rare"
+  },
+  "34": {
+    "attributes": [
+      { "trait_type": "Denomination", "value": "Artducko" },
+      { "trait_type": "MoonLabel", "value": "L" },
+      { "trait_type": "Class", "value": "Water" },
+      { "trait_type": "HP", "value": 140 },
+      { "trait_type": "Stamina", "value": 100 },
+      { "trait_type": "Storm", "value": 30 },
+      {
+        "display_type": "Booster",
+        "trait_type": "JetPack",
+        "max_value": 12,
+        "value": 9
+      },
+      { "display_type": "number", "trait_type": "Generation", "value": 1 }
+    ],
+    "description": "Drake number one of the Great White North.",
+    "external_url": "https://storage.pokemoonapis.com/context/token/f7a1/identifier/34000000",
+    "image": "https://storage.pokemoonapis.com/context/token/f7a1/object/artducko-legend.png",
+    "animation_url": "https://storage.pokemoonapis.com/context/token/f7a1/object/artducko-legend.glb",
+    "name": "Artducko Legend"
+  },
+  "35": {
+    "attributes": [
+      { "trait_type": "Denomination", "value": "ProfessorCoke" },
+      { "trait_type": "MoonLabel", "value": "L" },
+      { "trait_type": "Class", "value": "Supporter" },
+      {
+        "display_type": "Booster",
+        "trait_type": "JetPack",
+        "max_value": 12,
+        "value": 5
+      },
+      { "display_type": "number", "trait_type": "Generation", "value": 1 }
+    ],
+    "description": "It's a hell of a drug.",
+    "external_url": "https://storage.pokemoonapis.com/context/token/f7a1/identifier/35000000",
+    "image": "https://storage.pokemoonapis.com/context/token/f7a1/object/profcoke-legend.png",
+    "animation_url": "https://storage.pokemoonapis.com/context/token/f7a1/object/profcoke-legend.glb",
+    "name": "ProfessorCoke Legend"
+  },
+  "36": {
+    "attributes": [
+      { "trait_type": "Denomination", "value": "Graffing" },
+      { "trait_type": "MoonLabel", "value": "L" },
+      { "trait_type": "Class", "value": "Dark" },
+      { "trait_type": "HP", "value": 120 },
+      { "trait_type": "Stamina", "value": 50 },
+      {
+        "display_type": "Booster",
+        "trait_type": "JetPack",
+        "max_value": 12,
+        "value": 3
+      },
+      { "display_type": "number", "trait_type": "Generation", "value": 1 }
+    ],
+    "description": "The whole world's a canvas.",
+    "external_url": "https://storage.pokemoonapis.com/context/token/f7a1/identifier/36000000",
+    "image": "https://storage.pokemoonapis.com/context/token/f7a1/object/graffing-legend.png",
+    "animation_url": "https://storage.pokemoonapis.com/context/token/f7a1/object/graffing-legend.glb",
+    "name": "Graffing Legend"
+  },
+  "37": {
+    "attributes": [
+      { "trait_type": "Denomination", "value": "Raituff" },
+      { "trait_type": "MoonLabel", "value": "L" },
+      { "trait_type": "Class", "value": "Lightning" },
+      { "trait_type": "HP", "value": 150 },
+      { "trait_type": "Stamina", "value": 100 },
+      { "trait_type": "Storm", "value": 60 },
+      {
+        "display_type": "Booster",
+        "trait_type": "JetPack",
+        "max_value": 12,
+        "value": 1
+      },
+      { "display_type": "number", "trait_type": "Generation", "value": 1 }
+    ],
+    "description": "Thunderbolt and lightning, very very frightening.",
+    "external_url": "https://storage.pokemoonapis.com/context/token/f7a1/identifier/37000000",
+    "image": "https://storage.pokemoonapis.com/context/token/f7a1/object/raituff-legend.png",
+    "animation_url": "https://storage.pokemoonapis.com/context/token/f7a1/object/raituff-legend.glb",
+    "name": "Raituff Legend"
+  },
+  "38": {
+    "attributes": [
+      { "trait_type": "Denomination", "value": "DegenMeownaut" },
+      { "trait_type": "MoonLabel", "value": "L" },
+      { "trait_type": "Class", "value": "Dark" },
+      { "trait_type": "HP", "value": 100 },
+      { "trait_type": "Stamina", "value": 60 },
+      {
+        "display_type": "Booster",
+        "trait_type": "JetPack",
+        "max_value": 12,
+        "value": 6
+      },
+      { "display_type": "number", "trait_type": "Generation", "value": 1 }
+    ],
+    "description": "Wait he can talk?, Yes but I wouldn’t believe a single word he says.",
+    "external_url": "https://storage.pokemoonapis.com/context/token/f7a1/identifier/38000000",
+    "image": "https://storage.pokemoonapis.com/context/token/f7a1/object/degenmnt-legend.png",
+    "animation_url": "https://storage.pokemoonapis.com/context/token/f7a1/object/degenmnt-legend.glb",
+    "name": "DegenMeownaut Legend"
+  },
+  "39": {
+    "attributes": [
+      { "trait_type": "Denomination", "value": "Toxique" },
+      { "trait_type": "MoonLabel", "value": "ML" },
+      { "trait_type": "Class", "value": "Supporter" },
+      {
+        "display_type": "Booster",
+        "trait_type": "JetPack",
+        "max_value": 12,
+        "value": 12
+      },
+      { "display_type": "number", "trait_type": "Generation", "value": 1 }
+    ],
+    "description": "With a taste of her lips you're on a ride.",
+    "external_url": "https://storage.pokemoonapis.com/context/token/f7a1/identifier/39000000",
+    "image": "https://storage.pokemoonapis.com/context/token/f7a1/object/toxique.png",
+    "animation_url": "https://storage.pokemoonapis.com/context/token/f7a1/object/toxique.glb",
+    "name": "Toxique"
+  }
+}

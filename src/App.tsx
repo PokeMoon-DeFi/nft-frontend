@@ -1,7 +1,7 @@
 import React, { useEffect, lazy } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { useEagerConnect } from "hooks/useAuth";
+import useAuth, { useEagerConnect } from "hooks/useAuth";
 import {
   asyncFetchBalance,
   asyncFetchNftBalance,
@@ -20,6 +20,9 @@ import { LinkConfigState } from "components/layout";
 import NavHeader from "components/Header";
 import { useLogin } from "hooks/useAuth";
 import { useAppSelector } from "providers";
+import { useWeb3React } from "@web3-react/core";
+import { ConnectorNames } from "utils/types";
+import { fetchListings } from "providers/state/Market";
 
 // Lazy loading
 const Landing = lazy(() => import("./views/Landing"));
@@ -27,6 +30,8 @@ const BuyPacks = lazy(() => import("./views/BuyPacks"));
 const Gallery = lazy(() => import("./views/Gallery"));
 const ViewPack = lazy(() => import("./views/ViewPack"));
 const PublicGallery = lazy(() => import("./views/Gallery/PublicGallery"));
+const Marketplace = lazy(() => import("./views/Marketplace"));
+const ViewToken = lazy(() => import("./views/ViewToken"));
 
 BigNumber.config({
   EXPONENTIAL_AT: 1000,
@@ -61,11 +66,11 @@ const linkConfig: LinkConfigState[] = [
     label: "My Collection",
     icon: <AccountBalanceIcon {...iconStyle} />,
   },
-  // {
-  //   target: "/market",
-  //   label: "MarketPlace",
-  //   icon: <AccountBalanceIcon {...iconStyle} />,
-  // },
+  {
+    target: "/market",
+    label: "MarketPlace",
+    icon: <AccountBalanceIcon {...iconStyle} />,
+  },
 ];
 
 const useStyles = makeStyles((theme) => ({
@@ -89,13 +94,14 @@ const App: React.FC = () => {
   const dispatch = useDispatch();
   // If stuff keeps rerendering every 10 sec this is what caused that.
   const { fastRefresh } = useRefresh();
-  const { login, logout } = useLogin();
-  const account = useAppSelector((state) => state.user.address);
+  const { login, logout } = useAuth();
+  const { account } = useWeb3React();
   useEffect(() => {
+    dispatch(fetchListings());
+
     if (account) {
       dispatch(asyncFetchBalance({ account }));
       dispatch(asyncFetchNftBalance({ account }));
-      // dispatch(fetchListings());
     } else {
       // console.log("no account");
     }
@@ -106,7 +112,7 @@ const App: React.FC = () => {
       <Router>
         <NavHeader
           account={account ?? ""}
-          onConnect={login}
+          onConnect={() => login(ConnectorNames.Injected)}
           onLogout={logout}
           linkConfig={linkConfig}
         />
@@ -127,15 +133,15 @@ const App: React.FC = () => {
             <Route path="/collection" exact>
               <Gallery />
             </Route>
-            {/* <Route path="/market" exact>
-              <MarketPlace />
-            </Route> */}
+            <Route path="/market" exact>
+              <Marketplace />
+            </Route>
             <Route path="/pack/:set/:id">
               <ViewPack />
             </Route>
-            {/* <Route path="/token/:set/:id">
+            <Route path="/token/:set/:id">
               <ViewToken />
-            </Route> */}
+            </Route>
           </Switch>
         </SuspenseWithChunkError>
       </Router>

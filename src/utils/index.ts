@@ -1,6 +1,10 @@
 import { PM_RARITY } from "config/constants/nfts";
 import { MaterialTheme } from "components/theme";
 
+export const numberWithCommas = (x: number) => {
+  return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+};
+
 export const getRarityGradient = (rarity: string) => {
   let startColor: any;
   let endColor: any;

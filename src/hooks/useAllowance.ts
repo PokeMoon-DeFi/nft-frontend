@@ -1,9 +1,15 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { useWeb3React } from "@web3-react/core";
 import BigNumber from "bignumber.js";
-import { getAddress } from "utils/contractHelpers";
-import { getAllowance } from "utils/callHelpers";
+import {
+  getAddress,
+  getBep20Contract,
+  useContractFromSymbol,
+} from "utils/contractHelpers";
+import { getAllowance, sendApproveBep20 } from "utils/callHelpers";
 import useRefresh from "./useRefresh";
+import { useAppSelector } from "providers";
+import { getMarketAddress } from "utils";
 
 export const useBlastOffAllowance = () => {
   const [allowance, setAllowance] = useState(new BigNumber(0));
@@ -46,4 +52,41 @@ export const useAPBAllowance = () => {
   }, [account, fastRefresh, tokenAddress, meanGreensAddress]);
 
   return allowance;
+};
+
+export const useGetKobanAllowance = (contractAddress: string) => {
+  const [allowance, setAllowance] = useState(new BigNumber(0));
+  const { account } = useWeb3React();
+  const kobanAddress = getAddress("koban");
+  const { fastRefresh } = useRefresh();
+
+  useEffect(() => {
+    if (!contractAddress) {
+      setAllowance(new BigNumber(0));
+      return;
+    }
+
+    const fetchAllowance = async () => {
+      const res = await getAllowance(kobanAddress, contractAddress, account);
+      setAllowance(new BigNumber(res));
+    };
+
+    if (account) {
+      fetchAllowance();
+    }
+  }, [account, fastRefresh, kobanAddress, contractAddress]);
+
+  return allowance;
+};
+
+export const useApproveMarket = (name: string) => {
+  const { account } = useWeb3React();
+  const contract = useContractFromSymbol("koban");
+  const callback = useCallback(async () => {
+    const market = getMarketAddress(name);
+    if (!market) return;
+
+    await sendApproveBep20(contract, market, account);
+  }, [name, account, contract]);
+  return callback;
 };

@@ -1,0 +1,1182 @@
+{
+  "11": {
+    "attributes": [
+      { "trait_type": "Denomination", "value": "Mooncat" },
+      { "trait_type": "MoonLabel", "value": "C" },
+      { "trait_type": "Class", "value": "Psychic" },
+      { "trait_type": "HP", "value": 80 },
+      { "trait_type": "Length", "value": 1.7 },
+      { "trait_type": "Weight", "value": 15 },
+      { "trait_type": "Stamina", "value": 30 },
+      {
+        "display_type": "Booster",
+        "trait_type": "JetPack",
+        "max_value": 16,
+        "value": 1
+      },
+      { "display_type": "number", "trait_type": "Generation", "value": 1 }
+    ],
+    "description": "Legend says that the bioluminescent coin in a Meownaut's chest is the source of its resilience and good fortune.",
+    "external_url": "https://storage.pokemoonapis.com/context/token/fde4/identifier/11000000",
+    "image": "https://storage.pokemoonapis.com/context/token/fde4/object/meownaut-common.png",
+    "animation_url": "https://storage.pokemoonapis.com/context/token/fde4/object/meownaut-common.glb",
+    "name": "Meownaut Common"
+  },
+  "12": {
+    "attributes": [
+      { "trait_type": "Denomination", "value": "KadalaxSlim" },
+      { "trait_type": "MoonLabel", "value": "C" },
+      { "trait_type": "Class", "value": "Psychic" },
+      { "trait_type": "HP", "value": 160 },
+      { "trait_type": "Length", "value": 1.1 },
+      { "trait_type": "Weight", "value": 1 },
+      { "trait_type": "Stamina", "value": 40 },
+      {
+        "display_type": "Booster",
+        "trait_type": "JetPack",
+        "max_value": 16,
+        "value": 10
+      },
+      { "display_type": "number", "trait_type": "Generation", "value": 1 }
+    ],
+    "description": "Some Kadalax, having conquered their material vices, are able to sustain themselves off air and thought alone.",
+    "external_url": "https://storage.pokemoonapis.com/context/token/fde4/identifier/12000000",
+    "image": "https://storage.pokemoonapis.com/context/token/fde4/object/kadalaxslim-common.png",
+    "animation_url": "https://storage.pokemoonapis.com/context/token/fde4/object/kadalaxslim-common.glb",
+    "name": "KadalaxSlim Common"
+  },
+  "13": {
+    "attributes": [
+      { "trait_type": "Denomination", "value": "RashScratchum" },
+      { "trait_type": "MoonLabel", "value": "C" },
+      { "trait_type": "Class", "value": "Supporter" },
+      { "trait_type": "HP", "value": 1 },
+      { "trait_type": "Length", "value": 1.1 },
+      { "trait_type": "Weight", "value": 1 },
+      { "trait_type": "Stamina", "value": 1 },
+      {
+        "display_type": "Booster",
+        "trait_type": "JetPack",
+        "max_value": 16,
+        "value": 15
+      },
+      { "display_type": "number", "trait_type": "Generation", "value": 1 }
+    ],
+    "description": "You may play only I Supporter card during your turn. (Before your attack).",
+    "external_url": "https://storage.pokemoonapis.com/context/token/fde4/identifier/13000000",
+    "image": "https://storage.pokemoonapis.com/context/token/fde4/object/rashscratchum-common.png",
+    "animation_url": "https://storage.pokemoonapis.com/context/token/fde4/object/rashscratchum-common.glb",
+    "name": "RashScratchum Common"
+  },
+  "14": {
+    "attributes": [
+      { "trait_type": "Denomination", "value": "BlastardI" },
+      { "trait_type": "MoonLabel", "value": "C" },
+      { "trait_type": "Class", "value": "Fire" },
+      { "trait_type": "HP", "value": 220 },
+      { "trait_type": "Length", "value": 1.1 },
+      { "trait_type": "Weight", "value": 1 },
+      { "trait_type": "Stamina", "value": 120 },
+      {
+        "display_type": "Booster",
+        "trait_type": "JetPack",
+        "max_value": 16,
+        "value": 7
+      },
+      { "display_type": "number", "trait_type": "Generation", "value": 1 }
+    ],
+    "description": "Need a light?",
+    "external_url": "https://storage.pokemoonapis.com/context/token/fde4/identifier/14000000",
+    "image": "https://storage.pokemoonapis.com/context/token/fde4/object/blastardi-common.png",
+    "animation_url": "https://storage.pokemoonapis.com/context/token/fde4/object/blastardi-common.glb",
+    "name": "Blastard Common"
+  },
+  "15": {
+    "attributes": [
+      { "trait_type": "Denomination", "value": "WarriorChef" },
+      { "trait_type": "MoonLabel", "value": "C" },
+      { "trait_type": "Class", "value": "Psychic" },
+      { "trait_type": "HP", "value": 200 },
+      { "trait_type": "Height", "value": 9.9 },
+      { "trait_type": "Weight", "value": 800 },
+      { "trait_type": "Stamina", "value": 150 },
+      {
+        "display_type": "Booster",
+        "trait_type": "JetPack",
+        "max_value": 16,
+        "value": 9
+      },
+      { "display_type": "number", "trait_type": "Generation", "value": 1 }
+    ],
+    "description": "Contrary to popular belief, it's not alway pleasant getting big spooned.",
+    "external_url": "https://storage.pokemoonapis.com/context/token/fde4/identifier/15000000",
+    "image": "https://storage.pokemoonapis.com/context/token/fde4/object/kadalax-common.png",
+    "animation_url": "https://storage.pokemoonapis.com/context/token/fde4/object/kadalax-common.glb",
+    "name": "Kadalax Common"
+  },
+  "16": {
+    "attributes": [
+      { "trait_type": "Denomination", "value": "Veggierat" },
+      { "trait_type": "MoonLabel", "value": "C" },
+      { "trait_type": "Class", "value": "Grass" },
+      { "trait_type": "HP", "value": 60 },
+      { "trait_type": "Height", "value": 1 },
+      { "trait_type": "Weight", "value": 6 },
+      { "trait_type": "Stamina", "value": 10 },
+      {
+        "display_type": "Booster",
+        "trait_type": "JetPack",
+        "max_value": 16,
+        "value": 4
+      },
+      { "display_type": "number", "trait_type": "Generation", "value": 1 }
+    ],
+    "description": "There are rodents who can cook, and those who teach Kung Fu. But some of them just wish to sit and contemplate the view.",
+    "external_url": "https://storage.pokemoonapis.com/context/token/fde4/identifier/16000000",
+    "image": "https://storage.pokemoonapis.com/context/token/fde4/object/rattish-common.png",
+    "animation_url": "https://storage.pokemoonapis.com/context/token/fde4/object/rattish-common.glb",
+    "name": "Rattish Common"
+  },
+  "17": {
+    "attributes": [
+      { "trait_type": "Denomination", "value": "GoldenKobanI" },
+      { "trait_type": "MoonLabel", "value": "C" },
+      { "trait_type": "Class", "value": "Item" },
+      { "trait_type": "HP", "value": 1 },
+      { "trait_type": "Length", "value": 1 },
+      { "trait_type": "Weight", "value": 1 },
+      { "trait_type": "Stamina", "value": 1 },
+      {
+        "display_type": "Booster",
+        "trait_type": "JetPack",
+        "max_value": 16,
+        "value": 12
+      },
+      { "display_type": "number", "trait_type": "Generation", "value": 1 }
+    ],
+    "description": "You may play two energy cards this turn.",
+    "external_url": "https://storage.pokemoonapis.com/context/token/fde4/identifier/17000000",
+    "image": "https://storage.pokemoonapis.com/context/token/fde4/object/goldenkobani-common.png",
+    "animation_url": "https://storage.pokemoonapis.com/context/token/fde4/object/goldenkobani-common.glb",
+    "name": "GoldenKoban Common"
+  },
+  "18": {
+    "attributes": [
+      { "trait_type": "Denomination", "value": "StormBird" },
+      { "trait_type": "MoonLabel", "value": "C" },
+      { "trait_type": "Class", "value": "Lightning" },
+      { "trait_type": "HP", "value": 180 },
+      { "trait_type": "Height", "value": 7.6 },
+      { "trait_type": "Weight", "value": 200 },
+      { "trait_type": "Stamina", "value": 50 },
+      { "trait_type": "Storm", "value": 120 },
+      {
+        "display_type": "Booster",
+        "trait_type": "JetPack",
+        "max_value": 16,
+        "value": 11
+      },
+      { "display_type": "number", "trait_type": "Generation", "value": 1 }
+    ],
+    "description": "Strike one, you're out.",
+    "external_url": "https://storage.pokemoonapis.com/context/token/fde4/identifier/18000000",
+    "image": "https://storage.pokemoonapis.com/context/token/fde4/object/zapduck-common.png",
+    "animation_url": "https://storage.pokemoonapis.com/context/token/fde4/object/zapduck-common.glb",
+    "name": "Zapduck Common"
+  },
+  "19": {
+    "attributes": [
+      { "trait_type": "Denomination", "value": "ChangeTeams" },
+      { "trait_type": "MoonLabel", "value": "C" },
+      { "trait_type": "Class", "value": "Supporter" },
+      { "trait_type": "HP", "value": 1 },
+      { "trait_type": "Length", "value": 1 },
+      { "trait_type": "Weight", "value": 1 },
+      { "trait_type": "Stamina", "value": 1 },
+      {
+        "display_type": "Booster",
+        "trait_type": "JetPack",
+        "max_value": 16,
+        "value": 14
+      },
+      { "display_type": "number", "trait_type": "Generation", "value": 1 }
+    ],
+    "description": "You may play only I Supporter card during your turn. (Before your attack).",
+    "external_url": "https://storage.pokemoonapis.com/context/token/fde4/identifier/19000000",
+    "image": "https://storage.pokemoonapis.com/context/token/fde4/object/changeteams-common.png",
+    "animation_url": "https://storage.pokemoonapis.com/context/token/fde4/object/changeteams-common.glb",
+    "name": "ChangeTeams Common"
+  },
+  "20": {
+    "attributes": [
+      { "trait_type": "Denomination", "value": "GoldenKobanII" },
+      { "trait_type": "MoonLabel", "value": "C" },
+      { "trait_type": "Class", "value": "Item" },
+      { "trait_type": "HP", "value": 1 },
+      { "trait_type": "Length", "value": 1 },
+      { "trait_type": "Weight", "value": 1 },
+      { "trait_type": "Stamina", "value": 1 },
+      {
+        "display_type": "Booster",
+        "trait_type": "JetPack",
+        "max_value": 16,
+        "value": 13
+      },
+      { "display_type": "number", "trait_type": "Generation", "value": 1 }
+    ],
+    "description": "You may play two energy cards this turn.",
+    "external_url": "https://storage.pokemoonapis.com/context/token/fde4/identifier/20000000",
+    "image": "https://storage.pokemoonapis.com/context/token/fde4/object/goldenkobanii-common.png",
+    "animation_url": "https://storage.pokemoonapis.com/context/token/fde4/object/goldenkobanii-common.glb",
+    "name": "GoldenKoban Common"
+  },
+  "21": {
+    "attributes": [
+      { "trait_type": "Denomination", "value": "ElectricFluff" },
+      { "trait_type": "MoonLabel", "value": "C" },
+      { "trait_type": "Class", "value": "Lightning" },
+      { "trait_type": "HP", "value": 70 },
+      { "trait_type": "Height", "value": 1.8 },
+      { "trait_type": "Weight", "value": 13 },
+      { "trait_type": "Stamina", "value": 1 },
+      {
+        "display_type": "Booster",
+        "trait_type": "JetPack",
+        "max_value": 16,
+        "value": 2
+      },
+      { "display_type": "number", "trait_type": "Generation", "value": 1 }
+    ],
+    "description": "That's gonna be a hit.",
+    "external_url": "https://storage.pokemoonapis.com/context/token/fde4/identifier/21000000",
+    "image": "https://storage.pokemoonapis.com/context/token/fde4/object/pikapuffi-common.png",
+    "animation_url": "https://storage.pokemoonapis.com/context/token/fde4/object/pikapuffi-common.glb",
+    "name": "Pikapuff Common"
+  },
+  "22": {
+    "attributes": [
+      { "trait_type": "Denomination", "value": "Turtlelizard" },
+      { "trait_type": "MoonLabel", "value": "C" },
+      { "trait_type": "Class", "value": "Fire" },
+      { "trait_type": "HP", "value": 70 },
+      { "trait_type": "Height", "value": 1.1 },
+      { "trait_type": "Weight", "value": 20 },
+      { "trait_type": "Stamina", "value": 20 },
+      { "trait_type": "Storm", "value": 30 },
+      {
+        "display_type": "Booster",
+        "trait_type": "JetPack",
+        "max_value": 16,
+        "value": 5
+      },
+      { "display_type": "number", "trait_type": "Generation", "value": 1 }
+    ],
+    "description": "Favorite start Pokemoon of the nicotine addicted trainer.",
+    "external_url": "https://storage.pokemoonapis.com/context/token/fde4/identifier/22000000",
+    "image": "https://storage.pokemoonapis.com/context/token/fde4/object/squirder-common.png",
+    "animation_url": "https://storage.pokemoonapis.com/context/token/fde4/object/squirder-common.glb",
+    "name": "Squirder Common"
+  },
+  "23": {
+    "attributes": [
+      { "trait_type": "Denomination", "value": "BlastardII" },
+      { "trait_type": "MoonLabel", "value": "C" },
+      { "trait_type": "Class", "value": "Fire" },
+      { "trait_type": "HP", "value": 220 },
+      { "trait_type": "Length", "value": 1 },
+      { "trait_type": "Weight", "value": 1 },
+      { "trait_type": "Stamina", "value": 120 },
+      {
+        "display_type": "Booster",
+        "trait_type": "JetPack",
+        "max_value": 16,
+        "value": 8
+      },
+      { "display_type": "number", "trait_type": "Generation", "value": 1 }
+    ],
+    "description": "All Gas, Some Brakes.",
+    "external_url": "https://storage.pokemoonapis.com/context/token/fde4/identifier/23000000",
+    "image": "https://storage.pokemoonapis.com/context/token/fde4/object/blastardii-common.png",
+    "animation_url": "https://storage.pokemoonapis.com/context/token/fde4/object/blastardii-common.glb",
+    "name": "Blastard Common"
+  },
+  "24": {
+    "attributes": [
+      { "trait_type": "Denomination", "value": "Turtlelizard" },
+      { "trait_type": "MoonLabel", "value": "C" },
+      { "trait_type": "Class", "value": "Fire" },
+      { "trait_type": "HP", "value": 120 },
+      { "trait_type": "Height", "value": 3.5 },
+      { "trait_type": "Weight", "value": 45 },
+      { "trait_type": "Stamina", "value": 80 },
+      {
+        "display_type": "Booster",
+        "trait_type": "JetPack",
+        "max_value": 16,
+        "value": 6
+      },
+      { "display_type": "number", "trait_type": "Generation", "value": 1 }
+    ],
+    "description": "Chartortles are known to reheat banana and anchovy pizza with the flame from their firey tails.",
+    "external_url": "https://storage.pokemoonapis.com/context/token/fde4/identifier/24000000",
+    "image": "https://storage.pokemoonapis.com/context/token/fde4/object/chartortle-common.png",
+    "animation_url": "https://storage.pokemoonapis.com/context/token/fde4/object/chartortle-common.glb",
+    "name": "Chartortle Common"
+  },
+  "25": {
+    "attributes": [
+      { "trait_type": "Denomination", "value": "Pikapuff" },
+      { "trait_type": "MoonLabel", "value": "C" },
+      { "trait_type": "Class", "value": "Lightning" },
+      { "trait_type": "HP", "value": 70 },
+      { "trait_type": "Length", "value": 1 },
+      { "trait_type": "Weight", "value": 1 },
+      { "trait_type": "Stamina", "value": 30 },
+      {
+        "display_type": "Booster",
+        "trait_type": "JetPack",
+        "max_value": 16,
+        "value": 3
+      },
+      { "display_type": "number", "trait_type": "Generation", "value": 1 }
+    ],
+    "description": "I woke up under the table with a splitting headache, smoke coming out of my ears... and an unconquerable urge to buy a ticket to her next show.",
+    "external_url": "https://storage.pokemoonapis.com/context/token/fde4/identifier/25000000",
+    "image": "https://storage.pokemoonapis.com/context/token/fde4/object/pikapuffii-common.png",
+    "animation_url": "https://storage.pokemoonapis.com/context/token/fde4/object/pikapuffii-common.glb",
+    "name": "Pikapuff Common"
+  },
+  "26": {
+    "attributes": [
+      { "trait_type": "Denomination", "value": "RashScratchum" },
+      { "trait_type": "MoonLabel", "value": "UC" },
+      { "trait_type": "Class", "value": "Supporter" },
+      { "trait_type": "HP", "value": 1 },
+      { "trait_type": "Length", "value": 1.1 },
+      { "trait_type": "Weight", "value": 1 },
+      { "trait_type": "Stamina", "value": 1 },
+      {
+        "display_type": "Booster",
+        "trait_type": "JetPack",
+        "max_value": 16,
+        "value": 15
+      },
+      { "display_type": "number", "trait_type": "Generation", "value": 1 }
+    ],
+    "description": "You may play only I Supporter card during your turn. (Before your attack).",
+    "external_url": "https://storage.pokemoonapis.com/context/token/fde4/identifier/26000000",
+    "image": "https://storage.pokemoonapis.com/context/token/fde4/object/rashscratchum-uncommon.png",
+    "animation_url": "https://storage.pokemoonapis.com/context/token/fde4/object/rashscratchum-uncommon.glb",
+    "name": "RashScratchum Uncommon"
+  },
+  "27": {
+    "attributes": [
+      { "trait_type": "Denomination", "value": "Veggierat" },
+      { "trait_type": "MoonLabel", "value": "UC" },
+      { "trait_type": "Class", "value": "Grass" },
+      { "trait_type": "HP", "value": 60 },
+      { "trait_type": "Height", "value": 1 },
+      { "trait_type": "Weight", "value": 6 },
+      { "trait_type": "Stamina", "value": 10 },
+      {
+        "display_type": "Booster",
+        "trait_type": "JetPack",
+        "max_value": 16,
+        "value": 4
+      },
+      { "display_type": "number", "trait_type": "Generation", "value": 1 }
+    ],
+    "description": "There are rodents who can cook, and those who teach Kung Fu. But some of them just wish to sit and contemplate the view.",
+    "external_url": "https://storage.pokemoonapis.com/context/token/fde4/identifier/27000000",
+    "image": "https://storage.pokemoonapis.com/context/token/fde4/object/rattish-uncommon.png",
+    "animation_url": "https://storage.pokemoonapis.com/context/token/fde4/object/rattish-uncommon.glb",
+    "name": "Rattish Uncommon"
+  },
+  "28": {
+    "attributes": [
+      { "trait_type": "Denomination", "value": "StormBird" },
+      { "trait_type": "MoonLabel", "value": "UC" },
+      { "trait_type": "Class", "value": "Lightning" },
+      { "trait_type": "HP", "value": 180 },
+      { "trait_type": "Height", "value": 7.6 },
+      { "trait_type": "Weight", "value": 200 },
+      { "trait_type": "Stamina", "value": 50 },
+      { "trait_type": "Storm", "value": 120 },
+      {
+        "display_type": "Booster",
+        "trait_type": "JetPack",
+        "max_value": 16,
+        "value": 11
+      },
+      { "display_type": "number", "trait_type": "Generation", "value": 1 }
+    ],
+    "description": "Strike one, you're out.",
+    "external_url": "https://storage.pokemoonapis.com/context/token/fde4/identifier/28000000",
+    "image": "https://storage.pokemoonapis.com/context/token/fde4/object/zapduck-uncommon.png",
+    "animation_url": "https://storage.pokemoonapis.com/context/token/fde4/object/zapduck-uncommon.glb",
+    "name": "Zapduck Uncommon"
+  },
+  "29": {
+    "attributes": [
+      { "trait_type": "Denomination", "value": "ChangeTeams" },
+      { "trait_type": "MoonLabel", "value": "UC" },
+      { "trait_type": "Class", "value": "Supporter" },
+      { "trait_type": "HP", "value": 1 },
+      { "trait_type": "Length", "value": 1 },
+      { "trait_type": "Weight", "value": 1 },
+      { "trait_type": "Stamina", "value": 1 },
+      {
+        "display_type": "Booster",
+        "trait_type": "JetPack",
+        "max_value": 16,
+        "value": 14
+      },
+      { "display_type": "number", "trait_type": "Generation", "value": 1 }
+    ],
+    "description": "You may play only I Supporter card during your turn. (Before your attack).",
+    "external_url": "https://storage.pokemoonapis.com/context/token/fde4/identifier/29000000",
+    "image": "https://storage.pokemoonapis.com/context/token/fde4/object/changeteams-uncommon.png",
+    "animation_url": "https://storage.pokemoonapis.com/context/token/fde4/object/changeteams-uncommon.glb",
+    "name": "ChangeTeams Uncommon"
+  },
+  "30": {
+    "attributes": [
+      { "trait_type": "Denomination", "value": "Turtlelizard" },
+      { "trait_type": "MoonLabel", "value": "UC" },
+      { "trait_type": "Class", "value": "Fire" },
+      { "trait_type": "HP", "value": 120 },
+      { "trait_type": "Height", "value": 3.5 },
+      { "trait_type": "Weight", "value": 45 },
+      { "trait_type": "Stamina", "value": 80 },
+      {
+        "display_type": "Booster",
+        "trait_type": "JetPack",
+        "max_value": 16,
+        "value": 6
+      },
+      { "display_type": "number", "trait_type": "Generation", "value": 1 }
+    ],
+    "description": "Chartortles are known to reheat banana and anchovy pizza with the flame from their firey tails.",
+    "external_url": "https://storage.pokemoonapis.com/context/token/fde4/identifier/30000000",
+    "image": "https://storage.pokemoonapis.com/context/token/fde4/object/chartortle-uncommon.png",
+    "animation_url": "https://storage.pokemoonapis.com/context/token/fde4/object/chartortle-uncommon.glb",
+    "name": "Chartortle Uncommon"
+  },
+  "31": {
+    "attributes": [
+      { "trait_type": "Denomination", "value": "Mooncat" },
+      { "trait_type": "MoonLabel", "value": "UC" },
+      { "trait_type": "Class", "value": "Psychic" },
+      { "trait_type": "HP", "value": 80 },
+      { "trait_type": "Length", "value": 1.7 },
+      { "trait_type": "Weight", "value": 15 },
+      { "trait_type": "Stamina", "value": 30 },
+      {
+        "display_type": "Booster",
+        "trait_type": "JetPack",
+        "max_value": 16,
+        "value": 1
+      },
+      { "display_type": "number", "trait_type": "Generation", "value": 1 }
+    ],
+    "description": "Legend says that the bioluminescent coin in a Meownaut's chest is the source of its resilience and good fortune.",
+    "external_url": "https://storage.pokemoonapis.com/context/token/fde4/identifier/31000000",
+    "image": "https://storage.pokemoonapis.com/context/token/fde4/object/meownaut-uncommon.png",
+    "animation_url": "https://storage.pokemoonapis.com/context/token/fde4/object/meownaut-uncommon.glb",
+    "name": "Meownaut Uncommon"
+  },
+  "32": {
+    "attributes": [
+      { "trait_type": "Denomination", "value": "GoldenKobanII" },
+      { "trait_type": "MoonLabel", "value": "UC" },
+      { "trait_type": "Class", "value": "Item" },
+      { "trait_type": "HP", "value": 1 },
+      { "trait_type": "Length", "value": 1 },
+      { "trait_type": "Weight", "value": 1 },
+      { "trait_type": "Stamina", "value": 1 },
+      {
+        "display_type": "Booster",
+        "trait_type": "JetPack",
+        "max_value": 16,
+        "value": 13
+      },
+      { "display_type": "number", "trait_type": "Generation", "value": 1 }
+    ],
+    "description": "You may play two energy cards this turn.",
+    "external_url": "https://storage.pokemoonapis.com/context/token/fde4/identifier/32000000",
+    "image": "https://storage.pokemoonapis.com/context/token/fde4/object/goldenkobanii-uncommon.png",
+    "animation_url": "https://storage.pokemoonapis.com/context/token/fde4/object/goldenkobanii-uncommon.glb",
+    "name": "GoldenKoban Uncommon"
+  },
+  "33": {
+    "attributes": [
+      { "trait_type": "Denomination", "value": "ElectricFluff" },
+      { "trait_type": "MoonLabel", "value": "UC" },
+      { "trait_type": "Class", "value": "Lightning" },
+      { "trait_type": "HP", "value": 70 },
+      { "trait_type": "Height", "value": 1.8 },
+      { "trait_type": "Weight", "value": 13 },
+      { "trait_type": "Stamina", "value": 1 },
+      {
+        "display_type": "Booster",
+        "trait_type": "JetPack",
+        "max_value": 16,
+        "value": 2
+      },
+      { "display_type": "number", "trait_type": "Generation", "value": 1 }
+    ],
+    "description": "That's gonna be a hit.",
+    "external_url": "https://storage.pokemoonapis.com/context/token/fde4/identifier/33000000",
+    "image": "https://storage.pokemoonapis.com/context/token/fde4/object/pikapuffi-uncommon.png",
+    "animation_url": "https://storage.pokemoonapis.com/context/token/fde4/object/pikapuffi-uncommon.glb",
+    "name": "Pikapuff Uncommon"
+  },
+  "34": {
+    "attributes": [
+      { "trait_type": "Denomination", "value": "WarriorChef" },
+      { "trait_type": "MoonLabel", "value": "UC" },
+      { "trait_type": "Class", "value": "Psychic" },
+      { "trait_type": "HP", "value": 200 },
+      { "trait_type": "Height", "value": 9.9 },
+      { "trait_type": "Weight", "value": 800 },
+      { "trait_type": "Stamina", "value": 150 },
+      {
+        "display_type": "Booster",
+        "trait_type": "JetPack",
+        "max_value": 16,
+        "value": 9
+      },
+      { "display_type": "number", "trait_type": "Generation", "value": 1 }
+    ],
+    "description": "Contrary to popular belief, it's not alway pleasant getting big spooned.",
+    "external_url": "https://storage.pokemoonapis.com/context/token/fde4/identifier/34000000",
+    "image": "https://storage.pokemoonapis.com/context/token/fde4/object/kadalax-uncommon.png",
+    "animation_url": "https://storage.pokemoonapis.com/context/token/fde4/object/kadalax-uncommon.glb",
+    "name": "Kadalax Uncommon"
+  },
+  "35": {
+    "attributes": [
+      { "trait_type": "Denomination", "value": "BlastardI" },
+      { "trait_type": "MoonLabel", "value": "UC" },
+      { "trait_type": "Class", "value": "Fire" },
+      { "trait_type": "HP", "value": 220 },
+      { "trait_type": "Length", "value": 1.1 },
+      { "trait_type": "Weight", "value": 1 },
+      { "trait_type": "Stamina", "value": 120 },
+      {
+        "display_type": "Booster",
+        "trait_type": "JetPack",
+        "max_value": 16,
+        "value": 7
+      },
+      { "display_type": "number", "trait_type": "Generation", "value": 1 }
+    ],
+    "description": "Need a light?",
+    "external_url": "https://storage.pokemoonapis.com/context/token/fde4/identifier/35000000",
+    "image": "https://storage.pokemoonapis.com/context/token/fde4/object/blastardi-uncommon.png",
+    "animation_url": "https://storage.pokemoonapis.com/context/token/fde4/object/blastardi-uncommon.glb",
+    "name": "Blastard Uncommon"
+  },
+  "36": {
+    "attributes": [
+      { "trait_type": "Denomination", "value": "GoldenKobanI" },
+      { "trait_type": "MoonLabel", "value": "UC" },
+      { "trait_type": "Class", "value": "Item" },
+      { "trait_type": "HP", "value": 1 },
+      { "trait_type": "Length", "value": 1 },
+      { "trait_type": "Weight", "value": 1 },
+      { "trait_type": "Stamina", "value": 1 },
+      {
+        "display_type": "Booster",
+        "trait_type": "JetPack",
+        "max_value": 16,
+        "value": 12
+      },
+      { "display_type": "number", "trait_type": "Generation", "value": 1 }
+    ],
+    "description": "You may play two energy cards this turn.",
+    "external_url": "https://storage.pokemoonapis.com/context/token/fde4/identifier/36000000",
+    "image": "https://storage.pokemoonapis.com/context/token/fde4/object/goldenkobani-uncommon.png",
+    "animation_url": "https://storage.pokemoonapis.com/context/token/fde4/object/goldenkobani-uncommon.glb",
+    "name": "GoldenKoban Uncommon"
+  },
+  "37": {
+    "attributes": [
+      { "trait_type": "Denomination", "value": "KadalaxSlim" },
+      { "trait_type": "MoonLabel", "value": "UC" },
+      { "trait_type": "Class", "value": "Psychic" },
+      { "trait_type": "HP", "value": 160 },
+      { "trait_type": "Length", "value": 1.1 },
+      { "trait_type": "Weight", "value": 1 },
+      { "trait_type": "Stamina", "value": 40 },
+      {
+        "display_type": "Booster",
+        "trait_type": "JetPack",
+        "max_value": 16,
+        "value": 10
+      },
+      { "display_type": "number", "trait_type": "Generation", "value": 1 }
+    ],
+    "description": "Some Kadalax, having conquered their material vices, are able to sustain themselves off air and thought alone.",
+    "external_url": "https://storage.pokemoonapis.com/context/token/fde4/identifier/37000000",
+    "image": "https://storage.pokemoonapis.com/context/token/fde4/object/kadalaxslim-uncommon.png",
+    "animation_url": "https://storage.pokemoonapis.com/context/token/fde4/object/kadalaxslim-uncommon.glb",
+    "name": "KadalaxSlim Uncommon"
+  },
+  "38": {
+    "attributes": [
+      { "trait_type": "Denomination", "value": "Turtlelizard" },
+      { "trait_type": "MoonLabel", "value": "UC" },
+      { "trait_type": "Class", "value": "Fire" },
+      { "trait_type": "HP", "value": 70 },
+      { "trait_type": "Height", "value": 1.1 },
+      { "trait_type": "Weight", "value": 20 },
+      { "trait_type": "Stamina", "value": 20 },
+      { "trait_type": "Storm", "value": 30 },
+      {
+        "display_type": "Booster",
+        "trait_type": "JetPack",
+        "max_value": 16,
+        "value": 5
+      },
+      { "display_type": "number", "trait_type": "Generation", "value": 1 }
+    ],
+    "description": "Favorite start Pokemoon of the nicotine addicted trainer.",
+    "external_url": "https://storage.pokemoonapis.com/context/token/fde4/identifier/38000000",
+    "image": "https://storage.pokemoonapis.com/context/token/fde4/object/squirder-uncommon.png",
+    "animation_url": "https://storage.pokemoonapis.com/context/token/fde4/object/squirder-uncommon.glb",
+    "name": "Squirder Uncommon"
+  },
+  "39": {
+    "attributes": [
+      { "trait_type": "Denomination", "value": "Pikapuff" },
+      { "trait_type": "MoonLabel", "value": "UC" },
+      { "trait_type": "Class", "value": "Lightning" },
+      { "trait_type": "HP", "value": 70 },
+      { "trait_type": "Length", "value": 1 },
+      { "trait_type": "Weight", "value": 1 },
+      { "trait_type": "Stamina", "value": 30 },
+      {
+        "display_type": "Booster",
+        "trait_type": "JetPack",
+        "max_value": 16,
+        "value": 3
+      },
+      { "display_type": "number", "trait_type": "Generation", "value": 1 }
+    ],
+    "description": "I woke up under the table with a splitting headache, smoke coming out of my ears... and an unconquerable urge to buy a ticket to her next show.",
+    "external_url": "https://storage.pokemoonapis.com/context/token/fde4/identifier/39000000",
+    "image": "https://storage.pokemoonapis.com/context/token/fde4/object/pikapuffii-uncommon.png",
+    "animation_url": "https://storage.pokemoonapis.com/context/token/fde4/object/pikapuffii-uncommon.glb",
+    "name": "Pikapuff Uncommon"
+  },
+  "40": {
+    "attributes": [
+      { "trait_type": "Denomination", "value": "BlastardII" },
+      { "trait_type": "MoonLabel", "value": "UC" },
+      { "trait_type": "Class", "value": "Fire" },
+      { "trait_type": "HP", "value": 220 },
+      { "trait_type": "Length", "value": 1 },
+      { "trait_type": "Weight", "value": 1 },
+      { "trait_type": "Stamina", "value": 120 },
+      {
+        "display_type": "Booster",
+        "trait_type": "JetPack",
+        "max_value": 16,
+        "value": 8
+      },
+      { "display_type": "number", "trait_type": "Generation", "value": 1 }
+    ],
+    "description": "All Gas, Some Brakes.",
+    "external_url": "https://storage.pokemoonapis.com/context/token/fde4/identifier/40000000",
+    "image": "https://storage.pokemoonapis.com/context/token/fde4/object/blastardii-uncommon.png",
+    "animation_url": "https://storage.pokemoonapis.com/context/token/fde4/object/blastardii-uncommon.glb",
+    "name": "Blastard Uncommon"
+  },
+  "41": {
+    "attributes": [
+      { "trait_type": "Denomination", "value": "Pikapuff" },
+      { "trait_type": "MoonLabel", "value": "R" },
+      { "trait_type": "Class", "value": "Lightning" },
+      { "trait_type": "HP", "value": 70 },
+      { "trait_type": "Length", "value": 1 },
+      { "trait_type": "Weight", "value": 1 },
+      { "trait_type": "Stamina", "value": 30 },
+      {
+        "display_type": "Booster",
+        "trait_type": "JetPack",
+        "max_value": 16,
+        "value": 3
+      },
+      { "display_type": "number", "trait_type": "Generation", "value": 1 }
+    ],
+    "description": "I woke up under the table with a splitting headache, smoke coming out of my ears... and an unconquerable urge to buy a ticket to her next show.",
+    "external_url": "https://storage.pokemoonapis.com/context/token/fde4/identifier/41000000",
+    "image": "https://storage.pokemoonapis.com/context/token/fde4/object/pikapuffii-rare.png",
+    "animation_url": "https://storage.pokemoonapis.com/context/token/fde4/object/pikapuffii-rare.glb",
+    "name": "Pikapuff Rare"
+  },
+  "42": {
+    "attributes": [
+      { "trait_type": "Denomination", "value": "GoldenKobanII" },
+      { "trait_type": "MoonLabel", "value": "R" },
+      { "trait_type": "Class", "value": "Item" },
+      { "trait_type": "HP", "value": 1 },
+      { "trait_type": "Length", "value": 1 },
+      { "trait_type": "Weight", "value": 1 },
+      { "trait_type": "Stamina", "value": 1 },
+      {
+        "display_type": "Booster",
+        "trait_type": "JetPack",
+        "max_value": 16,
+        "value": 13
+      },
+      { "display_type": "number", "trait_type": "Generation", "value": 1 }
+    ],
+    "description": "You may play two energy cards this turn.",
+    "external_url": "https://storage.pokemoonapis.com/context/token/fde4/identifier/42000000",
+    "image": "https://storage.pokemoonapis.com/context/token/fde4/object/goldenkobanii-rare.png",
+    "animation_url": "https://storage.pokemoonapis.com/context/token/fde4/object/goldenkobanii-rare.glb",
+    "name": "GoldenKoban Rare"
+  },
+  "43": {
+    "attributes": [
+      { "trait_type": "Denomination", "value": "RashScratchum" },
+      { "trait_type": "MoonLabel", "value": "R" },
+      { "trait_type": "Class", "value": "Supporter" },
+      { "trait_type": "HP", "value": 1 },
+      { "trait_type": "Length", "value": 1.1 },
+      { "trait_type": "Weight", "value": 1 },
+      { "trait_type": "Stamina", "value": 1 },
+      {
+        "display_type": "Booster",
+        "trait_type": "JetPack",
+        "max_value": 16,
+        "value": 15
+      },
+      { "display_type": "number", "trait_type": "Generation", "value": 1 }
+    ],
+    "description": "You may play only I Supporter card during your turn. (Before your attack).",
+    "external_url": "https://storage.pokemoonapis.com/context/token/fde4/identifier/43000000",
+    "image": "https://storage.pokemoonapis.com/context/token/fde4/object/rashscratchum-rare.png",
+    "animation_url": "https://storage.pokemoonapis.com/context/token/fde4/object/rashscratchum-rare.glb",
+    "name": "RashScratchum Rare"
+  },
+  "44": {
+    "attributes": [
+      { "trait_type": "Denomination", "value": "StormBird" },
+      { "trait_type": "MoonLabel", "value": "R" },
+      { "trait_type": "Class", "value": "Lightning" },
+      { "trait_type": "HP", "value": 180 },
+      { "trait_type": "Height", "value": 7.6 },
+      { "trait_type": "Weight", "value": 200 },
+      { "trait_type": "Stamina", "value": 50 },
+      { "trait_type": "Storm", "value": 120 },
+      {
+        "display_type": "Booster",
+        "trait_type": "JetPack",
+        "max_value": 16,
+        "value": 11
+      },
+      { "display_type": "number", "trait_type": "Generation", "value": 1 }
+    ],
+    "description": "Strike one, you're out.",
+    "external_url": "https://storage.pokemoonapis.com/context/token/fde4/identifier/44000000",
+    "image": "https://storage.pokemoonapis.com/context/token/fde4/object/zapduck-rare.png",
+    "animation_url": "https://storage.pokemoonapis.com/context/token/fde4/object/zapduck-rare.glb",
+    "name": "Zapduck Rare"
+  },
+  "45": {
+    "attributes": [
+      { "trait_type": "Denomination", "value": "KadalaxSlim" },
+      { "trait_type": "MoonLabel", "value": "R" },
+      { "trait_type": "Class", "value": "Psychic" },
+      { "trait_type": "HP", "value": 160 },
+      { "trait_type": "Length", "value": 1.1 },
+      { "trait_type": "Weight", "value": 1 },
+      { "trait_type": "Stamina", "value": 40 },
+      {
+        "display_type": "Booster",
+        "trait_type": "JetPack",
+        "max_value": 16,
+        "value": 10
+      },
+      { "display_type": "number", "trait_type": "Generation", "value": 1 }
+    ],
+    "description": "Some Kadalax, having conquered their material vices, are able to sustain themselves off air and thought alone.",
+    "external_url": "https://storage.pokemoonapis.com/context/token/fde4/identifier/45000000",
+    "image": "https://storage.pokemoonapis.com/context/token/fde4/object/kadalaxslim-rare.png",
+    "animation_url": "https://storage.pokemoonapis.com/context/token/fde4/object/kadalaxslim-rare.glb",
+    "name": "KadalaxSlim Rare"
+  },
+  "46": {
+    "attributes": [
+      { "trait_type": "Denomination", "value": "Turtlelizard" },
+      { "trait_type": "MoonLabel", "value": "R" },
+      { "trait_type": "Class", "value": "Fire" },
+      { "trait_type": "HP", "value": 70 },
+      { "trait_type": "Height", "value": 1.1 },
+      { "trait_type": "Weight", "value": 20 },
+      { "trait_type": "Stamina", "value": 20 },
+      { "trait_type": "Storm", "value": 30 },
+      {
+        "display_type": "Booster",
+        "trait_type": "JetPack",
+        "max_value": 16,
+        "value": 5
+      },
+      { "display_type": "number", "trait_type": "Generation", "value": 1 }
+    ],
+    "description": "Favorite start Pokemoon of the nicotine addicted trainer.",
+    "external_url": "https://storage.pokemoonapis.com/context/token/fde4/identifier/46000000",
+    "image": "https://storage.pokemoonapis.com/context/token/fde4/object/squirder-rare.png",
+    "animation_url": "https://storage.pokemoonapis.com/context/token/fde4/object/squirder-rare.glb",
+    "name": "Squirder Rare"
+  },
+  "47": {
+    "attributes": [
+      { "trait_type": "Denomination", "value": "Veggierat" },
+      { "trait_type": "MoonLabel", "value": "R" },
+      { "trait_type": "Class", "value": "Grass" },
+      { "trait_type": "HP", "value": 60 },
+      { "trait_type": "Height", "value": 1 },
+      { "trait_type": "Weight", "value": 6 },
+      { "trait_type": "Stamina", "value": 10 },
+      {
+        "display_type": "Booster",
+        "trait_type": "JetPack",
+        "max_value": 16,
+        "value": 4
+      },
+      { "display_type": "number", "trait_type": "Generation", "value": 1 }
+    ],
+    "description": "There are rodents who can cook, and those who teach Kung Fu. But some of them just wish to sit and contemplate the view.",
+    "external_url": "https://storage.pokemoonapis.com/context/token/fde4/identifier/47000000",
+    "image": "https://storage.pokemoonapis.com/context/token/fde4/object/rattish-rare.png",
+    "animation_url": "https://storage.pokemoonapis.com/context/token/fde4/object/rattish-rare.glb",
+    "name": "Rattish Rare"
+  },
+  "48": {
+    "attributes": [
+      { "trait_type": "Denomination", "value": "WarriorChef" },
+      { "trait_type": "MoonLabel", "value": "R" },
+      { "trait_type": "Class", "value": "Psychic" },
+      { "trait_type": "HP", "value": 200 },
+      { "trait_type": "Height", "value": 9.9 },
+      { "trait_type": "Weight", "value": 800 },
+      { "trait_type": "Stamina", "value": 150 },
+      {
+        "display_type": "Booster",
+        "trait_type": "JetPack",
+        "max_value": 16,
+        "value": 9
+      },
+      { "display_type": "number", "trait_type": "Generation", "value": 1 }
+    ],
+    "description": "Contrary to popular belief, it's not alway pleasant getting big spooned.",
+    "external_url": "https://storage.pokemoonapis.com/context/token/fde4/identifier/48000000",
+    "image": "https://storage.pokemoonapis.com/context/token/fde4/object/kadalax-rare.png",
+    "animation_url": "https://storage.pokemoonapis.com/context/token/fde4/object/kadalax-rare.glb",
+    "name": "Kadalax Rare"
+  },
+  "49": {
+    "attributes": [
+      { "trait_type": "Denomination", "value": "BlastardI" },
+      { "trait_type": "MoonLabel", "value": "R" },
+      { "trait_type": "Class", "value": "Fire" },
+      { "trait_type": "HP", "value": 220 },
+      { "trait_type": "Length", "value": 1.1 },
+      { "trait_type": "Weight", "value": 1 },
+      { "trait_type": "Stamina", "value": 120 },
+      {
+        "display_type": "Booster",
+        "trait_type": "JetPack",
+        "max_value": 16,
+        "value": 7
+      },
+      { "display_type": "number", "trait_type": "Generation", "value": 1 }
+    ],
+    "description": "Need a light?",
+    "external_url": "https://storage.pokemoonapis.com/context/token/fde4/identifier/49000000",
+    "image": "https://storage.pokemoonapis.com/context/token/fde4/object/blastardi-rare.png",
+    "animation_url": "https://storage.pokemoonapis.com/context/token/fde4/object/blastardi-rare.glb",
+    "name": "Blastard Rare"
+  },
+  "50": {
+    "attributes": [
+      { "trait_type": "Denomination", "value": "GoldenKobanI" },
+      { "trait_type": "MoonLabel", "value": "R" },
+      { "trait_type": "Class", "value": "Item" },
+      { "trait_type": "HP", "value": 1 },
+      { "trait_type": "Length", "value": 1 },
+      { "trait_type": "Weight", "value": 1 },
+      { "trait_type": "Stamina", "value": 1 },
+      {
+        "display_type": "Booster",
+        "trait_type": "JetPack",
+        "max_value": 16,
+        "value": 12
+      },
+      { "display_type": "number", "trait_type": "Generation", "value": 1 }
+    ],
+    "description": "You may play two energy cards this turn.",
+    "external_url": "https://storage.pokemoonapis.com/context/token/fde4/identifier/50000000",
+    "image": "https://storage.pokemoonapis.com/context/token/fde4/object/goldenkobani-rare.png",
+    "animation_url": "https://storage.pokemoonapis.com/context/token/fde4/object/goldenkobani-rare.glb",
+    "name": "GoldenKoban Rare"
+  },
+  "51": {
+    "attributes": [
+      { "trait_type": "Denomination", "value": "Turtlelizard" },
+      { "trait_type": "MoonLabel", "value": "R" },
+      { "trait_type": "Class", "value": "Fire" },
+      { "trait_type": "HP", "value": 120 },
+      { "trait_type": "Height", "value": 3.5 },
+      { "trait_type": "Weight", "value": 45 },
+      { "trait_type": "Stamina", "value": 80 },
+      {
+        "display_type": "Booster",
+        "trait_type": "JetPack",
+        "max_value": 16,
+        "value": 6
+      },
+      { "display_type": "number", "trait_type": "Generation", "value": 1 }
+    ],
+    "description": "Chartortles are known to reheat banana and anchovy pizza with the flame from their firey tails.",
+    "external_url": "https://storage.pokemoonapis.com/context/token/fde4/identifier/51000000",
+    "image": "https://storage.pokemoonapis.com/context/token/fde4/object/chartortle-rare.png",
+    "animation_url": "https://storage.pokemoonapis.com/context/token/fde4/object/chartortle-rare.glb",
+    "name": "Chartortle Rare"
+  },
+  "52": {
+    "attributes": [
+      { "trait_type": "Denomination", "value": "ChangeTeams" },
+      { "trait_type": "MoonLabel", "value": "R" },
+      { "trait_type": "Class", "value": "Supporter" },
+      { "trait_type": "HP", "value": 1 },
+      { "trait_type": "Length", "value": 1 },
+      { "trait_type": "Weight", "value": 1 },
+      { "trait_type": "Stamina", "value": 1 },
+      {
+        "display_type": "Booster",
+        "trait_type": "JetPack",
+        "max_value": 16,
+        "value": 14
+      },
+      { "display_type": "number", "trait_type": "Generation", "value": 1 }
+    ],
+    "description": "You may play only I Supporter card during your turn. (Before your attack).",
+    "external_url": "https://storage.pokemoonapis.com/context/token/fde4/identifier/52000000",
+    "image": "https://storage.pokemoonapis.com/context/token/fde4/object/changeteams-rare.png",
+    "animation_url": "https://storage.pokemoonapis.com/context/token/fde4/object/changeteams-rare.glb",
+    "name": "ChangeTeams Rare"
+  },
+  "53": {
+    "attributes": [
+      { "trait_type": "Denomination", "value": "ElectricFluff" },
+      { "trait_type": "MoonLabel", "value": "R" },
+      { "trait_type": "Class", "value": "Lightning" },
+      { "trait_type": "HP", "value": 70 },
+      { "trait_type": "Height", "value": 1.8 },
+      { "trait_type": "Weight", "value": 13 },
+      { "trait_type": "Stamina", "value": 1 },
+      {
+        "display_type": "Booster",
+        "trait_type": "JetPack",
+        "max_value": 16,
+        "value": 2
+      },
+      { "display_type": "number", "trait_type": "Generation", "value": 1 }
+    ],
+    "description": "That's gonna be a hit.",
+    "external_url": "https://storage.pokemoonapis.com/context/token/fde4/identifier/53000000",
+    "image": "https://storage.pokemoonapis.com/context/token/fde4/object/pikapuffi-rare.png",
+    "animation_url": "https://storage.pokemoonapis.com/context/token/fde4/object/pikapuffi-rare.glb",
+    "name": "Pikapuff Rare"
+  },
+  "54": {
+    "attributes": [
+      { "trait_type": "Denomination", "value": "Mooncat" },
+      { "trait_type": "MoonLabel", "value": "R" },
+      { "trait_type": "Class", "value": "Psychic" },
+      { "trait_type": "HP", "value": 80 },
+      { "trait_type": "Length", "value": 1.7 },
+      { "trait_type": "Weight", "value": 15 },
+      { "trait_type": "Stamina", "value": 30 },
+      {
+        "display_type": "Booster",
+        "trait_type": "JetPack",
+        "max_value": 16,
+        "value": 1
+      },
+      { "display_type": "number", "trait_type": "Generation", "value": 1 }
+    ],
+    "description": "Legend says that the bioluminescent coin in a Meownaut's chest is the source of its resilience and good fortune.",
+    "external_url": "https://storage.pokemoonapis.com/context/token/fde4/identifier/54000000",
+    "image": "https://storage.pokemoonapis.com/context/token/fde4/object/meownaut-rare.png",
+    "animation_url": "https://storage.pokemoonapis.com/context/token/fde4/object/meownaut-rare.glb",
+    "name": "Meownaut Rare"
+  },
+  "55": {
+    "attributes": [
+      { "trait_type": "Denomination", "value": "BlastardII" },
+      { "trait_type": "MoonLabel", "value": "R" },
+      { "trait_type": "Class", "value": "Fire" },
+      { "trait_type": "HP", "value": 220 },
+      { "trait_type": "Length", "value": 1 },
+      { "trait_type": "Weight", "value": 1 },
+      { "trait_type": "Stamina", "value": 120 },
+      {
+        "display_type": "Booster",
+        "trait_type": "JetPack",
+        "max_value": 16,
+        "value": 8
+      },
+      { "display_type": "number", "trait_type": "Generation", "value": 1 }
+    ],
+    "description": "All Gas, Some Brakes.",
+    "external_url": "https://storage.pokemoonapis.com/context/token/fde4/identifier/55000000",
+    "image": "https://storage.pokemoonapis.com/context/token/fde4/object/blastardii-rare.png",
+    "animation_url": "https://storage.pokemoonapis.com/context/token/fde4/object/blastardii-rare.glb",
+    "name": "Blastard Rare"
+  },
+  "56": {
+    "attributes": [
+      { "trait_type": "Denomination", "value": "RashScratchum" },
+      { "trait_type": "MoonLabel", "value": "L" },
+      { "trait_type": "Class", "value": "Supporter" },
+      { "trait_type": "HP", "value": 1 },
+      { "trait_type": "Length", "value": 1.1 },
+      { "trait_type": "Weight", "value": 1 },
+      { "trait_type": "Stamina", "value": 1 },
+      {
+        "display_type": "Booster",
+        "trait_type": "JetPack",
+        "max_value": 16,
+        "value": 15
+      },
+      { "display_type": "number", "trait_type": "Generation", "value": 1 }
+    ],
+    "description": "You may play only I Supporter card during your turn. (Before your attack).",
+    "external_url": "https://storage.pokemoonapis.com/context/token/fde4/identifier/56000000",
+    "image": "https://storage.pokemoonapis.com/context/token/fde4/object/rashscratchum-legend.png",
+    "animation_url": "https://storage.pokemoonapis.com/context/token/fde4/object/rashscratchum-legend.glb",
+    "name": "RashScratchum Legend"
+  },
+  "57": {
+    "attributes": [
+      { "trait_type": "Denomination", "value": "StormBird" },
+      { "trait_type": "MoonLabel", "value": "L" },
+      { "trait_type": "Class", "value": "Lightning" },
+      { "trait_type": "HP", "value": 180 },
+      { "trait_type": "Height", "value": 7.6 },
+      { "trait_type": "Weight", "value": 200 },
+      { "trait_type": "Stamina", "value": 50 },
+      { "trait_type": "Storm", "value": 120 },
+      {
+        "display_type": "Booster",
+        "trait_type": "JetPack",
+        "max_value": 16,
+        "value": 11
+      },
+      { "display_type": "number", "trait_type": "Generation", "value": 1 }
+    ],
+    "description": "Strike one, you're out.",
+    "external_url": "https://storage.pokemoonapis.com/context/token/fde4/identifier/57000000",
+    "image": "https://storage.pokemoonapis.com/context/token/fde4/object/zapduck-legend.png",
+    "animation_url": "https://storage.pokemoonapis.com/context/token/fde4/object/zapduck-legend.glb",
+    "name": "Zapduck Legend"
+  },
+  "58": {
+    "attributes": [
+      { "trait_type": "Denomination", "value": "BlastardII" },
+      { "trait_type": "MoonLabel", "value": "L" },
+      { "trait_type": "Class", "value": "Fire" },
+      { "trait_type": "HP", "value": 220 },
+      { "trait_type": "Length", "value": 1 },
+      { "trait_type": "Weight", "value": 1 },
+      { "trait_type": "Stamina", "value": 120 },
+      {
+        "display_type": "Booster",
+        "trait_type": "JetPack",
+        "max_value": 16,
+        "value": 8
+      },
+      { "display_type": "number", "trait_type": "Generation", "value": 1 }
+    ],
+    "description": "All Gas, Some Brakes.",
+    "external_url": "https://storage.pokemoonapis.com/context/token/fde4/identifier/58000000",
+    "image": "https://storage.pokemoonapis.com/context/token/fde4/object/blastardii-legend.png",
+    "animation_url": "https://storage.pokemoonapis.com/context/token/fde4/object/blastardii-legend.glb",
+    "name": "Blastard Legend"
+  },
+  "59": {
+    "attributes": [
+      { "trait_type": "Denomination", "value": "ChangeTeams" },
+      { "trait_type": "MoonLabel", "value": "L" },
+      { "trait_type": "Class", "value": "Supporter" },
+      { "trait_type": "HP", "value": 1 },
+      { "trait_type": "Length", "value": 1 },
+      { "trait_type": "Weight", "value": 1 },
+      { "trait_type": "Stamina", "value": 1 },
+      {
+        "display_type": "Booster",
+        "trait_type": "JetPack",
+        "max_value": 16,
+        "value": 14
+      },
+      { "display_type": "number", "trait_type": "Generation", "value": 1 }
+    ],
+    "description": "You may play only I Supporter card during your turn. (Before your attack).",
+    "external_url": "https://storage.pokemoonapis.com/context/token/fde4/identifier/59000000",
+    "image": "https://storage.pokemoonapis.com/context/token/fde4/object/changeteams-legend.png",
+    "animation_url": "https://storage.pokemoonapis.com/context/token/fde4/object/changeteams-legend.glb",
+    "name": "ChangeTeams Legend"
+  },
+  "60": {
+    "attributes": [
+      { "trait_type": "Denomination", "value": "Mooncat" },
+      { "trait_type": "MoonLabel", "value": "L" },
+      { "trait_type": "Class", "value": "Psychic" },
+      { "trait_type": "HP", "value": 80 },
+      { "trait_type": "Length", "value": 1.7 },
+      { "trait_type": "Weight", "value": 15 },
+      { "trait_type": "Stamina", "value": 30 },
+      {
+        "display_type": "Booster",
+        "trait_type": "JetPack",
+        "max_value": 16,
+        "value": 1
+      },
+      { "display_type": "number", "trait_type": "Generation", "value": 1 }
+    ],
+    "description": "Legend says that the bioluminescent coin in a Meownaut's chest is the source of its resilience and good fortune.",
+    "external_url": "https://storage.pokemoonapis.com/context/token/fde4/identifier/60000000",
+    "image": "https://storage.pokemoonapis.com/context/token/fde4/object/meownaut-legend.png",
+    "animation_url": "https://storage.pokemoonapis.com/context/token/fde4/object/meownaut-legend.glb",
+    "name": "Meownaut Legend"
+  },
+  "61": {
+    "attributes": [
+      { "trait_type": "Denomination", "value": "Pikapuff" },
+      { "trait_type": "MoonLabel", "value": "L" },
+      { "trait_type": "Class", "value": "Lightning" },
+      { "trait_type": "HP", "value": 70 },
+      { "trait_type": "Length", "value": 1 },
+      { "trait_type": "Weight", "value": 1 },
+      { "trait_type": "Stamina", "value": 30 },
+      {
+        "display_type": "Booster",
+        "trait_type": "JetPack",
+        "max_value": 16,
+        "value": 3
+      },
+      { "display_type": "number", "trait_type": "Generation", "value": 1 }
+    ],
+    "description": "I woke up under the table with a splitting headache, smoke coming out of my ears... and an unconquerable urge to buy a ticket to her next show.",
+    "external_url": "https://storage.pokemoonapis.com/context/token/fde4/identifier/61000000",
+    "image": "https://storage.pokemoonapis.com/context/token/fde4/object/pikapuffii-legend.png",
+    "animation_url": "https://storage.pokemoonapis.com/context/token/fde4/object/pikapuffii-legend.glb",
+    "name": "Pikapuff Legend"
+  }
+}

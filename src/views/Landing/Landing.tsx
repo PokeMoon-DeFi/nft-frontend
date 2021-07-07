@@ -132,8 +132,6 @@ const CTALink = styled(Link)`
 `;
 
 const Landing: React.FC = () => {
-  const { account } = useWeb3React();
-  const { login, logout } = useAuth();
   const theme = useTheme();
 
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));

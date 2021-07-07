@@ -7,6 +7,7 @@ import BlastOffAbi from "config/abi/BlastOff.json";
 import MeanGreensAbi from "config/abi/MeanGreens.json";
 import contracts from "config/constants/contracts";
 import useWeb3 from "hooks/useWeb3";
+import marketAbi from "config/abi/Marketplace.json";
 
 const getContract = (abi: any, address: string, web3?: Web3) => {
   const _web3 = web3 ?? web3NoAccount;
@@ -28,6 +29,16 @@ export const getNftAbiByName = (pack: string) => {
   }
 };
 
+export const useMarketContractByName = (name: string) => {
+  const web3 = useWeb3();
+  switch (name) {
+    default:
+    case "blastOff": {
+      return getMarketContract(contracts.marketplace[56], web3);
+    }
+  }
+};
+
 export const getAddress = (name: string) => {
   return contracts[name][process.env.REACT_APP_CHAIN_ID];
 };
@@ -45,6 +56,11 @@ export const useMeanGreensContract = () => {
   return getMeanGreensContract(web3);
 };
 
+export const useNftContractbyName = (name: string) => {
+  const web3 = useWeb3();
+  return getNftContractByName(name, web3);
+};
+
 export const getBlastOffContract = (web3?: Web3) => {
   return getContract(BlastOffAbi, getAddress("blastOff"), web3);
 };
@@ -59,6 +75,10 @@ export const getBep20Contract = (address: string, web3?: Web3) => {
   return getContract(bep20Abi, address, web3);
 };
 
+export const getMarketContract = (address: string, web3?: Web3) => {
+  return getContract(marketAbi, address, web3);
+};
+
 export const useContractFromSymbol = (symbol: string) => {
   const address = getAddressFromSymbol(symbol);
   const web3 = useWeb3();
@@ -69,6 +89,7 @@ export const getAddressFromSymbol = (symbol: string) => {
   switch (symbol) {
     case "wbnb":
       return contracts.wbnb[process.env.REACT_APP_CHAIN_ID];
+    case "koban":
     case "kbn":
       return contracts.koban[process.env.REACT_APP_CHAIN_ID];
     case "mnt":
@@ -84,17 +105,17 @@ export const getAddressFromSymbol = (symbol: string) => {
   }
 };
 
-export const getNftContractByName = (name: string) => {
+export const getNftContractByName = (name: string, web3?: Web3) => {
   switch (name) {
     default:
     case "ampedUp": {
-      return getAmpedUpContract();
+      return getAmpedUpContract(web3);
     }
     case "blastOff": {
-      return getBlastOffContract();
+      return getBlastOffContract(web3);
     }
     case "meanGreens": {
-      return getMeanGreensContract();
+      return getMeanGreensContract(web3);
     }
   }
 };

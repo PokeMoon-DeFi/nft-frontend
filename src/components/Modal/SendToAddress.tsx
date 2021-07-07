@@ -6,6 +6,7 @@ import { TransitionProps } from "@material-ui/core/transitions";
 import TextField from "@material-ui/core/TextField";
 import Button from "components/Button";
 import styled from "styled-components";
+import { useMediaQuery, useTheme } from "@material-ui/core";
 
 interface SendToAddressProps extends DialogProps {
   handleConfirm: (address: string) => void;
@@ -24,7 +25,7 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  width: 60ch;
+  /* width: 60ch; */
 `;
 
 const SendToAddress: FC<SendToAddressProps> = ({
@@ -33,6 +34,8 @@ const SendToAddress: FC<SendToAddressProps> = ({
   ...props
 }) => {
   const [inputVal, setInputVal] = useState<string>("");
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
 
   const isValidAddress = (val: string) => {
     return /^0x[a-zA-z0-9]{40}$/.test(val);
@@ -44,7 +47,7 @@ const SendToAddress: FC<SendToAddressProps> = ({
       BackdropComponent={Backdrop}
       TransitionComponent={Transition}
     >
-      <Container>
+      <Container style={{ width: isMobile ? "auto" : "60ch" }}>
         <TextField
           fullWidth={true}
           error={!!inputVal && !isValidAddress(inputVal)}

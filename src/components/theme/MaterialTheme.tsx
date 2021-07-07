@@ -69,6 +69,9 @@ export const rawMaterialTheme: ThemeOptions = {
           height: "5px",
           backgroundColor: "#000000",
         },
+        // ".MuiTypography-root": {
+        //   margin: "auto",
+        // },
         "*::-webkit-scrollbar-track": {
           "-webkit-box-shadow": "inset 0 0 6px rgba(0,0,0,0.3)",
           backgroundColor: "transparent",

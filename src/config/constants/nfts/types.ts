@@ -25,6 +25,7 @@ export interface PokemoonNft {
   tokenUriResponse?: any;
   artist?: ArtistInfo;
   packId?: string;
+  price?: number;
 }
 
 /**
@@ -36,4 +37,20 @@ export interface PokemoonPack {
   nfts?: PokemoonNft[];
   packId: string;
   imageUrl?: string;
+}
+
+export interface TokenUriResponse {
+  attributes: Attribute[];
+  description: string;
+  external_url: string;
+  image: string;
+  animation_url: string;
+  name: string;
+}
+
+export interface Attribute {
+  trait_type: string;
+  value: number | string;
+  display_type?: string;
+  max_value?: number;
 }

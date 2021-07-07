@@ -29,6 +29,9 @@ const StyledButton = styled(MaterialButton)`
       background-color: white;
       color: black;
       transition: 0.14s ease;
+      .MuiButton-startIcon {
+        fill: black;
+      }
     }
   }
   &:active {
@@ -38,20 +41,16 @@ const StyledButton = styled(MaterialButton)`
     transform: scale(1.1, 1.1);
     transition: 0.1s ease;
   }
+  .MuiButton-startIcon {
+    fill: white;
+  }
 `;
 
 /**
  * Primary UI component for user interaction
  */
 const Button: React.FC<ButtonProps> = ({ ...props }) => {
-  return (
-    <StyledButton
-      variant="outlined"
-      {...props}
-      disableRipple
-      disableTouchRipple
-    />
-  );
+  return <StyledButton variant="outlined" {...props} />;
 };
 
 export default Button;

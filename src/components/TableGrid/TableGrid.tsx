@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { FC, useCallback } from "react";
 import {
   DataGrid,
   GridColDef,
@@ -18,6 +18,7 @@ import SearchIcon from "@material-ui/icons/Search";
 import useModal from "hooks/useModal";
 import { InspectorDialog } from "components/Modal";
 import { PokemoonNft } from "config/constants/nfts/types";
+import { useHistory } from "react-router-dom";
 
 export interface TableGridProps {
   nfts: Array<PokemoonNft>;
@@ -42,6 +43,7 @@ const PackIdFormatter = (params: GridCellParams) => {
   //@ts-ignore
   const nft: PokemoonNft = params.row;
   const { set } = nft;
+
   return (
     <Box
       style={{
@@ -76,10 +78,19 @@ const useStyles = makeStyles({
 
 const ButtonCell = (params: GridCellParams) => {
   const nft = params.row;
+  const history = useHistory();
   //@ts-ignore
   const [showModal] = useModal(<InspectorDialog nft={nft} />);
+  const handleClick = useCallback(() => {
+    const { tokenId, set } = nft;
+    if (tokenId?.length > 2) {
+      history.push(`token/${set}/${tokenId}`);
+    } else {
+      showModal();
+    }
+  }, [history, showModal, nft]);
   return (
-    <Button endIcon={<SearchIcon />} onClick={showModal}>
+    <Button endIcon={<SearchIcon />} onClick={handleClick}>
       Inspect
     </Button>
   );

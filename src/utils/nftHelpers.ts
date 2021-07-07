@@ -2,17 +2,20 @@ import BigNumber from "bignumber.js";
 import BLAST_OFF_COLLECTION from "config/constants/nfts/2114";
 import AMPED_UP_COLLECTION from "config/constants/nfts/2116";
 import MEAN_GREENS_COLLECTION from "config/constants/nfts/APB";
-import { PokemoonNft } from "config/constants/nfts/types";
+import { PokemoonNft, TokenUriResponse } from "config/constants/nfts/types";
 import blastOffTokenCache from "config/constants/cache/blastOff/tokenIdToPack.json";
 import blastOffPackCache from "config/constants/cache/blastOff/blastOffPacks.json";
 import contracts from "config/constants/contracts";
 import multicall from "utils/multicall";
 import BlastOffAbi from "config/abi/BlastOff.json";
 import AmpedUpAbi from "config/abi/AmpedUp.json";
-
+import MeanGreensAbi from "config/abi/MeanGreens.json";
 import ampedUpTokens from "config/constants/cache/ampedUp/ampedUpTokens.json";
 import ampedUpPacks from "config/constants/cache/ampedUp/ampedUpPacks.json";
 import { FilterState } from "components/FilterDashboard";
+import { Contract } from "ethers-multicall";
+import { getNftAddressByName } from "./contractHelpers";
+import { call } from "./callHelpers";
 
 const isPack = (tokenId: string) => {
   let isPack: boolean;
@@ -20,6 +23,23 @@ const isPack = (tokenId: string) => {
     ? (isPack = true)
     : (isPack = false);
   return isPack;
+};
+
+export const getMarketAddress = (name: string) => {
+  switch (name) {
+    case "blastOff": {
+      return contracts.marketplace[56];
+    }
+    case "ampedUp": {
+      return "";
+    }
+    case "meanGreens": {
+      return "";
+    }
+    default: {
+      return "";
+    }
+  }
 };
 
 export const renamePack = (name: string) => {
@@ -100,6 +120,14 @@ export const getCollection = (pack: string) => {
   }
 };
 
+export const getNftOwner = async (nft: PokemoonNft) => {
+  const contract = new Contract(getNftAddressByName(nft.set), getAbi(nft.set));
+  const ownerCall = contract.ownerOf(nft.tokenId);
+  const result = await call([ownerCall]);
+
+  return result;
+};
+
 export const getFlatCollection = (packs: string[]) => {
   const result: any[] = [];
   let lastPackAmount = 0;
@@ -132,25 +160,27 @@ export const getFlatCollection = (packs: string[]) => {
 
 const getPackCache = (pack: string) => {
   switch (pack) {
-    default:
     case "blastOff": {
       return blastOffPackCache;
     }
     case "ampedUp": {
       return ampedUpPacks;
     }
+    default:
+      return {};
   }
 };
 
 const getTokenCache = (pack: string) => {
   switch (pack) {
-    default:
     case "blastOff": {
       return blastOffTokenCache;
     }
     case "ampedUp": {
       return ampedUpTokens;
     }
+    default:
+      return {};
   }
 };
 
@@ -162,6 +192,9 @@ const getAbi = (pack: string) => {
     }
     case "ampedUp": {
       return AmpedUpAbi;
+    }
+    case "meanGreens": {
+      return MeanGreensAbi;
     }
   }
 };
@@ -183,7 +216,11 @@ const getBaseUri = (pack: string) => {
   }
 };
 
-export const getCardData = async (tokenId: string, set: string, cache = {}) => {
+export const getCardData = async (
+  tokenId: string,
+  set: string,
+  cache: any | undefined = undefined
+) => {
   const cardId = parseInt(tokenId.substr(0, 2));
   const collection = getCollection(set);
   const { imageUrl, card, rarity } = collection[cardId];
@@ -193,7 +230,8 @@ export const getCardData = async (tokenId: string, set: string, cache = {}) => {
   nft.imageUrl = `/images/cards/${set}/${imageUrl}`;
   nft.set = set;
 
-  nft.packId = getTokenCache(set)[tokenId];
+  const usedCache = cache ?? getTokenCache(set);
+  nft.packId = usedCache[tokenId];
 
   return nft;
 };
@@ -217,7 +255,9 @@ export const handleTokenIdResponse = async (
   for (const tokenId of tokenIds) {
     if (tokenId.toNumber() < 11000000) {
     } else {
-      cards.push(await getCardData(tokenId.toString(), pack));
+      cards.push(
+        await getCardData(tokenId.toString(), pack, tokenCache ?? undefined)
+      );
     }
   }
 
@@ -231,11 +271,25 @@ export const handleTokenIdResponse = async (
   return { [pack]: { packs, cards } };
 };
 
+export const getTokenUriResponse = async (
+  nft: PokemoonNft
+): Promise<TokenUriResponse> => {
+  const contract = new Contract(getNftAddressByName(nft.set), getAbi(nft.set));
+  const uriCall = contract.tokenURI(nft.tokenId);
+  const href = await call([uriCall]);
+
+  const response = await fetch(href + ".json");
+  const data = await response.json();
+
+  return data;
+};
+
 //This updates the static cache
 const collectMissingPacks = async (packIds: string[], pack: string) => {
   const nftAddresses: { [key: string]: string } = {
     blastOff: contracts.blastOff[process.env.REACT_APP_CHAIN_ID],
     ampedUp: contracts.ampedUp[process.env.REACT_APP_CHAIN_ID],
+    meanGreens: contracts.meanGreens[process.env.REACT_APP_CHAIN_ID],
   };
 
   const calls = packIds.map((packId) => {

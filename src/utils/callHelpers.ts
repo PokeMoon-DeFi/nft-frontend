@@ -1,10 +1,71 @@
-import { ethers } from "ethers";
+import { BigNumber, ethers } from "ethers";
+import { Provider } from "ethers-multicall";
+
 import {
   getBep20Contract,
   getBlastOffContract,
   getAmpedUpContract,
+  getMeanGreensContract,
   getNftContractByName,
 } from "./contractHelpers";
+
+const BSC_RPC_ENDPOINTS = [
+  "https://bsc-dataseed.binance.org/",
+  "https://bsc-dataseed1.defibit.io/",
+  "https://bsc-dataseed1.ninicoin.io/",
+];
+
+const BSC_RPC_BACKUPS = [
+  "https://bsc-dataseed2.defibit.io/",
+  "https://bsc-dataseed3.defibit.io/",
+  "https://bsc-dataseed4.defibit.io/",
+  "https://bsc-dataseed2.ninicoin.io/",
+  "https://bsc-dataseed3.ninicoin.io/",
+  "https://bsc-dataseed4.ninicoin.io/",
+  "https://bsc-dataseed1.binance.org/",
+  "https://bsc-dataseed2.binance.org/",
+  "https://bsc-dataseed3.binance.org/",
+  "https://bsc-dataseed4.binance.org/",
+];
+
+export const safeAwait = async (promise: Promise<any>) => {
+  try {
+    const data = await promise;
+    return [data, false];
+  } catch (error) {
+    return [null, error];
+  }
+};
+/**
+ * @returns a random BSC RPC endpoint
+ */
+export function getRpcUrl(useBackups: boolean = false) {
+  if (useBackups) return BSC_RPC_BACKUPS[Math.floor(Math.random() * 10)];
+  return BSC_RPC_ENDPOINTS[Math.floor(Math.random() * 3)];
+}
+
+export const toNumber = (num: BigNumber) => {
+  return BigNumber.from(num).toNumber();
+};
+
+/**
+ * @returns an ethers provider for BSC Mainnet
+ */
+export function getProvider() {
+  return new ethers.providers.JsonRpcProvider(getRpcUrl(), 56);
+}
+/**
+ * @param calls array of unfullfilled "ethers-multicall".Contract.method() promises
+ * @returns array of contract method responses
+ */
+export async function call(calls: any[]) {
+  if (calls.length === 0) throw new Error("Calls array empty");
+  // An ethers-multicall provider from an ethers provider
+  const callProvider = new Provider(getProvider(), 56);
+  const res = await callProvider.all(calls);
+  if (calls.length === 1) return res[0];
+  return res;
+}
 
 /**
  * Approve spending of token on contract from account.
@@ -79,7 +140,7 @@ export const getPackedOwned = async (account, pack) => {
  * @returns array of tokenIds
  */
 export const getPackInfo = async (packId, name) => {
-  const contract = getPackContract(name);
+  const contract = getNftContractByName(name);
   return contract.methods.packedInfo(packId).call();
 };
 
@@ -129,6 +190,8 @@ export const getPackContract = (name) => {
       return getBlastOffContract();
     case "ampedUp":
       return getAmpedUpContract();
+    case "meanGreens":
+      return getMeanGreensContract();
   }
 };
 

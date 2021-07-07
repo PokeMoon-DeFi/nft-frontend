@@ -3,6 +3,7 @@ export { default as Metamask } from "./Metamask";
 export { default as Moon } from "./Moon";
 export { default as Wynaut } from "./Wynaut";
 export { default as Logo } from "./Logo";
+export { default as Send } from "./Send";
 
 // General Icons
 export { default as Backpack } from "./Backpack";

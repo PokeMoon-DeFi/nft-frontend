@@ -122,6 +122,7 @@ const ModelViewer: FC<ModelViewerProps> = ({ nft, loadingBall, ...props }) => {
         position: "relative",
         display: "flex",
         height: 500,
+        touchAction: "none",
         ...style,
       }}
     >
@@ -163,7 +164,7 @@ const ModelViewer: FC<ModelViewerProps> = ({ nft, loadingBall, ...props }) => {
       )}
       {renderGPU && !!glbUrl ? (
         <Canvas {...props} style={{ backgroundColor: "black", flex: 1 }}>
-          <PerspectiveCamera position={[0, 1.3, 4]} makeDefault />
+          <PerspectiveCamera position={[0, 1.3, 3]} makeDefault />
           <OrbitControls target={new THREE.Vector3(0, 1.3, 0)} />
           <directionalLight
             intensity={0.3}

@@ -5,15 +5,29 @@ import { setupNetwork } from "utils/wallet";
 import { ConnectorNames } from "utils/types";
 import { connectorLocalStorageKey } from "config/connectors";
 import { useDispatch } from "react-redux";
-import { connectWallet, disconnectWallet } from "providers/state/UserState";
+import {
+  connectWallet,
+  disconnectWallet,
+  setAccount,
+} from "providers/state/UserState";
 
 export const useEagerConnect = () => {
-  const { login } = useLogin();
+  // const { login } = useLogin();
+
+  // useEffect(() => {
+  //   const isConnected = window.localStorage.getItem("isConnected");
+  //   if (isConnected === "true") {
+  //     login();
+  //   }
+  // }, [login]);
+  const { login } = useAuth();
 
   useEffect(() => {
-    const isConnected = window.localStorage.getItem("isConnected");
-    if (isConnected === "true") {
-      login();
+    const connectorId = window.localStorage.getItem(
+      connectorLocalStorageKey
+    ) as ConnectorNames;
+    if (connectorId && connectorId !== ConnectorNames.BSC) {
+      login(connectorId);
     }
   }, [login]);
 };
@@ -33,30 +47,38 @@ export const useLogin = () => {
 };
 
 const useAuth = () => {
-  const { activate, deactivate } = useWeb3React();
+  const { activate, deactivate, account } = useWeb3React();
+  const dispatch = useDispatch();
 
-  const login = useCallback((connectorID: ConnectorNames) => {
-    const connector = connectorsByName[connectorID];
-    if (connector) {
-      activate(connector, async (error: Error) => {
-        if (error instanceof UnsupportedChainIdError) {
-          const hasSetup = await setupNetwork();
-          if (hasSetup) {
-            activate(connector);
+  const login = useCallback(
+    (connectorID: ConnectorNames) => {
+      const connector = connectorsByName[connectorID];
+      if (connector) {
+        activate(connector, async (error: Error) => {
+          if (error instanceof UnsupportedChainIdError) {
+            const hasSetup = await setupNetwork();
+            if (hasSetup) {
+              activate(connector);
+            }
+          } else {
+            console.error(error.name, error.message);
           }
-        } else {
-          console.error(error.name, error.message);
-        }
-      });
-    } else {
-      console.error("Can't find connector", "The connector config is wrong");
-    }
-    window.localStorage.setItem(
-      connectorLocalStorageKey,
-      ConnectorNames.Injected
-    );
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+        });
+      } else {
+        console.error("Can't find connector", "The connector config is wrong");
+      }
+      window.localStorage.setItem(
+        connectorLocalStorageKey,
+        ConnectorNames.Injected
+      );
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+    },
+    [activate]
+  );
+
+  useEffect(() => {
+    dispatch(setAccount(account));
+  }, [account, dispatch]);
 
   return { login, logout: deactivate };
 };
