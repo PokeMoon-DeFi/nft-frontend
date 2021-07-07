@@ -1,0 +1,670 @@
+{
+  "11": {
+    "attributes": [
+      { "trait_type": "Denomination", "value": "Scybone" },
+      { "trait_type": "MoonLabel", "value": "C" },
+      { "trait_type": "Class", "value": "DarkGrass" },
+      { "trait_type": "HP", "value": 70 },
+      { "trait_type": "Stamina", "value": 10 },
+      { "trait_type": "Storm", "value": 20 },
+      {
+        "display_type": "Booster",
+        "trait_type": "JetPack",
+        "max_value": 13,
+        "value": 4
+      },
+      { "display_type": "number", "trait_type": "Generation", "value": 1 }
+    ],
+    "description": "Fear the reaper.",
+    "external_url": "https://storage.pokemoonapis.com/context/token/ae5c/identifier/11000000",
+    "image": "https://storage.pokemoonapis.com/context/token/ae5c/object/scybone-common.png",
+    "animation_url": "https://storage.pokemoonapis.com/context/token/ae5c/object/scybone-common.glb",
+    "name": "Scybone Common"
+  },
+  "12": {
+    "attributes": [
+      { "trait_type": "Denomination", "value": "Bulbat" },
+      { "trait_type": "MoonLabel", "value": "C" },
+      { "trait_type": "Class", "value": "Grass" },
+      { "trait_type": "HP", "value": 60 },
+      { "trait_type": "Stamina", "value": 10 },
+      { "trait_type": "Storm", "value": 20 },
+      {
+        "display_type": "Booster",
+        "trait_type": "JetPack",
+        "max_value": 13,
+        "value": 1
+      },
+      { "display_type": "number", "trait_type": "Generation", "value": 1 }
+    ],
+    "description": "Who said you couldn't overdose?",
+    "external_url": "https://storage.pokemoonapis.com/context/token/ae5c/identifier/11000000",
+    "image": "https://storage.pokemoonapis.com/context/token/ae5c/object/bulbat-common.png",
+    "animation_url": "https://storage.pokemoonapis.com/context/token/ae5c/object/bulbat-common.glb",
+    "name": "Bulbat Common"
+  },
+  "13": {
+    "attributes": [
+      { "trait_type": "Denomination", "value": "Boanana" },
+      { "trait_type": "MoonLabel", "value": "C" },
+      { "trait_type": "Class", "value": "Grass" },
+      { "trait_type": "HP", "value": 60 },
+      { "trait_type": "Stamina", "value": 20 },
+      {
+        "display_type": "Booster",
+        "trait_type": "JetPack",
+        "max_value": 13,
+        "value": 6
+      },
+      { "display_type": "number", "trait_type": "Generation", "value": 1 }
+    ],
+    "description": "Definitely not one of your Five-a-Day.",
+    "external_url": "https://storage.pokemoonapis.com/context/token/ae5c/identifier/13000000",
+    "image": "https://storage.pokemoonapis.com/context/token/ae5c/object/boanana-common.png",
+    "animation_url": "https://storage.pokemoonapis.com/context/token/ae5c/object/boanana-common.glb",
+    "name": "Boanana Common"
+  },
+  "14": {
+    "attributes": [
+      { "trait_type": "Denomination", "value": "Dreedle" },
+      { "trait_type": "MoonLabel", "value": "C" },
+      { "trait_type": "Class", "value": "DragonGrass" },
+      { "trait_type": "HP", "value": 50 },
+      { "trait_type": "Stamina", "value": 10 },
+      {
+        "display_type": "Booster",
+        "trait_type": "JetPack",
+        "max_value": 13,
+        "value": 8
+      },
+      { "display_type": "number", "trait_type": "Generation", "value": 1 }
+    ],
+    "description": "According to all known laws of aviation, a Dreedle should not be able to fly.",
+    "external_url": "https://storage.pokemoonapis.com/context/token/ae5c/identifier/14000000",
+    "image": "https://storage.pokemoonapis.com/context/token/ae5c/object/dreedle-common.png",
+    "animation_url": "https://storage.pokemoonapis.com/context/token/ae5c/object/dreedle-common.glb",
+    "name": "Dreedle Common"
+  },
+  "15": {
+    "attributes": [
+      { "trait_type": "Denomination", "value": "Stunkey" },
+      { "trait_type": "MoonLabel", "value": "C" },
+      { "trait_type": "Class", "value": "Grass" },
+      { "trait_type": "HP", "value": 70 },
+      { "trait_type": "Stamina", "value": 20 },
+      {
+        "display_type": "Booster",
+        "trait_type": "JetPack",
+        "max_value": 13,
+        "value": 10
+      },
+      { "display_type": "number", "trait_type": "Generation", "value": 1 }
+    ],
+    "description": "[REDACTED]",
+    "external_url": "https://storage.pokemoonapis.com/context/token/ae5c/identifier/15000000",
+    "image": "https://storage.pokemoonapis.com/context/token/ae5c/object/stunkey-common.png",
+    "animation_url": "https://storage.pokemoonapis.com/context/token/ae5c/object/stunkey-common.glb",
+    "name": "Stunkey Common"
+  },
+  "16": {
+    "attributes": [
+      { "trait_type": "Denomination", "value": "Ambush" },
+      { "trait_type": "MoonLabel", "value": "UC" },
+      { "trait_type": "Class", "value": "Item" },
+      {
+        "display_type": "Booster",
+        "trait_type": "JetPack",
+        "max_value": 13,
+        "value": 12
+      },
+      { "display_type": "number", "trait_type": "Generation", "value": 1 }
+    ],
+    "description": "Never trust an ape.",
+    "external_url": "https://storage.pokemoonapis.com/context/token/ae5c/identifier/16000000",
+    "image": "https://storage.pokemoonapis.com/context/token/ae5c/object/ambush-uncommon.png",
+    "animation_url": "https://storage.pokemoonapis.com/context/token/ae5c/object/ambush-uncommon.glb",
+    "name": "Ambush Uncommon"
+  },
+  "17": {
+    "attributes": [
+      { "trait_type": "Denomination", "value": "Ivybat" },
+      { "trait_type": "MoonLabel", "value": "UC" },
+      { "trait_type": "Class", "value": "Grass" },
+      { "trait_type": "HP", "value": 100 },
+      { "trait_type": "Stamina", "value": 50 },
+      {
+        "display_type": "Booster",
+        "trait_type": "JetPack",
+        "max_value": 13,
+        "value": 2
+      },
+      { "display_type": "number", "trait_type": "Generation", "value": 1 }
+    ],
+    "description": "Ever tried to weed a whole graveyard? Real pain in the neck.",
+    "external_url": "https://storage.pokemoonapis.com/context/token/ae5c/identifier/17000000",
+    "image": "https://storage.pokemoonapis.com/context/token/ae5c/object/ivybat-uncommon.png",
+    "animation_url": "https://storage.pokemoonapis.com/context/token/ae5c/object/ivybat-uncommon.glb",
+    "name": "Ivybat Uncommon"
+  },
+  "18": {
+    "attributes": [
+      { "trait_type": "Denomination", "value": "Dreedle" },
+      { "trait_type": "MoonLabel", "value": "UC" },
+      { "trait_type": "Class", "value": "DragonGrass" },
+      { "trait_type": "HP", "value": 50 },
+      { "trait_type": "Stamina", "value": 10 },
+      {
+        "display_type": "Booster",
+        "trait_type": "JetPack",
+        "max_value": 13,
+        "value": 8
+      },
+      { "display_type": "number", "trait_type": "Generation", "value": 1 }
+    ],
+    "description": "According to all known laws of aviation, a Dreedle should not be able to fly.",
+    "external_url": "https://storage.pokemoonapis.com/context/token/ae5c/identifier/18000000",
+    "image": "https://storage.pokemoonapis.com/context/token/ae5c/object/dreedle-uncommon.png",
+    "animation_url": "https://storage.pokemoonapis.com/context/token/ae5c/object/dreedle-uncommon.glb",
+    "name": "Dreedle Uncommon"
+  },
+  "19": {
+    "attributes": [
+      { "trait_type": "Denomination", "value": "Maroslash" },
+      { "trait_type": "MoonLabel", "value": "UC" },
+      { "trait_type": "Class", "value": "DarkGrass" },
+      { "trait_type": "HP", "value": 120 },
+      { "trait_type": "Stamina", "value": 30 },
+      { "trait_type": "Storm", "value": 50 },
+      {
+        "display_type": "Booster",
+        "trait_type": "JetPack",
+        "max_value": 13,
+        "value": 5
+      },
+      { "display_type": "number", "trait_type": "Generation", "value": 1 }
+    ],
+    "description": "The night is dark and full of terrors.",
+    "external_url": "https://storage.pokemoonapis.com/context/token/ae5c/identifier/19000000",
+    "image": "https://storage.pokemoonapis.com/context/token/ae5c/object/maroslash-uncommon.png",
+    "animation_url": "https://storage.pokemoonapis.com/context/token/ae5c/object/maroslash-uncommon.glb",
+    "name": "Maroslash Uncommon"
+  },
+  "20": {
+    "attributes": [
+      { "trait_type": "Denomination", "value": "Ricky" },
+      { "trait_type": "MoonLabel", "value": "UC" },
+      { "trait_type": "Class", "value": "Supporter" },
+      {
+        "display_type": "Booster",
+        "trait_type": "JetPack",
+        "max_value": 13,
+        "value": 9
+      },
+      { "display_type": "number", "trait_type": "Generation", "value": 1 }
+    ],
+    "description": "What does this guy even do?",
+    "external_url": "https://storage.pokemoonapis.com/context/token/ae5c/identifier/20000000",
+    "image": "https://storage.pokemoonapis.com/context/token/ae5c/object/ricky-uncommon.png",
+    "animation_url": "https://storage.pokemoonapis.com/context/token/ae5c/object/ricky-uncommon.glb",
+    "name": "Ricky Uncommon"
+  },
+  "21": {
+    "attributes": [
+      { "trait_type": "Denomination", "value": "Scybone" },
+      { "trait_type": "MoonLabel", "value": "UC" },
+      { "trait_type": "Class", "value": "DarkGrass" },
+      { "trait_type": "HP", "value": 70 },
+      { "trait_type": "Stamina", "value": 10 },
+      { "trait_type": "Storm", "value": 20 },
+      {
+        "display_type": "Booster",
+        "trait_type": "JetPack",
+        "max_value": 13,
+        "value": 4
+      },
+      { "display_type": "number", "trait_type": "Generation", "value": 1 }
+    ],
+    "description": "Fear the reaper.",
+    "external_url": "https://storage.pokemoonapis.com/context/token/ae5c/identifier/21000000",
+    "image": "https://storage.pokemoonapis.com/context/token/ae5c/object/scybone-uncommon.png",
+    "animation_url": "https://storage.pokemoonapis.com/context/token/ae5c/object/scybone-uncommon.glb",
+    "name": "Scybone Uncommon"
+  },
+  "22": {
+    "attributes": [
+      { "trait_type": "Denomination", "value": "Stunkey" },
+      { "trait_type": "MoonLabel", "value": "UC" },
+      { "trait_type": "Class", "value": "Grass" },
+      { "trait_type": "HP", "value": 70 },
+      { "trait_type": "Stamina", "value": 20 },
+      {
+        "display_type": "Booster",
+        "trait_type": "JetPack",
+        "max_value": 13,
+        "value": 10
+      },
+      { "display_type": "number", "trait_type": "Generation", "value": 1 }
+    ],
+    "description": "[REDACTED]",
+    "external_url": "https://storage.pokemoonapis.com/context/token/ae5c/identifier/22000000",
+    "image": "https://storage.pokemoonapis.com/context/token/ae5c/object/stunkey-uncommon.png",
+    "animation_url": "https://storage.pokemoonapis.com/context/token/ae5c/object/stunkey-uncommon.glb",
+    "name": "Stunkey Uncommon"
+  },
+  "23": {
+    "attributes": [
+      { "trait_type": "Denomination", "value": "Bananaconda" },
+      { "trait_type": "MoonLabel", "value": "UC" },
+      { "trait_type": "Class", "value": "Grass" },
+      { "trait_type": "HP", "value": 110 },
+      { "trait_type": "Stamina", "value": 40 },
+      {
+        "display_type": "Booster",
+        "trait_type": "JetPack",
+        "max_value": 13,
+        "value": 7
+      },
+      { "display_type": "number", "trait_type": "Generation", "value": 1 }
+    ],
+    "description": "Don't touch it? Why? Looks like a perfectly fine banana to m-",
+    "external_url": "https://storage.pokemoonapis.com/context/token/ae5c/identifier/23000000",
+    "image": "https://storage.pokemoonapis.com/context/token/ae5c/object/bananaconda-uncommon.png",
+    "animation_url": "https://storage.pokemoonapis.com/context/token/ae5c/object/bananaconda-uncommon.glb",
+    "name": "Bananaconda Uncommon"
+  },
+  "24": {
+    "attributes": [
+      { "trait_type": "Denomination", "value": "Bulbat" },
+      { "trait_type": "MoonLabel", "value": "UC" },
+      { "trait_type": "Class", "value": "Grass" },
+      { "trait_type": "HP", "value": 60 },
+      { "trait_type": "Stamina", "value": 10 },
+      { "trait_type": "Storm", "value": 20 },
+      {
+        "display_type": "Booster",
+        "trait_type": "JetPack",
+        "max_value": 13,
+        "value": 1
+      },
+      { "display_type": "number", "trait_type": "Generation", "value": 1 }
+    ],
+    "description": "Who said you couldn't overdose?",
+    "external_url": "https://storage.pokemoonapis.com/context/token/ae5c/identifier/24000000",
+    "image": "https://storage.pokemoonapis.com/context/token/ae5c/object/bulbat-uncommon.png",
+    "animation_url": "https://storage.pokemoonapis.com/context/token/ae5c/object/bulbat-uncommon.glb",
+    "name": "Bulbat Uncommon"
+  },
+  "25": {
+    "attributes": [
+      { "trait_type": "Denomination", "value": "Boanana" },
+      { "trait_type": "MoonLabel", "value": "UC" },
+      { "trait_type": "Class", "value": "Grass" },
+      { "trait_type": "HP", "value": 60 },
+      { "trait_type": "Stamina", "value": 20 },
+      {
+        "display_type": "Booster",
+        "trait_type": "JetPack",
+        "max_value": 13,
+        "value": 6
+      },
+      { "display_type": "number", "trait_type": "Generation", "value": 1 }
+    ],
+    "description": "Definitely not one of your Five-a-Day.",
+    "external_url": "https://storage.pokemoonapis.com/context/token/ae5c/identifier/25000000",
+    "image": "https://storage.pokemoonapis.com/context/token/ae5c/object/boanana-uncommon.png",
+    "animation_url": "https://storage.pokemoonapis.com/context/token/ae5c/object/boanana-uncommon.glb",
+    "name": "Boanana Uncommon"
+  },
+  "26": {
+    "attributes": [
+      { "trait_type": "Denomination", "value": "Chimpact" },
+      { "trait_type": "MoonLabel", "value": "UC" },
+      { "trait_type": "Class", "value": "Grass" },
+      { "trait_type": "HP", "value": 130 },
+      { "trait_type": "Stamina", "value": 40 },
+      {
+        "display_type": "Booster",
+        "trait_type": "JetPack",
+        "max_value": 13,
+        "value": 11
+      },
+      { "display_type": "number", "trait_type": "Generation", "value": 1 }
+    ],
+    "description": "Nothing but style, nothing but grace.",
+    "external_url": "https://storage.pokemoonapis.com/context/token/ae5c/identifier/26000000",
+    "image": "https://storage.pokemoonapis.com/context/token/ae5c/object/chimpact-uncommon.png",
+    "animation_url": "https://storage.pokemoonapis.com/context/token/ae5c/object/chimpact-uncommon.glb",
+    "name": "Chimpact Uncommon"
+  },
+  "27": {
+    "attributes": [
+      { "trait_type": "Denomination", "value": "Maroslash" },
+      { "trait_type": "MoonLabel", "value": "R" },
+      { "trait_type": "Class", "value": "DarkGrass" },
+      { "trait_type": "HP", "value": 120 },
+      { "trait_type": "Stamina", "value": 30 },
+      { "trait_type": "Storm", "value": 50 },
+      {
+        "display_type": "Booster",
+        "trait_type": "JetPack",
+        "max_value": 13,
+        "value": 5
+      },
+      { "display_type": "number", "trait_type": "Generation", "value": 1 }
+    ],
+    "description": "The night is dark and full of terrors.",
+    "external_url": "https://storage.pokemoonapis.com/context/token/ae5c/identifier/27000000",
+    "image": "https://storage.pokemoonapis.com/context/token/ae5c/object/maroslash-rare.png",
+    "animation_url": "https://storage.pokemoonapis.com/context/token/ae5c/object/maroslash-rare.glb",
+    "name": "Maroslash Rare"
+  },
+  "28": {
+    "attributes": [
+      { "trait_type": "Denomination", "value": "Ricky" },
+      { "trait_type": "MoonLabel", "value": "R" },
+      { "trait_type": "Class", "value": "Supporter" },
+      {
+        "display_type": "Booster",
+        "trait_type": "JetPack",
+        "max_value": 13,
+        "value": 9
+      },
+      { "display_type": "number", "trait_type": "Generation", "value": 1 }
+    ],
+    "description": "What does this guy even do?",
+    "external_url": "https://storage.pokemoonapis.com/context/token/ae5c/identifier/28000000",
+    "image": "https://storage.pokemoonapis.com/context/token/ae5c/object/ricky-rare.png",
+    "animation_url": "https://storage.pokemoonapis.com/context/token/ae5c/object/ricky-rare.glb",
+    "name": "Ricky Rare"
+  },
+  "29": {
+    "attributes": [
+      { "trait_type": "Denomination", "value": "Ivybat" },
+      { "trait_type": "MoonLabel", "value": "R" },
+      { "trait_type": "Class", "value": "Grass" },
+      { "trait_type": "HP", "value": 100 },
+      { "trait_type": "Stamina", "value": 50 },
+      {
+        "display_type": "Booster",
+        "trait_type": "JetPack",
+        "max_value": 13,
+        "value": 2
+      },
+      { "display_type": "number", "trait_type": "Generation", "value": 1 }
+    ],
+    "description": "Ever tried to weed a whole graveyard? Real pain in the neck.",
+    "external_url": "https://storage.pokemoonapis.com/context/token/ae5c/identifier/29000000",
+    "image": "https://storage.pokemoonapis.com/context/token/ae5c/object/ivybat-rare.png",
+    "animation_url": "https://storage.pokemoonapis.com/context/token/ae5c/object/ivybat-rare.glb",
+    "name": "Ivybat Rare"
+  },
+  "30": {
+    "attributes": [
+      { "trait_type": "Denomination", "value": "Bananaconda" },
+      { "trait_type": "MoonLabel", "value": "R" },
+      { "trait_type": "Class", "value": "Grass" },
+      { "trait_type": "HP", "value": 110 },
+      { "trait_type": "Stamina", "value": 40 },
+      {
+        "display_type": "Booster",
+        "trait_type": "JetPack",
+        "max_value": 13,
+        "value": 7
+      },
+      { "display_type": "number", "trait_type": "Generation", "value": 1 }
+    ],
+    "description": "Don't touch it? Why? Looks like a perfectly fine banana to m-",
+    "external_url": "https://storage.pokemoonapis.com/context/token/ae5c/identifier/30000000",
+    "image": "https://storage.pokemoonapis.com/context/token/ae5c/object/bananaconda-rare.png",
+    "animation_url": "https://storage.pokemoonapis.com/context/token/ae5c/object/bananaconda-rare.glb",
+    "name": "Bananaconda Rare"
+  },
+  "31": {
+    "attributes": [
+      { "trait_type": "Denomination", "value": "Ambush" },
+      { "trait_type": "MoonLabel", "value": "R" },
+      { "trait_type": "Class", "value": "Item" },
+      {
+        "display_type": "Booster",
+        "trait_type": "JetPack",
+        "max_value": 13,
+        "value": 12
+      },
+      { "display_type": "number", "trait_type": "Generation", "value": 1 }
+    ],
+    "description": "Never trust an ape.",
+    "external_url": "https://storage.pokemoonapis.com/context/token/ae5c/identifier/31000000",
+    "image": "https://storage.pokemoonapis.com/context/token/ae5c/object/ambush-rare.png",
+    "animation_url": "https://storage.pokemoonapis.com/context/token/ae5c/object/ambush-rare.glb",
+    "name": "Ambush Rare"
+  },
+  "32": {
+    "attributes": [
+      { "trait_type": "Denomination", "value": "Clobberilla" },
+      { "trait_type": "MoonLabel", "value": "R" },
+      { "trait_type": "Class", "value": "Grass" },
+      { "trait_type": "HP", "value": 160 },
+      { "trait_type": "Stamina", "value": 40 },
+      {
+        "display_type": "Booster",
+        "trait_type": "JetPack",
+        "max_value": 13,
+        "value": 13
+      },
+      { "display_type": "number", "trait_type": "Generation", "value": 1 }
+    ],
+    "description": "As recently featured on the Slow Brogan podcast.",
+    "external_url": "https://storage.pokemoonapis.com/context/token/ae5c/identifier/32000000",
+    "image": "https://storage.pokemoonapis.com/context/token/ae5c/object/clobberilla-rare.png",
+    "animation_url": "https://storage.pokemoonapis.com/context/token/ae5c/object/clobberilla-rare.glb",
+    "name": "Clobberilla Rare"
+  },
+  "33": {
+    "attributes": [
+      { "trait_type": "Denomination", "value": "Scybone" },
+      { "trait_type": "MoonLabel", "value": "R" },
+      { "trait_type": "Class", "value": "DarkGrass" },
+      { "trait_type": "HP", "value": 70 },
+      { "trait_type": "Stamina", "value": 10 },
+      { "trait_type": "Storm", "value": 20 },
+      {
+        "display_type": "Booster",
+        "trait_type": "JetPack",
+        "max_value": 13,
+        "value": 4
+      },
+      { "display_type": "number", "trait_type": "Generation", "value": 1 }
+    ],
+    "description": "Fear the reaper.",
+    "external_url": "https://storage.pokemoonapis.com/context/token/ae5c/identifier/33000000",
+    "image": "https://storage.pokemoonapis.com/context/token/ae5c/object/scybone-rare.png",
+    "animation_url": "https://storage.pokemoonapis.com/context/token/ae5c/object/scybone-rare.glb",
+    "name": "Scybone Rare"
+  },
+  "34": {
+    "attributes": [
+      { "trait_type": "Denomination", "value": "Boanana" },
+      { "trait_type": "MoonLabel", "value": "R" },
+      { "trait_type": "Class", "value": "Grass" },
+      { "trait_type": "HP", "value": 60 },
+      { "trait_type": "Stamina", "value": 20 },
+      {
+        "display_type": "Booster",
+        "trait_type": "JetPack",
+        "max_value": 13,
+        "value": 6
+      },
+      { "display_type": "number", "trait_type": "Generation", "value": 1 }
+    ],
+    "description": "Definitely not one of your Five-a-Day.",
+    "external_url": "https://storage.pokemoonapis.com/context/token/ae5c/identifier/34000000",
+    "image": "https://storage.pokemoonapis.com/context/token/ae5c/object/boanana-rare.png",
+    "animation_url": "https://storage.pokemoonapis.com/context/token/ae5c/object/boanana-rare.glb",
+    "name": "Boanana Rare"
+  },
+  "35": {
+    "attributes": [
+      { "trait_type": "Denomination", "value": "Chimpact" },
+      { "trait_type": "MoonLabel", "value": "R" },
+      { "trait_type": "Class", "value": "Grass" },
+      { "trait_type": "HP", "value": 130 },
+      { "trait_type": "Stamina", "value": 40 },
+      {
+        "display_type": "Booster",
+        "trait_type": "JetPack",
+        "max_value": 13,
+        "value": 11
+      },
+      { "display_type": "number", "trait_type": "Generation", "value": 1 }
+    ],
+    "description": "Nothing but style, nothing but grace.",
+    "external_url": "https://storage.pokemoonapis.com/context/token/ae5c/identifier/35000000",
+    "image": "https://storage.pokemoonapis.com/context/token/ae5c/object/chimpact-rare.png",
+    "animation_url": "https://storage.pokemoonapis.com/context/token/ae5c/object/chimpact-rare.glb",
+    "name": "Chimpact Rare"
+  },
+  "36": {
+    "attributes": [
+      { "trait_type": "Denomination", "value": "Venobat" },
+      { "trait_type": "MoonLabel", "value": "R" },
+      { "trait_type": "Class", "value": "Grass" },
+      { "trait_type": "HP", "value": 100 },
+      { "trait_type": "Stamina", "value": 90 },
+      {
+        "display_type": "Booster",
+        "trait_type": "JetPack",
+        "max_value": 13,
+        "value": 3
+      },
+      { "display_type": "number", "trait_type": "Generation", "value": 1 }
+    ],
+    "description": "The blood moon rises once again.",
+    "external_url": "https://storage.pokemoonapis.com/context/token/ae5c/identifier/36000000",
+    "image": "https://storage.pokemoonapis.com/context/token/ae5c/object/venobat-rare.png",
+    "animation_url": "https://storage.pokemoonapis.com/context/token/ae5c/object/venobat-rare.glb",
+    "name": "Venobat Rare"
+  },
+  "37": {
+    "attributes": [
+      { "trait_type": "Denomination", "value": "Ambush" },
+      { "trait_type": "MoonLabel", "value": "L" },
+      { "trait_type": "Class", "value": "Item" },
+      {
+        "display_type": "Booster",
+        "trait_type": "JetPack",
+        "max_value": 13,
+        "value": 12
+      },
+      { "display_type": "number", "trait_type": "Generation", "value": 1 }
+    ],
+    "description": "Never trust an ape.",
+    "external_url": "https://storage.pokemoonapis.com/context/token/ae5c/identifier/37000000",
+    "image": "https://storage.pokemoonapis.com/context/token/ae5c/object/ambush-legend.png",
+    "animation_url": "https://storage.pokemoonapis.com/context/token/ae5c/object/ambush-legend.glb",
+    "name": "Ambush Legend"
+  },
+  "38": {
+    "attributes": [
+      { "trait_type": "Denomination", "value": "Ricky" },
+      { "trait_type": "MoonLabel", "value": "L" },
+      { "trait_type": "Class", "value": "Supporter" },
+      {
+        "display_type": "Booster",
+        "trait_type": "JetPack",
+        "max_value": 13,
+        "value": 9
+      },
+      { "display_type": "number", "trait_type": "Generation", "value": 1 }
+    ],
+    "description": "What does this guy even do?",
+    "external_url": "https://storage.pokemoonapis.com/context/token/ae5c/identifier/38000000",
+    "image": "https://storage.pokemoonapis.com/context/token/ae5c/object/ricky-legend.png",
+    "animation_url": "https://storage.pokemoonapis.com/context/token/ae5c/object/ricky-legend.glb",
+    "name": "Ricky Legend"
+  },
+  "39": {
+    "attributes": [
+      { "trait_type": "Denomination", "value": "Bananaconda" },
+      { "trait_type": "MoonLabel", "value": "L" },
+      { "trait_type": "Class", "value": "Grass" },
+      { "trait_type": "HP", "value": 110 },
+      { "trait_type": "Stamina", "value": 40 },
+      {
+        "display_type": "Booster",
+        "trait_type": "JetPack",
+        "max_value": 13,
+        "value": 7
+      },
+      { "display_type": "number", "trait_type": "Generation", "value": 1 }
+    ],
+    "description": "Don't touch it? Why? Looks like a perfectly fine banana to m-",
+    "external_url": "https://storage.pokemoonapis.com/context/token/ae5c/identifier/39000000",
+    "image": "https://storage.pokemoonapis.com/context/token/ae5c/object/bananaconda-legend.png",
+    "animation_url": "https://storage.pokemoonapis.com/context/token/ae5c/object/bananaconda-legend.glb",
+    "name": "Bananaconda Legend"
+  },
+  "40": {
+    "attributes": [
+      { "trait_type": "Denomination", "value": "Venobat" },
+      { "trait_type": "MoonLabel", "value": "L" },
+      { "trait_type": "Class", "value": "Grass" },
+      { "trait_type": "HP", "value": 100 },
+      { "trait_type": "Stamina", "value": 90 },
+      {
+        "display_type": "Booster",
+        "trait_type": "JetPack",
+        "max_value": 13,
+        "value": 3
+      },
+      { "display_type": "number", "trait_type": "Generation", "value": 1 }
+    ],
+    "description": "The blood moon rises once again.",
+    "external_url": "https://storage.pokemoonapis.com/context/token/ae5c/identifier/40000000",
+    "image": "https://storage.pokemoonapis.com/context/token/ae5c/object/venobat-legend.png",
+    "animation_url": "https://storage.pokemoonapis.com/context/token/ae5c/object/venobat-legend.glb",
+    "name": "Venobat Legend"
+  },
+  "41": {
+    "attributes": [
+      { "trait_type": "Denomination", "value": "Maroslash" },
+      { "trait_type": "MoonLabel", "value": "L" },
+      { "trait_type": "Class", "value": "DarkGrass" },
+      { "trait_type": "HP", "value": 120 },
+      { "trait_type": "Stamina", "value": 30 },
+      { "trait_type": "Storm", "value": 50 },
+      {
+        "display_type": "Booster",
+        "trait_type": "JetPack",
+        "max_value": 13,
+        "value": 5
+      },
+      { "display_type": "number", "trait_type": "Generation", "value": 1 }
+    ],
+    "description": "The night is dark and full of terrors.",
+    "external_url": "https://storage.pokemoonapis.com/context/token/ae5c/identifier/41000000",
+    "image": "https://storage.pokemoonapis.com/context/token/ae5c/object/maroslash-legend.png",
+    "animation_url": "https://storage.pokemoonapis.com/context/token/ae5c/object/maroslash-legend.glb",
+    "name": "Maroslash Legend"
+  },
+  "42": {
+    "attributes": [
+      { "trait_type": "Denomination", "value": "Clobberilla" },
+      { "trait_type": "MoonLabel", "value": "L" },
+      { "trait_type": "Class", "value": "Grass" },
+      { "trait_type": "HP", "value": 160 },
+      { "trait_type": "Stamina", "value": 40 },
+      {
+        "display_type": "Booster",
+        "trait_type": "JetPack",
+        "max_value": 13,
+        "value": 13
+      },
+      { "display_type": "number", "trait_type": "Generation", "value": 1 }
+    ],
+    "description": "As recently featured on the Slow Brogan podcast.",
+    "external_url": "https://storage.pokemoonapis.com/context/token/ae5c/identifier/42000000",
+    "image": "https://storage.pokemoonapis.com/context/token/ae5c/object/clobberilla-legend.png",
+    "animation_url": "https://storage.pokemoonapis.com/context/token/ae5c/object/clobberilla-legend.glb",
+    "name": "Clobberilla Legend"
+  }
+}
