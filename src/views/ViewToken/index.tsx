@@ -49,7 +49,7 @@ const Text = styled(Typography)`
 `;
 
 const PriceText = styled(Typography)`
-  color: gold;
+  color: #fce14c;
   font-size: 20pt;
 `;
 
