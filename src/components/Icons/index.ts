@@ -20,5 +20,9 @@ export { default as Grass } from "./types/Grass";
 export { default as Psychic } from "./types/Psychic";
 export { default as Water } from "./types/Water";
 
+export { default as Approve } from "./Approve";
+export { default as Cancel } from "./Cancel";
+export { default as Sell } from "./Sell";
+
 //Packs
 export * from "./packs";

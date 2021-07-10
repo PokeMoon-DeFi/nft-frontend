@@ -194,10 +194,6 @@ export const fetchListings = createAsyncThunk(
     burnPercent = toNumber(burnPercent) / 10000;
 
     const listings: any = [];
-    // console.log(listingInfo);
-    const [ids, prices] = listingInfo;
-    // console.log(ids.map((d) => console.log(BigNumber.from(d).toString())));
-    // console.log(prices.map((d) => console.log(BigNumber.from(d).toString())));
 
     for (let info of listingInfo) {
       const { pricing, tokenId } = info;

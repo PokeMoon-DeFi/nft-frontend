@@ -109,7 +109,11 @@ const ViewToken = () => {
       <Container maxWidth="lg">
         <img
           width="100%"
-          src={"/images/banners/Marketplace.png"}
+          src={
+            isMobile
+              ? "/images/banners/Marketplace_Mobile.png"
+              : "/images/banners/Marketplace_PC.png"
+          }
           alt="banner"
           style={{ marginTop: 8 }}
         />
@@ -180,34 +184,6 @@ const ViewToken = () => {
           {nft && <InfoBox nft={nft} />}
         </Grid>
       </Grid>
-      <div
-        style={{
-          display: "flex",
-
-          flexDirection: "column",
-          justifyContent: "center",
-          marginTop: 20,
-          marginBottom: 20,
-          marginLeft: 10,
-          marginRight: 10,
-        }}
-      >
-        {/* <Text>{metadata?.name}</Text> */}
-        {/* <Text>{metadata?.description}</Text>
-        {metadata?.attributes.map((val, index) => {
-          return (
-            <div key={val.display_type + index.toString()}>
-              <Text>{val.display_type}</Text>
-              <Text>{val.max_value}</Text>
-              <Text>{val.trait_type}</Text>
-              <Text>{val.value}</Text>
-            </div>
-          );
-        })}
-        {/* <Text>{metadata?.attributes}</Text> */}
-        {/* <Text>{metadata?.animation_url}</Text>
-        <Text>{metadata?.external_url}</Text>  */}
-      </div>
       <PriceModal
         handleConfirm={(price) => {
           setShowModal(false);

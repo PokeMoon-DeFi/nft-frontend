@@ -6,8 +6,12 @@ import Gallery from "components/Gallery/Gallery";
 import { FilterDashboard, FilterState } from "components/FilterDashboard";
 import { Content } from "components/layout";
 import { getFilteredNfts } from "utils";
+import { useMediaQuery } from "@material-ui/core";
+import { useTheme } from "@material-ui/core/styles";
 
 const MarketPage = () => {
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
   const listings = useAppSelector((state) => state.market.listings);
 
   const [filterState, setFilterState] = useState<FilterState>({
@@ -41,7 +45,11 @@ const MarketPage = () => {
     >
       <img
         width="100%"
-        src={"/images/banners/Marketplace.png"}
+        src={
+          isMobile
+            ? "/images/banners/Marketplace_Mobile.png"
+            : "/images/banners/Marketplace_PC.png"
+        }
         alt="banner"
         style={{ marginTop: 8 }}
       />

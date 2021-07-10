@@ -16,6 +16,9 @@ import { FilterState } from "components/FilterDashboard";
 import { Contract } from "ethers-multicall";
 import { getNftAddressByName } from "./contractHelpers";
 import { call } from "./callHelpers";
+import ampedUpUriResponse from "config/constants/cache/ampedUp/amped_up_token_uri_responses.json";
+import meanGreensUriResponse from "config/constants/cache/meanGreens/mean_greens_token_uri_responses.json";
+import blastOffUriResponse from "config/constants/cache/blastOff/blast_off_token_uri_responses.json";
 
 const isPack = (tokenId: string) => {
   let isPack: boolean;
@@ -23,6 +26,19 @@ const isPack = (tokenId: string) => {
     ? (isPack = true)
     : (isPack = false);
   return isPack;
+};
+
+export const getUriResponseCache = (name: string) => {
+  switch (name) {
+    case "blastOff":
+      return blastOffUriResponse;
+    case "ampedUp":
+      return ampedUpUriResponse;
+    case "meanGreens":
+      return meanGreensUriResponse;
+    default:
+      return "";
+  }
 };
 
 export const getMarketAddress = (name: string) => {
@@ -274,14 +290,16 @@ export const handleTokenIdResponse = async (
 export const getTokenUriResponse = async (
   nft: PokemoonNft
 ): Promise<TokenUriResponse> => {
-  const contract = new Contract(getNftAddressByName(nft.set), getAbi(nft.set));
-  const uriCall = contract.tokenURI(nft.tokenId);
-  const href = await call([uriCall]);
+  const cache = getUriResponseCache(nft.set);
+  const id = nft.tokenId.substr(0, 2);
+  // const contract = new Contract(getNftAddressByName(nft.set), getAbi(nft.set));
+  // const uriCall = contract.tokenURI(nft.tokenId);
+  // const href = await call([uriCall]);
 
-  const response = await fetch(href + ".json");
-  const data = await response.json();
+  // const response = await fetch(href + ".json");
+  // const data = await response.json();
 
-  return data;
+  return cache[id];
 };
 
 //This updates the static cache

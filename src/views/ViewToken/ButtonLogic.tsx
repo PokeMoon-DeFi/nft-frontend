@@ -18,7 +18,9 @@ import {
 } from "hooks/useAllowance";
 import styled from "styled-components";
 import Send from "components/Icons/Send";
-import BigNumber from "bignumber.js";
+import Cancel from "components/Icons/Cancel";
+import Sell from "components/Icons/Sell";
+import Approve from "components/Icons/Approve";
 
 interface LogicProps {
   isOwner: boolean;
@@ -54,7 +56,12 @@ const ButtonLogic: FC<LogicProps> = ({ isOwner, activeListing }) => {
   } else if (isOwner && activeListing) {
     return (
       <ButtonDiv>
-        <Button onClick={() => handleCancelListing(tokenId)}>Cancel</Button>
+        <Button
+          startIcon={<Cancel />}
+          onClick={() => handleCancelListing(tokenId)}
+        >
+          Cancel
+        </Button>
         <Button onClick={() => setShowPriceModal(true)}>Update</Button>
         <PriceModal
           handleConfirm={(price) => {
@@ -75,12 +82,15 @@ const ButtonLogic: FC<LogicProps> = ({ isOwner, activeListing }) => {
         {isApproved ? (
           <Button
             disabled={!marketAddress}
+            startIcon={<Sell />}
             onClick={() => setShowPriceModal(true)}
           >
             Sell
           </Button>
         ) : (
-          <Button onClick={sendApproval}>Approve To Sell</Button>
+          <Button startIcon={<Approve />} onClick={sendApproval}>
+            Approve To Sell
+          </Button>
         )}
         <PriceModal
           handleConfirm={(price) => {
