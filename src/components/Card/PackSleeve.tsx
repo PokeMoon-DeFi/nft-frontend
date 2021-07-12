@@ -8,6 +8,8 @@ import { InspectorDialog } from "components/Modal";
 import StarRateIcon from "@material-ui/icons/StarRate";
 import { useTheme } from "styled-components";
 import { PokemoonPack } from "config/constants/nfts/types";
+import useMarket from "hooks/useMarket";
+import { useLocation } from "react-router-dom";
 
 interface PackSleeveProps extends BoxProps {
   pack: PokemoonPack;
@@ -43,6 +45,8 @@ export const PackSleeve: FC<PackSleeveProps> = ({
 }) => {
   const { packId, nfts } = pack;
   const theme = useTheme();
+  const { isBuying } = useMarket();
+  const location = useLocation();
 
   return (
     <StyledBox {...props}>

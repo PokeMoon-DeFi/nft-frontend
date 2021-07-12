@@ -13,7 +13,6 @@ function SvgComponent(props: React.SVGProps<SVGSVGElement>) {
       height="1em"
       {...props}
     >
-      <style>{".prefix__st0{fill:none}"}</style>
       <path
         className="prefix__st0"
         d="M316.7 333.9c7.7-.1 12.8-5.5 12.8-12.6 0-7.3-5.4-12.4-13.5-12.5-11.9-.1-23.8 0-35.7 0h-18.7v24.9c-.1 0 .4.3.9.3 18.2 0 36.2.2 54.2-.1z"

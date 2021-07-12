@@ -8,6 +8,7 @@ import {
   postListing,
   updateListing,
 } from "providers/state/Market";
+import create from "zustand";
 
 export const useFetchListing = () => {
   const dispatch = useDispatch();
@@ -70,3 +71,13 @@ export const useBuyListing = () => {
   );
   return callback;
 };
+
+interface MarketState {
+  isBuying: boolean;
+  setIsBuying: (isBuying: boolean) => void;
+}
+
+export default create<MarketState>((set) => ({
+  isBuying: true,
+  setIsBuying: (isBuying) => set((state) => ({ ...state, isBuying })),
+}));

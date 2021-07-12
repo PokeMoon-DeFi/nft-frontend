@@ -11,8 +11,10 @@ import useModal from "hooks/useModal";
 import { numberWithCommas } from "utils";
 import HelpIcon from "@material-ui/icons/Help";
 import Popover from "@material-ui/core/Popover";
-import { useHistory } from "react-router-dom";
+import { useHistory, useLocation } from "react-router-dom";
 import { useCallback } from "react";
+import useMarket from "hooks/useMarket";
+import { Buy, Sell } from "components/Icons";
 interface SleeveProps {
   nft: PokemoonNft;
 }
@@ -65,6 +67,10 @@ export const Sleeve: FC<SleeveProps> = ({ nft }) => {
   const handleRedirect = useCallback(() => {
     history.push(`token/${set}/${tokenId}`);
   }, [history, set, tokenId]);
+
+  const { isBuying } = useMarket();
+  const location = useLocation();
+  const isMarket = /.*\/market.*/.test(location.pathname);
 
   return (
     <>
@@ -152,13 +158,32 @@ export const Sleeve: FC<SleeveProps> = ({ nft }) => {
             />
           </div>
         )}
-        <Button
-          style={{ fontSize: 12, textTransform: "none" }}
-          onClick={tokenId?.length > 2 ? handleRedirect : showModal}
-          endIcon={<SearchIcon />}
-        >
-          Inspect
-        </Button>
+
+        {!isMarket ? (
+          <Button
+            style={{ fontSize: 12, textTransform: "none" }}
+            onClick={tokenId?.length > 2 ? handleRedirect : showModal}
+            endIcon={<SearchIcon />}
+          >
+            Inspect
+          </Button>
+        ) : isBuying ? (
+          <Button
+            style={{ fontSize: 12, textTransform: "none" }}
+            onClick={tokenId?.length > 2 ? handleRedirect : showModal}
+            startIcon={<Buy />}
+          >
+            Buy
+          </Button>
+        ) : (
+          <Button
+            style={{ fontSize: 12, textTransform: "none" }}
+            onClick={tokenId?.length > 2 ? handleRedirect : showModal}
+            startIcon={<Sell />}
+          >
+            Sell
+          </Button>
+        )}
       </StyledBox>
     </>
   );

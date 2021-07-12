@@ -99,17 +99,18 @@ export const useApproveNft = (set) => {
   const [isApproved, setApproved] = useState(false);
   const { account } = useWeb3React();
   const { fastRefresh, slowRefresh } = useRefresh();
+  const marketAddress = getMarketAddress(set);
 
   useEffect(() => {
     const fetchApproval = async () => {
       const result = await contract.methods
-        .isApprovedForAll(account, getMarketAddress(set))
+        .isApprovedForAll(account, marketAddress)
         .call();
 
       setApproved(result);
     };
 
-    if (!account) return;
+    if (!account || !marketAddress) return;
     fetchApproval();
   }, [fastRefresh, account, setApproved, contract, set]);
 

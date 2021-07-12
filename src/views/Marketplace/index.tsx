@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from "react";
+import React, { useState, useMemo, useEffect } from "react";
 import Container from "@material-ui/core/Container";
 import { useAppSelector } from "providers";
 import TableGrid from "components/TableGrid/TableGrid";
@@ -8,11 +8,25 @@ import { Content } from "components/layout";
 import { getFilteredNfts } from "utils";
 import { useMediaQuery } from "@material-ui/core";
 import { useTheme } from "@material-ui/core/styles";
+import { ButtonGroup } from "@material-ui/core";
+import Button from "components/Button";
+import styled from "styled-components";
+import useMarket from "hooks/useMarket";
+import { PokemoonNft } from "config/constants/nfts/types";
+import useNftCollection from "hooks/useNftCollection";
+
+const BuySellButton = styled(Button)`
+  .MuiButton-label {
+    font-size: 16pt;
+  }
+`;
 
 const MarketPage = () => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
   const listings = useAppSelector((state) => state.market.listings);
+  const collection = useNftCollection();
+  const { isBuying, setIsBuying } = useMarket();
 
   const [filterState, setFilterState] = useState<FilterState>({
     rarities: [],
@@ -23,13 +37,27 @@ const MarketPage = () => {
   const [viewState, setViewState] = useState("grid");
 
   const filterNfts = useMemo(() => {
-    const nfts = listings.map((listing) => ({
-      ...listing.data,
-      price: listing.price,
-    }));
+    let nfts: PokemoonNft[] = [];
+
+    if (isBuying) {
+      nfts = listings.map((listing) => ({
+        ...listing.data,
+        price: listing.price,
+      }));
+    } else {
+      nfts = collection.filter(
+        (nft) =>
+          !listings
+            .map((listing) => listing.id.toString())
+            .includes(nft.tokenId)
+      );
+    }
 
     return getFilteredNfts(nfts, filterState);
-  }, [filterState, listings]);
+  }, [filterState, listings, isBuying, collection]);
+
+  //state cleanup
+  useEffect(() => setIsBuying(true), [setIsBuying]);
 
   return (
     <Container
@@ -44,7 +72,7 @@ const MarketPage = () => {
       }}
     >
       <img
-        width="100%"
+        width="80%"
         src={
           isMobile
             ? "/images/banners/Marketplace_Mobile.png"
@@ -69,6 +97,25 @@ const MarketPage = () => {
         }}
       />
       <Content maxWidth="lg" style={{ justifyContent: "flex-start" }}>
+        <div
+          style={{
+            flex: 1,
+            display: "flex",
+            justifyContent: "space-between",
+          }}
+        >
+          <BuySellButton disabled={isBuying} onClick={() => setIsBuying(true)}>
+            Buy
+          </BuySellButton>
+          <div style={{ width: 40 }} />
+          <BuySellButton
+            disabled={!isBuying}
+            onClick={() => setIsBuying(false)}
+          >
+            Sell
+          </BuySellButton>
+        </div>
+
         {viewState === "grid" ? (
           <Gallery pageSize={8} nfts={filterNfts} />
         ) : (

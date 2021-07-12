@@ -60,9 +60,9 @@ const ButtonLogic: FC<LogicProps> = ({ isOwner, activeListing }) => {
           startIcon={<Cancel />}
           onClick={() => handleCancelListing(tokenId)}
         >
-          Cancel
+          Cancel Listing
         </Button>
-        <Button onClick={() => setShowPriceModal(true)}>Update</Button>
+        <Button onClick={() => setShowPriceModal(true)}>Update Price</Button>
         <PriceModal
           handleConfirm={(price) => {
             setShowPriceModal(false);
@@ -88,7 +88,11 @@ const ButtonLogic: FC<LogicProps> = ({ isOwner, activeListing }) => {
             Sell
           </Button>
         ) : (
-          <Button startIcon={<Approve />} onClick={sendApproval}>
+          <Button
+            disabled={!marketAddress}
+            startIcon={<Approve />}
+            onClick={sendApproval}
+          >
             Approve To Sell
           </Button>
         )}
