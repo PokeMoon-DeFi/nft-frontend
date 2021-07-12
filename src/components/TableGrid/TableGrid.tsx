@@ -1,4 +1,4 @@
-import React, { FC, useCallback } from "react";
+import React, { FC, useCallback, useMemo } from "react";
 import {
   DataGrid,
   GridColDef,
@@ -19,7 +19,9 @@ import useModal from "hooks/useModal";
 import { InspectorDialog } from "components/Modal";
 import { PokemoonNft } from "config/constants/nfts/types";
 import { useHistory } from "react-router-dom";
-
+import { useLocation } from "react-router-dom";
+import useMarket from "hooks/useMarket";
+import { numberWithCommas } from "utils";
 export interface TableGridProps {
   nfts: Array<PokemoonNft>;
   hidePackId?: boolean;
@@ -96,69 +98,84 @@ const ButtonCell = (params: GridCellParams) => {
   );
 };
 
-let columns: GridColDef[] = [
-  {
-    field: "tokenId",
-    headerName: "ID",
-    headerAlign: "center",
-    align: "center",
-    // width: 70,
-    flex: 1,
-    valueFormatter: ({ value }) => `#${value}`,
-  },
-  {
-    field: "packId",
-    headerName: "Pack ID",
-    headerAlign: "center",
-    align: "center",
-    // flex: 1,
-    width: 120,
-    renderCell: PackIdFormatter,
-  },
-  {
-    field: "name",
-    headerAlign: "center",
-    align: "center",
-    headerName: "Name",
-    // width: 140,
-    flex: 1,
-  },
-  {
-    field: "type",
-    headerAlign: "center",
-    align: "center",
-    headerName: "Type",
-    width: 130,
-    // flex: 1,
-    renderCell: TypeCellFormatter,
-  },
-  {
-    field: "rarity",
-    headerName: "Rarity",
-    // width: 140,
-    // flex: 1,
-    width: 130,
-    headerAlign: "center",
-    align: "center",
-    renderCell: RarityCellFormatter,
-  },
-  {
-    field: "set",
-    headerName: "Set",
-    headerAlign: "center",
-    align: "center",
-    // flex: 1,
-    width: 130,
-    renderCell: PackCellFormatter,
-  },
-  {
-    field: "modalId",
-    align: "center",
-    headerName: "Actions",
-    width: 150,
-    renderCell: (params: GridCellParams) => <ButtonCell {...params} />,
-  },
-];
+const getColumns = (hidePrice, hidePackId) => {
+  let columns: GridColDef[] = [
+    {
+      field: "tokenId",
+      headerName: "ID",
+      headerAlign: "center",
+      align: "center",
+      // width: 70,
+      flex: 1,
+      valueFormatter: ({ value }) => `#${value}`,
+    },
+    {
+      field: "packId",
+      headerName: "Pack ID",
+      headerAlign: "center",
+      align: "center",
+      hide: hidePackId,
+      // flex: 1,
+      width: 120,
+      renderCell: PackIdFormatter,
+    },
+    {
+      field: "name",
+      headerAlign: "center",
+      align: "center",
+      headerName: "Name",
+      // width: 140,
+      flex: 1,
+    },
+    {
+      field: "price",
+      headerAlign: "center",
+      headerName: "Price",
+      align: "center",
+      flex: 1,
+      hide: hidePrice,
+      valueFormatter: ({ value }) =>
+        `${value ? numberWithCommas(Number(value)) : 0} KBN`,
+    },
+    {
+      field: "type",
+      headerAlign: "center",
+      align: "center",
+      headerName: "Type",
+      width: 130,
+      // flex: 1,
+      renderCell: TypeCellFormatter,
+    },
+    {
+      field: "rarity",
+      headerName: "Rarity",
+      // width: 140,
+      // flex: 1,
+      width: 130,
+      headerAlign: "center",
+      align: "center",
+      renderCell: RarityCellFormatter,
+    },
+    {
+      field: "set",
+      headerName: "Set",
+      headerAlign: "center",
+      align: "center",
+      // flex: 1,
+      width: 130,
+      renderCell: PackCellFormatter,
+    },
+    {
+      field: "modalId",
+      align: "center",
+      headerName: "Actions",
+      width: 150,
+      renderCell: (params: GridCellParams) => <ButtonCell {...params} />,
+    },
+  ];
+
+  return columns;
+};
 
 //Take the combined set name, rarity, and pkmoon number to make a uniqueId
 const getSetIndex = ({ set, number, rarity }: any) => {
@@ -180,14 +197,36 @@ const getSetIndex = ({ set, number, rarity }: any) => {
 
 const TableGrid: FC<TableGridProps> = ({ nfts, hidePackId, getRowId }) => {
   const classes = useStyles();
-  if (hidePackId) {
-    columns = columns.filter((c) => c.field !== "packId");
-  }
+  const location = useLocation();
+  const isMarket = /.*\/market.*/.test(location.pathname);
+  const { isBuying } = useMarket();
+
+  // if (hidePackId) {
+  //   columns = columns.filter((c) => c.field !== "packId");
+  // }
+  // if (isMarket && !isBuying) {
+  //   columns = columns.filter((c) => c.field !== "price");
+  // }
+
+  // const dataColumns = useMemo(() => {
+  //   const result = columns.map((c) => {
+  //     if (hidePackId && c.field === "packId") {
+  //       return { ...c, hide: true };
+  //     } else if (isMarket && !isBuying && c.field === "price") {
+  //       return { ...c, hide: true };
+  //     } else if (isMarket && !isBuying && c.field === "price") {
+  //       return { ...c, hide: false };
+  //     } else return c;
+  //   });
+
+  //   return result;
+  // }, [isMarket, isBuying, hidePackId]);
+
   return (
     <div style={{ height: 400, width: "100%" }}>
       <DataGrid
         rows={nfts}
-        columns={columns}
+        columns={getColumns(!isMarket || !isBuying, hidePackId)}
         pageSize={10}
         getRowId={!!getRowId ? getRowId : (row) => getSetIndex(row)}
         hideFooterSelectedRowCount={true}

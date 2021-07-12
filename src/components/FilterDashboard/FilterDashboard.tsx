@@ -22,6 +22,8 @@ import AppsSharpIcon from "@material-ui/icons/AppsSharp";
 import { PM_TYPES } from "config/constants/nfts";
 import { PackChip } from "components/Chip";
 import { renamePack } from "utils";
+import PriceRange from "./PriceRange";
+import { useLocation } from "react-router-dom";
 
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
@@ -88,6 +90,9 @@ const Dashboard: FC<DashboardProps> = (props) => {
     capitalize(key)
   );
   const supportedPacks = ["Blast-Off!", "Amped Up", "Mean Greens"];
+
+  const location = useLocation();
+  const isMarket = /.*\/market.*/.test(location.pathname);
 
   const [activeTypes, setActiveTypes] = React.useState<string[]>([]);
   const [activeRanks, setActiveRanks] = React.useState<string[]>([]);
@@ -256,6 +261,7 @@ const Dashboard: FC<DashboardProps> = (props) => {
           })}
         </Select>
       </FormControl>
+      {isMarket && <PriceRange />}
       <ButtonGroup>
         <Button
           style={{

@@ -89,6 +89,7 @@ const InfoBox: FC<InfoBoxProps> = ({ nft }) => {
         {attributes.map((attr, index) => {
           return (
             <div
+              key={index.toString()}
               style={{
                 display: "flex",
                 justifyContent: "space-between",

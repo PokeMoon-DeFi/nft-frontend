@@ -20,6 +20,7 @@ import styled from "styled-components";
 import Send from "components/Icons/Send";
 import Cancel from "components/Icons/Cancel";
 import Sell from "components/Icons/Sell";
+import Buy from "components/Icons/Buy";
 import Approve from "components/Icons/Approve";
 
 interface LogicProps {
@@ -117,7 +118,9 @@ const ButtonLogic: FC<LogicProps> = ({ isOwner, activeListing }) => {
   } else if (activeListing) {
     return (
       <>
-        <Button onClick={() => handleBuyListing(tokenId)}>Buy</Button>
+        <Button startIcon={<Buy />} onClick={() => handleBuyListing(tokenId)}>
+          Buy
+        </Button>
       </>
     );
   } else {

@@ -102,6 +102,7 @@ const MarketPage = () => {
             flex: 1,
             display: "flex",
             justifyContent: "space-between",
+            marginBottom: 20,
           }}
         >
           <BuySellButton disabled={isBuying} onClick={() => setIsBuying(true)}>
