@@ -8,6 +8,7 @@ import {
   postListing,
   updateListing,
 } from "providers/state/Market";
+import { MAX_KOBAN_PRICE } from "config";
 import create from "zustand";
 
 export const useFetchListing = () => {
@@ -75,9 +76,13 @@ export const useBuyListing = () => {
 interface MarketState {
   isBuying: boolean;
   setIsBuying: (isBuying: boolean) => void;
+  priceRange: number[];
+  setPriceRange: (priceRange: number[]) => void;
 }
 
 export default create<MarketState>((set) => ({
   isBuying: true,
   setIsBuying: (isBuying) => set((state) => ({ ...state, isBuying })),
+  priceRange: [0, MAX_KOBAN_PRICE],
+  setPriceRange: (priceRange) => set((state) => ({ ...state, priceRange })),
 }));

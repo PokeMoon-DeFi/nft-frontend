@@ -106,16 +106,24 @@ const ViewToken = () => {
   const handleSendGift = useSendGiftNft();
   return (
     <div style={{ zIndex: 2 }}>
-      <Container maxWidth="lg">
+      <Container
+        maxWidth="lg"
+        style={{
+          display: "flex",
+          justifyContent: "flex-start",
+          flexDirection: "column",
+          alignItems: "center",
+        }}
+      >
         <img
-          width="100%"
+          width="80%"
           src={
             isMobile
               ? "/images/banners/Marketplace_Mobile.png"
               : "/images/banners/Marketplace_PC.png"
           }
           alt="banner"
-          style={{ marginTop: 8 }}
+          style={{ marginTop: 20, marginBottom: 20 }}
         />
       </Container>
       <Notifications />

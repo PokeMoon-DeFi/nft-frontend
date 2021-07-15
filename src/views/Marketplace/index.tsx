@@ -26,7 +26,7 @@ const MarketPage = () => {
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
   const listings = useAppSelector((state) => state.market.listings);
   const collection = useNftCollection();
-  const { isBuying, setIsBuying } = useMarket();
+  const { isBuying, setIsBuying, priceRange } = useMarket();
 
   const [filterState, setFilterState] = useState<FilterState>({
     rarities: [],
@@ -40,10 +40,12 @@ const MarketPage = () => {
     let nfts: PokemoonNft[] = [];
 
     if (isBuying) {
-      nfts = listings.map((listing) => ({
-        ...listing.data,
-        price: listing.price,
-      }));
+      nfts = listings
+        .filter(({ price }) => price > priceRange[0] && price <= priceRange[1])
+        .map((listing) => ({
+          ...listing.data,
+          price: listing.price,
+        }));
     } else {
       nfts = collection.filter(
         (nft) =>
@@ -54,7 +56,7 @@ const MarketPage = () => {
     }
 
     return getFilteredNfts(nfts, filterState);
-  }, [filterState, listings, isBuying, collection]);
+  }, [filterState, listings, isBuying, collection, priceRange]);
 
   //state cleanup
   useEffect(() => setIsBuying(true), [setIsBuying]);

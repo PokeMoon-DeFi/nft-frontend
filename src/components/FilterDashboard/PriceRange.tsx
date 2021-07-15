@@ -7,11 +7,12 @@ import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 import Input from "@material-ui/core/Input";
 import Box from "@material-ui/core/Box";
-
-const MAX_AMOUNT = 100000;
+import useMarket from "hooks/useMarket";
+import { MAX_KOBAN_PRICE } from "config";
 
 const PriceRange = () => {
-  const [range, setRange] = useState<number[]>([0, MAX_AMOUNT]);
+  const [localRange, setLocalRange] = useState([0, MAX_KOBAN_PRICE]);
+  const { setPriceRange } = useMarket();
   const [anchorEl, setAnchorEl] = React.useState<HTMLElement | null>(null);
   const ref = React.useRef(null);
 
@@ -39,19 +40,19 @@ const PriceRange = () => {
           <Grid container spacing={2} alignItems="center">
             <Grid item>
               <Input
-                value={range[0]}
+                value={localRange[0]}
                 onChange={(event) => {
                   const val =
                     event.target.value === ""
-                      ? MAX_AMOUNT
+                      ? MAX_KOBAN_PRICE
                       : Number(event.target.value);
-                  const updatedRange = [val, range[1]];
-                  setRange(updatedRange);
+                  const updatedRange = [val, localRange[1]];
+                  setLocalRange(updatedRange);
                 }}
                 inputProps={{
                   step: 10,
                   min: 0,
-                  max: MAX_AMOUNT,
+                  max: MAX_KOBAN_PRICE,
                   type: "number",
                   "aria-labelledby": "input-slider",
                 }}
@@ -59,26 +60,26 @@ const PriceRange = () => {
             </Grid>
             <Grid style={{ width: 80 }} item xs>
               <Slider
-                value={range}
-                max={MAX_AMOUNT}
-                onChange={(event, val) => setRange(val as number[])}
+                value={localRange}
+                max={MAX_KOBAN_PRICE}
+                onChange={(event, val) => setLocalRange(val as number[])}
               />
             </Grid>
             <Grid item>
               <Input
-                value={range[1]}
+                value={localRange[1]}
                 onChange={(event) => {
                   const val =
                     event.target.value === ""
-                      ? MAX_AMOUNT
+                      ? MAX_KOBAN_PRICE
                       : Number(event.target.value);
-                  const updatedRange = [range[0], val];
-                  setRange(updatedRange);
+                  const updatedRange = [localRange[0], val];
+                  setLocalRange(updatedRange);
                 }}
                 inputProps={{
                   step: 10,
                   min: 0,
-                  max: MAX_AMOUNT,
+                  max: MAX_KOBAN_PRICE,
                   type: "number",
                   "aria-labelledby": "input-slider",
                 }}
@@ -96,13 +97,20 @@ const PriceRange = () => {
           >
             <Button
               onClick={(event) => {
-                setRange([0, MAX_AMOUNT]);
+                setLocalRange([0, MAX_KOBAN_PRICE]);
+                setPriceRange([0, MAX_KOBAN_PRICE]);
               }}
               size={"small"}
             >
               Reset
             </Button>
-            <Button onClick={() => setAnchorEl(null)} size={"small"}>
+            <Button
+              onClick={() => {
+                setPriceRange(localRange);
+                setAnchorEl(null);
+              }}
+              size={"small"}
+            >
               Confirm
             </Button>
           </div>
