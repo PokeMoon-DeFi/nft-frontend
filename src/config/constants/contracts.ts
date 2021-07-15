@@ -122,7 +122,7 @@ const contracts = {
   },
   marketplace: {
     97: "",
-    56: "0xcbBF269a68a38318f135D9B48AdB11Bf1A57F8B2",
+    56: "0x693BEF255B897b6DFe7db528C5921eA442920A58",
   },
 };
 

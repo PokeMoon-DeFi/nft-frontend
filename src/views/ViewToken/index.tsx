@@ -33,6 +33,7 @@ import InfoBox from "./InfoBox";
 import { numberWithCommas } from "utils";
 import ButtonLogic from "./ButtonLogic";
 import { useWeb3React } from "@web3-react/core";
+import { AvatarGroup } from "@material-ui/lab";
 
 const useStyles = makeStyles({
   root: {
@@ -76,12 +77,25 @@ const ViewToken = () => {
   useEffect(() => {
     async function fetchNft() {
       const data = await getCardData(id, set);
-      const owner = await getNftOwner(data);
       setNft(data);
-      setOwner(owner);
     }
+
     fetchNft();
   }, [id, set, setNft]);
+
+  useEffect(() => {
+    async function getOwner() {
+      if (!nft) return;
+
+      if (activeListing) {
+        setOwner(activeListing.seller);
+      } else {
+        const owner = await getNftOwner(nft);
+        setOwner(owner);
+      }
+    }
+    getOwner();
+  }, [nft, activeListing]);
 
   useEffect(() => {
     async function fetchUriResponse() {

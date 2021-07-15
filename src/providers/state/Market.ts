@@ -16,6 +16,7 @@ interface Listing {
   id: number;
   price: number;
   data: PokemoonNft;
+  seller: string;
 }
 
 interface PendingAction {
@@ -69,7 +70,7 @@ export const cancelListing = createAsyncThunk(
       marketAbi,
       provider.getSigner()
     );
-    const call = contract.functions.cancelOrder(tokenId.toString());
+    const call = contract.functions.cancelSellOrder(tokenId.toString());
     const [transaction, error] = await safeAwait(call);
 
     if (error) {
@@ -120,7 +121,7 @@ export const postListing = createAsyncThunk(
       provider.getSigner()
     );
 
-    const call = contract.functions.placeOrder(
+    const call = contract.functions.placeSellOrder(
       tokenId.toString(),
       price.toString()
     );
@@ -145,10 +146,10 @@ export const buyListing = createAsyncThunk(
       marketAbi,
       provider.getSigner()
     );
-    const call = contract.takeOrder(tokenId.toString());
+    const call = contract.takeBuyOrder(tokenId.toString());
 
     const [transaction, error] = await safeAwait(call);
-    console.log(transaction, error);
+
     if (error) {
       return rejectWithValue(error);
     } else {
@@ -167,7 +168,7 @@ export const updateListing = createAsyncThunk(
       marketAbi,
       provider.getSigner()
     );
-    const call = contract.functions.updateOrder(tokenId, price);
+    const call = contract.functions.updateSellOrder(tokenId, price);
     const [transaction, error] = await safeAwait(call);
 
     if (error) {
@@ -182,21 +183,16 @@ export const fetchListings = createAsyncThunk(
   "market/fetchListings",
   async () => {
     const contract = new Contract(marketplace, marketAbi);
-    const calls = [
-      contract.listingLength(),
-      contract["x0000000000000001"](),
-      contract.getListing(),
-    ];
+    const calls = [contract.getListingInfo()];
     const response = await call(calls);
 
-    let [listingsCount, burnPercent, listingInfo] = response;
-
-    burnPercent = toNumber(burnPercent) / 10000;
+    let burnPercent = 0;
+    // burnPercent = toNumber(burnPercent) / 10000;
 
     const listings: any = [];
 
-    for (let info of listingInfo) {
-      const { pricing, tokenId } = info;
+    for (let info of response) {
+      const { pricing, tokenId, seller } = info;
       const id = toNumber(tokenId);
       const data: PokemoonNft = await getCardData(id.toString(), "blastOff");
       const price = toNumber(pricing);
@@ -205,6 +201,7 @@ export const fetchListings = createAsyncThunk(
         id,
         price,
         data,
+        seller,
       });
     }
     return { listings, burnPercent };

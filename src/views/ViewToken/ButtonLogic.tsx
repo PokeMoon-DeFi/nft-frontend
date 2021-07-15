@@ -53,7 +53,11 @@ const ButtonLogic: FC<LogicProps> = ({ isOwner, activeListing }) => {
   const { isApproved, sendApproval } = useApproveNft(set);
 
   if (kobanAllowance.isEqualTo(0) && marketAddress) {
-    return <Button onClick={handleApprove}>Approve</Button>;
+    return (
+      <ButtonDiv>
+        <Button onClick={handleApprove}>Approve</Button>
+      </ButtonDiv>
+    );
   } else if (isOwner && activeListing) {
     return (
       <ButtonDiv>

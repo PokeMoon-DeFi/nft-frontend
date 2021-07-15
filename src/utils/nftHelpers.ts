@@ -140,6 +140,7 @@ export const getNftOwner = async (nft: PokemoonNft) => {
   const contract = new Contract(getNftAddressByName(nft.set), getAbi(nft.set));
   const ownerCall = contract.ownerOf(nft.tokenId);
   const result = await call([ownerCall]);
+  console.log(result);
 
   return result;
 };

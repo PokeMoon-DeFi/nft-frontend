@@ -3,19 +3,22 @@
     "inputs": [
       {
         "internalType": "contract IERC20",
-        "name": "_x0000000000000110",
+        "name": "_quoteERC20",
         "type": "address"
       },
       {
         "internalType": "contract IERC721",
-        "name": "_x0000000000000111",
+        "name": "_quoteERC721",
         "type": "address"
       },
+      { "internalType": "uint256", "name": "_Fees", "type": "uint256" },
       {
         "internalType": "uint256",
-        "name": "_x0000000000000001",
+        "name": "_VoteSubstance",
         "type": "uint256"
-      }
+      },
+      { "internalType": "address", "name": "_FeeTo", "type": "address" },
+      { "internalType": "string", "name": "_Identifier", "type": "string" }
     ],
     "stateMutability": "nonpayable",
     "type": "constructor"
@@ -32,11 +35,11 @@
       {
         "indexed": false,
         "internalType": "address",
-        "name": "seller",
+        "name": "bidder",
         "type": "address"
       }
     ],
-    "name": "OrderCancelled",
+    "name": "BidCancelled",
     "type": "event"
   },
   {
@@ -51,17 +54,48 @@
       {
         "indexed": false,
         "internalType": "uint256",
-        "name": "pricing",
+        "name": "prevOffering",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "newOffering",
         "type": "uint256"
       },
       {
         "indexed": false,
         "internalType": "address",
-        "name": "seller",
+        "name": "bidder",
         "type": "address"
       }
     ],
-    "name": "OrderPlaced",
+    "name": "BidOrderUpdated",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "tokenId",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "offering",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "address",
+        "name": "bidder",
+        "type": "address"
+      }
+    ],
+    "name": "BuyOrderBidden",
     "type": "event"
   },
   {
@@ -84,9 +118,115 @@
         "internalType": "address",
         "name": "buyer",
         "type": "address"
+      },
+      {
+        "indexed": false,
+        "internalType": "address",
+        "name": "seller",
+        "type": "address"
       }
     ],
-    "name": "OrderTaken",
+    "name": "BuyOrderTaken",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "previousOwner",
+        "type": "address"
+      },
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "newOwner",
+        "type": "address"
+      }
+    ],
+    "name": "OwnershipTransferred",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "tokenId",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "offering",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "address",
+        "name": "bidder",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "internalType": "address",
+        "name": "seller",
+        "type": "address"
+      }
+    ],
+    "name": "SellBidExecuted",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "tokenId",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "address",
+        "name": "seller",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "pricing",
+        "type": "uint256"
+      }
+    ],
+    "name": "SellOrderCancelled",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "tokenId",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "pricing",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "address",
+        "name": "seller",
+        "type": "address"
+      }
+    ],
+    "name": "SellOrderPlaced",
     "type": "event"
   },
   {
@@ -117,28 +257,196 @@
         "type": "address"
       }
     ],
-    "name": "OrderUpdated",
+    "name": "SellOrderUpdated",
     "type": "event"
   },
   {
+    "anonymous": false,
     "inputs": [
-      { "internalType": "uint256", "name": "tokenId", "type": "uint256" }
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "tokenId",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "address",
+        "name": "user",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "internalType": "address",
+        "name": "tokenOwner",
+        "type": "address"
+      }
     ],
-    "name": "cancelOrder",
+    "name": "VotedForNFT",
+    "type": "event"
+  },
+  {
+    "inputs": [],
+    "name": "FeeTo",
+    "outputs": [{ "internalType": "address", "name": "", "type": "address" }],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      { "internalType": "uint256", "name": "fbp", "type": "uint256" },
+      { "internalType": "uint256", "name": "vsb", "type": "uint256" },
+      { "internalType": "address", "name": "to", "type": "address" }
+    ],
+    "name": "FeeUpdater",
     "outputs": [{ "internalType": "bool", "name": "", "type": "bool" }],
     "stateMutability": "nonpayable",
     "type": "function"
   },
   {
     "inputs": [],
-    "name": "getListing",
+    "name": "Fees",
+    "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "MARKETPLACE_IDENTIFIER",
+    "outputs": [{ "internalType": "string", "name": "", "type": "string" }],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      { "internalType": "uint8", "name": "flags", "type": "uint8" },
+      { "internalType": "address", "name": "user", "type": "address" },
+      { "internalType": "uint256", "name": "tokenId", "type": "uint256" }
+    ],
+    "name": "MixerLen",
+    "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      { "internalType": "uint256", "name": "tokenId", "type": "uint256" }
+    ],
+    "name": "VoteForNFT",
+    "outputs": [{ "internalType": "bool", "name": "", "type": "bool" }],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "VoteSubstance",
+    "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      { "internalType": "uint256", "name": "tokenId", "type": "uint256" },
+      { "internalType": "uint256", "name": "offering", "type": "uint256" }
+    ],
+    "name": "bidBuyOrder",
+    "outputs": [{ "internalType": "bool", "name": "", "type": "bool" }],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      { "internalType": "uint256", "name": "tokenId", "type": "uint256" }
+    ],
+    "name": "cancelBid",
+    "outputs": [{ "internalType": "bool", "name": "", "type": "bool" }],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "cancelBidAll",
+    "outputs": [{ "internalType": "bool", "name": "", "type": "bool" }],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "cancelBidInactiveAll",
+    "outputs": [{ "internalType": "bool", "name": "", "type": "bool" }],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      { "internalType": "uint256", "name": "tokenId", "type": "uint256" }
+    ],
+    "name": "cancelSellOrder",
+    "outputs": [{ "internalType": "bool", "name": "", "type": "bool" }],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      { "internalType": "uint256", "name": "tokenId", "type": "uint256" },
+      { "internalType": "address", "name": "bidder", "type": "address" }
+    ],
+    "name": "executeSellBid",
+    "outputs": [{ "internalType": "bool", "name": "", "type": "bool" }],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      { "internalType": "uint256", "name": "tokenId", "type": "uint256" }
+    ],
+    "name": "getBidInfo",
+    "outputs": [
+      {
+        "components": [
+          { "internalType": "address", "name": "bidder", "type": "address" },
+          { "internalType": "uint256", "name": "offering", "type": "uint256" }
+        ],
+        "internalType": "struct MixerInterface.BidInfo[]",
+        "name": "",
+        "type": "tuple[]"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      { "internalType": "uint256", "name": "tokenId", "type": "uint256" },
+      { "internalType": "uint256", "name": "from", "type": "uint256" },
+      { "internalType": "uint256", "name": "to", "type": "uint256" }
+    ],
+    "name": "getBidInfoIndex",
+    "outputs": [
+      {
+        "components": [
+          { "internalType": "address", "name": "bidder", "type": "address" },
+          { "internalType": "uint256", "name": "offering", "type": "uint256" }
+        ],
+        "internalType": "struct MixerInterface.BidInfo[]",
+        "name": "",
+        "type": "tuple[]"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "getListingInfo",
     "outputs": [
       {
         "components": [
           { "internalType": "uint256", "name": "tokenId", "type": "uint256" },
-          { "internalType": "uint256", "name": "pricing", "type": "uint256" }
+          { "internalType": "uint256", "name": "pricing", "type": "uint256" },
+          { "internalType": "address", "name": "seller", "type": "address" }
         ],
-        "internalType": "struct S0x13.listingInfo[]",
+        "internalType": "struct MixerInterface.ListingInfo[]",
         "name": "",
         "type": "tuple[]"
       }
@@ -151,14 +459,15 @@
       { "internalType": "uint256", "name": "from", "type": "uint256" },
       { "internalType": "uint256", "name": "to", "type": "uint256" }
     ],
-    "name": "getListingIndex",
+    "name": "getListingInfoIndex",
     "outputs": [
       {
         "components": [
           { "internalType": "uint256", "name": "tokenId", "type": "uint256" },
-          { "internalType": "uint256", "name": "pricing", "type": "uint256" }
+          { "internalType": "uint256", "name": "pricing", "type": "uint256" },
+          { "internalType": "address", "name": "seller", "type": "address" }
         ],
-        "internalType": "struct S0x13.listingInfo[]",
+        "internalType": "struct MixerInterface.ListingInfo[]",
         "name": "",
         "type": "tuple[]"
       }
@@ -170,14 +479,15 @@
     "inputs": [
       { "internalType": "address", "name": "user", "type": "address" }
     ],
-    "name": "getUserListingSet",
+    "name": "getPastUserBidInfo",
     "outputs": [
       {
         "components": [
           { "internalType": "uint256", "name": "tokenId", "type": "uint256" },
-          { "internalType": "uint256", "name": "pricing", "type": "uint256" }
+          { "internalType": "uint256", "name": "offering", "type": "uint256" },
+          { "internalType": "uint256", "name": "state", "type": "uint256" }
         ],
-        "internalType": "struct S0x13.listingInfo[]",
+        "internalType": "struct MixerInterface.UserBidInfo[]",
         "name": "",
         "type": "tuple[]"
       }
@@ -191,14 +501,57 @@
       { "internalType": "uint256", "name": "from", "type": "uint256" },
       { "internalType": "uint256", "name": "to", "type": "uint256" }
     ],
-    "name": "getUserListingSetIndex",
+    "name": "getPastUserBidInfoIndex",
     "outputs": [
       {
         "components": [
           { "internalType": "uint256", "name": "tokenId", "type": "uint256" },
-          { "internalType": "uint256", "name": "pricing", "type": "uint256" }
+          { "internalType": "uint256", "name": "offering", "type": "uint256" },
+          { "internalType": "uint256", "name": "state", "type": "uint256" }
         ],
-        "internalType": "struct S0x13.listingInfo[]",
+        "internalType": "struct MixerInterface.UserBidInfo[]",
+        "name": "",
+        "type": "tuple[]"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      { "internalType": "address", "name": "user", "type": "address" }
+    ],
+    "name": "getPastUserListingInfo",
+    "outputs": [
+      {
+        "components": [
+          { "internalType": "uint256", "name": "tokenId", "type": "uint256" },
+          { "internalType": "uint256", "name": "pricing", "type": "uint256" },
+          { "internalType": "uint256", "name": "state", "type": "uint256" }
+        ],
+        "internalType": "struct MixerInterface.UserListingInfo[]",
+        "name": "",
+        "type": "tuple[]"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      { "internalType": "address", "name": "user", "type": "address" },
+      { "internalType": "uint256", "name": "from", "type": "uint256" },
+      { "internalType": "uint256", "name": "to", "type": "uint256" }
+    ],
+    "name": "getPastUserListingInfoIndex",
+    "outputs": [
+      {
+        "components": [
+          { "internalType": "uint256", "name": "tokenId", "type": "uint256" },
+          { "internalType": "uint256", "name": "pricing", "type": "uint256" },
+          { "internalType": "uint256", "name": "state", "type": "uint256" }
+        ],
+        "internalType": "struct MixerInterface.UserListingInfo[]",
         "name": "",
         "type": "tuple[]"
       }
@@ -208,15 +561,10 @@
   },
   {
     "inputs": [],
-    "name": "idcdx",
-    "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "inputs": [],
-    "name": "listingLength",
-    "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }],
+    "name": "getStats",
+    "outputs": [
+      { "internalType": "uint256[]", "name": "", "type": "uint256[]" }
+    ],
     "stateMutability": "view",
     "type": "function"
   },
@@ -224,73 +572,136 @@
     "inputs": [
       { "internalType": "uint256", "name": "tokenId", "type": "uint256" }
     ],
-    "name": "listingPricing",
-    "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "inputs": [
-      { "internalType": "uint256", "name": "tokenId", "type": "uint256" },
-      { "internalType": "uint256", "name": "pricing", "type": "uint256" }
-    ],
-    "name": "placeOrder",
-    "outputs": [{ "internalType": "bool", "name": "", "type": "bool" }],
-    "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
-    "inputs": [
-      { "internalType": "uint256", "name": "tokenId", "type": "uint256" }
-    ],
-    "name": "takeOrder",
-    "outputs": [{ "internalType": "bool", "name": "", "type": "bool" }],
-    "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
-    "inputs": [
-      { "internalType": "uint256", "name": "tokenId", "type": "uint256" },
-      { "internalType": "uint256", "name": "pricing", "type": "uint256" }
-    ],
-    "name": "updateOrder",
-    "outputs": [{ "internalType": "bool", "name": "", "type": "bool" }],
-    "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
-    "inputs": [{ "internalType": "uint256", "name": "_bp", "type": "uint256" }],
-    "name": "updatex0000000000000001",
-    "outputs": [{ "internalType": "bool", "name": "", "type": "bool" }],
-    "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
-    "inputs": [
-      { "internalType": "address", "name": "_feeTo", "type": "address" }
-    ],
-    "name": "updatex0000000000000010",
-    "outputs": [{ "internalType": "bool", "name": "", "type": "bool" }],
-    "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
-    "inputs": [],
-    "name": "x0000000000000001",
-    "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "inputs": [],
-    "name": "x0000000000000010",
+    "name": "getTokenOwner",
     "outputs": [{ "internalType": "address", "name": "", "type": "address" }],
     "stateMutability": "view",
     "type": "function"
   },
   {
+    "inputs": [
+      { "internalType": "uint256", "name": "tokenId", "type": "uint256" }
+    ],
+    "name": "getTokenPrice",
+    "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      { "internalType": "address", "name": "user", "type": "address" }
+    ],
+    "name": "getUserBidInfo",
+    "outputs": [
+      {
+        "components": [
+          { "internalType": "uint256", "name": "tokenId", "type": "uint256" },
+          { "internalType": "uint256", "name": "offering", "type": "uint256" },
+          { "internalType": "uint256", "name": "state", "type": "uint256" }
+        ],
+        "internalType": "struct MixerInterface.UserBidInfo[]",
+        "name": "",
+        "type": "tuple[]"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      { "internalType": "address", "name": "user", "type": "address" },
+      { "internalType": "uint256", "name": "from", "type": "uint256" },
+      { "internalType": "uint256", "name": "to", "type": "uint256" }
+    ],
+    "name": "getUserBidInfoIndex",
+    "outputs": [
+      {
+        "components": [
+          { "internalType": "uint256", "name": "tokenId", "type": "uint256" },
+          { "internalType": "uint256", "name": "offering", "type": "uint256" },
+          { "internalType": "uint256", "name": "state", "type": "uint256" }
+        ],
+        "internalType": "struct MixerInterface.UserBidInfo[]",
+        "name": "",
+        "type": "tuple[]"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      { "internalType": "address", "name": "user", "type": "address" }
+    ],
+    "name": "getUserListingInfo",
+    "outputs": [
+      {
+        "components": [
+          { "internalType": "uint256", "name": "tokenId", "type": "uint256" },
+          { "internalType": "uint256", "name": "pricing", "type": "uint256" },
+          { "internalType": "uint256", "name": "state", "type": "uint256" }
+        ],
+        "internalType": "struct MixerInterface.UserListingInfo[]",
+        "name": "",
+        "type": "tuple[]"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      { "internalType": "address", "name": "user", "type": "address" },
+      { "internalType": "uint256", "name": "from", "type": "uint256" },
+      { "internalType": "uint256", "name": "to", "type": "uint256" }
+    ],
+    "name": "getUserListingInfoIndex",
+    "outputs": [
+      {
+        "components": [
+          { "internalType": "uint256", "name": "tokenId", "type": "uint256" },
+          { "internalType": "uint256", "name": "pricing", "type": "uint256" },
+          { "internalType": "uint256", "name": "state", "type": "uint256" }
+        ],
+        "internalType": "struct MixerInterface.UserListingInfo[]",
+        "name": "",
+        "type": "tuple[]"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      { "internalType": "address", "name": "", "type": "address" },
+      { "internalType": "address", "name": "", "type": "address" },
+      { "internalType": "uint256", "name": "", "type": "uint256" },
+      { "internalType": "bytes", "name": "", "type": "bytes" }
+    ],
+    "name": "onERC721Received",
+    "outputs": [{ "internalType": "bytes4", "name": "", "type": "bytes4" }],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
     "inputs": [],
-    "name": "x0000000000000110",
+    "name": "owner",
+    "outputs": [{ "internalType": "address", "name": "", "type": "address" }],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      { "internalType": "uint256", "name": "tokenId", "type": "uint256" },
+      { "internalType": "uint256", "name": "pricing", "type": "uint256" }
+    ],
+    "name": "placeSellOrder",
+    "outputs": [{ "internalType": "bool", "name": "", "type": "bool" }],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "quoteERC20",
     "outputs": [
       { "internalType": "contract IERC20", "name": "", "type": "address" }
     ],
@@ -299,10 +710,127 @@
   },
   {
     "inputs": [],
-    "name": "x0000000000000111",
+    "name": "quoteERC721",
     "outputs": [
       { "internalType": "contract IERC721", "name": "", "type": "address" }
     ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }],
+    "name": "stats",
+    "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      { "internalType": "uint256", "name": "tokenId", "type": "uint256" }
+    ],
+    "name": "takeBuyOrder",
+    "outputs": [{ "internalType": "bool", "name": "", "type": "bool" }],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }],
+    "name": "tokenOwner",
+    "outputs": [{ "internalType": "address", "name": "", "type": "address" }],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      { "internalType": "address", "name": "newOwner", "type": "address" }
+    ],
+    "name": "transferOwnership",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      { "internalType": "uint256", "name": "tokenId", "type": "uint256" },
+      { "internalType": "uint256", "name": "newOffering", "type": "uint256" }
+    ],
+    "name": "updateBidOrder",
+    "outputs": [{ "internalType": "bool", "name": "", "type": "bool" }],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      { "internalType": "uint256", "name": "tokenId", "type": "uint256" },
+      { "internalType": "uint256", "name": "newPricing", "type": "uint256" }
+    ],
+    "name": "updateSellOrder",
+    "outputs": [{ "internalType": "bool", "name": "", "type": "bool" }],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      { "internalType": "address", "name": "", "type": "address" },
+      { "internalType": "uint256", "name": "", "type": "uint256" }
+    ],
+    "name": "userBidInfo",
+    "outputs": [
+      { "internalType": "uint256", "name": "tokenId", "type": "uint256" },
+      { "internalType": "uint256", "name": "offering", "type": "uint256" },
+      { "internalType": "uint256", "name": "state", "type": "uint256" }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      { "internalType": "address", "name": "", "type": "address" },
+      { "internalType": "uint256", "name": "", "type": "uint256" }
+    ],
+    "name": "userBidMap",
+    "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      { "internalType": "address", "name": "", "type": "address" },
+      { "internalType": "uint256", "name": "", "type": "uint256" }
+    ],
+    "name": "userListingInfo",
+    "outputs": [
+      { "internalType": "uint256", "name": "tokenId", "type": "uint256" },
+      { "internalType": "uint256", "name": "pricing", "type": "uint256" },
+      { "internalType": "uint256", "name": "state", "type": "uint256" }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      { "internalType": "address", "name": "", "type": "address" },
+      { "internalType": "uint256", "name": "", "type": "uint256" }
+    ],
+    "name": "userListingMap",
+    "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      { "internalType": "address", "name": "", "type": "address" },
+      { "internalType": "uint256", "name": "", "type": "uint256" }
+    ],
+    "name": "userVotes",
+    "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }],
+    "name": "votes",
+    "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }],
     "stateMutability": "view",
     "type": "function"
   }
