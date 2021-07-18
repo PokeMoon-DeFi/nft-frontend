@@ -9,15 +9,59 @@ import { getFilteredNfts } from "utils";
 import { useMediaQuery } from "@material-ui/core";
 import { useTheme } from "@material-ui/core/styles";
 import { ButtonGroup } from "@material-ui/core";
-import Button from "components/Button";
 import styled from "styled-components";
 import useMarket from "hooks/useMarket";
 import { PokemoonNft } from "config/constants/nfts/types";
 import useNftCollection from "hooks/useNftCollection";
+import Button from "@material-ui/core/Button";
 
 const BuySellButton = styled(Button)`
   .MuiButton-label {
     font-size: 16pt;
+    transform: skew(21deg);
+  }
+  background: #cf2bc2;
+  color: white;
+  border-radius: 4px;
+  font-family: "Josefin Sans", sans-serif;
+  text-align: center;
+  border: 1px solid #c020c5;
+  border-width: 2px;
+  border-style: solid;
+  transform: skew(-21deg);
+  display: inline-block;
+  box-shadow: 2px 4px 4px #f4a9f7;
+
+  &:disabled {
+    color: white;
+  }
+
+  span {
+    text-transform: none;
+    white-space: nowrap;
+  }
+
+  @media (hover: hover) {
+    &:hover {
+      background-color: white;
+      color: black;
+      transition: 0.14s ease;
+      .MuiButton-startIcon {
+        fill: black;
+      }
+    }
+  }
+  &:active {
+    background-color: white;
+    color: black;
+    transition: 0.5s ease;
+    transform: skew(-21deg) translateY(10px);
+  }
+  .MuiButton-startIcon {
+    fill: white;
+  }
+  &:disabled {
+    background: transparent;
   }
 `;
 

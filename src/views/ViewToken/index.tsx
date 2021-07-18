@@ -113,9 +113,7 @@ const ViewToken = () => {
     setIsOwner(owner.toLowerCase() === account.toLowerCase());
   }, [owner, account]);
 
-  const handleBuyListing = useBuyListing();
   const handlePostListing = usePostListing();
-  const handleCancelListing = useCancelListing();
   const handleUpdateListing = useUpdateListing();
   const handleSendGift = useSendGiftNft();
   return (

@@ -34,7 +34,7 @@ const ButtonDiv = styled.div`
   display: flex;
   justify-content: space-around;
   width: 350px;
-  margin-top: 10px;
+  margin-top: 24px;
 `;
 const ButtonLogic: FC<LogicProps> = ({ isOwner, activeListing }) => {
   const handleBuyListing = useBuyListing();
@@ -50,85 +50,95 @@ const ButtonLogic: FC<LogicProps> = ({ isOwner, activeListing }) => {
   const marketAddress = getMarketAddress(set);
   const handleApprove = useApproveMarket(set);
   const kobanAllowance = useGetKobanAllowance(marketAddress);
-  const { isApproved, sendApproval } = useApproveNft(set);
+  const { isApproved: isNftApproved, sendApproval: sendNftApproval } =
+    useApproveNft(set);
 
-  if (kobanAllowance.isEqualTo(0) && marketAddress) {
-    return (
-      <ButtonDiv>
-        <Button onClick={handleApprove}>Approve</Button>
-      </ButtonDiv>
-    );
-  } else if (isOwner && activeListing) {
-    return (
-      <ButtonDiv>
-        <Button
-          startIcon={<Cancel />}
-          onClick={() => handleCancelListing(tokenId)}
-        >
-          Cancel Listing
-        </Button>
-        <Button onClick={() => setShowPriceModal(true)}>Update Price</Button>
-        <PriceModal
-          handleConfirm={(price) => {
-            setShowPriceModal(false);
-            handleUpdateListing(tokenId, price);
-          }}
-          handleClose={() => setShowPriceModal(false)}
-          open={showPriceModal}
-        />
-      </ButtonDiv>
-    );
+  //check if there is a market for this set
+  //check if you are the owner
+  //if yes
+  //  check nft approval
+  //  check if the token is an active listing
+  //  the user can update the listing or make a new listing
+  //if no
+  //  check if active listing
+  //  check koban approval
+  //  user can buy
+
+  if (!marketAddress) {
+    return <></>;
   } else if (isOwner) {
-    return (
-      <ButtonDiv style={{ marginTop: 20 }}>
-        <Button startIcon={<Send />} onClick={() => setShowGiftModal(true)}>
-          Send
-        </Button>
-        {isApproved ? (
-          <Button
-            disabled={!marketAddress}
-            startIcon={<Sell />}
-            onClick={() => setShowPriceModal(true)}
-          >
-            Sell
-          </Button>
-        ) : (
-          <Button
-            disabled={!marketAddress}
-            startIcon={<Approve />}
-            onClick={sendApproval}
-          >
-            Approve To Sell
-          </Button>
-        )}
-        <PriceModal
-          handleConfirm={(price) => {
-            setShowPriceModal(false);
-            handlePostListing(tokenId, price);
-          }}
-          handleClose={() => setShowPriceModal(false)}
-          open={showPriceModal}
-        />
-        <SendToAddress
-          open={showGiftModal}
-          handleClose={() => setShowGiftModal(false)}
-          handleConfirm={(account) => {
-            handleSendGift(account, tokenId, set);
-            setShowGiftModal(false);
-          }}
-        />
-      </ButtonDiv>
-    );
-  } else if (activeListing) {
-    return (
-      <>
+    if (isNftApproved) {
+      if (activeListing) {
+        return (
+          <ButtonDiv>
+            <Button
+              startIcon={<Cancel />}
+              onClick={() => handleCancelListing(tokenId)}
+            >
+              Cancel Listing
+            </Button>
+            <Button onClick={() => setShowPriceModal(true)}>
+              Update Price
+            </Button>
+            <PriceModal
+              handleConfirm={(price) => {
+                setShowPriceModal(false);
+                handleUpdateListing(tokenId, price);
+              }}
+              handleClose={() => setShowPriceModal(false)}
+              open={showPriceModal}
+            />
+          </ButtonDiv>
+        );
+      } else {
+        return (
+          <ButtonDiv>
+            <Button startIcon={<Send />} onClick={() => setShowGiftModal(true)}>
+              Send
+            </Button>
+            <Button
+              disabled={!marketAddress}
+              startIcon={<Sell />}
+              onClick={() => setShowPriceModal(true)}
+            >
+              Sell
+            </Button>
+            <PriceModal
+              handleConfirm={(price) => {
+                setShowPriceModal(false);
+                handlePostListing(tokenId, price);
+              }}
+              handleClose={() => setShowPriceModal(false)}
+              open={showPriceModal}
+            />
+            <SendToAddress
+              open={showGiftModal}
+              handleClose={() => setShowGiftModal(false)}
+              handleConfirm={(account) => {
+                handleSendGift(account, tokenId, set);
+                setShowGiftModal(false);
+              }}
+            />
+          </ButtonDiv>
+        );
+      }
+    } else {
+      return (
+        <ButtonDiv>
+          <Button onClick={sendNftApproval}>Approve To Sell</Button>
+        </ButtonDiv>
+      );
+    }
+  } else {
+    if (activeListing) {
+      return (
         <Button startIcon={<Buy />} onClick={() => handleBuyListing(tokenId)}>
           Buy
         </Button>
-      </>
-    );
-  } else {
-    return <> </>;
+      );
+    } else {
+      return <></>;
+    }
   }
 };
 
