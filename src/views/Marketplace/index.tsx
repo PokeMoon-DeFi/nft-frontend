@@ -20,7 +20,7 @@ const BuySellButton = styled(Button)`
     font-size: 16pt;
     transform: skew(21deg);
   }
-  background: #cf2bc2;
+  background: transparent;
   color: white;
   border-radius: 4px;
   font-family: "Josefin Sans", sans-serif;
@@ -34,6 +34,7 @@ const BuySellButton = styled(Button)`
 
   &:disabled {
     color: white;
+    background: #cf2bc2;
   }
 
   span {
@@ -61,7 +62,7 @@ const BuySellButton = styled(Button)`
     fill: white;
   }
   &:disabled {
-    background: transparent;
+    background: #cf2bc2;
   }
 `;
 
