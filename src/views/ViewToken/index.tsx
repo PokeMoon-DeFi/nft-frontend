@@ -24,7 +24,6 @@ import {
   usePostListing,
   useUpdateListing,
 } from "hooks/useMarket";
-import Notifications from "components/Snackbar";
 import PriceModal from "./PriceModal";
 import { SendToAddress } from "components/Modal";
 import Button from "components/Button";
@@ -138,7 +137,7 @@ const ViewToken = () => {
           style={{ marginTop: 20, marginBottom: 20 }}
         />
       </Container>
-      <Notifications />
+
       {/* <div style={{ width: "100%", height: 80 }} /> */}
       {/* <Hidden smUp> */}
 

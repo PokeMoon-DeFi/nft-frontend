@@ -22,7 +22,9 @@ import Cancel from "components/Icons/Cancel";
 import Sell from "components/Icons/Sell";
 import Buy from "components/Icons/Buy";
 import Approve from "components/Icons/Approve";
-
+import UpdatePrice from "components/Icons/UpdatePrice";
+import Gift from "components/Icons/Gift";
+import Typography from "@material-ui/core/Typography";
 interface LogicProps {
   isOwner: boolean;
   activeListing: boolean;
@@ -36,6 +38,13 @@ const ButtonDiv = styled.div`
   width: 350px;
   margin-top: 24px;
 `;
+
+const Text = styled(Typography)`
+  color: white;
+  font-size: 24px;
+  margin: 20px;
+`;
+
 const ButtonLogic: FC<LogicProps> = ({ isOwner, activeListing }) => {
   const handleBuyListing = useBuyListing();
   const handlePostListing = usePostListing();
@@ -48,7 +57,7 @@ const ButtonLogic: FC<LogicProps> = ({ isOwner, activeListing }) => {
 
   const { set, id: tokenId } = useParams();
   const marketAddress = getMarketAddress(set);
-  const handleApprove = useApproveMarket(set);
+  const handleKobanApprove = useApproveMarket(set);
   const kobanAllowance = useGetKobanAllowance(marketAddress);
   const { isApproved: isNftApproved, sendApproval: sendNftApproval } =
     useApproveNft(set);
@@ -65,7 +74,7 @@ const ButtonLogic: FC<LogicProps> = ({ isOwner, activeListing }) => {
   //  user can buy
 
   if (!marketAddress) {
-    return <></>;
+    return <Text>This Pack is not supported! Check back soon</Text>;
   } else if (isOwner) {
     if (isNftApproved) {
       if (activeListing) {
@@ -77,7 +86,10 @@ const ButtonLogic: FC<LogicProps> = ({ isOwner, activeListing }) => {
             >
               Cancel Listing
             </Button>
-            <Button onClick={() => setShowPriceModal(true)}>
+            <Button
+              startIcon={<UpdatePrice />}
+              onClick={() => setShowPriceModal(true)}
+            >
               Update Price
             </Button>
             <PriceModal
@@ -93,7 +105,7 @@ const ButtonLogic: FC<LogicProps> = ({ isOwner, activeListing }) => {
       } else {
         return (
           <ButtonDiv>
-            <Button startIcon={<Send />} onClick={() => setShowGiftModal(true)}>
+            <Button startIcon={<Gift />} onClick={() => setShowGiftModal(true)}>
               Send
             </Button>
             <Button
@@ -125,17 +137,29 @@ const ButtonLogic: FC<LogicProps> = ({ isOwner, activeListing }) => {
     } else {
       return (
         <ButtonDiv>
-          <Button onClick={sendNftApproval}>Approve To Sell</Button>
+          <Button startIcon={<Approve />} onClick={sendNftApproval}>
+            Approve To Sell
+          </Button>
         </ButtonDiv>
       );
     }
   } else {
     if (activeListing) {
-      return (
-        <Button startIcon={<Buy />} onClick={() => handleBuyListing(tokenId)}>
-          Buy
-        </Button>
-      );
+      if (!kobanAllowance) {
+        return (
+          <ButtonDiv>
+            <Button startIcon={<Approve />} onClick={handleKobanApprove}>
+              Approve to Buy
+            </Button>
+          </ButtonDiv>
+        );
+      } else {
+        return (
+          <Button startIcon={<Buy />} onClick={() => handleBuyListing(tokenId)}>
+            Buy
+          </Button>
+        );
+      }
     } else {
       return <></>;
     }

@@ -23,6 +23,7 @@ export { default as Water } from "./types/Water";
 export { default as Approve } from "./Approve";
 export { default as Cancel } from "./Cancel";
 export { default as Sell } from "./Sell";
-
+export { default as UpdatePrice } from "./UpdatePrice";
+export { default as Gift } from "./Gift";
 //Packs
 export * from "./packs";

@@ -1,4 +1,4 @@
-import React, { useState, useMemo, useEffect } from "react";
+import React, { useState, useMemo, useEffect, useRef } from "react";
 import Container from "@material-ui/core/Container";
 import { useAppSelector } from "providers";
 import TableGrid from "components/TableGrid/TableGrid";
@@ -69,7 +69,10 @@ const BuySellButton = styled(Button)`
 const MarketPage = () => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
-  const listings = useAppSelector((state) => state.market.listings);
+  const listings = useAppSelector(
+    (state) => state.market.listings,
+    (a, b) => a.length === b.length
+  );
   const collection = useNftCollection();
   const { isBuying, setIsBuying, priceRange } = useMarket();
 
