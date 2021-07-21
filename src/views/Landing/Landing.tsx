@@ -199,6 +199,9 @@ const Landing: React.FC = () => {
               🗺️ <Link href="/catalog">Explore</Link> the Pokemoon Universe
             </CTALabel>
             <CTALabel>
+              🎴 <Link href="/market">Trade</Link> and complete your collection
+            </CTALabel>
+            <CTALabel>
               🦄 Join the{" "}
               <Link href="https://discord.pokemoon.io">
                 Pokemoon Community Discord
