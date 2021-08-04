@@ -169,12 +169,12 @@ const ViewToken = () => {
               {"Price: " + numberWithCommas(activeListing.price)} KBN
             </PriceText>
           )}
-          <BidBox tokenId={id} set={set} />
           <ButtonLogic
             isOwner={isOwner}
             activeListing={!!activeListing}
             set={set}
           />
+          <BidBox tokenId={id} set={set} />
         </Grid>
         <Grid
           item

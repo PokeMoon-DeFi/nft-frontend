@@ -174,7 +174,8 @@ export const getBep20Balance = async (tokenAddress, account) => {
  */
 export const getAllowance = async (tokenAddress, targetAddress, account) => {
   const contract = getBep20Contract(tokenAddress);
-  return contract.methods.allowance(account, targetAddress).call();
+  const res = await contract.methods.allowance(account, targetAddress).call();
+  return res;
 };
 
 export const getPacksMinted = async () => {

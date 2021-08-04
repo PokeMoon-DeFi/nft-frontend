@@ -5,7 +5,7 @@ import Button from "components/Button";
 import useRefresh from "hooks/useRefresh";
 import PriceModal from "views/ViewToken/PriceModal";
 import { useWeb3React } from "@web3-react/core";
-
+import BidTable from "./BidTable";
 interface Props {
   tokenId: string;
   set: string;
@@ -30,10 +30,14 @@ const BidBox: FC<Props> = ({ tokenId, set }) => {
     return bids.find((bid) => bid.bidder === account);
   }, [bids, account]);
 
+  const isOwner = tokenOwner === account;
+
   return (
     <div>
       <Text style={{ color: "white" }}>TOKEN OWNER: {tokenOwner}</Text>
-      {currentBid ? (
+      {isOwner ? (
+        <Text>YOU ARE THE OWNER</Text>
+      ) : currentBid ? (
         <>
           <Text>YOUR BID: {currentBid.offering}</Text>
           <Button onClick={() => setShowModal(true)}>Update Bid</Button>
@@ -41,16 +45,10 @@ const BidBox: FC<Props> = ({ tokenId, set }) => {
         </>
       ) : (
         <>
-          <Button onClick={() => setShowModal(true)}>Bid 100</Button>
+          <Button onClick={() => setShowModal(true)}>Place a Bid</Button>
         </>
       )}
-      <Text>ACTIVE BIDS</Text>
-      {bids.map((bid) => (
-        <>
-          <Text>{bid.bidder}</Text>
-          <Text>{bid.offering}</Text>
-        </>
-      ))}
+      <BidTable data={bids} isOwner={isOwner} />
       <PriceModal
         open={showModal}
         prompt={currentBid ? "Update Your Bid" : "Place Your Bid!"}

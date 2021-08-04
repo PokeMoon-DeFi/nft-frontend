@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from "react";
 import { useWeb3React } from "@web3-react/core";
-import BigNumber from "bignumber.js";
+import { BigNumber } from "ethers";
 import {
   getAddress,
   getBep20Contract,
@@ -14,7 +14,7 @@ import { useAppSelector } from "providers";
 import { getMarketAddress } from "utils";
 
 export const useBlastOffAllowance = () => {
-  const [allowance, setAllowance] = useState(new BigNumber(0));
+  const [allowance, setAllowance] = useState(BigNumber.from(0));
   const { account } = useWeb3React();
   const tokenAddress = getAddress("pb2116");
   const ampedUpAddress = getAddress("ampedUp");
@@ -24,7 +24,7 @@ export const useBlastOffAllowance = () => {
     const fetchAllowance = async () => {
       const res = await getAllowance(tokenAddress, ampedUpAddress, account);
 
-      setAllowance(new BigNumber(res));
+      setAllowance(BigNumber.from(0));
     };
 
     if (account) {
@@ -36,7 +36,7 @@ export const useBlastOffAllowance = () => {
 };
 
 export const useAPBAllowance = () => {
-  const [allowance, setAllowance] = useState(new BigNumber(0));
+  const [allowance, setAllowance] = useState(BigNumber.from(0));
   const { account } = useWeb3React();
   const tokenAddress = getAddress("apb");
   const meanGreensAddress = getAddress("meanGreens");
@@ -45,7 +45,7 @@ export const useAPBAllowance = () => {
   useEffect(() => {
     const fetchAllowance = async () => {
       const res = await getAllowance(tokenAddress, meanGreensAddress, account);
-      setAllowance(new BigNumber(res));
+      setAllowance(BigNumber.from(0));
     };
 
     if (account) {
@@ -57,20 +57,21 @@ export const useAPBAllowance = () => {
 };
 
 export const useGetKobanAllowance = (contractAddress: string) => {
-  const [allowance, setAllowance] = useState(new BigNumber(0));
+  const [allowance, setAllowance] = useState(BigNumber.from(0));
   const { account } = useWeb3React();
   const kobanAddress = getAddress("koban");
   const { fastRefresh } = useRefresh();
 
   useEffect(() => {
     if (!contractAddress) {
-      setAllowance(new BigNumber(0));
+      setAllowance(BigNumber.from(0));
       return;
     }
 
     const fetchAllowance = async () => {
       const res = await getAllowance(kobanAddress, contractAddress, account);
-      setAllowance(new BigNumber(res));
+
+      setAllowance(res);
     };
 
     if (account) {
