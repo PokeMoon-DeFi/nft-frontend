@@ -7,7 +7,9 @@ import {
 } from "@material-ui/data-grid";
 import Button from "components/Button";
 import { makeStyles } from "@material-ui/core/styles";
-
+import ConfirmBidModal from "components/Modal/ConfirmBidModal";
+import useModal from "hooks/useModal";
+import { useParams } from "react-router-dom";
 interface DataRow {
   bidder: string;
   offering: number;
@@ -19,7 +21,13 @@ interface Props {
 }
 
 const ButtonCell = (params: GridCellParams) => {
-  return <Button>Select Bid</Button>;
+  const row = params.row;
+  const { id } = useParams();
+  console.log(id);
+  const [showModal] = useModal(
+    <ConfirmBidModal bidder={row.bidder} offering={row.offering} tokenId={id} />
+  );
+  return <Button onClick={showModal}>Select Bid</Button>;
 };
 
 const getColumns = (isOwner) => {
@@ -30,6 +38,13 @@ const getColumns = (isOwner) => {
       headerAlign: "center",
       align: "center",
       flex: 1,
+      valueFormatter: ({ value }) => {
+        if (!value) {
+          return "";
+        }
+        //@ts-ignore
+        return [value.slice(0, 5), value.slice(-5)].join("...");
+      },
     },
     {
       field: "offering",

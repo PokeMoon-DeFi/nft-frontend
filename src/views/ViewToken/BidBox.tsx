@@ -31,7 +31,12 @@ const BidBox: FC<Props> = ({ tokenId, set }) => {
   }, [bids, account]);
 
   const isOwner = tokenOwner === account;
+  const isDeadAddress =
+    tokenOwner === "0x0000000000000000000000000000000000000000";
 
+  if (isDeadAddress) {
+    return <></>;
+  }
   return (
     <div>
       <Text style={{ color: "white" }}>TOKEN OWNER: {tokenOwner}</Text>

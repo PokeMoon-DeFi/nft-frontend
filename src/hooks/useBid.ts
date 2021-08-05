@@ -21,6 +21,7 @@ interface BidState {
   offerBid: (offering) => void;
   updateBid: (offering) => void;
   cancelBid: (offering) => void;
+  takeBid: (tokenId, bidder) => void;
 }
 
 const getContract = (packName): MultiContract | null => {
@@ -63,6 +64,22 @@ export default create<BidState>((set, get) => ({
     }));
 
     set({ tokenId, packName, tokenOwner, bids });
+  },
+  takeBid: async (tokenId, bidder) => {
+    const provider = getProvider();
+    const state = get();
+    const contract = getEthersContract(state.packName)?.connect(
+      provider.getSigner()
+    );
+    if (!contract) return;
+    const [result, error] = await safeAwait(
+      contract.executeSellBid(tokenId, bidder)
+    );
+    if (error){
+      console.log(error);
+    } else {
+      console.log(result);
+    }
   },
   offerBid: async (offering) => {
     //@ts-ignore
