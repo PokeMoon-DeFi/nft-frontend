@@ -3,13 +3,21 @@ import { BigNumber, Contract as ethersContract } from "ethers";
 import { Contract as MultiContract } from "ethers-multicall";
 import { getMarketAbi } from "utils/abiHelper";
 import { getMarketAddress } from "utils";
-import { call, safeAwait, toNumber } from "utils/callHelpers";
+import { call, getRpcUrl, safeAwait, toNumber } from "utils/callHelpers";
 import { ethers } from "ethers";
-import { gridColumnLookupSelector } from "@material-ui/data-grid";
+import useRefresh from "hooks/useRefresh";
+import { useWeb3React } from "@web3-react/core";
+import { useEffect, useState } from "react";
 
 interface Bid {
   bidder: string;
   offering: number;
+}
+
+interface BidInfo {
+  offering: number;
+  state: number;
+  tokenId: number;
 }
 
 interface BidState {
@@ -24,6 +32,15 @@ interface BidState {
   takeBid: (tokenId, bidder) => void;
 }
 
+const getProvider = () => {
+  //@ts-ignore
+  return new ethers.providers.Web3Provider(window.ethereum, "any");
+};
+
+function getReadProvider() {
+  return new ethers.providers.JsonRpcProvider(getRpcUrl(), 56);
+}
+
 const getContract = (packName): MultiContract | null => {
   const address = getMarketAddress(packName);
   const abi = getMarketAbi(packName);
@@ -36,16 +53,16 @@ const getEthersContract = (packName): ethersContract | null => {
   const abi = getMarketAbi(packName);
 
   if (!address || !abi) return null;
-  const contract = new ethersContract(address, abi);
+  const contract = new ethersContract(address, abi, getReadProvider());
   return contract;
 };
 
-const getProvider = () => {
-  //@ts-ignore
-  return new ethers.providers.Web3Provider(window.ethereum, "any");
+const getSignedContract = (contract: ethersContract) => {
+  const provider = getProvider();
+  return contract.connect(provider.getSigner());
 };
 
-export default create<BidState>((set, get) => ({
+const useBid = create<BidState>((set, get) => ({
   tokenId: null,
   tokenOwner: null,
   packName: null,
@@ -75,7 +92,7 @@ export default create<BidState>((set, get) => ({
     const [result, error] = await safeAwait(
       contract.executeSellBid(tokenId, bidder)
     );
-    if (error){
+    if (error) {
       console.log(error);
     } else {
       console.log(result);
@@ -133,3 +150,32 @@ export default create<BidState>((set, get) => ({
     }
   },
 }));
+
+export const useGetUserBidInfo = () => {
+  const { fastRefresh } = useRefresh();
+  const { account } = useWeb3React();
+  const [bidInfo, setBidInfo] = useState<BidInfo[]>([]);
+  const bidStore = useBid();
+
+  useEffect(() => {
+    //TODO: Loop through packs and collate all user bid infos
+    async function getBidInfo() {
+      const contract = getEthersContract("blastOff");
+      if (!contract || !account) return;
+
+      const info = await contract.getUserBidInfo(account);
+      setBidInfo(
+        info.map((i) => ({
+          offering: toNumber(i.offering),
+          state: toNumber(i.state),
+          tokenId: toNumber(i.tokenId),
+        }))
+      );
+    }
+    getBidInfo();
+  }, [account, fastRefresh, setBidInfo, bidStore]);
+
+  return bidInfo;
+};
+
+export default useBid;

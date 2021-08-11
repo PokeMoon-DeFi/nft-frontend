@@ -1,7 +1,6 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { Contract as ethersContract } from "ethers";
-
 import {
   getPackedOwned,
   getPackInfo,
@@ -10,7 +9,6 @@ import {
 } from "utils/callHelpers";
 import { PokemoonNft } from "config/constants/nfts/types";
 import { BigNumber, ethers } from "ethers";
-
 import {
   getNftContractByName,
   getNftAddressByName,
