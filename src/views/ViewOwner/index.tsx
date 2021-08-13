@@ -1,11 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import { useParams } from "react-router-dom";
 import { Content } from "components/layout";
 import Typography from "@material-ui/core/Typography";
 import styled from "styled-components";
-import Grid from "@material-ui/core/Grid";
 import ModeButton from "components/ModeButton";
 import { useGetUserBidInfo } from "hooks/useBid";
+import OwnerBids from "./OwnerBids";
+import Container from "@material-ui/core/Container";
 
 const Text = styled(Typography)`
   color: white;
@@ -13,9 +14,11 @@ const Text = styled(Typography)`
 
 const ViewOwner = () => {
   const { owner } = useParams();
-  const bidInfo = useGetUserBidInfo();
+  const { activeBidInfo, inactiveBidInfo } = useGetUserBidInfo();
+  const [showActiveBids, setShowActiveBids] = useState(true);
+
   return (
-    <Content
+    <Container
       maxWidth="lg"
       style={{ paddingTop: 60, justifyContent: "flex-start", height: "100%" }}
     >
@@ -28,11 +31,22 @@ const ViewOwner = () => {
           marginBottom: 20,
         }}
       >
-        <ModeButton>Active Bids</ModeButton>
+        <ModeButton
+          disabled={showActiveBids}
+          onClick={() => setShowActiveBids(true)}
+        >
+          Active Bids
+        </ModeButton>
         <div style={{ width: 40 }} />
-        <ModeButton>Inactive Bids</ModeButton>
+        <ModeButton
+          disabled={!showActiveBids}
+          onClick={() => setShowActiveBids(false)}
+        >
+          Inactive Bids
+        </ModeButton>
       </div>
-    </Content>
+      <OwnerBids data={showActiveBids ? activeBidInfo : inactiveBidInfo} />
+    </Container>
   );
 };
 

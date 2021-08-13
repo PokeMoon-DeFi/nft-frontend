@@ -8,18 +8,6 @@ import { ethers } from "ethers";
 import useRefresh from "hooks/useRefresh";
 import { useWeb3React } from "@web3-react/core";
 import { useEffect, useState } from "react";
-
-interface Bid {
-  bidder: string;
-  offering: number;
-}
-
-interface BidInfo {
-  offering: number;
-  state: number;
-  tokenId: number;
-}
-
 interface BidState {
   bids: Bid[];
   tokenOwner: string | null;
@@ -28,7 +16,7 @@ interface BidState {
   setTokenId: (string, set) => void;
   offerBid: (offering) => void;
   updateBid: (offering) => void;
-  cancelBid: (offering) => void;
+  cancelBid: (tokenId, packName) => void;
   takeBid: (tokenId, bidder) => void;
 }
 
@@ -134,14 +122,12 @@ const useBid = create<BidState>((set, get) => ({
       console.log(result);
     }
   },
-  cancelBid: async (tokenId) => {
+  cancelBid: async (tokenId, packName) => {
     const provider = getProvider();
-    const state = get();
-    const contract = getEthersContract(state.packName)?.connect(
-      provider.getSigner()
-    );
-    if (!contract) return;
 
+    const contract = getEthersContract(packName)?.connect(provider.getSigner());
+
+    if (!contract) return;
     const [result, error] = await safeAwait(contract.cancelBid(tokenId));
     if (error) {
       console.log(error);
@@ -154,28 +140,42 @@ const useBid = create<BidState>((set, get) => ({
 export const useGetUserBidInfo = () => {
   const { fastRefresh } = useRefresh();
   const { account } = useWeb3React();
-  const [bidInfo, setBidInfo] = useState<BidInfo[]>([]);
+  const [activeBidInfo, setActiveBidInfo] = useState<BidInfo[]>([]);
+  const [inactiveBidInfo, setInactiveBidInfo] = useState<BidInfo[]>([]);
   const bidStore = useBid();
 
   useEffect(() => {
     //TODO: Loop through packs and collate all user bid infos
+    const packName = "blastOff";
     async function getBidInfo() {
-      const contract = getEthersContract("blastOff");
+      const contract = getEthersContract(packName);
       if (!contract || !account) return;
 
-      const info = await contract.getUserBidInfo(account);
-      setBidInfo(
-        info.map((i) => ({
+      const activeInfo = await contract.getUserBidInfo(account);
+      const inactiveInfo = await contract.getUserBidInactiveInfo(account);
+
+      setActiveBidInfo(
+        activeInfo.map((i) => ({
           offering: toNumber(i.offering),
           state: toNumber(i.state),
           tokenId: toNumber(i.tokenId),
+          packName,
+        }))
+      );
+
+      setInactiveBidInfo(
+        inactiveInfo.map((i) => ({
+          offering: toNumber(i.offering),
+          state: toNumber(i.state),
+          tokenId: toNumber(i.tokenId),
+          packName,
         }))
       );
     }
     getBidInfo();
-  }, [account, fastRefresh, setBidInfo, bidStore]);
+  }, [account, fastRefresh, setActiveBidInfo, bidStore]);
 
-  return bidInfo;
+  return { activeBidInfo, inactiveBidInfo };
 };
 
 export default useBid;

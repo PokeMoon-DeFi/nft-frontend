@@ -6,6 +6,7 @@ import useRefresh from "hooks/useRefresh";
 import PriceModal from "views/ViewToken/PriceModal";
 import { useWeb3React } from "@web3-react/core";
 import BidTable from "./BidTable";
+
 interface Props {
   tokenId: string;
   set: string;
@@ -46,7 +47,7 @@ const BidBox: FC<Props> = ({ tokenId, set }) => {
         <>
           <Text>YOUR BID: {currentBid.offering}</Text>
           <Button onClick={() => setShowModal(true)}>Update Bid</Button>
-          <Button onClick={() => cancelBid(tokenId)}>Cancel Bid</Button>
+          <Button onClick={() => cancelBid(tokenId, set)}>Cancel Bid</Button>
         </>
       ) : (
         <>
