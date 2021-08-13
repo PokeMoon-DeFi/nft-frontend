@@ -32,7 +32,7 @@ import InfoBox from "./InfoBox";
 import { numberWithCommas } from "utils";
 import ButtonLogic from "./ButtonLogic";
 import { useWeb3React } from "@web3-react/core";
-import { AvatarGroup } from "@material-ui/lab";
+import BidBox from "./BidBox";
 
 const useStyles = makeStyles({
   root: {
@@ -138,12 +138,6 @@ const ViewToken = () => {
         />
       </Container>
 
-      {/* <div style={{ width: "100%", height: 80 }} /> */}
-      {/* <Hidden smUp> */}
-
-      {/* <Text>{owner}</Text> */}
-
-      {/* </Hidden> */}
       <Grid
         style={{
           width: "100%",
@@ -180,6 +174,7 @@ const ViewToken = () => {
             activeListing={!!activeListing}
             set={set}
           />
+          <BidBox tokenId={id} set={set} />
         </Grid>
         <Grid
           item
@@ -196,10 +191,6 @@ const ViewToken = () => {
             padding: 24,
           }}
         >
-          {/* <Box style={{ height: 400, background: "purple" }}>
-            <Typography>Stats</Typography>
-          </Box> */}
-
           {nft && <InfoBox nft={nft} />}
         </Grid>
       </Grid>

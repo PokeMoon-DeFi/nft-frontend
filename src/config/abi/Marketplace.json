@@ -590,6 +590,48 @@
     "inputs": [
       { "internalType": "address", "name": "user", "type": "address" }
     ],
+    "name": "getUserBidInactiveInfo",
+    "outputs": [
+      {
+        "components": [
+          { "internalType": "uint256", "name": "tokenId", "type": "uint256" },
+          { "internalType": "uint256", "name": "offering", "type": "uint256" },
+          { "internalType": "uint256", "name": "state", "type": "uint256" }
+        ],
+        "internalType": "struct MixerInterface.UserBidInfo[]",
+        "name": "",
+        "type": "tuple[]"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      { "internalType": "address", "name": "user", "type": "address" },
+      { "internalType": "uint256", "name": "from", "type": "uint256" },
+      { "internalType": "uint256", "name": "to", "type": "uint256" }
+    ],
+    "name": "getUserBidInactiveInfoIndex",
+    "outputs": [
+      {
+        "components": [
+          { "internalType": "uint256", "name": "tokenId", "type": "uint256" },
+          { "internalType": "uint256", "name": "offering", "type": "uint256" },
+          { "internalType": "uint256", "name": "state", "type": "uint256" }
+        ],
+        "internalType": "struct MixerInterface.UserBidInfo[]",
+        "name": "",
+        "type": "tuple[]"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      { "internalType": "address", "name": "user", "type": "address" }
+    ],
     "name": "getUserBidInfo",
     "outputs": [
       {

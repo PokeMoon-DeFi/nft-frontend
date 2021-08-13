@@ -73,12 +73,12 @@ const useAuth = () => {
       );
       // eslint-disable-next-line react-hooks/exhaustive-deps
     },
-    [activate]
+    [activate, deactivate]
   );
 
   useEffect(() => {
     dispatch(setAccount(account));
-  }, [account, dispatch]);
+  }, [account, dispatch, activate, deactivate]);
 
   return { login, logout: deactivate };
 };

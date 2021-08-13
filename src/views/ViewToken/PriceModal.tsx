@@ -12,11 +12,13 @@ import { numberWithCommas } from "utils";
 interface ModalProps extends DialogProps {
   handleClose: () => void;
   handleConfirm: (price: number) => void;
+  prompt?: string;
 }
 
 const PriceModal: FC<ModalProps> = ({
   handleClose,
   handleConfirm,
+  prompt,
   ...props
 }) => {
   const [price, setPrice] = useState(0);
@@ -27,9 +29,13 @@ const PriceModal: FC<ModalProps> = ({
     <Dialog {...props}>
       <DialogTitle>Confirm Asking Price</DialogTitle>
       <DialogContent>
-        <DialogContentText>
-          Sell this NFT for {price ? numberWithCommas(price) : " "} KBN
-        </DialogContentText>
+        {prompt ? (
+          <DialogContentText>{prompt}</DialogContentText>
+        ) : (
+          <DialogContentText>
+            Sell this NFT for {price ? numberWithCommas(price) : " "} KBN
+          </DialogContentText>
+        )}
         <div
           style={{
             display: "flex",
@@ -49,7 +55,11 @@ const PriceModal: FC<ModalProps> = ({
             }}
             onChange={(event: any) => {
               const val: string = event.target.value;
-              if (!val || val.length > 12) return;
+              if (val.length > 12) return;
+              if (!val) {
+                setPrice(0);
+                return;
+              }
 
               if (/^[0-9,]*$/.test(val)) {
                 const num = Number.parseInt(val.replace(/,/g, ""));

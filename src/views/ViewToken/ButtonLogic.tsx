@@ -25,6 +25,7 @@ import Approve from "components/Icons/Approve";
 import UpdatePrice from "components/Icons/UpdatePrice";
 import Gift from "components/Icons/Gift";
 import Typography from "@material-ui/core/Typography";
+import { toNumber } from "utils/callHelpers";
 interface LogicProps {
   isOwner: boolean;
   activeListing: boolean;
