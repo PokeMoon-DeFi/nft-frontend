@@ -54,7 +54,7 @@ const NavHeader: FC<NavHeaderProps> = ({
               marginRight: 10,
               cursor: "pointer",
             }}
-            onClick={() => (window.location.href = "https://pokemoon.app")}
+            onClick={() => (window.location.href = "https://app.pokemoon.io")}
           />
 
           {/* SIDEBAR */}
