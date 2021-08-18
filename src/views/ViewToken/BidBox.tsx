@@ -9,7 +9,7 @@ import BidTable from "./BidTable";
 import { useApproveMarket, useGetKobanAllowance } from "hooks/useAllowance";
 import { getMarketAddress } from "utils";
 import { useParams } from "react-router-dom";
-import { BigNumber } from "ethers";
+import { BigNumber, utils } from "ethers";
 
 interface Props {
   tokenId: string;
@@ -74,9 +74,9 @@ const BidBox: FC<Props> = ({ tokenId, set }) => {
         prompt={currentBid ? "Update Your Bid" : "Place Your Bid!"}
         handleConfirm={(offering) => {
           if (currentBid) {
-            updateBid(offering);
+            updateBid(utils.formatEther(offering));
           } else {
-            offerBid(offering);
+            offerBid(utils.formatEther(offering));
           }
           setShowModal(false);
         }}
