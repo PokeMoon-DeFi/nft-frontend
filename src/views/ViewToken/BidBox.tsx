@@ -9,6 +9,7 @@ import BidTable from "./BidTable";
 import { useApproveMarket, useGetKobanAllowance } from "hooks/useAllowance";
 import { getMarketAddress } from "utils";
 import { useParams } from "react-router-dom";
+import { BigNumber } from "ethers";
 
 interface Props {
   tokenId: string;
@@ -58,7 +59,7 @@ const BidBox: FC<Props> = ({ tokenId, set }) => {
           <Button onClick={() => setShowModal(true)}>Update Bid</Button>
           <Button onClick={() => cancelBid(tokenId, set)}>Cancel Bid</Button>
         </>
-      ) : !kobanAllowance ? (
+      ) : BigNumber.from(kobanAllowance).lte(0) ? (
         <>
           <Button onClick={handleKobanApprove}>Approve</Button>
         </>
