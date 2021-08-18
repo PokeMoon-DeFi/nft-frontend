@@ -9,7 +9,7 @@ import { useParams, useLocation } from "react-router-dom";
 
 export interface Props extends Omit<DialogProps, "open">, PortalHandler {
   bidder: string;
-  offering: number;
+  offering: string;
   handleClose?: () => void;
   tokenId: number;
 }

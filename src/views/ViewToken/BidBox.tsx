@@ -43,8 +43,6 @@ const BidBox: FC<Props> = ({ tokenId, set }) => {
   const isDeadAddress =
     tokenOwner === "0x0000000000000000000000000000000000000000";
 
-  console.log({ kobanAllowance });
-
   if (isDeadAddress) {
     return <></>;
   }
@@ -68,15 +66,16 @@ const BidBox: FC<Props> = ({ tokenId, set }) => {
           <Button onClick={() => setShowModal(true)}>Place a Bid</Button>
         </>
       )}
+
       <BidTable data={bids} isOwner={isOwner} />
       <PriceModal
         open={showModal}
         prompt={currentBid ? "Update Your Bid" : "Place Your Bid!"}
         handleConfirm={(offering) => {
           if (currentBid) {
-            updateBid(utils.formatEther(offering));
+            updateBid(utils.parseEther(offering));
           } else {
-            offerBid(utils.formatEther(offering));
+            offerBid(utils.parseEther(offering));
           }
           setShowModal(false);
         }}

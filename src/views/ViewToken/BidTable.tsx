@@ -10,6 +10,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import ConfirmBidModal from "components/Modal/ConfirmBidModal";
 import useModal from "hooks/useModal";
 import { useParams, Link } from "react-router-dom";
+import { utils } from "ethers";
 
 interface DataRow {
   bidder: string;
@@ -34,7 +35,11 @@ const ButtonCell = (params: GridCellParams) => {
   const row = params.row;
   const { id } = useParams();
   const [showModal] = useModal(
-    <ConfirmBidModal bidder={row.bidder} offering={row.offering} tokenId={id} />
+    <ConfirmBidModal
+      bidder={row.bidder}
+      offering={utils.formatEther(row.offering)}
+      tokenId={id}
+    />
   );
   return <Button onClick={showModal}>Select Bid</Button>;
 };
@@ -55,6 +60,8 @@ const getColumns = (isOwner) => {
       headerAlign: "center",
       align: "center",
       flex: 1,
+      //@ts-ignore
+      valueFormatter: ({ value }) => `${utils.formatEther(value)}`,
     },
   ];
   if (isOwner) {
@@ -77,7 +84,6 @@ const useStyles = makeStyles({
 
 const BidTable: FC<Props> = ({ data, isOwner, ...props }) => {
   const classes = useStyles();
-
   return (
     <div>
       <DataGrid

@@ -11,7 +11,7 @@ import { numberWithCommas } from "utils";
 
 interface ModalProps extends DialogProps {
   handleClose: () => void;
-  handleConfirm: (price: number) => void;
+  handleConfirm: (price: string) => void;
   prompt?: string;
 }
 
@@ -93,7 +93,7 @@ const PriceModal: FC<ModalProps> = ({
           <Button
             disabled={price <= 0}
             onClick={() => {
-              handleConfirm(price);
+              handleConfirm(price.toString());
             }}
           >
             Confirm

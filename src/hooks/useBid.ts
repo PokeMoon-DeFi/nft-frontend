@@ -87,6 +87,7 @@ const useBid = create<BidState>((set, get) => ({
     }
   },
   offerBid: async (offering) => {
+    console.log({ offering });
     //@ts-ignore
     const provider = new ethers.providers.Web3Provider(window.ethereum, "any");
     const state = get();
@@ -152,8 +153,9 @@ export const useGetUserBidInfo = () => {
       if (!contract || !account) return;
 
       const activeInfo = await contract.getUserBidInfo(account);
+      console.log({ activeInfo });
       const inactiveInfo = await contract.getUserBidInactiveInfo(account);
-
+      console.log({ inactiveInfo });
       setActiveBidInfo(
         activeInfo.map((i) => ({
           offering: toNumber(i.offering),

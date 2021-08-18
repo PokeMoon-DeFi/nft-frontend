@@ -16,6 +16,7 @@ const ViewOwner = () => {
   const { owner } = useParams();
   const { activeBidInfo, inactiveBidInfo } = useGetUserBidInfo();
   const [showActiveBids, setShowActiveBids] = useState(true);
+  console.log(activeBidInfo, inactiveBidInfo);
 
   return (
     <Container
