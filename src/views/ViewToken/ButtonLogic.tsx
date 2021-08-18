@@ -147,7 +147,8 @@ const ButtonLogic: FC<LogicProps> = ({ isOwner, activeListing }) => {
     }
   } else {
     if (activeListing) {
-      if (!kobanAllowance) {
+      //if no koban allowance or the allowance is 0, show Approve To Buy
+      if (!kobanAllowance || kobanAllowance.lte(0)) {
         return (
           <ButtonDiv>
             <Button startIcon={<Approve />} onClick={handleKobanApprove}>
