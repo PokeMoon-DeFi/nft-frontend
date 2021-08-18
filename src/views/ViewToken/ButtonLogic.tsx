@@ -60,7 +60,7 @@ const ButtonLogic: FC<LogicProps> = ({ isOwner, activeListing }) => {
   const { set, id: tokenId } = useParams();
   const marketAddress = getMarketAddress(set);
   const handleKobanApprove = useApproveMarket(set);
-  const kobanAllowance = useGetKobanAllowance(marketAddress);
+  const kobanAllowance: BigNumber = useGetKobanAllowance(marketAddress);
   const { isApproved: isNftApproved, sendApproval: sendNftApproval } =
     useApproveNft(set);
 
@@ -147,7 +147,7 @@ const ButtonLogic: FC<LogicProps> = ({ isOwner, activeListing }) => {
     }
   } else {
     if (activeListing) {
-      if (BigNumber.from(kobanAllowance).gte(0)) {
+      if (!kobanAllowance) {
         return (
           <ButtonDiv>
             <Button startIcon={<Approve />} onClick={handleKobanApprove}>

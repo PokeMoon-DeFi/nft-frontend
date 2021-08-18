@@ -6,6 +6,9 @@ import useRefresh from "hooks/useRefresh";
 import PriceModal from "views/ViewToken/PriceModal";
 import { useWeb3React } from "@web3-react/core";
 import BidTable from "./BidTable";
+import { useGetKobanAllowance } from "hooks/useAllowance";
+import { getMarketAddress } from "utils";
+import { useParams } from "react-router-dom";
 
 interface Props {
   tokenId: string;
@@ -22,6 +25,9 @@ const BidBox: FC<Props> = ({ tokenId, set }) => {
   const { fastRefresh } = useRefresh();
   const [showModal, setShowModal] = useState(false);
   const { account } = useWeb3React();
+
+  const marketAddress = getMarketAddress(set);
+  const kobanAllowance = useGetKobanAllowance(marketAddress);
 
   useEffect(() => {
     setTokenId(tokenId, set);
@@ -48,6 +54,10 @@ const BidBox: FC<Props> = ({ tokenId, set }) => {
           <Text>YOUR BID: {currentBid.offering}</Text>
           <Button onClick={() => setShowModal(true)}>Update Bid</Button>
           <Button onClick={() => cancelBid(tokenId, set)}>Cancel Bid</Button>
+        </>
+      ) : kobanAllowance ? (
+        <>
+          <Button onClick={() => {}}></Button>
         </>
       ) : (
         <>
