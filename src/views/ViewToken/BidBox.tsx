@@ -6,7 +6,7 @@ import useRefresh from "hooks/useRefresh";
 import PriceModal from "views/ViewToken/PriceModal";
 import { useWeb3React } from "@web3-react/core";
 import BidTable from "./BidTable";
-import { useGetKobanAllowance } from "hooks/useAllowance";
+import { useApproveMarket, useGetKobanAllowance } from "hooks/useAllowance";
 import { getMarketAddress } from "utils";
 import { useParams } from "react-router-dom";
 
@@ -28,6 +28,7 @@ const BidBox: FC<Props> = ({ tokenId, set }) => {
 
   const marketAddress = getMarketAddress(set);
   const kobanAllowance = useGetKobanAllowance(marketAddress);
+  const handleKobanApprove = useApproveMarket(set);
 
   useEffect(() => {
     setTokenId(tokenId, set);
@@ -40,6 +41,8 @@ const BidBox: FC<Props> = ({ tokenId, set }) => {
   const isOwner = tokenOwner === account;
   const isDeadAddress =
     tokenOwner === "0x0000000000000000000000000000000000000000";
+
+  console.log({ kobanAllowance });
 
   if (isDeadAddress) {
     return <></>;
@@ -55,9 +58,9 @@ const BidBox: FC<Props> = ({ tokenId, set }) => {
           <Button onClick={() => setShowModal(true)}>Update Bid</Button>
           <Button onClick={() => cancelBid(tokenId, set)}>Cancel Bid</Button>
         </>
-      ) : kobanAllowance ? (
+      ) : !kobanAllowance ? (
         <>
-          <Button onClick={() => {}}></Button>
+          <Button onClick={handleKobanApprove}>Approve</Button>
         </>
       ) : (
         <>
