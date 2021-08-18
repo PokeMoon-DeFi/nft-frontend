@@ -26,6 +26,7 @@ import UpdatePrice from "components/Icons/UpdatePrice";
 import Gift from "components/Icons/Gift";
 import Typography from "@material-ui/core/Typography";
 import { toNumber } from "utils/callHelpers";
+import { BigNumber } from "ethers";
 interface LogicProps {
   isOwner: boolean;
   activeListing: boolean;
@@ -146,7 +147,7 @@ const ButtonLogic: FC<LogicProps> = ({ isOwner, activeListing }) => {
     }
   } else {
     if (activeListing) {
-      if (!kobanAllowance) {
+      if (BigNumber.from(kobanAllowance).gte(0)) {
         return (
           <ButtonDiv>
             <Button startIcon={<Approve />} onClick={handleKobanApprove}>
