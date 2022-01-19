@@ -23,6 +23,15 @@ const PrimaryInfo = styled.div`
   margin-bottom: 6px;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 `;
+
+const Warning = styled.div`
+  display: flex;
+  flex-direction: row;
+  padding: 6px;
+  margin-bottom: 6px;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  color: red;
+`;
 const Pokeball = styled.div`
   flex: 1;
   margin-left: 6px;
@@ -122,9 +131,12 @@ const Blurb: FC<BuyInfoProps> = ({
         <Pack>{"APE BALL"}</Pack>
       </PrimaryInfo>
       <Description>
-        <Typography variant="h4" style={{ padding: 10 }}>
+        <Typography variant="h4" style={{ padding: 10, textDecoration: 'line-through' }}>
           LET'S GET MEAN, GREENS
         </Typography>
+        <Warning>THE SHOPE IS NOW CLOSED!</Warning>
+        <Warning>Thank you for participating!</Warning>
+
         <Typography style={{ padding: 10, textAlign: "center" }}>
           Spend {price} APB and receive 5 special cards from PokéMoon's 3rd
           pack. Once again meticulously designed by our most clever and creative
@@ -166,17 +178,18 @@ const Blurb: FC<BuyInfoProps> = ({
             Connect
           </Button>
         ) : allowance <= 0 ? (
-          <Button endIcon={<Buy />} onClick={onApproveClicked}>
+          <Button disabled endIcon={<Buy />} onClick={onApproveClicked}>
             Approve
           </Button>
         ) : balance >= price ? (
           <div style={{ display: "flex", flex: 1 }}>
-            <Button endIcon={<Buy />} onClick={onBuyClicked}>
+            <Button disabled endIcon={<Buy />} onClick={onBuyClicked}>
               Buy
             </Button>
             <div style={{ width: 20 }} />
             <Button
               endIcon={<Buy />}
+              disabled
               onClick={() => {
                 setOpenTransferModal(true);
               }}
